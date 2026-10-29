@@ -31,7 +31,7 @@ jobs:
                      CODE_SIGNING_ALLOWED=NO \
                      build
 
-      - name: Package into IPA
+      - name: Package and Ad-hoc Sign IPA
         run: |
           mkdir -p build/Payload
           APP_PATH=$(find build/DerivedData -name "Fingerolympic.app" -type d | head -n 1)
@@ -41,6 +41,12 @@ jobs:
           fi
           echo "Found compiled app at: $APP_PATH"
           cp -R "$APP_PATH" build/Payload/
+
+          # Apply ad-hoc code signature: adds LC_CODE_SIGNATURE and _CodeSignature
+          # This allows LiveContainer (ZSign) and sideloaders to patch/re-sign the binary
+          codesign --force --deep --sign - "build/Payload/Fingerolympic.app"
+          codesign -dvvv "build/Payload/Fingerolympic.app"
+
           cd build
           zip -r Fingerolympic.ipa Payload
           ls -lh Fingerolympic.ipa
