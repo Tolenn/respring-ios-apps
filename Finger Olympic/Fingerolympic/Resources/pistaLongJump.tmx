@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="2" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="09-pistaJump" tilewidth="64" tileheight="64">
+  <image source="09-pistaJump.png"/>
+ </tileset>
+ <tileset firstgid="27" name="98-acces-pista-jump" tilewidth="64" tileheight="64">
+  <image source="98-acces-pista-jump.png"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="40" height="2">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA7XGOQ7AIAwAQUvkIgQpFwnw/4eyLtzQU4x2nYhMcANrr2YsWLHBY0fAgdg5cQ2uvbrx4EXChx8ZBbXTAF7hp1RAAQAA
+  </data>
+ </layer>
+ <layer name="Capa de patrones 3" width="40" height="2">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGHrAH4uYFRYxPyxilljEfClwCwAv94RjQAEAAA==
+  </data>
+ </layer>
+</map>

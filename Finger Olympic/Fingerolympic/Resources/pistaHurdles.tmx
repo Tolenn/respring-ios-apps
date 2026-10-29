@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="62" height="2" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="06-pista" tilewidth="64" tileheight="64">
+  <image source="06-pista.png"/>
+ </tileset>
+ <tileset firstgid="13" name="99-accesorios-pista" tilewidth="64" tileheight="64">
+  <image source="99-accesorios-pista.png"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="62" height="2">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA9XMpwEAMBDDQH9623/eaAPTBByQgUNSQkZBRUM8vrt2fx0DEwsb54Pdtfu7k380G/ABAAA=
+  </data>
+ </layer>
+ <layer name="Capa de patrones 2" width="62" height="2">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+NjYGDgB2IBIBZkGNxAGIhFsPCFkbAIkhyMLwrEYmhmSQCxJBBLAbE0krg9mjptLO5wwCKmg0XMEYuYLhYxJyxieljEnLGIgYA+Gl8WiOWAWB6IFdDkAEm+zEHwAQAA
+  </data>
+ </layer>
+</map>

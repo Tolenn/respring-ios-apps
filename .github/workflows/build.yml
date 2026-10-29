@@ -1,0 +1,53 @@
+name: Build Modern iOS IPA
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-ipa:
+    runs-on: macos-14
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode Version
+        run: |
+          sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
+
+      - name: Build Xcode Project
+        run: |
+          xcodebuild -project "Finger Olympic/Fingerolympic.xcodeproj" \
+                     -scheme Fingerolympic \
+                     -destination 'generic/platform=iOS' \
+                     -configuration Release \
+                     -derivedDataPath build/DerivedData \
+                     CODE_SIGN_IDENTITY="" \
+                     CODE_SIGNING_REQUIRED=NO \
+                     CODE_SIGNING_ALLOWED=NO \
+                     build
+
+      - name: Package into IPA
+        run: |
+          mkdir -p build/Payload
+          APP_PATH=$(find build/DerivedData -name "Fingerolympic.app" -type d | head -n 1)
+          if [ -z "$APP_PATH" ]; then
+            echo "Error: Fingerolympic.app not found!"
+            exit 1
+          fi
+          echo "Found compiled app at: $APP_PATH"
+          cp -R "$APP_PATH" build/Payload/
+          cd build
+          zip -r Fingerolympic.ipa Payload
+          ls -lh Fingerolympic.ipa
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fingerolympic-iOS-IPA
+          path: build/Fingerolympic.ipa
+          retention-days: 14

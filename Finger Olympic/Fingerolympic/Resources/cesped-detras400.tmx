@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="2" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="08-cesped-detras" tilewidth="64" tileheight="64">
+  <image source="08-cesped-detras.png"/>
+ </tileset>
+ <tileset firstgid="36" name="publicidad400" tilewidth="64" tileheight="64">
+  <image source="publicidad400.png"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="25" height="2">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA3XJOQ4AIAwDwZTcN///KltQIEsUI8eOMzOPAPfcEQkZ5ebvr7v2ioYu98DEwr75++uu/QAcslFPyAAAAA==
+  </data>
+ </layer>
+ <layer name="Capa de patrones 2" width="25" height="2">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgoD1QAWJVIFYDYnUg1gBiTSDWAmJtKsiDAAAZG6fxyAAAAA==
+  </data>
+ </layer>
+</map>
