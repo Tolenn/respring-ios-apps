@@ -1,0 +1,4577 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	13
+
+.constant	k0	"require"
+.constant	k1	"physicsGroups"
+.constant	k2	"densityOfABomb"
+.constant	k3	2
+.constant	k4	"BOMB_WEIGHT"
+.constant	k5	1500
+.constant	k6	"SMOKE_WIDTH"
+.constant	k7	10
+.constant	k8	"GenericWeaponSequences"
+.constant	k9	"spriteSequences"
+.constant	k10	"fire"
+.constant	k11	"file"
+.constant	k12	"res/weapons/exhaust/exhaust.png"
+.constant	k13	"dataFile"
+.constant	k14	"res.weapons.exhaust.exhaust"
+.constant	k15	"startFrame"
+.constant	k16	1
+.constant	k17	"numFrames"
+.constant	k18	3
+.constant	k19	"duration"
+.constant	k20	250
+.constant	k21	"loopParam"
+.constant	k22	-2
+.constant	k23	"smoke"
+.constant	k24	4
+.constant	k25	400
+.constant	k26	"explode1"
+.constant	k27	"res/weapons/bigexplosionA.png"
+.constant	k28	"res.weapons.bigexplosionA"
+.constant	k29	6
+.constant	k30	300
+.constant	k31	"Weapon"
+.constant	k32	"triggerPlayerChange"
+.constant	k33	true
+.constant	k34	"objType"
+.constant	k35	"bomb"
+.constant	k36	"zeroDegree"
+.constant	k37	90
+.constant	k38	"isBullet"
+.constant	k39	"isAirborne"
+.constant	k40	"isSensor"
+.constant	k41	"countdownTimer"
+.constant	k42	0
+.constant	k43	"recoil"
+.constant	k44	"hideFromSelection"
+.constant	k45	false
+.constant	k46	"damage"
+.constant	k47	"shield"
+.constant	k48	"blastRadius"
+.constant	k49	"blastForce"
+.constant	k50	"forceRadius"
+.constant	k51	"trackImmediately"
+.constant	k52	"doExplosionEffect"
+.constant	k53	"pluralName"
+.constant	k54	"updateShotData"
+.constant	k55	"activeWeapons"
+.constant	k56	"weaponTypes"
+.constant	k57	"weaponBalance"
+.constant	k58	"BABY_MISSILE"
+.constant	k59	"MISSILE"
+.constant	k60	"BABY_ROLLER"
+.constant	k61	"SMOKE_TRACER"
+.constant	k62	"BABY_NUKE"
+.constant	k63	5
+.constant	k64	"NUKE"
+.constant	k65	"BIG_ROLLER"
+.constant	k66	7
+.constant	k67	"MIRV"
+.constant	k68	8
+.constant	k69	"DEATH_HEAD"
+.constant	k70	9
+.constant	k71	"FUNKY_BOMB"
+.constant	k72	"LEAPFROG"
+.constant	k73	11
+.constant	k74	"LASER"
+.constant	k75	12
+.constant	k76	"DRILL"
+.constant	k77	13
+.constant	k78	"BABY_SHIELD"
+.constant	k79	14
+.constant	k80	"BIG_SHIELD"
+.constant	k81	15
+.constant	k82	"SAND_BOMB"
+.constant	k83	16
+.constant	k84	"NAPALM"
+.constant	k85	17
+.constant	k86	"MIRV_SPAWN"
+.constant	k87	18
+.constant	k88	"FUNKY_SPAWN"
+.constant	k89	19
+.constant	k90	"TRACER"
+.constant	k91	20
+.constant	k92	"HOT_NAPALM"
+.constant	k93	21
+.constant	k94	"SAND_WEDGE"
+.constant	k95	22
+.constant	k96	"GRENADE"
+.constant	k97	23
+.constant	k98	"F_BOMB"
+.constant	k99	24
+.constant	k100	"F_BOMB_SPAWN"
+.constant	k101	25
+.constant	k102	"ICECREAM"
+.constant	k103	26
+.constant	k104	"PUMPKIN"
+.constant	k105	27
+.constant	k106	"DRAGON_FIRE"
+.constant	k107	28
+.constant	k108	"SANTA"
+.constant	k109	29
+.constant	k110	"SANTA_SPAWN"
+.constant	k111	30
+.constant	k112	"BABY_ROLLER_REVERSE"
+.constant	k113	31
+.constant	k114	"BIG_ROLLER_REVERSE"
+.constant	k115	32
+.constant	k116	"classes"
+.constant	k117	"LIGHT"
+.constant	k118	"MEDIUM"
+.constant	k119	"HEAVY"
+.constant	k120	"SPECIAL"
+.constant	k121	"DEFENSIVE"
+.constant	k122	"orderedClasses"
+.constant	k123	"name"
+.constant	k124	"Light Class Weapon"
+.constant	k125	"shortGroupName"
+.constant	k126	"Light"
+.constant	k127	"groupName"
+.constant	k128	"Light Weapons"
+.constant	k129	"filterImage"
+.constant	k130	"light_filter.png"
+.constant	k131	"Medium Class Weapon"
+.constant	k132	"Medium"
+.constant	k133	"Medium Weapons"
+.constant	k134	"medium_filter.png"
+.constant	k135	"Heavy Class Weapon"
+.constant	k136	"Heavy"
+.constant	k137	"Heavy Weapons"
+.constant	k138	"heavy_filter.png"
+.constant	k139	"Special Class Weapon"
+.constant	k140	"Special"
+.constant	k141	"Special Weapons"
+.constant	k142	"special_filter.png"
+.constant	k143	"Defensive Class Weapon"
+.constant	k144	"Defensive"
+.constant	k145	"Defensive Weapons"
+.constant	k146	"defensive_filter.png"
+.constant	k147	"BattleSprites"
+.constant	k148	"spriteSets"
+.constant	k149	"sequences"
+.constant	k150	"sheets"
+.constant	k151	"data"
+.constant	k152	"newSprite"
+.constant	k153	"getSpriteSet"
+.constant	k154	"prepareSpriteSequence"
+.constant	k155	"removeSpriteSheet"
+.constant	k156	"loadWeaponSprites"
+.constant	k157	"disposeWeaponSprites"
+.constant	k158	"loadWeaponSounds"
+.constant	k159	"tankCanUseWeapon"
+.constant	k160	"isUnlocked"
+.constant	k161	"unlockableIdFor"
+.constant	k162	"getMetaWeaponProperties"
+.constant	k163	"getWeaponImageGroup"
+.constant	k164	"new"
+.constant	k165	"goPreCall"
+.constant	k166	"cleanUpTracers"
+.constant	k167	"collisionPreCall"
+.constant	k168	"loadPhysicsDensityFromArea"
+.constant	k169	"bombCollision"
+.constant	k170	"shootBasicProjectile"
+.constant	k171	"getClosestTankPiece"
+.constant	k172	"orientOnPath"
+.constant	k173	"doExplosionRadialDamage"
+.constant	k174	"doExplosionFX"
+.constant	k175	"explodeBomb"
+.constant	k176	"damageTanksInRadius"
+.constant	k177	"cleanUp"
+.constant	k178	"exertBlastForce"
+.constant	k179	"getCenterLineFromRectangle"
+.constant	k180	"vaporizeObjectsInPolygon"
+.constant	k181	"vaporizeObjects"
+.constant	k182	"getWeaponSpriteSet"
+.constant	k183	"weaponManualPhysics"
+.constant	k184	"weaponUnlockableIdFor"
+.constant	k185	"weapons.balance_sheet"
+.constant	k186	"weapons.missiles"
+.constant	k187	"weapons.nukes"
+.constant	k188	"weapons.rollers"
+.constant	k189	"weapons.frogs"
+.constant	k190	"weapons.funkys"
+.constant	k191	"weapons.mirvs"
+.constant	k192	"weapons.tracers"
+.constant	k193	"weapons.drills"
+.constant	k194	"weapons.lasers"
+.constant	k195	"weapons.shields"
+.constant	k196	"weapons.dirtbombs"
+.constant	k197	"weapons.napalm"
+.constant	k198	"weapons.sandwedge"
+.constant	k199	"weapons.grenade"
+.constant	k200	"weapons.f_bomb"
+.constant	k201	"weapons.icecream"
+.constant	k202	"weapons.pumpkinpatch"
+.constant	k203	"weapons.santa"
+.constant	k204	"weaponClass"
+.constant	k205	"templateId"
+.constant	k206	1000
+.constant	k207	"table"
+.constant	k208	"indexOf"
+.constant	k209	"jigglePixels"
+.constant	k210	"jiggleDuration"
+.constant	k211	"cost"
+.constant	k212	"inventory"
+.constant	k213	"tutorial"
+.constant	k214	"s"
+.constant	k215	"id"
+.constant	k216	"weaponUnlock"
+.constant	k217	"tostring"
+.constant	k218	"notificationParams"
+.constant	k219	"spriteImage"
+.constant	k220	"UI_SPRITE_SHEET"
+.constant	k221	"spriteName"
+.constant	k222	"accept_normal_btn.png"
+.constant	k223	"confirmationRequired"
+.constant	k224	"direction"
+.constant	k225	"down"
+.constant	k226	"text"
+.constant	k227	"string"
+.constant	k228	"format"
+.constant	k229	"You received %d free %s! Try one now. [[IMG]]"
+.constant	k230	"UNLOCK_WEAPON_COUNT"
+.constant	k231	"init"
+.constant	k232	"loadWeapon"
+.constant	k233	"unloadWeapon"
+.constant	k234	"isWeaponTypeInUse"
+.constant	k235	"safeWeaponSpriteRemoval"
+.constant	k236	"safeWeaponSoundRemoval"
+.constant	k237	"destroy"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     1
+loadk         r0    k3
+setglobal     r0    k2
+loadk         r0    k5
+setglobal     r0    k4
+loadk         r0    k7
+setglobal     r0    k6
+newtable      r0     0     1
+newtable      r1     0     3
+newtable      r2     0     6
+settable      r2   k11   k12
+settable      r2   k13   k14
+settable      r2   k15   k16
+settable      r2   k17   k18
+settable      r2   k19   k20
+settable      r2   k21   k22
+settable      r1   k10    r2
+newtable      r2     0     6
+settable      r2   k11   k12
+settable      r2   k13   k14
+settable      r2   k15   k24
+settable      r2   k17   k24
+settable      r2   k19   k25
+settable      r2   k21   k22
+settable      r1   k23    r2
+newtable      r2     0     6
+settable      r2   k11   k27
+settable      r2   k13   k28
+settable      r2   k15   k16
+settable      r2   k17   k29
+settable      r2   k19   k30
+settable      r2   k21   k16
+settable      r1   k26    r2
+settable      r0    k9    r1
+setglobal     r0    k8
+newtable      r0     0    17
+settable      r0   k32   k33
+settable      r0   k34   k35
+settable      r0   k36   k37
+settable      r0   k38   k33
+settable      r0   k39   k33
+settable      r0   k40   k33
+settable      r0   k41   k42
+settable      r0   k43   k33
+settable      r0   k44   k45
+settable      r0   k46   k42
+settable      r0   k47   k42
+settable      r0   k48   k42
+settable      r0   k49   k42
+settable      r0   k50   k42
+settable      r0   k51   k33
+closure       r1    f0
+settable      r0   k52    r1
+closure       r1    f1
+settable      r0   k53    r1
+setglobal     r0   k31
+getglobal     r0   k31
+closure       r1    f2
+settable      r0   k54    r1
+newtable      r0     0     0
+setglobal     r0   k55
+newtable      r0     0     0
+setglobal     r0   k56
+newtable      r0     0     0
+setglobal     r0   k57
+getglobal     r0   k56
+settable      r0   k58   k16
+getglobal     r0   k56
+settable      r0   k59    k3
+getglobal     r0   k56
+settable      r0   k60   k18
+getglobal     r0   k56
+settable      r0   k61   k24
+getglobal     r0   k56
+settable      r0   k62   k63
+getglobal     r0   k56
+settable      r0   k64   k29
+getglobal     r0   k56
+settable      r0   k65   k66
+getglobal     r0   k56
+settable      r0   k67   k68
+getglobal     r0   k56
+settable      r0   k69   k70
+getglobal     r0   k56
+settable      r0   k71    k7
+getglobal     r0   k56
+settable      r0   k72   k73
+getglobal     r0   k56
+settable      r0   k74   k75
+getglobal     r0   k56
+settable      r0   k76   k77
+getglobal     r0   k56
+settable      r0   k78   k79
+getglobal     r0   k56
+settable      r0   k80   k81
+getglobal     r0   k56
+settable      r0   k82   k83
+getglobal     r0   k56
+settable      r0   k84   k85
+getglobal     r0   k56
+settable      r0   k86   k87
+getglobal     r0   k56
+settable      r0   k88   k89
+getglobal     r0   k56
+settable      r0   k90   k91
+getglobal     r0   k56
+settable      r0   k92   k93
+getglobal     r0   k56
+settable      r0   k94   k95
+getglobal     r0   k56
+settable      r0   k96   k97
+getglobal     r0   k56
+settable      r0   k98   k99
+getglobal     r0   k56
+settable      r0  k100  k101
+getglobal     r0   k56
+settable      r0  k102  k103
+getglobal     r0   k56
+settable      r0  k104  k105
+getglobal     r0   k56
+settable      r0  k106  k107
+getglobal     r0   k56
+settable      r0  k108  k109
+getglobal     r0   k56
+settable      r0  k110  k111
+getglobal     r0   k56
+settable      r0  k112  k113
+getglobal     r0   k56
+settable      r0  k114  k115
+getglobal     r0   k56
+newtable      r1     0     5
+settable      r1  k117   k16
+settable      r1  k118    k3
+settable      r1  k119   k18
+settable      r1  k120   k24
+settable      r1  k121   k63
+settable      r0  k116    r1
+getglobal     r0   k56
+newtable      r1     5     0
+getglobal     r2   k56
+gettable      r2    r2  k116
+gettable      r2    r2  k117
+getglobal     r3   k56
+gettable      r3    r3  k116
+gettable      r3    r3  k118
+getglobal     r4   k56
+gettable      r4    r4  k116
+gettable      r4    r4  k119
+getglobal     r5   k56
+gettable      r5    r5  k116
+gettable      r5    r5  k120
+getglobal     r6   k56
+gettable      r6    r6  k116
+gettable      r6    r6  k121
+setlist       r1     5     1
+settable      r0  k122    r1
+getglobal     r0   k56
+gettable      r0    r0  k116
+getglobal     r1   k56
+gettable      r1    r1  k116
+gettable      r1    r1  k117
+newtable      r2     0     4
+settable      r2  k123  k124
+settable      r2  k125  k126
+settable      r2  k127  k128
+settable      r2  k129  k130
+settable      r0    r1    r2
+getglobal     r0   k56
+gettable      r0    r0  k116
+getglobal     r1   k56
+gettable      r1    r1  k116
+gettable      r1    r1  k118
+newtable      r2     0     4
+settable      r2  k123  k131
+settable      r2  k125  k132
+settable      r2  k127  k133
+settable      r2  k129  k134
+settable      r0    r1    r2
+getglobal     r0   k56
+gettable      r0    r0  k116
+getglobal     r1   k56
+gettable      r1    r1  k116
+gettable      r1    r1  k119
+newtable      r2     0     4
+settable      r2  k123  k135
+settable      r2  k125  k136
+settable      r2  k127  k137
+settable      r2  k129  k138
+settable      r0    r1    r2
+getglobal     r0   k56
+gettable      r0    r0  k116
+getglobal     r1   k56
+gettable      r1    r1  k116
+gettable      r1    r1  k120
+newtable      r2     0     4
+settable      r2  k123  k139
+settable      r2  k125  k140
+settable      r2  k127  k141
+settable      r2  k129  k142
+settable      r0    r1    r2
+getglobal     r0   k56
+gettable      r0    r0  k116
+getglobal     r1   k56
+gettable      r1    r1  k116
+gettable      r1    r1  k121
+newtable      r2     0     4
+settable      r2  k123  k143
+settable      r2  k125  k144
+settable      r2  k127  k145
+settable      r2  k129  k146
+settable      r0    r1    r2
+newtable      r0     0     4
+newtable      r1     0     0
+settable      r0  k148    r1
+newtable      r1     0     0
+settable      r0  k149    r1
+newtable      r1     0     0
+settable      r0  k150    r1
+newtable      r1     0     0
+settable      r0  k151    r1
+setglobal     r0  k147
+getglobal     r0  k147
+closure       r1    f3
+settable      r0  k152    r1
+getglobal     r0  k147
+closure       r1    f4
+settable      r0  k153    r1
+getglobal     r0  k147
+closure       r1    f5
+settable      r0  k154    r1
+getglobal     r0   k31
+closure       r1    f6
+settable      r0  k155    r1
+getglobal     r0   k31
+closure       r1    f7
+settable      r0  k156    r1
+getglobal     r0   k31
+closure       r1    f8
+settable      r0  k157    r1
+getglobal     r0   k31
+closure       r1    f9
+settable      r0  k158    r1
+getglobal     r0   k31
+closure       r1   f10
+settable      r0  k159    r1
+getglobal     r0   k31
+closure       r1   f11
+settable      r0  k160    r1
+closure       r0   f12
+setglobal     r0  k161
+closure       r0   f13
+setglobal     r0  k162
+getglobal     r0   k31
+closure       r1   f14
+settable      r0  k163    r1
+getglobal     r0   k31
+closure       r1   f15
+settable      r0  k164    r1
+closure       r0   f16
+setglobal     r0  k165
+closure       r0   f17
+setglobal     r0  k166
+closure       r0   f18
+setglobal     r0  k167
+closure       r0   f19
+setglobal     r0  k168
+closure       r0   f20
+setglobal     r0  k169
+closure       r0   f21
+setglobal     r0  k170
+closure       r0   f22
+setglobal     r0  k171
+closure       r0   f23
+setglobal     r0  k172
+closure       r0   f24
+setglobal     r0  k173
+closure       r0   f25
+setglobal     r0  k174
+closure       r0   f26
+setglobal     r0  k175
+closure       r0   f27
+setglobal     r0  k176
+closure       r0   f28
+setglobal     r0  k177
+closure       r0   f29
+setglobal     r0  k178
+closure       r0   f30
+setglobal     r0  k179
+closure       r0   f31
+setglobal     r0  k180
+closure       r0   f32
+setglobal     r0  k181
+closure       r0   f33
+setglobal     r0  k182
+closure       r0   f34
+setglobal     r0  k183
+closure       r0   f35
+setglobal     r0  k184
+getglobal     r0    k0
+loadk         r1  k185
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k186
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k187
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k188
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k189
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k190
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k191
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k192
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k193
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k194
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k195
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k196
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k197
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k198
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k199
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k200
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k201
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k202
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1  k203
+call          r0     2     1
+newtable      r0     8     0
+getglobal     r1   k56
+gettable      r1    r1   k58
+getglobal     r2   k56
+gettable      r2    r2   k90
+getglobal     r3   k56
+gettable      r3    r3   k86
+getglobal     r4   k56
+gettable      r4    r4   k61
+getglobal     r5   k56
+gettable      r5    r5  k102
+getglobal     r6   k56
+gettable      r6    r6  k104
+getglobal     r7   k56
+gettable      r7    r7  k106
+getglobal     r8   k56
+gettable      r8    r8  k108
+setlist       r0     8     1
+loadk         r1   k16
+getglobal     r2   k56
+len           r2    r2
+loadk         r3   k16
+forprep       r1  l472
+.label	l381
+getglobal     r5   k56
+gettable      r5    r5    r4
+getglobal     r6   k57
+gettable      r6    r6    r4
+gettable      r6    r6  k204
+settable      r5  k204    r6
+getglobal     r5   k56
+gettable      r5    r5    r4
+add           r6    r4  k206
+settable      r5  k205    r6
+getglobal     r5  k207
+gettable      r5    r5  k208
+move          r6    r0
+move          r7    r4
+call          r5     3     2
+test          r5     1
+jmp         l401
+getglobal     r5  k184
+move          r6    r4
+call          r5     2     1
+.label	l401
+getglobal     r5   k56
+gettable      r5    r5    r4
+getglobal     r6   k57
+gettable      r6    r6    r4
+gettable      r6    r6  k209
+settable      r5  k209    r6
+getglobal     r5   k56
+gettable      r5    r5    r4
+getglobal     r6   k57
+gettable      r6    r6    r4
+gettable      r6    r6  k210
+settable      r5  k210    r6
+getglobal     r5   k56
+gettable      r5    r5    r4
+getglobal     r6   k57
+gettable      r6    r6    r4
+gettable      r6    r6  k211
+settable      r5  k211    r6
+getglobal     r5   k56
+gettable      r5    r5    r4
+getglobal     r6   k57
+gettable      r6    r6    r4
+gettable      r6    r6  k212
+settable      r5  k212    r6
+getglobal     r5   k56
+gettable      r5    r5    r4
+getglobal     r6   k57
+gettable      r6    r6  k213
+settable      r5  k213    r6
+getglobal     r5   k56
+gettable      r5    r5    r4
+gettable      r5    r5  k213
+test          r5     1
+jmp         l472
+getglobal     r5   k56
+gettable      r5    r5    r4
+gettable      r5    r5   k53
+test          r5     1
+jmp         l445
+getglobal     r5   k56
+gettable      r5    r5    r4
+gettable      r5    r5  k123
+loadk         r6  k214
+concat        r5    r5    r6
+.label	l445
+getglobal     r6   k56
+gettable      r6    r6    r4
+settable      r6   k53    r5
+getglobal     r6   k56
+gettable      r6    r6    r4
+newtable      r7     0     2
+loadk         r8  k216
+getglobal     r9  k217
+move         r10    r4
+call          r9     2     2
+concat        r8    r8    r9
+settable      r7  k215    r8
+newtable      r8     0     5
+getglobal     r9  k220
+settable      r8  k219    r9
+settable      r8  k221  k222
+settable      r8  k223   k33
+settable      r8  k224  k225
+getglobal     r9  k227
+gettable      r9    r9  k228
+loadk        r10  k229
+getglobal    r11  k230
+move         r12    r5
+call          r9     4     2
+settable      r8  k226    r9
+settable      r7  k218    r8
+settable      r6  k213    r7
+.label	l472
+forloop       r1  l381
+getglobal     r1   k31
+closure       r2   f36
+settable      r1  k231    r2
+getglobal     r1   k31
+closure       r2   f37
+settable      r1  k232    r2
+getglobal     r1   k31
+closure       r2   f38
+settable      r1  k233    r2
+getglobal     r1   k31
+closure       r2   f39
+settable      r1  k234    r2
+getglobal     r1   k31
+closure       r2   f40
+settable      r1  k235    r2
+getglobal     r1   k31
+closure       r2   f41
+settable      r1  k236    r2
+getglobal     r1   k31
+closure       r2   f42
+settable      r1  k237    r2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	57
+.lastlinedefined	93
+.numparams	2
+.is_vararg	0
+.maxstacksize	14
+
+.constant	k0	"emitterName"
+.constant	k1	"x"
+.constant	k2	"y"
+.constant	k3	"Particles"
+.constant	k4	"CreateEmitter"
+.constant	k5	0
+.constant	k6	"blastRadius"
+.constant	k7	"FXLibrary"
+.constant	k8	"EXPLOSION_BASE_WIDTH"
+.constant	k9	"SetEmitterScale"
+.constant	k10	"FRONT_TANK"
+.constant	k11	"insert"
+.constant	k12	"GetEmitter"
+.constant	k13	"AttachWeaponExlpode"
+.constant	k14	"StartEmitter"
+.constant	k15	"weaponType"
+.constant	k16	"weaponTypes"
+.constant	k17	"sounds"
+.constant	k18	"explode"
+.constant	k19	"sound"
+.constant	k20	"playSound"
+.constant	k21	"BattleSprites"
+.constant	k22	"newSprite"
+.constant	k23	"explode1_generic"
+.constant	k24	"width"
+.constant	k25	2
+.constant	k26	"rotation"
+.constant	k27	"math"
+.constant	k28	"random"
+.constant	k29	359
+.constant	k30	"xScale"
+.constant	k31	"yScale"
+.constant	k32	"EXPLOSIONS"
+.constant	k33	"sprite"
+.constant	k34	"addEventListener"
+.constant	k35	"play"
+
+move          r2    r0
+gettable      r3    r2    k0
+gettable      r4    r2    k1
+gettable      r5    r2    k2
+getglobal     r6    k3
+gettable      r6    r6    k4
+move          r7    r3
+move          r8    r4
+move          r9    r5
+loadk        r10    k5
+loadbool     r11     0     0
+loadbool     r12     0     0
+loadbool     r13     1     0
+call          r6     8     1
+gettable      r6    r2    k6
+getglobal     r7    k7
+gettable      r7    r7    k8
+div           r6    r6    r7
+getglobal     r7    k3
+gettable      r7    r7    k9
+move          r8    r3
+move          r9    r6
+call          r7     3     1
+getglobal     r7   k10
+self          r7    r7   k11
+getglobal     r9    k3
+gettable      r9    r9   k12
+move         r10    r3
+call          r9     2     0
+call          r7     0     1
+getglobal     r7    k7
+gettable      r7    r7   k13
+move          r8    r3
+call          r7     2     1
+getglobal     r7    k3
+gettable      r7    r7   k14
+move          r8    r3
+call          r7     2     1
+gettable      r7    r2   k15
+test          r7     0
+jmp          l68
+getglobal     r7   k16
+gettable      r8    r2   k15
+gettable      r7    r7    r8
+test          r7     0
+jmp          l68
+getglobal     r7   k16
+gettable      r8    r2   k15
+gettable      r7    r7    r8
+gettable      r7    r7   k17
+test          r7     0
+jmp          l68
+getglobal     r7   k16
+gettable      r8    r2   k15
+gettable      r7    r7    r8
+gettable      r7    r7   k17
+gettable      r7    r7   k18
+test          r7     0
+jmp          l68
+getglobal     r7   k19
+gettable      r7    r7   k20
+getglobal     r8   k16
+gettable      r9    r2   k15
+gettable      r8    r8    r9
+gettable      r8    r8   k17
+gettable      r8    r8   k18
+call          r7     2     1
+.label	l68
+getglobal     r7   k21
+gettable      r7    r7   k22
+loadk         r8   k23
+call          r7     2     2
+gettable      r8    r0    k6
+gettable      r9    r7   k24
+div           r8    r8    r9
+div           r8    r8   k25
+getglobal     r9   k27
+gettable      r9    r9   k28
+loadk        r10    k5
+loadk        r11   k29
+call          r9     3     2
+settable      r7   k26    r9
+move          r9    r8
+settable      r7   k31    r8
+settable      r7   k30    r9
+getglobal     r9   k32
+self          r9    r9   k11
+move         r11    r7
+call          r9     3     1
+move          r9    r4
+settable      r7    k2    r5
+settable      r7    k1    r9
+closure       r9    f0
+settable      r7   k33    r9
+self          r9    r7   k34
+loadk        r11   k33
+move         r12    r7
+call          r9     4     1
+self          r9    r7   k35
+call          r9     2     1
+return        r0     1
+
+.function	main/f0/f0
+
+.source	null
+.linedefined	81
+.lastlinedefined	85
+.numparams	2
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"phase"
+.constant	k1	"end"
+.constant	k2	"display"
+.constant	k3	"remove"
+.constant	k4	"sprite"
+
+gettable      r2    r1    k0
+eq             0    r2    k1
+jmp           l8
+getglobal     r2    k2
+gettable      r2    r2    k3
+gettable      r3    r1    k4
+call          r2     2     1
+.label	l8
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	95
+.lastlinedefined	97
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	101
+.lastlinedefined	131
+.numparams	1
+.is_vararg	0
+.maxstacksize	15
+
+.constant	k0	"shotData"
+.constant	k1	"hitX"
+.constant	k2	"x"
+.constant	k3	"hitY"
+.constant	k4	"y"
+.constant	k5	"localToContent"
+.constant	k6	0
+.constant	k7	"screenX"
+.constant	k8	"screenWidth"
+.constant	k9	"outOfBounds"
+.constant	k10	"pairs"
+.constant	k11	"tankPositions"
+.constant	k12	"endX"
+.constant	k13	"endY"
+.constant	k14	"distanceFromTarget"
+.constant	k15	"utils"
+.constant	k16	"distanceBetweenPoints"
+.constant	k17	128
+.constant	k18	"hit"
+.constant	k19	true
+.constant	k20	"toTheLeft"
+.constant	k21	"ai_weapon_update"
+.constant	k22	"players"
+.constant	k23	2
+.constant	k24	"AI"
+
+gettable      r1    r0    k0
+test          r1     1
+jmp           l5
+return        r0     1
+.label	l5
+gettable      r2    r0    k2
+settable      r1    k1    r2
+gettable      r2    r0    k4
+settable      r1    k3    r2
+loadbool      r2     0     0
+self          r3    r0    k5
+loadk         r5    k6
+loadk         r6    k6
+call          r3     4     3
+getglobal     r5    k7
+le             1    r3    r5
+jmp          l22
+getglobal     r5    k7
+getglobal     r6    k8
+add           r5    r5    r6
+le             0    r5    r3
+jmp          l23
+.label	l22
+loadbool      r2     1     0
+.label	l23
+settable      r1    k9    r2
+getglobal     r5   k10
+gettable      r6    r1   k11
+call          r5     2     4
+jmp          l57
+.label	l28
+gettable     r10    r8    k2
+gettable     r11    r8    k4
+settable      r9   k13   r11
+settable      r9   k12   r10
+gettable     r10    r8    k2
+test         r10     0
+jmp          l57
+gettable     r10    r8    k4
+test         r10     0
+jmp          l57
+getglobal    r10   k15
+gettable     r10   r10   k16
+gettable     r11    r1    k1
+gettable     r12    r1    k3
+gettable     r13    r8    k2
+gettable     r14    r8    k4
+call         r10     5     2
+settable      r9   k14   r10
+gettable     r10    r9   k14
+lt             0   r10   k17
+jmp          l50
+settable      r9   k18   k19
+.label	l50
+gettable     r10    r1    k1
+gettable     r11    r8    k2
+lt             1   r10   r11
+jmp          l55
+loadbool     r10     0     1
+.label	l55
+loadbool     r10     1     0
+settable      r9   k20   r10
+.label	l57
+tforloop      r5     2
+jmp          l28
+getglobal     r5   k21
+getglobal     r6   k22
+gettable      r6    r6   k23
+gettable      r6    r6   k24
+move          r7    r0
+call          r5     3     1
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	234
+.lastlinedefined	246
+.numparams	2
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"BattleSprites"
+.constant	k1	"sequences"
+.constant	k2	"sprite"
+.constant	k3	"newSprite"
+.constant	k4	"spriteSets"
+.constant	k5	"file"
+.constant	k6	"width"
+.constant	k7	"height"
+.constant	k8	"prepare"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+gettable      r2    r2    r0
+getglobal     r3    k2
+gettable      r3    r3    k3
+getglobal     r4    k0
+gettable      r4    r4    k4
+gettable      r5    r2    k5
+gettable      r4    r4    r5
+call          r3     2     2
+test          r1     0
+jmp          l17
+gettable      r4    r2    k6
+gettable      r5    r2    k7
+settable      r3    k7    r5
+settable      r3    k6    r4
+.label	l17
+self          r4    r3    k8
+move          r6    r0
+call          r4     3     1
+return        r3     2
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	248
+.lastlinedefined	264
+.numparams	2
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"BattleSprites"
+.constant	k1	"spriteSets"
+.constant	k2	"sequences"
+.constant	k3	"sheets"
+.constant	k4	"data"
+.constant	k5	"require"
+.constant	k6	"getSpriteSheetData"
+.constant	k7	"sprite"
+.constant	k8	"newSpriteSheetFromData"
+.constant	k9	"newSpriteSet"
+.constant	k10	1
+.constant	k11	"frames"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+test          r2     1
+jmp          l17
+getglobal     r2    k0
+newtable      r3     0     0
+settable      r2    k1    r3
+getglobal     r2    k0
+newtable      r3     0     0
+settable      r2    k2    r3
+getglobal     r2    k0
+newtable      r3     0     0
+settable      r2    k3    r3
+getglobal     r2    k0
+newtable      r3     0     0
+settable      r2    k4    r3
+.label	l17
+getglobal     r2    k0
+gettable      r2    r2    k1
+gettable      r2    r2    r0
+test          r2     1
+jmp          l50
+getglobal     r2    k5
+move          r3    r1
+call          r2     2     2
+gettable      r2    r2    k6
+call          r2     1     2
+getglobal     r3    k0
+gettable      r3    r3    k4
+settable      r3    r0    r2
+getglobal     r3    k0
+gettable      r3    r3    k3
+getglobal     r4    k7
+gettable      r4    r4    k8
+move          r5    r0
+move          r6    r2
+call          r4     3     2
+settable      r3    r0    r4
+getglobal     r3    k0
+gettable      r3    r3    k1
+getglobal     r4    k7
+gettable      r4    r4    k9
+getglobal     r5    k0
+gettable      r5    r5    k3
+gettable      r5    r5    r0
+loadk         r6   k10
+gettable      r7    r2   k11
+len           r7    r7
+call          r4     4     2
+settable      r3    r0    r4
+.label	l50
+getglobal     r2    k0
+gettable      r2    r2    k1
+gettable      r2    r2    r0
+return        r2     2
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	266
+.lastlinedefined	282
+.numparams	2
+.is_vararg	0
+.maxstacksize	13
+
+.constant	k0	"BattleSprites"
+.constant	k1	"getSpriteSet"
+.constant	k2	"file"
+.constant	k3	"dataFile"
+.constant	k4	"sequences"
+.constant	k5	"data"
+.constant	k6	0
+.constant	k7	"startFrame"
+.constant	k8	"numFrames"
+.constant	k9	1
+.constant	k10	"frames"
+.constant	k11	"spriteSourceSize"
+.constant	k12	"width"
+.constant	k13	"height"
+.constant	k14	"sprite"
+.constant	k15	"add"
+.constant	k16	"duration"
+.constant	k17	"loopParam"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+gettable      r3    r1    k2
+gettable      r4    r1    k3
+call          r2     3     2
+getglobal     r3    k0
+gettable      r3    r3    k4
+settable      r3    r0    r1
+getglobal     r3    k0
+gettable      r3    r3    k5
+gettable      r4    r1    k2
+gettable      r3    r3    r4
+loadk         r4    k6
+loadk         r5    k6
+gettable      r6    r1    k7
+gettable      r7    r1    k7
+gettable      r8    r1    k8
+add           r7    r7    r8
+sub           r7    r7    k9
+loadk         r8    k9
+forprep       r6   l33
+.label	l22
+gettable     r10    r3   k10
+gettable     r10   r10    r9
+gettable     r10   r10   k11
+gettable     r11   r10   k12
+lt             0    r4   r11
+jmp          l29
+gettable      r4   r10   k12
+.label	l29
+gettable     r11   r10   k13
+lt             0    r5   r11
+jmp          l33
+gettable      r5   r10   k13
+.label	l33
+forloop       r6   l22
+move          r6    r4
+settable      r1   k13    r5
+settable      r1   k12    r6
+getglobal     r6   k14
+gettable      r6    r6   k15
+move          r7    r2
+move          r8    r0
+gettable      r9    r1    k7
+gettable     r10    r1    k8
+gettable     r11    r1   k16
+gettable     r12    r1   k17
+call          r6     7     1
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	284
+.lastlinedefined	295
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"BattleSprites"
+.constant	k1	"sheets"
+.constant	k2	nil
+.constant	k3	"dispose"
+.constant	k4	"timer"
+.constant	k5	"performWithDelay"
+.constant	k6	0
+.constant	k7	"sequences"
+.constant	k8	"data"
+.constant	k9	"spriteSets"
+
+test          r0     0
+jmp          l30
+getglobal     r1    k0
+gettable      r1    r1    k1
+gettable      r1    r1    r0
+eq             1    r1    k2
+jmp          l29
+gettable      r2    r1    k3
+test          r2     0
+jmp          l29
+getglobal     r2    k4
+gettable      r2    r2    k5
+loadk         r3    k6
+closure       r4    f0
+move          r0    r1
+call          r2     3     1
+getglobal     r2    k0
+gettable      r2    r2    k1
+settable      r2    r0    k2
+getglobal     r2    k0
+gettable      r2    r2    k7
+settable      r2    r0    k2
+getglobal     r2    k0
+gettable      r2    r2    k8
+settable      r2    r0    k2
+getglobal     r2    k0
+gettable      r2    r2    k9
+settable      r2    r0    k2
+.label	l29
+close         r1
+.label	l30
+return        r0     1
+
+.function	main/f6/f0
+
+.source	null
+.linedefined	288
+.lastlinedefined	288
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"dispose"
+
+getupval      r0    u0
+self          r0    r0    k0
+call          r0     2     1
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	297
+.lastlinedefined	305
+.numparams	1
+.is_vararg	0
+.maxstacksize	11
+
+.constant	k0	"weaponTypes"
+.constant	k1	"spriteSequences"
+.constant	k2	"pairs"
+.constant	k3	"BattleSprites"
+.constant	k4	"prepareSpriteSequence"
+.constant	k5	"_"
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+gettable      r2    r1    k1
+test          r2     0
+jmp          l20
+getglobal     r2    k2
+gettable      r3    r1    k1
+call          r2     2     4
+jmp          l18
+.label	l10
+getglobal     r7    k3
+gettable      r7    r7    k4
+move          r8    r5
+loadk         r9    k5
+move         r10    r0
+concat        r8    r8   r10
+move          r9    r6
+call          r7     3     1
+.label	l18
+tforloop      r2     2
+jmp          l10
+.label	l20
+return        r0     1
+
+.function	main/f8
+
+.source	null
+.linedefined	307
+.lastlinedefined	315
+.numparams	1
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"weaponTypes"
+.constant	k1	"spriteSequences"
+.constant	k2	"pairs"
+.constant	k3	"file"
+.constant	k4	"Weapon"
+.constant	k5	"removeSpriteSheet"
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+gettable      r2    r1    k1
+test          r2     0
+jmp          l17
+getglobal     r2    k2
+gettable      r3    r1    k1
+call          r2     2     4
+jmp          l15
+.label	l10
+gettable      r7    r6    k3
+getglobal     r8    k4
+gettable      r8    r8    k5
+move          r9    r7
+call          r8     2     1
+.label	l15
+tforloop      r2     2
+jmp          l10
+.label	l17
+return        r0     1
+
+.function	main/f9
+
+.source	null
+.linedefined	317
+.lastlinedefined	325
+.numparams	1
+.is_vararg	0
+.maxstacksize	9
+
+.constant	k0	"weaponTypes"
+.constant	k1	"sounds"
+.constant	k2	"pairs"
+.constant	k3	"sound"
+.constant	k4	"loadSound"
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+gettable      r2    r1    k1
+test          r2     0
+jmp          l16
+getglobal     r2    k2
+gettable      r3    r1    k1
+call          r2     2     4
+jmp          l14
+.label	l10
+getglobal     r7    k3
+gettable      r7    r7    k4
+move          r8    r6
+call          r7     2     1
+.label	l14
+tforloop      r2     2
+jmp          l10
+.label	l16
+return        r0     1
+
+.function	main/f10
+
+.source	null
+.linedefined	327
+.lastlinedefined	350
+.numparams	2
+.is_vararg	0
+.maxstacksize	11
+
+.constant	k0	"weaponTypes"
+.constant	k1	"isExclusiveWeapon"
+.constant	k2	"exclusiveFor"
+.constant	k3	"pairs"
+.constant	k4	"tankTypes"
+
+getglobal     r2    k0
+gettable      r2    r2    r0
+gettable      r3    r2    k1
+test          r3     1
+jmp           l8
+loadbool      r3     1     0
+return        r3     2
+.label	l8
+gettable      r3    r2    k2
+test          r3     0
+jmp          l23
+getglobal     r4    k3
+move          r5    r3
+call          r4     2     4
+jmp          l21
+.label	l15
+getglobal     r9    k4
+gettable      r9    r9    r8
+eq             0    r9    r1
+jmp          l21
+loadbool     r10     1     0
+return       r10     2
+.label	l21
+tforloop      r4     2
+jmp          l15
+.label	l23
+loadbool      r4     0     0
+return        r4     2
+return        r0     1
+
+.function	main/f11
+
+.source	null
+.linedefined	352
+.lastlinedefined	361
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"weaponTypes"
+.constant	k1	"unlockable"
+.constant	k2	"unlockState"
+.constant	k3	nil
+.constant	k4	false
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+loadbool      r2     1     0
+gettable      r3    r1    k1
+test          r3     0
+jmp          l17
+gettable      r3    r1    k1
+gettable      r3    r3    k2
+eq             1    r3    k3
+jmp          l15
+gettable      r3    r1    k1
+gettable      r3    r3    k2
+eq             0    r3    k4
+jmp          l16
+.label	l15
+loadbool      r2     0     1
+.label	l16
+loadbool      r2     1     0
+.label	l17
+return        r2     2
+return        r0     1
+
+.function	main/f12
+
+.source	null
+.linedefined	364
+.lastlinedefined	366
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"weaponType."
+.constant	k1	"tostring"
+
+loadk         r1    k0
+getglobal     r2    k1
+move          r3    r0
+call          r2     2     2
+concat        r1    r1    r2
+return        r1     2
+return        r0     1
+
+.function	main/f13
+
+.source	null
+.linedefined	369
+.lastlinedefined	381
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"weaponTypes"
+.constant	k1	"pairs"
+.constant	k2	"Weapon"
+.constant	k3	nil
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+getglobal     r2    k1
+getglobal     r3    k2
+call          r2     2     4
+jmp          l13
+.label	l7
+gettable      r7    r1    r5
+eq             0    r7    k3
+jmp          l13
+getglobal     r7    k2
+gettable      r7    r7    r5
+settable      r1    r5    r7
+.label	l13
+tforloop      r2     2
+jmp           l7
+return        r1     2
+return        r0     1
+
+.function	main/f14
+
+.source	null
+.linedefined	384
+.lastlinedefined	412
+.numparams	2
+.is_vararg	0
+.maxstacksize	13
+
+.constant	k0	"getMetaWeaponProperties"
+.constant	k1	"display"
+.constant	k2	"newGroup"
+.constant	k3	"spriteSequences"
+.constant	k4	"pairs"
+.constant	k5	"BattleSprites"
+.constant	k6	"sequences"
+.constant	k7	"_"
+.constant	k8	"Weapon"
+.constant	k9	"loadWeaponSprites"
+.constant	k10	"weapon_"
+.constant	k11	"bombSprite"
+.constant	k12	"newSprite"
+.constant	k13	"insert"
+.constant	k14	"isSprite"
+.constant	k15	true
+.constant	k16	"newImage"
+.constant	k17	"image"
+.constant	k18	"x"
+.constant	k19	0
+.constant	k20	"y"
+.constant	k21	false
+
+getglobal     r2    k0
+move          r3    r0
+call          r2     2     2
+getglobal     r3    k1
+gettable      r3    r3    k2
+call          r3     1     2
+gettable      r4    r2    k3
+test          r4     0
+jmp          l33
+getglobal     r4    k4
+gettable      r5    r2    k3
+call          r4     2     4
+jmp          l31
+.label	l14
+getglobal     r9    k5
+gettable      r9    r9    k6
+test          r9     0
+jmp          l27
+getglobal     r9    k5
+gettable      r9    r9    k6
+move         r10    r7
+loadk        r11    k7
+move         r12    r0
+concat       r10   r10   r12
+gettable      r9    r9   r10
+test          r9     1
+jmp          l31
+.label	l27
+getglobal     r9    k8
+gettable      r9    r9    k9
+move         r10    r0
+call          r9     2     1
+.label	l31
+tforloop      r4     2
+jmp          l14
+.label	l33
+getglobal     r4    k5
+gettable      r4    r4    k6
+test          r4     0
+jmp          l57
+getglobal     r4    k5
+gettable      r4    r4    k6
+loadk         r5   k10
+move          r6    r0
+concat        r5    r5    r6
+gettable      r4    r4    r5
+test          r4     0
+jmp          l57
+getglobal     r4    k5
+gettable      r4    r4   k12
+loadk         r5   k10
+move          r6    r0
+concat        r5    r5    r6
+call          r4     2     2
+settable      r3   k11    r4
+self          r4    r3   k13
+gettable      r6    r3   k11
+call          r4     3     1
+settable      r3   k14   k15
+jmp          l68
+.label	l57
+getglobal     r4    k1
+gettable      r4    r4   k16
+move          r5    r3
+gettable      r6    r2   k17
+call          r4     3     2
+settable      r3   k11    r4
+gettable      r4    r3   k11
+settable      r4   k18   k19
+gettable      r4    r3   k11
+settable      r4   k20   k19
+settable      r3   k14   k21
+.label	l68
+test          r1     0
+jmp          l72
+gettable      r4    r3   k11
+return        r4     2
+.label	l72
+return        r3     2
+return        r0     1
+
+.function	main/f15
+
+.source	null
+.linedefined	415
+.lastlinedefined	521
+.numparams	8
+.is_vararg	0
+.maxstacksize	18
+
+.constant	k0	"getMetaWeaponProperties"
+.constant	k1	"require"
+.constant	k2	"currentBattle"
+.constant	k3	"beginTracking"
+.constant	k4	1
+.constant	k5	"parent"
+.constant	k6	"numChildren"
+.constant	k7	"Weapon"
+.constant	k8	"getWeaponImageGroup"
+.constant	k9	"exhaustSequence"
+.constant	k10	"exhaust"
+.constant	k11	"BattleSprites"
+.constant	k12	"newSprite"
+.constant	k13	"name"
+.constant	k14	"_generic"
+.constant	k15	"scale"
+.constant	k16	"xScale"
+.constant	k17	"yScale"
+.constant	k18	"insert"
+.constant	k19	"play"
+.constant	k20	"rotation"
+.constant	k21	"zeroDegree"
+.constant	k22	"x"
+.constant	k23	"y"
+.constant	k24	"player"
+.constant	k25	"ownerId"
+.constant	k26	"objectId"
+.constant	k27	"layerIndex"
+.constant	k28	"BEHIND_TANK"
+.constant	k29	"weaponType"
+.constant	k30	"physics"
+.constant	k31	"loadPhysicsDensityFromArea"
+.constant	k32	"dynamic"
+.constant	k33	"bodyType"
+.constant	k34	nil
+.constant	k35	"addBody"
+.constant	k36	"pairs"
+.constant	k37	"newWidth"
+.constant	k38	"contentWidth"
+.constant	k39	"newHeight"
+.constant	k40	"contentHeight"
+.constant	k41	"collision"
+.constant	k42	"collisionPreCall"
+.constant	k43	"customCollision"
+.constant	k44	"weaponTypes"
+.constant	k45	"addEventListener"
+.constant	k46	"triggerWeapon"
+.constant	k47	"manualPhysics"
+.constant	k48	"go"
+.constant	k49	"goPreCall"
+.constant	k50	"suppressTankCollides"
+.constant	k51	true
+.constant	k52	"customGo"
+.constant	k53	"activeWeapons"
+.constant	k54	"sendToBack"
+.constant	k55	"toBack"
+.constant	k56	"getLevel"
+.constant	k57	"counter"
+.constant	k58	"nextId"
+.constant	k59	"trackImmediately"
+.constant	k60	"trackObject"
+.constant	k61	"emitterName"
+.constant	k62	"Emitter"
+.constant	k63	"tostring"
+
+getglobal     r8    k0
+move          r9    r2
+call          r8     2     2
+test          r7     0
+jmp          l11
+getglobal     r9    k1
+loadk        r10    k2
+call          r9     2     2
+gettable      r9    r9    k3
+call          r9     1     1
+.label	l11
+move          r9    r5
+test          r9     1
+jmp          l25
+loadk        r10    k4
+gettable     r11    r1    k5
+gettable     r11   r11    k6
+loadk        r12    k4
+forprep      r10   l24
+.label	l19
+gettable     r14    r1    k5
+gettable     r14   r14   r13
+eq             0   r14    r1
+jmp          l24
+move          r9   r13
+.label	l24
+forloop      r10   l19
+.label	l25
+getglobal    r10    k7
+gettable     r10   r10    k8
+move         r11    r2
+call         r10     2     2
+gettable     r11    r8    k9
+test         r11     0
+jmp          l70
+getglobal    r11   k11
+gettable     r11   r11   k12
+gettable     r12    r8    k9
+gettable     r12   r12   k13
+loadk        r13   k14
+concat       r12   r12   r13
+call         r11     2     2
+settable     r10   k10   r11
+gettable     r11    r8    k9
+gettable     r11   r11   k15
+test         r11     0
+jmp          l52
+gettable     r11   r10   k10
+gettable     r12    r8    k9
+gettable     r12   r12   k15
+settable     r11   k16   r12
+gettable     r11   r10   k10
+gettable     r12    r8    k9
+gettable     r12   r12   k15
+settable     r11   k17   r12
+.label	l52
+self         r11   r10   k18
+loadk        r13    k4
+gettable     r14   r10   k10
+call         r11     4     1
+gettable     r11   r10   k10
+self         r11   r11   k19
+call         r11     2     1
+gettable     r11   r10   k10
+gettable     r12    r8   k21
+settable     r11   k20   r12
+gettable     r11   r10   k10
+gettable     r12    r8    k9
+gettable     r12   r12   k22
+settable     r11   k22   r12
+gettable     r11   r10   k10
+gettable     r12    r8    k9
+gettable     r12   r12   k23
+settable     r11   k23   r12
+.label	l70
+settable     r10   k24    r1
+test          r1     0
+jmp          l75
+gettable     r11    r1   k26
+settable     r10   k25   r11
+.label	l75
+settable     r10   k27    r9
+test          r9     0
+jmp          l84
+getglobal    r11   k28
+self         r11   r11   k18
+move         r13    r9
+move         r14   r10
+call         r11     4     1
+jmp          l88
+.label	l84
+getglobal    r11   k28
+self         r11   r11   k18
+move         r13   r10
+call         r11     3     1
+.label	l88
+move         r11    r3
+settable     r10   k23    r4
+settable     r10   k22   r11
+settable     r10   k29    r2
+getglobal    r11   k31
+gettable     r12    r8   k30
+call         r11     2     2
+settable     r10   k30   r11
+gettable     r11    r8   k21
+sub          r11    r6   r11
+settable     r10   k20   r11
+loadk        r11   k32
+gettable     r12    r8   k33
+eq             1   r12   k34
+jmp         l104
+gettable     r11    r8   k33
+.label	l104
+getglobal    r12   k30
+gettable     r12   r12   k35
+move         r13   r10
+move         r14   r11
+gettable     r15   r10   k30
+call         r12     4     1
+getglobal    r12   k36
+move         r13    r8
+call         r12     2     4
+jmp         l119
+.label	l114
+gettable     r17   r10   r15
+eq             0   r17   k34
+jmp         l119
+gettable     r17    r8   r15
+settable     r10   r15   r17
+.label	l119
+tforloop     r12     2
+jmp         l114
+gettable     r12    r8   k13
+settable     r10   k13   r12
+loadk        r12    k4
+loadk        r13    k4
+gettable     r14    r8   k37
+test         r14     0
+jmp         l131
+gettable     r14    r8   k37
+gettable     r15   r10   k38
+div          r12   r14   r15
+.label	l131
+gettable     r14    r8   k39
+test         r14     0
+jmp         l137
+gettable     r14    r8   k39
+gettable     r15   r10   k40
+div          r13   r14   r15
+.label	l137
+self         r14   r10   k15
+move         r16   r12
+move         r17   r13
+call         r14     4     1
+getglobal    r14   k42
+settable     r10   k41   r14
+getglobal    r14   k44
+gettable     r14   r14    r2
+gettable     r14   r14   k41
+settable     r10   k43   r14
+self         r14   r10   k45
+loadk        r16   k41
+move         r17   r10
+call         r14     4     1
+getglobal    r14   k44
+gettable     r14   r14    r2
+gettable     r14   r14   k46
+settable     r10   k46   r14
+getglobal    r14   k44
+gettable     r14   r14    r2
+gettable     r14   r14   k47
+settable     r10   k47   r14
+getglobal    r14   k49
+settable     r10   k48   r14
+settable     r10   k50   k51
+getglobal    r14   k44
+gettable     r14   r14    r2
+gettable     r14   r14   k48
+settable     r10   k52   r14
+getglobal    r14   k53
+settable     r14   r10   r10
+getglobal    r14   k44
+gettable     r14   r14    r2
+gettable     r14   r14   k54
+test         r14     0
+jmp         l175
+self         r14   r10   k55
+call         r14     2     1
+.label	l175
+getglobal    r14    k2
+gettable     r14   r14   k56
+call         r14     1     2
+test         r14     0
+jmp         l184
+gettable     r15   r14   k57
+self         r15   r15   k58
+move         r17   r10
+call         r15     3     1
+.label	l184
+test          r7     0
+jmp         l195
+gettable     r15    r8   k59
+test         r15     0
+jmp         l195
+getglobal    r15    k1
+loadk        r16    k2
+call         r15     2     2
+gettable     r15   r15   k60
+move         r16   r10
+call         r15     2     1
+.label	l195
+loadk        r15   k62
+getglobal    r16   k63
+move         r17   r10
+call         r16     2     2
+concat       r15   r15   r16
+settable     r10   k61   r15
+return       r10     2
+return        r0     1
+
+.function	main/f16
+
+.source	null
+.linedefined	523
+.lastlinedefined	547
+.numparams	3
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"engageManualPhysics"
+.constant	k1	true
+.constant	k2	"timer"
+.constant	k3	"performWithDelay"
+.constant	k4	500
+.constant	k5	"params"
+.constant	k6	"bomb"
+.constant	k7	"cleanUpTracers"
+.constant	k8	"player"
+.constant	k9	"isSprite"
+.constant	k10	"weaponTypes"
+.constant	k11	"weaponType"
+.constant	k12	"spriteSequences"
+.constant	k13	"weapon"
+.constant	k14	"playImmediately"
+.constant	k15	"bombSprite"
+.constant	k16	"play"
+.constant	k17	"customGo"
+.constant	k18	"trackWeaponStart"
+
+settable      r0    k0    k1
+getglobal     r3    k2
+gettable      r3    r3    k3
+loadk         r4    k4
+closure       r5    f0
+call          r3     3     2
+newtable      r4     0     1
+settable      r4    k6    r0
+settable      r3    k5    r4
+getglobal     r4    k7
+gettable      r5    r0    k8
+call          r4     2     1
+gettable      r4    r0    k9
+test          r4     0
+jmp          l27
+getglobal     r4   k10
+gettable      r5    r0   k11
+gettable      r4    r4    r5
+gettable      r4    r4   k12
+gettable      r4    r4   k13
+gettable      r4    r4   k14
+test          r4     0
+jmp          l27
+gettable      r4    r0   k15
+self          r4    r4   k16
+call          r4     2     1
+.label	l27
+self          r4    r0   k17
+move          r6    r1
+move          r7    r2
+call          r4     4     1
+getglobal     r4   k18
+move          r5    r0
+call          r4     2     1
+return        r0     1
+
+.function	main/f16/f0
+
+.source	null
+.linedefined	527
+.lastlinedefined	533
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"source"
+.constant	k1	"params"
+.constant	k2	"bomb"
+.constant	k3	nil
+.constant	k4	"suppressTankCollides"
+.constant	k5	false
+
+gettable      r1    r0    k0
+gettable      r1    r1    k1
+gettable      r1    r1    k2
+eq             1    r1    k3
+jmp           l7
+settable      r1    k4    k5
+.label	l7
+return        r0     1
+
+.function	main/f17
+
+.source	null
+.linedefined	549
+.lastlinedefined	569
+.numparams	1
+.is_vararg	0
+.maxstacksize	9
+
+.constant	k0	"pairs"
+.constant	k1	"activeSmokeTraces"
+.constant	k2	nil
+.constant	k3	"createdTime"
+.constant	k4	"numChildren"
+.constant	k5	1
+.constant	k6	"timer"
+.constant	k7	"transition"
+.constant	k8	"cancel"
+.constant	k9	"to"
+.constant	k10	"time"
+.constant	k11	2000
+.constant	k12	"alpha"
+.constant	k13	0
+.constant	k14	"onComplete"
+.constant	k15	"cleanUp"
+
+getglobal     r2    k0
+gettable      r3    r0    k1
+call          r2     2     4
+jmp          l14
+.label	l5
+eq             0    r1    k2
+jmp           l9
+move          r1    r6
+jmp          l14
+.label	l9
+gettable      r7    r6    k3
+gettable      r8    r1    k3
+lt             0    r7    r8
+jmp          l14
+move          r1    r6
+.label	l14
+tforloop      r2     2
+jmp           l5
+test          r1     0
+jmp          l45
+gettable      r2    r1    k4
+test          r2     0
+jmp          l45
+gettable      r2    r0    k1
+settable      r2    r1    k2
+loadk         r2    k5
+gettable      r3    r1    k4
+loadk         r4    k5
+forprep       r2   l35
+.label	l27
+gettable      r6    r1    r5
+gettable      r7    r6    k6
+test          r7     0
+jmp          l35
+getglobal     r7    k7
+gettable      r7    r7    k8
+gettable      r8    r6    k6
+call          r7     2     1
+.label	l35
+forloop       r2   l27
+getglobal     r2    k7
+gettable      r2    r2    k9
+move          r3    r1
+newtable      r4     0     3
+settable      r4   k10   k11
+settable      r4   k12   k13
+getglobal     r5   k15
+settable      r4   k14    r5
+call          r2     3     1
+.label	l45
+return        r0     1
+
+.function	main/f18
+
+.source	null
+.linedefined	571
+.lastlinedefined	594
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"other"
+.constant	k1	"objType"
+.constant	k2	"tank"
+.constant	k3	"player"
+.constant	k4	"suppressTankCollides"
+.constant	k5	"rock"
+.constant	k6	"flair"
+.constant	k7	"rootWeapon"
+.constant	k8	"isAirborne"
+.constant	k9	false
+.constant	k10	"exhaust"
+.constant	k11	"display"
+.constant	k12	"remove"
+.constant	k13	nil
+.constant	k14	"ignoreViewWeaponTracking"
+.constant	k15	"trackWeaponStop"
+.constant	k16	"weapon"
+.constant	k17	"customCollision"
+
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             0    r2    k2
+jmp          l13
+gettable      r2    r0    k3
+gettable      r3    r1    k0
+eq             0    r2    r3
+jmp          l13
+gettable      r2    r0    k4
+test          r2     0
+jmp          l13
+return        r0     1
+.label	l13
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             1    r2    k2
+jmp          l25
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             1    r2    k5
+jmp          l25
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             0    r2    k6
+jmp          l54
+.label	l25
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             0    r2    k5
+jmp          l39
+gettable      r2    r1    k0
+gettable      r2    r2    k7
+test          r2     0
+jmp          l39
+gettable      r2    r1    k0
+gettable      r2    r2    k7
+gettable      r3    r0    k7
+eq             0    r2    r3
+jmp          l39
+return        r0     1
+.label	l39
+settable      r0    k8    k9
+gettable      r2    r0   k10
+test          r2     0
+jmp          l48
+getglobal     r2   k11
+gettable      r2    r2   k12
+gettable      r3    r0   k10
+call          r2     2     1
+settable      r0   k10   k13
+.label	l48
+gettable      r2    r0   k14
+test          r2     1
+jmp          l54
+getglobal     r2   k15
+getglobal     r3   k16
+call          r2     2     1
+.label	l54
+self          r2    r0   k17
+move          r4    r1
+call          r2     3     1
+return        r0     1
+
+.function	main/f19
+
+.source	null
+.linedefined	596
+.lastlinedefined	609
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	1
+.constant	k1	"radius"
+.constant	k2	"math"
+.constant	k3	"pi"
+.constant	k4	"shape"
+.constant	k5	3
+.constant	k6	6
+.constant	k7	2
+.constant	k8	"density"
+.constant	k9	"BOMB_WEIGHT"
+
+loadk         r1    k0
+gettable      r2    r0    k1
+test          r2     0
+jmp          l12
+getglobal     r2    k2
+gettable      r2    r2    k3
+gettable      r3    r0    k1
+gettable      r4    r0    k1
+mul           r3    r3    r4
+mul           r1    r2    r3
+jmp          l23
+.label	l12
+gettable      r2    r0    k4
+gettable      r2    r2    k5
+gettable      r3    r0    k4
+gettable      r3    r3    k0
+sub           r2    r2    r3
+gettable      r3    r0    k4
+gettable      r3    r3    k6
+gettable      r4    r0    k4
+gettable      r4    r4    k7
+sub           r3    r3    r4
+mul           r1    r2    r3
+.label	l23
+getglobal     r2    k9
+div           r2    r2    r1
+settable      r0    k8    r2
+return        r0     2
+return        r0     1
+
+.function	main/f20
+
+.source	null
+.linedefined	613
+.lastlinedefined	650
+.numparams	2
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"other"
+.constant	k1	"objType"
+.constant	k2	"tank"
+.constant	k3	"player"
+.constant	k4	"recordDirectHit"
+.constant	k5	"weaponType"
+.constant	k6	"damageHealth"
+.constant	k7	"damage"
+.constant	k8	"isAirStrikeWeapon"
+.constant	k9	"triggerObj"
+.constant	k10	"flair"
+.constant	k11	"doDamage"
+.constant	k12	"shield"
+.constant	k13	"rock"
+.constant	k14	"wall"
+.constant	k15	"alpha"
+.constant	k16	0
+.constant	k17	"removeEventListener"
+.constant	k18	"collision"
+.constant	k19	"timer"
+.constant	k20	"performWithDelay"
+.constant	k21	1
+.constant	k22	"params"
+.constant	k23	"bomb"
+
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             0    r2    k2
+jmp          l22
+gettable      r2    r0    k3
+self          r2    r2    k4
+gettable      r4    r0    k5
+call          r2     3     1
+gettable      r2    r1    k0
+self          r2    r2    k6
+gettable      r4    r0    k7
+gettable      r5    r0    k3
+newtable      r6     0     2
+gettable      r7    r0    k5
+settable      r6    k5    r7
+gettable      r7    r0    k8
+settable      r6    k8    r7
+call          r2     5     1
+gettable      r2    r1    k0
+settable      r0    k9    r2
+jmp          l61
+.label	l22
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             0    r2   k10
+jmp          l37
+gettable      r2    r1    k0
+self          r2    r2   k11
+gettable      r4    r0    k7
+gettable      r5    r0    k3
+call          r2     4     2
+test          r2     0
+jmp          l34
+return        r0     1
+.label	l34
+gettable      r3    r1    k0
+settable      r0    k9    r3
+jmp          l61
+.label	l37
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             0    r2   k12
+jmp          l48
+gettable      r2    r1    k0
+gettable      r2    r2    k3
+gettable      r3    r0    k3
+eq             0    r2    r3
+jmp          l48
+return        r0     1
+jmp          l61
+.label	l48
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             1    r2   k13
+jmp          l61
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             1    r2   k14
+jmp          l61
+gettable      r2    r1    k0
+gettable      r2    r2    k1
+eq             1    r2   k12
+jmp          l61
+return        r0     1
+.label	l61
+settable      r0   k15   k16
+self          r2    r0   k17
+loadk         r4   k18
+move          r5    r0
+call          r2     4     1
+getglobal     r2   k19
+gettable      r2    r2   k20
+loadk         r3   k21
+closure       r4    f0
+call          r2     3     2
+newtable      r3     0     1
+settable      r3   k23    r0
+settable      r2   k22    r3
+return        r0     1
+
+.function	main/f20/f0
+
+.source	null
+.linedefined	639
+.lastlinedefined	644
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"source"
+.constant	k1	"params"
+.constant	k2	"bomb"
+.constant	k3	"triggerWeapon"
+
+gettable      r1    r0    k0
+gettable      r2    r1    k1
+gettable      r3    r2    k2
+gettable      r3    r3    k3
+gettable      r4    r2    k2
+call          r3     2     1
+return        r0     1
+
+.function	main/f21
+
+.source	null
+.linedefined	654
+.lastlinedefined	657
+.numparams	3
+.is_vararg	0
+.maxstacksize	11
+
+.constant	k0	"utils"
+.constant	k1	"getXYfromCanonVector"
+.constant	k2	"applyLinearImpulse"
+.constant	k3	"x"
+.constant	k4	"y"
+
+getglobal     r3    k0
+gettable      r3    r3    k1
+move          r4    r1
+move          r5    r2
+call          r3     3     3
+self          r5    r0    k2
+move          r7    r3
+move          r8    r4
+gettable      r9    r0    k3
+gettable     r10    r0    k4
+call          r5     6     1
+return        r0     1
+
+.function	main/f22
+
+.source	null
+.linedefined	660
+.lastlinedefined	710
+.numparams	3
+.is_vararg	0
+.maxstacksize	25
+
+.constant	k0	0
+.constant	k1	nil
+.constant	k2	"pairs"
+.constant	k3	"objType"
+.constant	k4	"tank"
+.constant	k5	"utils"
+.constant	k6	"polygonIntersectsLineSegment"
+.constant	k7	"distanceBetweenPoints"
+.constant	k8	"p1"
+.constant	k9	"x"
+.constant	k10	"y"
+.constant	k11	1
+.constant	k12	"wheelGroup"
+.constant	k13	"numChildren"
+.constant	k14	"physics"
+.constant	k15	"radius"
+
+loadk         r3    k0
+eq             0    r1    k1
+jmp           l5
+return        r0     1
+.label	l5
+loadk         r4    k0
+loadnil       r5    r5
+getglobal     r6    k2
+move          r7    r1
+call          r6     2     4
+jmp          l84
+.label	l11
+eq             1   r10    k1
+jmp          l84
+gettable     r11   r10    k3
+eq             0   r11    k4
+jmp          l84
+getglobal    r11    k5
+gettable     r11   r11    k6
+move         r12   r10
+move         r13    r0
+move         r14    r2
+loadbool     r15     1     0
+call         r11     5     2
+loadk        r12    k0
+test         r11     0
+jmp          l42
+getglobal    r13    k5
+gettable     r13   r13    k7
+gettable     r14    r0    k8
+gettable     r14   r14    k9
+gettable     r15    r0    k8
+gettable     r15   r15   k10
+gettable     r16   r11    k9
+gettable     r17   r11   k10
+call         r13     5     2
+move         r12   r13
+eq             1    r4    k0
+jmp          l40
+lt             0   r12    r4
+jmp          l42
+.label	l40
+move          r4   r12
+move          r5   r10
+.label	l42
+loadk        r13   k11
+gettable     r14   r10   k12
+gettable     r14   r14   k13
+loadk        r15   k11
+forprep      r13   l83
+.label	l47
+gettable     r17   r10   k12
+gettable     r17   r17   r16
+eq             1   r17    k1
+jmp          l83
+gettable     r18   r17    k3
+eq             0   r18    k4
+jmp          l83
+getglobal    r18    k5
+gettable     r18   r18    k6
+move         r19   r17
+move         r20    r0
+move         r21    r2
+call         r18     4     2
+loadk        r19    k0
+test         r18     0
+jmp          l83
+getglobal    r20    k5
+gettable     r20   r20    k7
+gettable     r21    r0    k8
+gettable     r21   r21    k9
+gettable     r22    r0    k8
+gettable     r22   r22   k10
+gettable     r23   r17    k9
+gettable     r24   r17   k10
+call         r20     5     2
+move         r19   r20
+gettable     r20   r17   k14
+gettable     r20   r20   k15
+mul          r20   r20    r2
+sub          r19   r19   r20
+eq             1    r4    k0
+jmp          l81
+lt             0   r19    r4
+jmp          l83
+.label	l81
+move          r4   r19
+move          r5   r17
+.label	l83
+forloop      r13   l47
+.label	l84
+tforloop      r6     2
+jmp          l11
+move          r6    r5
+move          r7    r4
+return        r6     3
+return        r0     1
+
+.function	main/f23
+
+.source	null
+.linedefined	713
+.lastlinedefined	734
+.numparams	1
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"getLinearVelocity"
+.constant	k1	0
+.constant	k2	"math"
+.constant	k3	"deg"
+.constant	k4	"atan"
+.constant	k5	90
+.constant	k6	180
+.constant	k7	"rotation"
+.constant	k8	"zeroDegree"
+
+self          r1    r0    k0
+call          r1     2     3
+loadk         r3    k1
+eq             1    r1    k1
+jmp          l20
+getglobal     r4    k2
+gettable      r4    r4    k3
+getglobal     r5    k2
+gettable      r5    r5    k4
+div           r6    r2    r1
+call          r5     2     0
+call          r4     0     2
+move          r3    r4
+lt             0    k1    r1
+jmp          l18
+add           r3    r3    k5
+jmp          l25
+.label	l18
+sub           r3    r3    k5
+jmp          l25
+.label	l20
+le             0    r2    k1
+jmp          l24
+loadk         r3    k1
+jmp          l25
+.label	l24
+loadk         r3    k6
+.label	l25
+gettable      r4    r0    k8
+sub           r4    r3    r4
+settable      r0    k7    r4
+return        r0     1
+
+.function	main/f24
+
+.source	null
+.linedefined	737
+.lastlinedefined	785
+.numparams	1
+.is_vararg	0
+.maxstacksize	16
+
+.constant	k0	"x"
+.constant	k1	"y"
+.constant	k2	"display"
+.constant	k3	"newCircle"
+.constant	k4	"parent"
+.constant	k5	"blastRadius"
+.constant	k6	"setFillColor"
+.constant	k7	255
+.constant	k8	0
+.constant	k9	"alpha"
+.constant	k10	"radius"
+.constant	k11	"getScreenRocks"
+.constant	k12	"getWorldScale"
+.constant	k13	"rootWeapon"
+.constant	k14	"tostring"
+.constant	k15	"vaporizeObjects"
+.constant	k16	"damageCausingPlayer"
+.constant	k17	"weaponType"
+.constant	k18	"triggerObj"
+.constant	k19	"isWheel"
+.constant	k20	"tank"
+.constant	k21	"damageTanksInRadius"
+.constant	k22	"getScreenTanks"
+.constant	k23	"damage"
+.constant	k24	"player"
+.constant	k25	"timer"
+.constant	k26	"performWithDelay"
+.constant	k27	1000
+.constant	k28	"forceRadius"
+.constant	k29	227
+.constant	k30	207
+.constant	k31	87
+.constant	k32	100
+.constant	k33	"params"
+.constant	k34	"forceCircle"
+.constant	k35	"blastForce"
+.constant	k36	"scale"
+
+gettable      r1    r0    k0
+gettable      r2    r0    k1
+getglobal     r3    k2
+gettable      r3    r3    k3
+gettable      r4    r0    k4
+gettable      r5    r0    k0
+gettable      r6    r0    k1
+gettable      r7    r0    k5
+call          r3     5     2
+self          r4    r3    k6
+loadk         r6    k7
+loadk         r7    k8
+loadk         r8    k8
+call          r4     5     1
+settable      r3    k9    k8
+gettable      r4    r0    k5
+settable      r3   k10    r4
+getglobal     r4   k11
+move          r5    r3
+call          r4     2     2
+getglobal     r5   k12
+call          r5     1     2
+gettable      r6    r0   k13
+test          r6     1
+jmp          l29
+getglobal     r6   k14
+move          r7    r0
+call          r6     2     2
+.label	l29
+getglobal     r7   k15
+getglobal     r8   k16
+move          r9    r3
+move         r10    r4
+move         r11    r5
+loadbool     r12     1     0
+loadbool     r13     0     0
+move         r14    r6
+gettable     r15    r0   k17
+call          r7     9     1
+gettable      r7    r0   k18
+test          r7     0
+jmp          l46
+gettable      r8    r7   k19
+test          r8     0
+jmp          l46
+gettable      r7    r7   k20
+.label	l46
+getglobal     r8   k21
+move          r9    r3
+getglobal    r10   k22
+move         r11    r7
+call         r10     2     2
+move         r11    r5
+gettable     r12    r0   k23
+gettable     r13    r0   k24
+gettable     r14    r0   k17
+call          r8     7     1
+getglobal     r8   k25
+gettable      r8    r8   k26
+loadk         r9   k27
+closure      r10    f0
+move          r0    r3
+call          r8     3     1
+gettable      r8    r0   k28
+lt             0    k8    r8
+jmp          l95
+getglobal     r8    k2
+gettable      r8    r8    k3
+gettable      r9    r0    k4
+gettable     r10    r0    k0
+gettable     r11    r0    k1
+gettable     r12    r0    k5
+gettable     r13    r0   k28
+add          r12   r12   r13
+call          r8     5     2
+self          r9    r8    k6
+loadk        r11   k29
+loadk        r12   k30
+loadk        r13   k31
+call          r9     5     1
+settable      r8    k9    k8
+getglobal     r9   k25
+gettable      r9    r9   k26
+loadk        r10   k32
+closure      r11    f1
+move          r0    r8
+call          r9     3     2
+newtable     r10     0     4
+settable     r10   k34    r8
+gettable     r11    r0   k35
+settable     r10   k35   r11
+settable     r10   k36    r5
+gettable     r11    r0   k24
+settable     r10   k24   r11
+settable      r9   k33   r10
+close         r8
+.label	l95
+return        r0     1
+
+.function	main/f24/f0
+
+.source	null
+.linedefined	761
+.lastlinedefined	761
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"cleanUp"
+
+getglobal     r0    k0
+getupval      r1    u0
+call          r0     2     1
+return        r0     1
+
+.function	main/f24/f1
+
+.source	null
+.linedefined	769
+.lastlinedefined	774
+.numparams	1
+.is_vararg	0
+.maxstacksize	9
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"source"
+.constant	k1	"params"
+.constant	k2	"getScreenRocks"
+.constant	k3	"forceCircle"
+.constant	k4	"exertBlastForce"
+.constant	k5	"player"
+.constant	k6	"blastForce"
+.constant	k7	"scale"
+.constant	k8	"cleanUp"
+
+gettable      r1    r0    k0
+gettable      r1    r1    k1
+getglobal     r2    k2
+gettable      r3    r1    k3
+call          r2     2     2
+getglobal     r3    k4
+gettable      r4    r1    k5
+move          r5    r2
+gettable      r6    r1    k3
+gettable      r7    r1    k6
+gettable      r8    r1    k7
+call          r3     6     1
+getglobal     r3    k8
+getupval      r4    u0
+call          r3     2     1
+return        r0     1
+
+.function	main/f25
+
+.source	null
+.linedefined	788
+.lastlinedefined	801
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"doExplosionEffect"
+.constant	k1	"playback"
+.constant	k2	false
+
+gettable      r1    r0    k0
+test          r1     0
+jmp           l8
+self          r1    r0    k0
+newtable      r3     0     1
+settable      r3    k1    k2
+call          r1     3     1
+.label	l8
+return        r0     1
+
+.function	main/f26
+
+.source	null
+.linedefined	806
+.lastlinedefined	837
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"activeWeapons"
+.constant	k1	nil
+.constant	k2	"alpha"
+.constant	k3	0
+.constant	k4	"setRockPointsPlayer"
+.constant	k5	"player"
+.constant	k6	"blastRadius"
+.constant	k7	"doExplosionRadialDamage"
+.constant	k8	"doExplosionFX"
+.constant	k9	"exhaust"
+.constant	k10	"display"
+.constant	k11	"remove"
+.constant	k12	"bombSprite"
+.constant	k13	"triggerPlayerChange"
+.constant	k14	"isNonPlayerWeapon"
+.constant	k15	"timer"
+.constant	k16	"performWithDelay"
+.constant	k17	2000
+.constant	k18	"updateShotData"
+
+getglobal     r1    k0
+settable      r1    r0    k1
+settable      r0    k2    k3
+getglobal     r1    k4
+gettable      r2    r0    k5
+call          r1     2     1
+gettable      r1    r0    k6
+eq             1    r1    k1
+jmp          l19
+gettable      r1    r0    k6
+lt             0    k3    r1
+jmp          l19
+getglobal     r1    k7
+move          r2    r0
+call          r1     2     1
+getglobal     r1    k8
+move          r2    r0
+call          r1     2     1
+.label	l19
+gettable      r1    r0    k9
+test          r1     0
+jmp          l27
+getglobal     r1   k10
+gettable      r1    r1   k11
+gettable      r2    r0    k9
+call          r1     2     1
+settable      r0    k9    k1
+.label	l27
+gettable      r1    r0   k12
+test          r1     0
+jmp          l35
+getglobal     r1   k10
+gettable      r1    r1   k11
+gettable      r2    r0   k12
+call          r1     2     1
+settable      r0   k12    k1
+.label	l35
+gettable      r1    r0   k13
+test          r1     0
+jmp          l46
+gettable      r1    r0   k14
+test          r1     1
+jmp          l46
+getglobal     r1   k15
+gettable      r1    r1   k16
+loadk         r2   k17
+closure       r3    f0
+call          r1     3     1
+.label	l46
+self          r1    r0   k18
+call          r1     2     1
+getglobal     r1   k10
+gettable      r1    r1   k11
+move          r2    r0
+call          r1     2     1
+loadnil       r0    r0
+return        r0     1
+
+.function	main/f26/f0
+
+.source	null
+.linedefined	829
+.lastlinedefined	829
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"playerTurnEnd"
+
+getglobal     r1    k0
+call          r1     1     1
+return        r0     1
+
+.function	main/f27
+
+.source	null
+.linedefined	840
+.lastlinedefined	897
+.numparams	6
+.is_vararg	0
+.maxstacksize	31
+
+.constant	k0	"pairs"
+.constant	k1	nil
+.constant	k2	"objType"
+.constant	k3	"tank"
+.constant	k4	"dead"
+.constant	k5	"utils"
+.constant	k6	"getPointsInCircle"
+.constant	k7	0
+.constant	k8	"polygonIntersectsCircle"
+.constant	k9	"distanceBetweenPoints"
+.constant	k10	"x"
+.constant	k11	"y"
+.constant	k12	"physics"
+.constant	k13	"shape"
+.constant	k14	1
+.constant	k15	2
+.constant	k16	"contentWidth"
+.constant	k17	"damageHealth"
+.constant	k18	"weaponType"
+
+getglobal     r6    k0
+move          r7    r1
+call          r6     2     4
+jmp          l86
+.label	l5
+eq             1   r10    k1
+jmp          l86
+gettable     r11   r10    k2
+eq             0   r11    k3
+jmp          l86
+gettable     r11   r10    k4
+test         r11     1
+jmp          l86
+getglobal    r11    k5
+gettable     r11   r11    k6
+move         r12   r10
+move         r13    r0
+move         r14    r2
+call         r11     4     3
+lt             1    k7   r12
+jmp          l29
+getglobal    r13    k5
+gettable     r13   r13    k8
+move         r14   r10
+move         r15    r0
+move         r16    r2
+call         r13     4     2
+test         r13     0
+jmp          l86
+.label	l29
+getglobal    r13    k5
+gettable     r13   r13    k9
+gettable     r14    r0   k10
+gettable     r15    r0   k11
+gettable     r16   r10   k10
+gettable     r17   r10   k11
+call         r13     5     2
+mul          r13   r13    r2
+gettable     r14   r10   k12
+len          r15   r14
+lt             1    k7   r15
+jmp          l45
+newtable     r15     1     0
+move         r16   r14
+setlist      r15     1     1
+move         r14   r15
+.label	l45
+getglobal    r15    k0
+move         r16   r14
+call         r15     2     4
+jmp          l72
+.label	l49
+gettable     r20   r19   k13
+loadk        r21   k14
+len          r22   r20
+sub          r22   r22   k14
+loadk        r23   k15
+forprep      r21   l71
+.label	l55
+getglobal    r25    k5
+gettable     r25   r25    k9
+gettable     r26    r0   k10
+gettable     r27    r0   k11
+gettable     r28   r10   k10
+gettable     r29   r20   r24
+add          r28   r28   r29
+gettable     r29   r10   k11
+add          r30   r24   k14
+gettable     r30   r20   r30
+add          r29   r29   r30
+call         r25     5     2
+mul          r25   r25    r2
+lt             0   r25   r13
+jmp          l71
+move         r13   r25
+.label	l71
+forloop      r21   l55
+.label	l72
+tforloop     r15     2
+jmp          l49
+gettable     r15    r0   k16
+div          r15   r15   k15
+sub          r16   r15   r13
+div          r13   r16   r15
+lt             0    k7   r13
+jmp          l86
+self         r16   r10   k17
+mul          r18   r13    r3
+move         r19    r4
+newtable     r20     0     1
+settable     r20   k18    r5
+call         r16     5     1
+.label	l86
+tforloop      r6     2
+jmp           l5
+return        r0     1
+
+.function	main/f28
+
+.source	null
+.linedefined	899
+.lastlinedefined	904
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"utils"
+.constant	k1	"removeDisplayObject"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     1
+loadnil       r0    r0
+return        r0     1
+
+.function	main/f29
+
+.source	null
+.linedefined	907
+.lastlinedefined	958
+.numparams	5
+.is_vararg	0
+.maxstacksize	20
+
+.constant	k0	nil
+.constant	k1	"pairs"
+.constant	k2	"utils"
+.constant	k3	"getPointsInCircle"
+.constant	k4	0
+.constant	k5	"polygonIntersectsCircle"
+.constant	k6	"math"
+.constant	k7	"ceil"
+.constant	k8	"abs"
+.constant	k9	"x"
+.constant	k10	"y"
+.constant	k11	"applyLinearImpulse"
+.constant	k12	"bodyType"
+.constant	k13	"dynamic"
+.constant	k14	"destabilizeNeighbours"
+.constant	k15	"random"
+.constant	k16	"player"
+
+eq             0    r1    k0
+jmp           l4
+return        r0     1
+.label	l4
+getglobal     r5    k1
+move          r6    r1
+call          r5     2     4
+jmp          l97
+.label	l8
+eq             1    r9    k0
+jmp          l97
+loadnil      r10   r11
+getglobal    r12    k2
+gettable     r12   r12    k3
+move         r13    r9
+move         r14    r2
+move         r15    r4
+call         r12     4     3
+move         r11   r13
+move         r10   r12
+loadbool     r12     0     0
+lt             0    k4   r10
+jmp          l26
+le             0   r10   r11
+jmp          l26
+loadbool     r12     1     0
+jmp          l39
+.label	l26
+lt             0    k4   r11
+jmp          l30
+loadbool     r12     1     0
+jmp          l39
+.label	l30
+getglobal    r13    k2
+gettable     r13   r13    k5
+move         r14    r9
+move         r15    r2
+move         r16    r4
+call         r13     4     2
+test         r13     0
+jmp          l39
+loadbool     r12     1     0
+.label	l39
+test         r12     0
+jmp          l97
+getglobal    r13    k6
+gettable     r13   r13    k7
+getglobal    r14    k6
+gettable     r14   r14    k8
+gettable     r15    r9    k9
+gettable     r16    r2    k9
+sub          r15   r15   r16
+call         r14     2     0
+call         r13     0     2
+getglobal    r14    k6
+gettable     r14   r14    k7
+getglobal    r15    k6
+gettable     r15   r15    k8
+gettable     r16    r9   k10
+gettable     r17    r2   k10
+sub          r16   r16   r17
+call         r15     2     0
+call         r14     0     2
+lt             0   r13   r14
+jmp          l71
+getglobal    r14    k6
+gettable     r14   r14    k7
+getglobal    r15    k6
+gettable     r15   r15    k8
+gettable     r16    r9   k10
+gettable     r17    r2   k10
+sub          r16   r16   r17
+call         r15     2     0
+call         r14     0     2
+move         r13   r14
+.label	l71
+gettable     r14    r9   k11
+test         r14     0
+jmp          l97
+settable      r9   k12   k13
+getglobal    r14   k14
+getglobal    r15    k6
+gettable     r15   r15   k15
+testset      r16    r0     1
+jmp          l81
+gettable     r16    r9   k16
+.label	l81
+move         r17    r9
+call         r14     4     1
+self         r14    r9   k11
+gettable     r16    r9    k9
+gettable     r17    r2    k9
+sub          r16   r16   r17
+mul          r16    r3   r16
+div          r16   r16   r13
+gettable     r17    r9   k10
+gettable     r18    r2   k10
+sub          r17   r17   r18
+mul          r17    r3   r17
+div          r17   r17   r13
+loadk        r18    k4
+loadk        r19    k4
+call         r14     6     1
+.label	l97
+tforloop      r5     2
+jmp           l8
+return        r0     1
+
+.function	main/f30
+
+.source	null
+.linedefined	961
+.lastlinedefined	974
+.numparams	2
+.is_vararg	0
+.maxstacksize	13
+
+.constant	k0	"width"
+.constant	k1	"xScale"
+.constant	k2	"height"
+.constant	k3	"yScale"
+.constant	k4	"p1"
+.constant	k5	"p2"
+.constant	k6	"x"
+.constant	k7	"y"
+.constant	k8	"utils"
+.constant	k9	"getRotatedPoint"
+.constant	k10	"rotation"
+
+gettable      r2    r0    k0
+gettable      r3    r0    k1
+mul           r2    r2    r3
+mul           r2    r2    r1
+gettable      r3    r0    k2
+gettable      r4    r0    k3
+mul           r3    r3    r4
+mul           r3    r3    r1
+newtable      r4     0     2
+newtable      r5     0     0
+settable      r4    k4    r5
+newtable      r5     0     0
+settable      r4    k5    r5
+gettable      r5    r4    k4
+gettable      r6    r4    k4
+getglobal     r7    k8
+gettable      r7    r7    k9
+gettable      r8    r0    k6
+gettable      r9    r0    k7
+gettable     r10    r0   k10
+gettable     r11    r0    k6
+gettable     r12    r0    k7
+call          r7     6     3
+settable      r6    k7    r8
+settable      r5    k6    r7
+gettable      r5    r4    k5
+gettable      r6    r4    k5
+getglobal     r7    k8
+gettable      r7    r7    k9
+gettable      r8    r0    k6
+sub           r8    r8    r2
+gettable      r9    r0    k7
+gettable     r10    r0   k10
+gettable     r11    r0    k6
+gettable     r12    r0    k7
+call          r7     6     3
+settable      r6    k7    r8
+settable      r5    k6    r7
+return        r4     2
+return        r0     1
+
+.function	main/f31
+
+.source	null
+.linedefined	981
+.lastlinedefined	1059
+.numparams	8
+.is_vararg	0
+.maxstacksize	19
+
+.constant	k0	0
+.constant	k1	nil
+.constant	k2	"pairs"
+.constant	k3	"objType"
+.constant	k4	"rock"
+.constant	k5	"timer"
+.constant	k6	"performWithDelay"
+.constant	k7	1
+
+loadk         r8    k0
+eq             0    r2    k1
+jmp           l5
+return        r0     1
+.label	l5
+loadk         r9    k0
+loadk        r10    k0
+getglobal    r11    k2
+move         r12    r2
+call         r11     2     4
+jmp          l31
+.label	l11
+eq             1   r15    k1
+jmp          l30
+gettable     r16   r15    k3
+eq             0   r16    k4
+jmp          l30
+getglobal    r16    k5
+gettable     r16   r16    k6
+loadk        r17    k7
+closure      r18    f0
+move          r0   r15
+move          r0    r1
+move          r0    r3
+move          r0    r4
+move          r0    r2
+move          r0    r9
+move          r0    r0
+move          r0    r6
+call         r16     3     1
+add          r10   r10    k7
+.label	l30
+close        r14
+.label	l31
+tforloop     r11     2
+jmp          l11
+return        r0     1
+
+.function	main/f31/f0
+
+.source	null
+.linedefined	995
+.lastlinedefined	1053
+.numparams	0
+.is_vararg	0
+.maxstacksize	10
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"utils"
+.constant	k1	"getTotalPointsInPolygon"
+.constant	k2	0
+.constant	k3	nil
+.constant	k4	"cleanUp"
+.constant	k5	"rockScale"
+.constant	k6	"ROCKINFO"
+.constant	k7	"MINIMUM_ROCK_SIZE"
+.constant	k8	0.5
+.constant	k9	"crackRockInPolygon"
+.constant	k10	0.25
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+getupval      r3    u0
+getupval      r4    u1
+getupval      r5    u2
+call          r2     4     3
+move          r1    r3
+move          r0    r2
+getupval      r2    u3
+test          r2     0
+jmp          l34
+lt             0    k2    r0
+jmp          l34
+le             0    r0    r1
+jmp          l34
+getupval      r2    u4
+getupval      r3    u0
+settable      r2    r3    k3
+getglobal     r2    k4
+getupval      r3    u0
+call          r2     2     1
+getupval      r2    u0
+gettable      r2    r2    k5
+getglobal     r3    k6
+gettable      r3    r3    k7
+lt             0    r3    r2
+jmp          l31
+getupval      r2    u5
+add           r2    r2    k8
+setupval      r2    u5
+.label	l31
+loadnil       r2    r2
+setupval      r2    u0
+jmp          l51
+.label	l34
+lt             0    k2    r1
+jmp          l51
+getupval      r2    u4
+getupval      r3    u0
+settable      r2    r3    k3
+getglobal     r2    k9
+getupval      r3    u6
+getupval      r4    u0
+loadbool      r5     1     0
+getupval      r6    u1
+getupval      r7    u2
+getupval      r8    u3
+getupval      r9    u7
+call          r2     8     1
+getupval      r2    u5
+add           r2    r2   k10
+setupval      r2    u5
+.label	l51
+return        r0     1
+
+.function	main/f32
+
+.source	null
+.linedefined	1062
+.lastlinedefined	1145
+.numparams	8
+.is_vararg	0
+.maxstacksize	20
+
+.constant	k0	"radius"
+.constant	k1	"x"
+.constant	k2	"y"
+.constant	k3	"contentWidth"
+.constant	k4	"contentHeight"
+.constant	k5	0
+.constant	k6	nil
+.constant	k7	"pairs"
+.constant	k8	"objType"
+.constant	k9	"rock"
+.constant	k10	"timer"
+.constant	k11	"performWithDelay"
+.constant	k12	1
+
+newtable      r8     0     5
+gettable      r9    r1    k0
+settable      r8    k0    r9
+gettable      r9    r1    k1
+settable      r8    k1    r9
+gettable      r9    r1    k2
+settable      r8    k2    r9
+gettable      r9    r1    k3
+settable      r8    k3    r9
+gettable      r9    r1    k4
+settable      r8    k4    r9
+loadk         r9    k5
+eq             1    r2    k6
+jmp          l20
+eq             1    r8    k6
+jmp          l20
+gettable     r10    r8    k3
+eq             0   r10    k6
+jmp          l21
+.label	l20
+return        r0     1
+.label	l21
+loadk        r10    k5
+loadk        r11    k5
+getglobal    r12    k7
+move         r13    r2
+call         r12     2     4
+jmp          l48
+.label	l27
+eq             1   r16    k6
+jmp          l47
+gettable     r17   r16    k8
+eq             0   r17    k9
+jmp          l47
+getglobal    r17   k10
+gettable     r17   r17   k11
+loadk        r18   k12
+closure      r19    f0
+move          r0   r16
+move          r0    r8
+move          r0    r3
+move          r0    r4
+move          r0    r2
+move          r0   r10
+move          r0    r0
+move          r0    r6
+move          r0   r11
+call         r17     3     1
+add          r11   r11   k12
+.label	l47
+close        r15
+.label	l48
+tforloop     r12     2
+jmp          l27
+return        r0     1
+
+.function	main/f32/f0
+
+.source	null
+.linedefined	1077
+.lastlinedefined	1139
+.numparams	0
+.is_vararg	0
+.maxstacksize	19
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"utils"
+.constant	k1	"getPointsInCircle"
+.constant	k2	0
+.constant	k3	nil
+.constant	k4	"cleanUp"
+.constant	k5	"rockScale"
+.constant	k6	"ROCKINFO"
+.constant	k7	"MINIMUM_ROCK_SIZE"
+.constant	k8	0.5
+.constant	k9	"crackRockInSphere"
+.constant	k10	0.25
+.constant	k11	"polygonIntersectsCircle"
+.constant	k12	1
+.constant	k13	"math"
+.constant	k14	"round"
+.constant	k15	"require"
+.constant	k16	"currentBattle"
+.constant	k17	"getLevel"
+.constant	k18	"random"
+.constant	k19	"radius"
+.constant	k20	-1
+.constant	k21	2
+.constant	k22	"getRock"
+.constant	k23	5
+.constant	k24	"x"
+.constant	k25	"y"
+.constant	k26	359
+.constant	k27	"dynamic"
+.constant	k28	"plain"
+.constant	k29	"timer"
+.constant	k30	"performWithDelay"
+.constant	k31	3000
+.constant	k32	6000
+.constant	k33	"rootWeapon"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+getupval      r3    u0
+getupval      r4    u1
+getupval      r5    u2
+call          r2     4     3
+move          r1    r3
+move          r0    r2
+getupval      r2    u3
+test          r2     0
+jmp          l34
+lt             0    k2    r0
+jmp          l34
+le             0    r0    r1
+jmp          l34
+getupval      r2    u4
+getupval      r3    u0
+settable      r2    r3    k3
+getglobal     r2    k4
+getupval      r3    u0
+call          r2     2     1
+getupval      r2    u0
+gettable      r2    r2    k5
+getglobal     r3    k6
+gettable      r3    r3    k7
+lt             0    r3    r2
+jmp          l31
+getupval      r2    u5
+add           r2    r2    k8
+setupval      r2    u5
+.label	l31
+loadnil       r2    r2
+setupval      r2    u0
+jmp          l75
+.label	l34
+lt             0    k2    r1
+jmp          l52
+getupval      r2    u4
+getupval      r3    u0
+settable      r2    r3    k3
+getglobal     r2    k9
+getupval      r3    u6
+getupval      r4    u0
+loadbool      r5     1     0
+getupval      r6    u1
+getupval      r7    u2
+getupval      r8    u3
+getupval      r9    u7
+call          r2     8     1
+getupval      r2    u5
+add           r2    r2   k10
+setupval      r2    u5
+jmp          l75
+.label	l52
+getglobal     r2    k0
+gettable      r2    r2   k11
+getupval      r3    u0
+getupval      r4    u1
+getupval      r5    u2
+call          r2     4     2
+test          r2     0
+jmp          l75
+getupval      r2    u4
+getupval      r3    u0
+settable      r2    r3    k3
+getglobal     r2    k9
+getupval      r3    u6
+getupval      r4    u0
+loadbool      r5     1     0
+getupval      r6    u1
+getupval      r7    u2
+getupval      r8    u3
+getupval      r9    u7
+call          r2     8     1
+getupval      r2    u5
+add           r2    r2   k10
+setupval      r2    u5
+.label	l75
+getupval      r2    u8
+sub           r2    r2   k12
+setupval      r2    u8
+getupval      r2    u8
+eq             0    r2    k2
+jmp         l160
+getglobal     r2   k13
+gettable      r2    r2   k14
+getupval      r3    u5
+call          r2     2     2
+setupval      r2    u5
+getupval      r2    u5
+lt             0    k2    r2
+jmp         l160
+getglobal     r2   k15
+loadk         r3   k16
+call          r2     2     2
+gettable      r2    r2   k17
+call          r2     1     2
+test          r2     1
+jmp          l97
+return        r0     1
+.label	l97
+loadk         r3   k12
+getupval      r4    u5
+loadk         r5   k12
+forprep       r3  l159
+.label	l101
+getglobal     r7   k13
+gettable      r7    r7   k18
+loadk         r8    k2
+getupval      r9    u1
+gettable      r9    r9   k19
+call          r7     3     2
+getupval      r8    u1
+gettable      r8    r8   k19
+sub           r8    r8    r7
+mul           r8   k20    r8
+getglobal     r9   k13
+gettable      r9    r9   k18
+loadk        r10   k12
+loadk        r11   k21
+call          r9     3     2
+mod           r9    r9   k21
+eq             0    r9    k2
+jmp         l120
+mul           r7    r7   k20
+.label	l120
+self          r9    r2   k22
+getglobal    r11   k13
+gettable     r11   r11   k18
+loadk        r12   k12
+loadk        r13   k23
+call         r11     3     2
+getupval     r12    u1
+gettable     r12   r12   k24
+add          r12   r12    r7
+getupval     r13    u1
+gettable     r13   r13   k25
+add          r13   r13    r8
+getglobal    r14    k6
+gettable     r14   r14    k7
+getglobal    r15   k13
+gettable     r15   r15   k18
+loadk        r16    k2
+loadk        r17   k26
+call         r15     3     2
+loadk        r16   k27
+loadk        r17   k28
+loadbool     r18     1     0
+call          r9    10     2
+mod          r10    r6   k21
+eq             0   r10    k2
+jmp         l156
+getglobal    r10   k29
+gettable     r10   r10   k30
+getglobal    r11   k13
+gettable     r11   r11   k18
+loadk        r12   k31
+loadk        r13   k32
+call         r11     3     2
+closure      r12    f0
+move          r0    r9
+call         r10     3     1
+.label	l156
+getupval     r10    u7
+settable      r9   k33   r10
+close         r7
+.label	l159
+forloop       r3  l101
+.label	l160
+return        r0     1
+
+.function	main/f32/f0/f0
+
+.source	null
+.linedefined	1130
+.lastlinedefined	1132
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"cleanUp"
+
+getglobal     r0    k0
+getupval      r1    u0
+call          r0     2     1
+return        r0     1
+
+.function	main/f33
+
+.source	null
+.linedefined	1147
+.lastlinedefined	1152
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"weaponSpriteSet"
+.constant	k1	"weaponSpriteData"
+.constant	k2	"spritesheetmanager"
+.constant	k3	"getSpriteSet"
+.constant	k4	"res/weapons/weapon_icons.png"
+
+getglobal     r0    k0
+test          r0     1
+jmp          l10
+getglobal     r0    k2
+gettable      r0    r0    k3
+loadk         r1    k4
+call          r0     2     3
+setglobal     r1    k1
+setglobal     r0    k0
+.label	l10
+getglobal     r0    k0
+getglobal     r1    k1
+return        r0     3
+return        r0     1
+
+.function	main/f34
+
+.source	null
+.linedefined	1156
+.lastlinedefined	1173
+.numparams	0
+.is_vararg	0
+.maxstacksize	12
+
+.constant	k0	"wind"
+.constant	k1	"pairs"
+.constant	k2	"activeWeapons"
+.constant	k3	"engageManualPhysics"
+.constant	k4	"manualPhysics"
+.constant	k5	0
+.constant	k6	"isAirborne"
+.constant	k7	"applyForce"
+.constant	k8	32
+.constant	k9	"x"
+.constant	k10	"y"
+.constant	k11	"lastX"
+.constant	k12	"lastY"
+
+getglobal     r0    k0
+getglobal     r1    k1
+getglobal     r2    k2
+call          r1     2     4
+jmp          l32
+.label	l6
+gettable      r6    r5    k3
+test          r6     0
+jmp          l28
+gettable      r6    r5    k4
+test          r6     0
+jmp          l28
+self          r6    r5    k4
+call          r6     2     1
+eq             1    r0    k5
+jmp          l28
+gettable      r6    r5    k6
+test          r6     0
+jmp          l28
+gettable      r6    r5    k7
+test          r6     0
+jmp          l28
+self          r6    r5    k7
+div           r8    r0    k8
+loadk         r9    k5
+gettable     r10    r5    k9
+gettable     r11    r5   k10
+call          r6     6     1
+.label	l28
+gettable      r6    r5    k9
+settable      r5   k11    r6
+gettable      r6    r5   k10
+settable      r5   k12    r6
+.label	l32
+tforloop      r1     2
+jmp           l6
+return        r0     1
+
+.function	main/f35
+
+.source	null
+.linedefined	1175
+.lastlinedefined	1177
+.numparams	1
+.is_vararg	0
+.maxstacksize	6
+
+.constant	k0	"weaponTypes"
+.constant	k1	"unlockable"
+.constant	k2	"UnlockableContent"
+.constant	k3	"new"
+.constant	k4	"unlockableIdFor"
+.constant	k5	"name"
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+getglobal     r2    k2
+self          r2    r2    k3
+getglobal     r4    k4
+move          r5    r0
+call          r4     2     2
+getglobal     r5    k0
+gettable      r5    r5    r0
+gettable      r5    r5    k5
+call          r2     4     2
+settable      r1    k1    r2
+return        r0     1
+
+.function	main/f36
+
+.source	null
+.linedefined	1224
+.lastlinedefined	1235
+.numparams	0
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"BattleSprites"
+.constant	k1	"sheets"
+.constant	k2	"sequences"
+.constant	k3	"spriteSets"
+.constant	k4	"GenericWeaponSequences"
+.constant	k5	"spriteSequences"
+.constant	k6	"pairs"
+.constant	k7	"prepareSpriteSequence"
+.constant	k8	"_generic"
+
+getglobal     r0    k0
+newtable      r1     0     0
+settable      r0    k1    r1
+getglobal     r0    k0
+newtable      r1     0     0
+settable      r0    k2    r1
+getglobal     r0    k0
+newtable      r1     0     0
+settable      r0    k3    r1
+getglobal     r0    k4
+gettable      r0    r0    k5
+test          r0     0
+jmp          l28
+getglobal     r0    k6
+getglobal     r1    k4
+gettable      r1    r1    k5
+call          r0     2     4
+jmp          l26
+.label	l19
+getglobal     r5    k0
+gettable      r5    r5    k7
+move          r6    r3
+loadk         r7    k8
+concat        r6    r6    r7
+move          r7    r4
+call          r5     3     1
+.label	l26
+tforloop      r0     2
+jmp          l19
+.label	l28
+return        r0     1
+
+.function	main/f37
+
+.source	null
+.linedefined	1237
+.lastlinedefined	1246
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"Weapon"
+.constant	k1	"loadWeaponSprites"
+.constant	k2	"loadWeaponSounds"
+.constant	k3	"weaponTypes"
+.constant	k4	"children"
+.constant	k5	"pairs"
+.constant	k6	"loadWeapon"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     1
+getglobal     r1    k0
+gettable      r1    r1    k2
+move          r2    r0
+call          r1     2     1
+getglobal     r1    k3
+gettable      r1    r1    r0
+gettable      r1    r1    k4
+test          r1     0
+jmp          l26
+getglobal     r1    k5
+getglobal     r2    k3
+gettable      r2    r2    r0
+gettable      r2    r2    k4
+call          r1     2     4
+jmp          l24
+.label	l20
+getglobal     r6    k0
+gettable      r6    r6    k6
+move          r7    r5
+call          r6     2     1
+.label	l24
+tforloop      r1     2
+jmp          l20
+.label	l26
+return        r0     1
+
+.function	main/f38
+
+.source	null
+.linedefined	1248
+.lastlinedefined	1258
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"Weapon"
+.constant	k1	"safeWeaponSpriteRemoval"
+.constant	k2	"safeWeaponSoundRemoval"
+.constant	k3	"weaponTypes"
+.constant	k4	"children"
+.constant	k5	"pairs"
+.constant	k6	"unloadWeapon"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     1
+getglobal     r1    k0
+gettable      r1    r1    k2
+move          r2    r0
+call          r1     2     1
+getglobal     r1    k3
+gettable      r1    r1    r0
+gettable      r1    r1    k4
+test          r1     0
+jmp          l26
+getglobal     r1    k5
+getglobal     r2    k3
+gettable      r2    r2    r0
+gettable      r2    r2    k4
+call          r1     2     4
+jmp          l24
+.label	l20
+getglobal     r6    k0
+gettable      r6    r6    k6
+move          r7    r5
+call          r6     2     1
+.label	l24
+tforloop      r1     2
+jmp          l20
+.label	l26
+return        r0     1
+
+.function	main/f39
+
+.source	null
+.linedefined	1261
+.lastlinedefined	1287
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	1
+.constant	k1	"players"
+.constant	k2	"weaponType"
+.constant	k3	"battlefieldFlair"
+.constant	k4	"activeAirTraffic"
+.constant	k5	"pairs"
+.constant	k6	"specialDelivery"
+.constant	k7	"activeWeapons"
+
+loadk         r1    k0
+getglobal     r2    k1
+len           r2    r2
+loadk         r3    k0
+forprep       r1   l13
+.label	l6
+getglobal     r5    k1
+gettable      r5    r5    r4
+gettable      r5    r5    k2
+eq             0    r5    r0
+jmp          l13
+loadbool      r5     1     0
+return        r5     2
+.label	l13
+forloop       r1    l6
+getglobal     r1    k3
+gettable      r1    r1    k4
+test          r1     0
+jmp          l33
+getglobal     r2    k5
+move          r3    r1
+call          r2     2     4
+jmp          l31
+.label	l22
+gettable      r7    r6    k6
+test          r7     0
+jmp          l31
+gettable      r7    r6    k6
+gettable      r7    r7    k2
+eq             0    r7    r0
+jmp          l31
+loadbool      r7     1     0
+return        r7     2
+.label	l31
+tforloop      r2     2
+jmp          l22
+.label	l33
+getglobal     r2    k7
+test          r2     0
+jmp          l49
+getglobal     r2    k5
+getglobal     r3    k7
+call          r2     2     4
+jmp          l47
+.label	l40
+test          r6     0
+jmp          l47
+gettable      r7    r6    k2
+eq             0    r7    r0
+jmp          l47
+loadbool      r7     1     0
+return        r7     2
+.label	l47
+tforloop      r2     2
+jmp          l40
+.label	l49
+loadbool      r2     0     0
+return        r2     2
+return        r0     1
+
+.function	main/f40
+
+.source	null
+.linedefined	1289
+.lastlinedefined	1347
+.numparams	1
+.is_vararg	0
+.maxstacksize	17
+
+.constant	k0	"Weapon"
+.constant	k1	"isWeaponTypeInUse"
+.constant	k2	"weaponTypes"
+.constant	k3	"spriteSequences"
+.constant	k4	1
+.constant	k5	"players"
+.constant	k6	"weaponType"
+.constant	k7	"pairs"
+.constant	k8	"file"
+.constant	k9	"battlefieldFlair"
+.constant	k10	"activeAirTraffic"
+.constant	k11	"specialDelivery"
+.constant	k12	"activeWeapons"
+.constant	k13	"removeSpriteSheet"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     2
+test          r1     1
+jmp         l141
+getglobal     r1    k2
+gettable      r1    r1    r0
+gettable      r1    r1    k3
+test          r1     0
+jmp         l141
+newtable      r1     0     0
+newtable      r2     0     0
+loadk         r3    k4
+getglobal     r4    k5
+len           r4    r4
+loadk         r5    k4
+forprep       r3   l38
+.label	l19
+getglobal     r7    k5
+gettable      r7    r7    r6
+gettable      r7    r7    k6
+getglobal     r8    k2
+gettable      r8    r8    r7
+gettable      r8    r8    k3
+test          r8     0
+jmp          l38
+getglobal     r8    k7
+getglobal     r9    k2
+gettable      r9    r9    r7
+gettable      r9    r9    k3
+call          r8     2     4
+jmp          l36
+.label	l33
+gettable     r13   r12    k8
+gettable     r14   r12    k8
+settable      r2   r13   r14
+.label	l36
+tforloop      r8     2
+jmp          l33
+.label	l38
+forloop       r3   l19
+getglobal     r3    k9
+gettable      r3    r3   k10
+test          r3     0
+jmp          l76
+getglobal     r4    k7
+move          r5    r3
+call          r4     2     4
+jmp          l74
+.label	l47
+gettable      r9    r8   k11
+test          r9     0
+jmp          l74
+gettable      r9    r8   k11
+gettable      r9    r9    k6
+test          r9     0
+jmp          l74
+getglobal     r9    k2
+gettable     r10    r8   k11
+gettable     r10   r10    k6
+gettable      r9    r9   r10
+gettable      r9    r9    k3
+test          r9     0
+jmp          l74
+getglobal     r9    k7
+getglobal    r10    k2
+gettable     r11    r8   k11
+gettable     r11   r11    k6
+gettable     r10   r10   r11
+gettable     r10   r10    k3
+call          r9     2     4
+jmp          l72
+.label	l69
+gettable     r14   r13    k8
+gettable     r15   r13    k8
+settable      r2   r14   r15
+.label	l72
+tforloop      r9     2
+jmp          l69
+.label	l74
+tforloop      r4     2
+jmp          l47
+.label	l76
+getglobal     r4   k12
+test          r4     0
+jmp         l108
+getglobal     r4    k7
+getglobal     r5   k12
+call          r4     2     4
+jmp         l106
+.label	l83
+test          r8     0
+jmp         l106
+gettable      r9    r8    k6
+test          r9     0
+jmp         l106
+getglobal     r9    k2
+gettable     r10    r8    k6
+gettable      r9    r9   r10
+gettable      r9    r9    k3
+test          r9     0
+jmp         l106
+getglobal     r9    k7
+getglobal    r10    k2
+gettable     r11    r8    k6
+gettable     r10   r10   r11
+gettable     r10   r10    k3
+call          r9     2     4
+jmp         l104
+.label	l101
+gettable     r14   r13    k8
+gettable     r15   r13    k8
+settable      r2   r14   r15
+.label	l104
+tforloop      r9     2
+jmp         l101
+.label	l106
+tforloop      r4     2
+jmp          l83
+.label	l108
+getglobal     r4    k7
+getglobal     r5    k2
+gettable      r5    r5    r0
+gettable      r5    r5    k3
+call          r4     2     4
+jmp         l129
+.label	l114
+gettable      r9    r8    k8
+loadbool     r10     0     0
+getglobal    r11    k7
+move         r12    r2
+call         r11     2     4
+jmp         l124
+.label	l120
+eq             0   r15    r9
+jmp         l124
+loadbool     r10     1     0
+jmp         l126
+.label	l124
+tforloop     r11     2
+jmp         l120
+.label	l126
+test         r10     1
+jmp         l129
+settable      r1    r9    r9
+.label	l129
+tforloop      r4     2
+jmp         l114
+getglobal     r4    k7
+move          r5    r1
+call          r4     2     4
+jmp         l139
+.label	l135
+getglobal     r9    k0
+gettable      r9    r9   k13
+move         r10    r8
+call          r9     2     1
+.label	l139
+tforloop      r4     2
+jmp         l135
+.label	l141
+return        r0     1
+
+.function	main/f41
+
+.source	null
+.linedefined	1350
+.lastlinedefined	1406
+.numparams	1
+.is_vararg	0
+.maxstacksize	17
+
+.constant	k0	"Weapon"
+.constant	k1	"isWeaponTypeInUse"
+.constant	k2	"weaponTypes"
+.constant	k3	"sounds"
+.constant	k4	1
+.constant	k5	"players"
+.constant	k6	"weaponType"
+.constant	k7	"battlefieldFlair"
+.constant	k8	"activeAirTraffic"
+.constant	k9	"pairs"
+.constant	k10	"specialDelivery"
+.constant	k11	"activeWeapons"
+.constant	k12	"sound"
+.constant	k13	"dispose"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     2
+test          r1     1
+jmp          l98
+getglobal     r1    k2
+gettable      r1    r1    r0
+gettable      r1    r1    k3
+test          r1     0
+jmp          l98
+newtable      r1     0     0
+newtable      r2     0     0
+closure       r3    f0
+move          r0    r2
+loadk         r4    k4
+getglobal     r5    k5
+len           r5    r5
+loadk         r6    k4
+forprep       r4   l26
+.label	l21
+move          r8    r3
+getglobal     r9    k5
+gettable      r9    r9    r7
+gettable      r9    r9    k6
+call          r8     2     1
+.label	l26
+forloop       r4   l21
+getglobal     r4    k7
+gettable      r4    r4    k8
+test          r4     0
+jmp          l48
+getglobal     r5    k9
+move          r6    r4
+call          r5     2     4
+jmp          l46
+.label	l35
+gettable     r10    r9   k10
+test         r10     0
+jmp          l46
+gettable     r10    r9   k10
+gettable     r10   r10    k6
+test         r10     0
+jmp          l46
+move         r10    r3
+gettable     r11    r9   k10
+gettable     r11   r11    k6
+call         r10     2     1
+.label	l46
+tforloop      r5     2
+jmp          l35
+.label	l48
+getglobal     r5   k11
+test          r5     0
+jmp          l65
+getglobal     r5    k9
+getglobal     r6   k11
+call          r5     2     4
+jmp          l63
+.label	l55
+test          r9     0
+jmp          l63
+gettable     r10    r9    k6
+test         r10     0
+jmp          l63
+move         r10    r3
+gettable     r11    r9    k6
+call         r10     2     1
+.label	l63
+tforloop      r5     2
+jmp          l55
+.label	l65
+getglobal     r5    k9
+getglobal     r6    k2
+gettable      r6    r6    r0
+gettable      r6    r6    k3
+call          r5     2     4
+jmp          l85
+.label	l71
+loadbool     r10     0     0
+getglobal    r11    k9
+move         r12    r2
+call         r11     2     4
+jmp          l80
+.label	l76
+eq             0   r15    r9
+jmp          l80
+loadbool     r10     1     0
+jmp          l82
+.label	l80
+tforloop     r11     2
+jmp          l76
+.label	l82
+test         r10     1
+jmp          l85
+settable      r1    r9    r9
+.label	l85
+tforloop      r5     2
+jmp          l71
+getglobal     r5    k9
+move          r6    r1
+call          r5     2     4
+jmp          l95
+.label	l91
+getglobal    r10   k12
+gettable     r10   r10   k13
+move         r11    r9
+call         r10     2     1
+.label	l95
+tforloop      r5     2
+jmp          l91
+close         r1
+.label	l98
+return        r0     1
+
+.function	main/f41/f0
+
+.source	null
+.linedefined	1356
+.lastlinedefined	1362
+.numparams	1
+.is_vararg	0
+.maxstacksize	7
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"weaponTypes"
+.constant	k1	"sounds"
+.constant	k2	"pairs"
+
+getglobal     r1    k0
+gettable      r1    r1    r0
+test          r1     0
+jmp          l20
+getglobal     r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k1
+test          r1     0
+jmp          l20
+getglobal     r1    k2
+getglobal     r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k1
+call          r1     2     4
+jmp          l18
+.label	l16
+getupval      r6    u0
+settable      r6    r5    r5
+.label	l18
+tforloop      r1     2
+jmp          l16
+.label	l20
+return        r0     1
+
+.function	main/f42
+
+.source	null
+.linedefined	1409
+.lastlinedefined	1441
+.numparams	0
+.is_vararg	0
+.maxstacksize	11
+
+.constant	k0	"pairs"
+.constant	k1	"activeWeapons"
+.constant	k2	nil
+.constant	k3	"BattleSprites"
+.constant	k4	"sheets"
+.constant	k5	"Weapon"
+.constant	k6	"removeSpriteSheet"
+.constant	k7	"sequences"
+.constant	k8	"spriteSets"
+.constant	k9	"weaponTypes"
+.constant	k10	"NAPALM"
+.constant	k11	"fireSpriteSheet"
+.constant	k12	"dispose"
+.constant	k13	"fireSpriteSet"
+.constant	k14	1
+.constant	k15	"sounds"
+.constant	k16	"sound"
+
+getglobal     r0    k0
+getglobal     r1    k1
+call          r0     2     4
+jmp           l7
+.label	l5
+getglobal     r5    k1
+settable      r5    r3    k2
+.label	l7
+tforloop      r0     2
+jmp           l5
+getglobal     r0    k0
+getglobal     r1    k3
+gettable      r1    r1    k4
+call          r0     2     4
+jmp          l18
+.label	l14
+getglobal     r5    k5
+gettable      r5    r5    k6
+move          r6    r3
+call          r5     2     1
+.label	l18
+tforloop      r0     2
+jmp          l14
+getglobal     r0    k3
+settable      r0    k4    k2
+getglobal     r0    k3
+settable      r0    k7    k2
+getglobal     r0    k3
+settable      r0    k8    k2
+getglobal     r0    k9
+getglobal     r1    k9
+gettable      r1    r1   k10
+gettable      r0    r0    r1
+gettable      r0    r0   k11
+test          r0     0
+jmp          l50
+getglobal     r0    k9
+getglobal     r1    k9
+gettable      r1    r1   k10
+gettable      r0    r0    r1
+gettable      r0    r0   k11
+self          r0    r0   k12
+call          r0     2     1
+getglobal     r0    k9
+getglobal     r1    k9
+gettable      r1    r1   k10
+gettable      r0    r0    r1
+settable      r0   k11    k2
+getglobal     r0    k9
+getglobal     r1    k9
+gettable      r1    r1   k10
+gettable      r0    r0    r1
+settable      r0   k13    k2
+.label	l50
+loadk         r0   k14
+getglobal     r1    k9
+len           r1    r1
+loadk         r2   k14
+forprep       r0   l76
+.label	l55
+getglobal     r4    k9
+gettable      r4    r4    r3
+test          r4     0
+jmp          l76
+getglobal     r4    k9
+gettable      r4    r4    r3
+gettable      r4    r4   k15
+test          r4     0
+jmp          l76
+getglobal     r4    k0
+getglobal     r5    k9
+gettable      r5    r5    r3
+gettable      r5    r5   k15
+call          r4     2     4
+jmp          l74
+.label	l70
+getglobal     r9   k16
+gettable      r9    r9   k12
+move         r10    r8
+call          r9     2     1
+.label	l74
+tforloop      r4     2
+jmp          l70
+.label	l76
+forloop       r0   l55
+return        r0     1
+

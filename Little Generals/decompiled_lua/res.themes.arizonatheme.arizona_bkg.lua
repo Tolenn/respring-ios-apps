@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "arizona_back.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 118
+	;({}).x = 0
+	;({}).y = 455
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 118
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 118
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "arizona_bkg.jpg"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 181
+	;({}).x = 0
+	;({}).y = 272
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 181
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 181
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "arizona_front.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 270
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 270
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 270
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "arizona_middle.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 50
+	;({}).x = 0
+	;({}).y = 575
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 50
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 50
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

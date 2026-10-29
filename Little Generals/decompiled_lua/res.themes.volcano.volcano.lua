@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "background.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 218
+	;({}).x = 0
+	;({}).y = 393
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 218
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 218
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "foreground.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 391
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 391
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 391
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "midground.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 115
+	;({}).x = 0
+	;({}).y = 800
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 115
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 115
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "sky.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 185
+	;({}).x = 0
+	;({}).y = 613
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 185
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 185
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

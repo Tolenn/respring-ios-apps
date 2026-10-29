@@ -1,0 +1,320 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	6
+
+.constant	k0	"require"
+.constant	k1	"json"
+.constant	k2	"base64"
+.constant	k3	"0"
+.constant	k4	"No Error"
+.constant	k5	"21000"
+.constant	k6	"The App Store could not read the JSON object you provided."
+.constant	k7	"21002"
+.constant	k8	"The data in the receipt-data property was malformed."
+.constant	k9	"21003"
+.constant	k10	"The receipt could not be authenticated."
+.constant	k11	"21004"
+.constant	k12	"The shared secret you provided does not match the shared secret on file for your account."
+.constant	k13	"21005"
+.constant	k14	"The receipt server is not currently available."
+.constant	k15	"21006"
+.constant	k16	"This receipt is valid but the subscription has expired. When this status code is returned to your server, the receipt data is also decoded and returned as part of the response."
+.constant	k17	"21007"
+.constant	k18	"This receipt is a sandbox receipt, but it was sent to the production service for verification."
+.constant	k19	"21008"
+.constant	k20	"This receipt is a production receipt, but it was sent to the sandbox service for verification."
+.constant	k21	"start"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+getglobal     r1    k0
+loadk         r2    k2
+call          r1     2     2
+newtable      r2     0     9
+settable      r2    k3    k4
+settable      r2    k5    k6
+settable      r2    k7    k8
+settable      r2    k9   k10
+settable      r2   k11   k12
+settable      r2   k13   k14
+settable      r2   k15   k16
+settable      r2   k17   k18
+settable      r2   k19   k20
+closure       r3    f0
+move          r0    r1
+move          r0    r0
+closure       r4    f1
+move          r0    r3
+move          r0    r0
+move          r0    r2
+newtable      r5     0     1
+settable      r5   k21    r4
+return        r5     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	74
+.lastlinedefined	113
+.numparams	2
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"password"
+.constant	k1	"serverValidation"
+.constant	k2	"sub"
+.constant	k3	2
+.constant	k4	-2
+.constant	k5	"gsub"
+.constant	k6	" "
+.constant	k7	""
+.constant	k8	"len"
+.constant	k9	1
+.constant	k10	"tonumber"
+.constant	k11	16
+.constant	k12	"string"
+.constant	k13	"char"
+.constant	k14	"encode"
+.constant	k15	"receipt_data"
+.constant	k16	"receipt-data"
+
+gettable      r2    r1    k0
+gettable      r3    r1    k1
+self          r4    r0    k2
+loadk         r6    k3
+loadk         r7    k4
+call          r4     4     2
+move          r0    r4
+self          r4    r0    k5
+loadk         r6    k6
+loadk         r7    k7
+call          r4     4     2
+move          r0    r4
+loadk         r4    k7
+self          r5    r0    k8
+call          r5     2     2
+loadk         r6    k9
+move          r7    r5
+loadk         r8    k3
+forprep       r6   l37
+.label	l20
+self         r10    r0    k2
+move         r12    r9
+add          r13    r9    k9
+call         r10     4     2
+getglobal    r11   k10
+move         r12   r10
+loadk        r13   k11
+call         r11     3     2
+test         r11     0
+jmp          l37
+getglobal    r12   k12
+gettable     r12   r12   k13
+move         r13   r11
+call         r12     2     2
+move         r13    r4
+move         r14   r12
+concat        r4   r13   r14
+.label	l37
+forloop       r6   l20
+getupval      r6    u0
+gettable      r6    r6   k14
+move          r7    r4
+call          r6     2     2
+test          r3     0
+jmp          l45
+return        r6     2
+.label	l45
+getupval      r7    u1
+gettable      r7    r7   k14
+newtable      r8     0     2
+settable      r8   k15    r6
+settable      r8    k0    r2
+call          r7     2     2
+self          r8    r7    k5
+loadk        r10   k15
+loadk        r11   k16
+call          r8     4     2
+move          r7    r8
+return        r7     2
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	118
+.lastlinedefined	159
+.numparams	1
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"listener"
+.constant	k1	"testing"
+.constant	k2	"https://sandbox.itunes.apple.com/verifyReceipt"
+.constant	k3	"https://buy.itunes.apple.com/verifyReceipt"
+.constant	k4	"receipt"
+.constant	k5	"<>"
+.constant	k6	"password"
+.constant	k7	"serverValidation"
+.constant	k8	"serverLink"
+.constant	k9	true
+.constant	k10	"receipt="
+.constant	k11	"&testing="
+.constant	k12	"tostring"
+.constant	k13	"network"
+.constant	k14	"request"
+.constant	k15	"POST"
+.constant	k16	"body"
+
+gettable      r1    r0    k0
+test          r1     1
+jmp           l5
+closure       r1    f0
+.label	l5
+gettable      r2    r0    k1
+test          r2     0
+jmp          l11
+loadk         r3    k2
+test          r3     1
+jmp          l12
+.label	l11
+loadk         r3    k3
+.label	l12
+gettable      r4    r0    k4
+test          r4     1
+jmp          l16
+loadk         r4    k5
+.label	l16
+gettable      r5    r0    k6
+test          r5     1
+jmp          l20
+loadnil       r5    r5
+.label	l20
+gettable      r6    r0    k7
+gettable      r7    r0    k8
+loadnil       r8    r8
+test          r6     0
+jmp          l43
+getupval      r9    u0
+move         r10    r4
+newtable     r11     0     1
+settable     r11    k7    k9
+call          r9     3     2
+move          r8    r9
+loadk         r9   k10
+move         r10    r8
+loadk        r11   k11
+getglobal    r12   k12
+eq             1    r2    k9
+jmp          l38
+loadbool     r13     0     1
+.label	l38
+loadbool     r13     1     0
+call         r12     2     2
+concat        r8    r9   r12
+move          r3    r7
+jmp          l49
+.label	l43
+getupval      r9    u0
+move         r10    r4
+newtable     r11     0     1
+settable     r11    k6    r5
+call          r9     3     2
+move          r8    r9
+.label	l49
+closure       r9    f1
+getupval      r0    u1
+getupval      r0    u2
+move          r0    r1
+getglobal    r10   k13
+gettable     r10   r10   k14
+move         r11    r3
+loadk        r12   k15
+move         r13    r9
+newtable     r14     0     1
+settable     r14   k16    r8
+call         r10     5     1
+return        r0     1
+
+.function	main/f1/f0
+
+.source	null
+.linedefined	120
+.lastlinedefined	120
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f1/f1
+
+.source	null
+.linedefined	143
+.lastlinedefined	155
+.numparams	1
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"response"
+.constant	k1	"decode"
+.constant	k2	"type"
+.constant	k3	"table"
+.constant	k4	"iTunes_StatusCode"
+.constant	k5	"status"
+.constant	k6	"iTunes_Response"
+.constant	k7	"iTunes_StatusCodeDescription"
+.constant	k8	"tostring"
+
+gettable      r1    r0    k0
+getupval      r2    u0
+gettable      r2    r2    k1
+move          r3    r1
+call          r2     2     2
+getglobal     r3    k2
+move          r4    r2
+call          r3     2     2
+eq             0    r3    k3
+jmp          l20
+gettable      r3    r2    k5
+settable      r0    k4    r3
+settable      r0    k6    r2
+getupval      r3    u1
+getglobal     r4    k8
+gettable      r5    r0    k4
+call          r4     2     2
+gettable      r3    r3    r4
+settable      r0    k7    r3
+.label	l20
+getupval      r3    u2
+move          r4    r0
+call          r3     2     1
+return        r0     1
+

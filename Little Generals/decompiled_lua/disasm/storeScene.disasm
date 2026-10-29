@@ -1,0 +1,1941 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	16
+
+.constant	k0	"require"
+.constant	k1	"facebookSupport"
+.constant	k2	"twitterSupport"
+.constant	k3	"virtualCurrency"
+.constant	k4	"iap"
+.constant	k5	"storyboard"
+.constant	k6	"newScene"
+.constant	k7	"kaching"
+.constant	k8	"res/sounds/kaching.mp3"
+.constant	k9	"createScene"
+.constant	k10	"enterScene"
+.constant	k11	"system"
+.constant	k12	"exitScene"
+.constant	k13	"destroyScene"
+.constant	k14	"addEventListener"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1    k2
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1    k3
+call          r0     2     2
+getglobal     r1    k0
+loadk         r2    k4
+call          r1     2     2
+getglobal     r2    k5
+gettable      r2    r2    k6
+call          r2     1     2
+loadnil       r3    r4
+loadbool      r5     0     0
+loadbool      r6     0     0
+newtable      r7     0     1
+settable      r7    k7    k8
+closure       r8    f0
+move          r0    r2
+closure       r9    f1
+move          r0    r3
+closure      r10    f2
+move          r0    r3
+closure      r11    f3
+move          r0    r8
+closure      r12    f4
+move          r0    r5
+move          r0    r7
+move          r0    r8
+move          r0    r4
+move          r0    r0
+move          r0    r1
+settable      r2    k9   r12
+closure      r12    f5
+move          r0    r2
+move          r0    r3
+move          r0    r9
+move          r0   r10
+move          r0    r6
+move          r0   r11
+move          r0    r8
+move          r0    r5
+move          r0    r1
+settable      r2   k10   r12
+closure      r12    f6
+move          r0    r6
+move          r0    r2
+move          r0   r11
+settable      r2   k11   r12
+closure      r12    f7
+move          r0    r2
+move          r0    r9
+settable      r2   k12   r12
+closure      r12    f8
+move          r0    r4
+settable      r2   k13   r12
+self         r12    r2   k14
+loadk        r14    k9
+move         r15    r2
+call         r12     4     1
+self         r12    r2   k14
+loadk        r14   k10
+move         r15    r2
+call         r12     4     1
+self         r12    r2   k14
+loadk        r14   k12
+move         r15    r2
+call         r12     4     1
+self         r12    r2   k14
+loadk        r14   k13
+move         r15    r2
+call         r12     4     1
+return        r2     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	21
+.lastlinedefined	30
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"sound"
+.constant	k1	"playSound"
+.constant	k2	"globalSounds"
+.constant	k3	"button"
+.constant	k4	"timer"
+.constant	k5	"performWithDelay"
+.constant	k6	1
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k0
+gettable      r1    r1    k2
+gettable      r1    r1    k3
+call          r0     2     1
+getglobal     r0    k4
+gettable      r0    r0    k5
+loadk         r1    k6
+closure       r2    f0
+getupval      r0    u0
+call          r0     3     1
+return        r0     1
+
+.function	main/f0/f0
+
+.source	null
+.linedefined	24
+.lastlinedefined	28
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"storyboard"
+.constant	k1	"getCurrentSceneName"
+.constant	k2	"gotoScene"
+.constant	k3	"previousScene"
+.constant	k4	"removeScene"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+call          r0     1     2
+getglobal     r1    k0
+gettable      r1    r1    k2
+getupval      r2    u0
+gettable      r2    r2    k3
+call          r1     2     1
+getglobal     r1    k0
+gettable      r1    r1    k4
+move          r2    r0
+call          r1     2     1
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	32
+.lastlinedefined	47
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"buttons"
+.constant	k1	nil
+.constant	k2	"refreshLayer"
+.constant	k3	"text"
+.constant	k4	"allItemsGroup"
+.constant	k5	"display"
+.constant	k6	"remove"
+
+getupval      r0    u0
+settable      r0    k0    k1
+getupval      r0    u0
+gettable      r0    r0    k2
+test          r0     0
+jmp          l10
+getupval      r0    u0
+gettable      r0    r0    k2
+settable      r0    k3    k1
+.label	l10
+getupval      r0    u0
+settable      r0    k2    k1
+getupval      r0    u0
+gettable      r0    r0    k4
+test          r0     0
+jmp          l21
+getglobal     r0    k5
+gettable      r0    r0    k6
+getupval      r1    u0
+gettable      r1    r1    k4
+call          r0     2     1
+.label	l21
+getupval      r0    u0
+settable      r0    k4    k1
+getglobal     r0    k5
+gettable      r0    r0    k6
+getupval      r1    u0
+call          r0     2     1
+loadnil       r0    r0
+setupval      r0    u0
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	49
+.lastlinedefined	131
+.numparams	4
+.is_vararg	0
+.maxstacksize	21
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"image"
+.constant	k1	"warbuxAmount"
+.constant	k2	"description1"
+.constant	k3	"description2"
+.constant	k4	"onComplete"
+.constant	k5	"utils"
+.constant	k6	"drawFatBorderBox"
+.constant	k7	"width"
+.constant	k8	200
+.constant	k9	"height"
+.constant	k10	320
+.constant	k11	"innerFillColor"
+.constant	k12	"pack"
+.constant	k13	"LITTLE_GENERALS_OFF_WHITE"
+.constant	k14	"newTwoStateButton"
+.constant	k15	"ignoreFocus"
+.constant	k16	true
+.constant	k17	"itemBox"
+.constant	k18	"display"
+.constant	k19	"newRect"
+.constant	k20	0
+.constant	k21	"innerRect"
+.constant	k22	"contentWidth"
+.constant	k23	"borderWidth"
+.constant	k24	2
+.constant	k25	40
+.constant	k26	"x"
+.constant	k27	"y"
+.constant	k28	"contentHeight"
+.constant	k29	"setFillColor"
+.constant	k30	"LITTLE_GENERALS_BROWN"
+.constant	k31	"newText"
+.constant	k32	"comma_value"
+.constant	k33	"tostring"
+.constant	k34	"SingleSleeve"
+.constant	k35	36
+.constant	k36	"setReferencePoint"
+.constant	k37	"CenterRightReferencePoint"
+.constant	k38	10
+.constant	k39	"newImageFromSpriteSet"
+.constant	k40	"warbux_icon.png"
+.constant	k41	"TopLeftReferencePoint"
+.constant	k42	"xScale"
+.constant	k43	"yScale"
+.constant	k44	0.75
+.constant	k45	"insert"
+.constant	k46	6
+.constant	k47	"BottomCenterReferencePoint"
+.constant	k48	35
+.constant	k49	20
+.constant	k50	50
+.constant	k51	"scaleTo"
+.constant	k52	65
+.constant	k53	"setTextColor"
+.constant	k54	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k55	105
+.constant	k56	"table"
+.constant	k57	"buttons"
+.constant	k58	"CenterReferencePoint"
+
+gettable      r4    r3    k0
+gettable      r5    r3    k1
+gettable      r6    r3    k2
+gettable      r7    r3    k3
+gettable      r8    r3    k4
+getglobal     r9    k5
+gettable      r9    r9    k6
+newtable     r10     0     3
+settable     r10    k7    k8
+settable     r10    k9   k10
+getglobal    r11    k5
+gettable     r11   r11   k12
+getglobal    r12   k13
+call         r12     1     0
+call         r11     0     2
+settable     r10   k11   r11
+call          r9     2     2
+getglobal    r10    k5
+gettable     r10   r10   k14
+move         r11    r9
+loadnil      r12   r12
+newtable     r13     0     2
+settable     r13   k15   k16
+closure      r14    f0
+move          r0    r8
+settable     r13    k4   r14
+call         r10     4     2
+settable     r10   k17    r9
+getglobal    r11   k18
+gettable     r11   r11   k19
+move         r12    r9
+loadk        r13   k20
+loadk        r14   k20
+gettable     r15    r9   k21
+gettable     r15   r15   k22
+gettable     r16    r9   k23
+mul          r16   r16   k24
+sub          r15   r15   r16
+loadk        r16   k25
+call         r11     6     2
+loadk        r12   k20
+gettable     r13    r9   k21
+gettable     r13   r13   k28
+unm          r13   r13
+div          r13   r13   k24
+gettable     r14    r9   k23
+add          r13   r13   r14
+gettable     r14   r11   k28
+div          r14   r14   k24
+add          r13   r13   r14
+settable     r11   k27   r13
+settable     r11   k26   r12
+self         r12   r11   k29
+getglobal    r14   k30
+call         r14     1     0
+call         r12     0     1
+test          r5     0
+jmp          l84
+getglobal    r12   k18
+gettable     r12   r12   k31
+move         r13    r9
+getglobal    r14    k5
+gettable     r14   r14   k32
+getglobal    r15   k33
+move         r16    r5
+call         r15     2     0
+call         r14     0     2
+loadk        r15   k20
+loadk        r16   k20
+loadk        r17   k34
+loadk        r18   k35
+call         r12     7     2
+self         r13   r12   k36
+getglobal    r15   k18
+gettable     r15   r15   k37
+call         r13     3     1
+gettable     r13    r9   k21
+gettable     r13   r13   k22
+div          r13   r13   k24
+sub          r13   r13   k38
+gettable     r14   r11   k27
+settable     r12   k27   r14
+settable     r12   k26   r13
+.label	l84
+getglobal    r12    k5
+gettable     r12   r12   k39
+move         r13    r1
+move         r14    r2
+loadk        r15   k40
+call         r12     4     2
+self         r13   r12   k36
+getglobal    r15   k18
+gettable     r15   r15   k41
+call         r13     3     1
+loadk        r13   k44
+settable     r12   k43   k44
+settable     r12   k42   r13
+self         r13    r9   k45
+move         r15   r12
+call         r13     3     1
+gettable     r13    r9   k21
+gettable     r13   r13   k22
+unm          r13   r13
+div          r13   r13   k24
+sub          r13   r13   k46
+gettable     r14    r9   k21
+gettable     r14   r14   k28
+unm          r14   r14
+div          r14   r14   k24
+sub          r14   r14   k46
+settable     r12   k27   r14
+settable     r12   k26   r13
+test          r4     0
+jmp         l130
+getglobal    r13    k5
+gettable     r13   r13   k39
+move         r14    r1
+move         r15    r2
+move         r16    r4
+call         r13     4     2
+self         r14   r13   k36
+getglobal    r16   k18
+gettable     r16   r16   k47
+call         r14     3     1
+self         r14    r9   k45
+move         r16   r13
+call         r14     3     1
+loadk        r14   k20
+settable     r13   k27   k48
+settable     r13   k26   r14
+.label	l130
+gettable     r13    r9   k21
+gettable     r13   r13   k22
+sub          r13   r13   k49
+test          r6     0
+jmp         l155
+getglobal    r14   k18
+gettable     r14   r14   k31
+move         r15    r9
+move         r16    r6
+loadk        r17   k20
+loadk        r18   k20
+loadk        r19   k34
+loadk        r20   k50
+call         r14     7     2
+getglobal    r15    k5
+gettable     r15   r15   k51
+move         r16   r14
+move         r17   r13
+call         r15     3     1
+settable     r14   k26   k20
+settable     r14   k27   k52
+self         r15   r14   k53
+getglobal    r17   k54
+call         r17     1     0
+call         r15     0     1
+.label	l155
+test          r7     0
+jmp         l177
+getglobal    r14   k18
+gettable     r14   r14   k31
+move         r15    r9
+move         r16    r7
+loadk        r17   k20
+loadk        r18   k20
+loadk        r19   k34
+loadk        r20   k35
+call         r14     7     2
+getglobal    r15    k5
+gettable     r15   r15   k51
+move         r16   r14
+move         r17   r13
+call         r15     3     1
+settable     r14   k26   k20
+settable     r14   k27   k55
+self         r15   r14   k53
+getglobal    r17   k54
+call         r17     1     0
+call         r15     0     1
+.label	l177
+self         r14    r0   k45
+move         r16   r10
+call         r14     3     1
+getglobal    r14   k56
+gettable     r14   r14   k45
+getupval     r15    u0
+gettable     r15   r15   k57
+move         r16   r10
+call         r14     3     1
+self         r14   r10   k36
+getglobal    r16   k18
+gettable     r16   r16   k58
+call         r14     3     1
+return       r10     2
+return        r0     1
+
+.function	main/f2/f0
+
+.source	null
+.linedefined	65
+.lastlinedefined	68
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"sound"
+.constant	k1	"playSound"
+.constant	k2	"globalSounds"
+.constant	k3	"button"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k0
+gettable      r1    r1    k2
+gettable      r1    r1    k3
+call          r0     2     1
+getupval      r0    u0
+call          r0     1     1
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	133
+.lastlinedefined	139
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"facebookSupport"
+.constant	k1	"setSolicited"
+.constant	k2	"warbux"
+.constant	k3	"credit"
+.constant	k4	5000
+.constant	k5	"utils"
+.constant	k6	"logEvent"
+.constant	k7	"Facebook Warbux "
+.constant	k8	"tostring"
+.constant	k9	"settings"
+.constant	k10	"save"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+loadbool      r1     1     0
+call          r0     2     1
+getglobal     r0    k2
+self          r0    r0    k3
+loadk         r2    k4
+call          r0     3     1
+getglobal     r0    k5
+gettable      r0    r0    k6
+loadk         r1    k7
+getglobal     r2    k8
+loadk         r3    k4
+call          r2     2     2
+concat        r1    r1    r2
+call          r0     2     1
+getglobal     r0    k9
+self          r0    r0   k10
+call          r0     2     1
+getupval      r0    u0
+call          r0     1     1
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	142
+.lastlinedefined	223
+.numparams	2
+.is_vararg	0
+.maxstacksize	17
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"previousScene"
+.constant	k1	"storyboard"
+.constant	k2	"getPrevious"
+.constant	k3	"view"
+.constant	k4	"sound"
+.constant	k5	"loadSoundBatch"
+.constant	k6	"utils"
+.constant	k7	"drawBasicSceneBackground"
+.constant	k8	"group"
+.constant	k9	"title"
+.constant	k10	"GENERAL'S STORE"
+.constant	k11	"showBottomBar"
+.constant	k12	true
+.constant	k13	"onClose"
+.constant	k14	"spritesheetmanager"
+.constant	k15	"getSpriteSet"
+.constant	k16	"UI_SPRITE_SHEET"
+.constant	k17	67
+.constant	k18	"display"
+.constant	k19	"contentHeight"
+.constant	k20	2
+.constant	k21	"getTwoToneBox"
+.constant	k22	"width"
+.constant	k23	250
+.constant	k24	"height"
+.constant	k25	"topColor"
+.constant	k26	"pack"
+.constant	k27	"LITTLE_GENERALS_OFF_WHITE"
+.constant	k28	"bottomColor"
+.constant	k29	"insert"
+.constant	k30	"x"
+.constant	k31	"screenWidth"
+.constant	k32	"contentWidth"
+.constant	k33	5
+.constant	k34	"y"
+.constant	k35	"newImageFromSpriteSet"
+.constant	k36	"warbux_icon.png"
+.constant	k37	"setReferencePoint"
+.constant	k38	"TopLeftReferencePoint"
+.constant	k39	6
+.constant	k40	"newText"
+.constant	k41	"comma_value"
+.constant	k42	"tostring"
+.constant	k43	"warbux"
+.constant	k44	"balance"
+.constant	k45	0
+.constant	k46	"SingleSleeve"
+.constant	k47	48
+.constant	k48	"setTextColor"
+.constant	k49	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k50	"warbuxListener"
+.constant	k51	"addBalanceListener"
+
+getglobal     r2    k1
+gettable      r2    r2    k2
+call          r2     1     2
+settable      r0    k0    r2
+gettable      r2    r0    k3
+loadbool      r3     0     0
+setupval      r3    u0
+getglobal     r3    k4
+gettable      r3    r3    k5
+getupval      r4    u1
+call          r3     2     1
+getglobal     r3    k6
+gettable      r3    r3    k7
+newtable      r4     0     4
+settable      r4    k8    r2
+settable      r4    k9   k10
+settable      r4   k11   k12
+getupval      r5    u2
+settable      r4   k13    r5
+call          r3     2     2
+getglobal     r4   k14
+gettable      r4    r4   k15
+getglobal     r5   k16
+call          r4     2     3
+loadk         r6   k17
+getglobal     r7   k18
+gettable      r7    r7   k19
+div           r7    r7   k20
+div           r8    r6   k20
+sub           r7    r7    r8
+getglobal     r8    k6
+gettable      r8    r8   k21
+newtable      r9     0     4
+settable      r9   k22   k23
+settable      r9   k24    r6
+getglobal    r10    k6
+gettable     r10   r10   k26
+getglobal    r11   k27
+call         r11     1     0
+call         r10     0     2
+settable      r9   k25   r10
+getglobal    r10    k6
+gettable     r10   r10   k26
+getglobal    r11   k27
+call         r11     1     0
+call         r10     0     2
+settable      r9   k28   r10
+call          r8     2     2
+self          r9    r3   k29
+move         r11    r8
+call          r9     3     1
+getglobal     r9   k31
+unm           r9    r9
+div           r9    r9   k20
+gettable     r10    r8   k32
+div          r10   r10   k20
+add           r9    r9   r10
+add           r9    r9   k33
+settable      r8   k30    r9
+settable      r8   k34    r7
+getglobal     r9    k6
+gettable      r9    r9   k35
+move         r10    r4
+move         r11    r5
+loadk        r12   k36
+call          r9     4     2
+self         r10    r9   k37
+getglobal    r12   k18
+gettable     r12   r12   k38
+call         r10     3     1
+self         r10    r3   k29
+move         r12    r9
+call         r10     3     1
+gettable     r10    r8   k30
+gettable     r11    r8   k32
+div          r11   r11   k20
+sub          r10   r10   r11
+sub          r10   r10   k39
+gettable     r11    r8   k34
+gettable     r12    r8   k19
+div          r12   r12   k20
+sub          r11   r11   r12
+sub          r11   r11   k39
+settable      r9   k34   r11
+settable      r9   k30   r10
+getglobal    r10   k18
+gettable     r10   r10   k40
+move         r11    r3
+getglobal    r12    k6
+gettable     r12   r12   k41
+getglobal    r13   k42
+getglobal    r14   k43
+gettable     r14   r14   k44
+call         r13     2     0
+call         r12     0     2
+loadk        r13   k45
+loadk        r14   k45
+loadk        r15   k46
+loadk        r16   k47
+call         r10     7     2
+setupval     r10    u3
+closure      r10    f0
+getupval      r0    u3
+move          r0    r8
+move         r11   r10
+call         r11     1     1
+getupval     r11    u3
+self         r11   r11   k48
+getglobal    r13   k49
+call         r13     1     0
+call         r11     0     1
+getupval     r11    u3
+closure      r12    f1
+getupval      r0    u3
+move          r0   r10
+getupval      r0    u4
+getupval      r0    u5
+getupval      r0    u1
+getupval      r0    u0
+settable     r11   k50   r12
+getglobal    r11   k43
+self         r11   r11   k51
+getupval     r13    u3
+gettable     r13   r13   k50
+call         r11     3     1
+return        r0     1
+
+.function	main/f4/f0
+
+.source	null
+.linedefined	185
+.lastlinedefined	189
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"setReferencePoint"
+.constant	k1	"display"
+.constant	k2	"CenterRightReferencePoint"
+.constant	k3	"x"
+.constant	k4	"contentWidth"
+.constant	k5	2
+.constant	k6	15
+.constant	k7	"y"
+.constant	k8	3
+
+getupval      r0    u0
+self          r0    r0    k0
+getglobal     r2    k1
+gettable      r2    r2    k2
+call          r0     3     1
+getupval      r0    u0
+getupval      r1    u1
+gettable      r1    r1    k3
+getupval      r2    u1
+gettable      r2    r2    k4
+div           r2    r2    k5
+add           r1    r1    r2
+sub           r1    r1    k6
+settable      r0    k3    r1
+getupval      r0    u0
+getupval      r1    u1
+gettable      r1    r1    k7
+sub           r1    r1    k8
+settable      r0    k7    r1
+return        r0     1
+
+.function	main/f4/f1
+
+.source	null
+.linedefined	194
+.lastlinedefined	216
+.numparams	1
+.is_vararg	0
+.maxstacksize	9
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"text"
+.constant	k1	"utils"
+.constant	k2	"comma_value"
+.constant	k3	"tostring"
+.constant	k4	"warbux"
+.constant	k5	"balance"
+.constant	k6	"print"
+.constant	k7	"type"
+.constant	k8	"code"
+.constant	k9	"message"
+.constant	k10	"status"
+.constant	k11	"CREDIT"
+.constant	k12	"FAILURE"
+.constant	k13	"-1"
+.constant	k14	"Unknown"
+.constant	k15	"logEvent"
+.constant	k16	"Warbux Purchase Failure - "
+.constant	k17	"amount"
+.constant	k18	" - "
+.constant	k19	"native"
+.constant	k20	"showAlert"
+.constant	k21	"Error"
+.constant	k22	"There was a problem completing your purchase: "
+.constant	k23	"\n"
+.constant	k24	"OK"
+.constant	k25	"SUCCESS"
+.constant	k26	"fromTransaction"
+.constant	k27	"sound"
+.constant	k28	"playSound"
+.constant	k29	"kaching"
+.constant	k30	"Warbux Purchase - "
+.constant	k31	"Success"
+.constant	k32	"Thank you for your purchase."
+
+getupval      r1    u0
+getglobal     r2    k1
+gettable      r2    r2    k2
+getglobal     r3    k3
+getglobal     r4    k4
+gettable      r4    r4    k5
+call          r3     2     0
+call          r2     0     2
+settable      r1    k0    r2
+getupval      r1    u1
+call          r1     1     1
+getglobal     r1    k6
+gettable      r2    r0    k7
+gettable      r3    r0    k8
+gettable      r4    r0    k9
+gettable      r5    r0   k10
+call          r1     5     1
+gettable      r1    r0    k7
+getupval      r2    u2
+gettable      r2    r2   k11
+eq             0    r1    r2
+jmp          l92
+gettable      r1    r0   k10
+getupval      r2    u3
+gettable      r2    r2   k12
+eq             0    r1    r2
+jmp          l63
+gettable      r1    r0    k8
+test          r1     1
+jmp          l32
+loadk         r1   k13
+.label	l32
+gettable      r2    r0    k9
+test          r2     1
+jmp          l36
+loadk         r2   k14
+.label	l36
+getglobal     r3    k1
+gettable      r3    r3   k15
+loadk         r4   k16
+getglobal     r5    k3
+gettable      r6    r0   k17
+call          r5     2     2
+loadk         r6   k18
+getglobal     r7    k3
+move          r8    r1
+call          r7     2     2
+concat        r4    r4    r7
+call          r3     2     1
+getglobal     r3   k19
+gettable      r3    r3   k20
+loadk         r4   k21
+loadk         r5   k22
+getglobal     r6    k3
+move          r7    r1
+call          r6     2     2
+loadk         r7   k23
+move          r8    r2
+concat        r5    r5    r8
+newtable      r6     1     0
+loadk         r7   k24
+setlist       r6     1     1
+call          r3     4     1
+jmp          l92
+.label	l63
+gettable      r1    r0   k10
+getupval      r2    u3
+gettable      r2    r2   k25
+eq             0    r1    r2
+jmp          l92
+gettable      r1    r0   k26
+test          r1     0
+jmp          l92
+getglobal     r1   k27
+gettable      r1    r1   k28
+getupval      r2    u4
+gettable      r2    r2   k29
+call          r1     2     1
+getglobal     r1    k1
+gettable      r1    r1   k15
+loadk         r2   k30
+getglobal     r3    k3
+gettable      r4    r0   k17
+call          r3     2     2
+concat        r2    r2    r3
+call          r1     2     1
+getglobal     r1   k19
+gettable      r1    r1   k20
+loadk         r2   k31
+loadk         r3   k32
+newtable      r4     1     0
+loadk         r5   k24
+setlist       r4     1     1
+call          r1     4     1
+.label	l92
+loadbool      r1     0     0
+setupval      r1    u5
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	226
+.lastlinedefined	416
+.numparams	2
+.is_vararg	0
+.maxstacksize	31
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"view"
+.constant	k1	"toFront"
+.constant	k2	"Runtime"
+.constant	k3	"addEventListener"
+.constant	k4	"system"
+.constant	k5	"spritesheetmanager"
+.constant	k6	"getSpriteSet"
+.constant	k7	"UI_SPRITE_SHEET"
+.constant	k8	"screenWidth"
+.constant	k9	60
+.constant	k10	"res/mask1000x400.png"
+.constant	k11	1050
+.constant	k12	"res/mask1200x400.png"
+.constant	k13	"require"
+.constant	k14	"widget"
+.constant	k15	"newScrollView"
+.constant	k16	"width"
+.constant	k17	"height"
+.constant	k18	400
+.constant	k19	"maskFile"
+.constant	k20	"bgColor"
+.constant	k21	255
+.constant	k22	0
+.constant	k23	"listener"
+.constant	k24	"utils"
+.constant	k25	"scrollViewListener"
+.constant	k26	"buttons"
+.constant	k27	"setReferencePoint"
+.constant	k28	"display"
+.constant	k29	"TopCenterReferencePoint"
+.constant	k30	"insert"
+.constant	k31	"x"
+.constant	k32	"screenX"
+.constant	k33	2
+.constant	k34	"y"
+.constant	k35	120
+.constant	k36	"newGroup"
+.constant	k37	"content"
+.constant	k38	"verticalScrollDisabled"
+.constant	k39	true
+.constant	k40	"allItemsGroup"
+.constant	k41	20
+.constant	k42	"facebookSupport"
+.constant	k43	"canSolicit"
+.constant	k44	"image"
+.constant	k45	"facebook_icon.png"
+.constant	k46	"warbuxAmount"
+.constant	k47	"5,000"
+.constant	k48	"description1"
+.constant	k49	"Like us on Facebook"
+.constant	k50	"description2"
+.constant	k51	nil
+.constant	k52	"onComplete"
+.constant	k53	"contentWidth"
+.constant	k54	"contentHeight"
+.constant	k55	75
+.constant	k56	1
+.constant	k57	"twitterSupport"
+.constant	k58	"twitter_icon.png"
+.constant	k59	"2,000"
+.constant	k60	"Tweet about us"
+.constant	k61	"CUSTOM_OVERRIDES"
+.constant	k62	"TESTING_BUILD"
+.constant	k63	"???"
+.constant	k64	"CHANGE WARBUX"
+.constant	k65	"For debug purposes."
+.constant	k66	"CHANGE WINS"
+.constant	k67	"warbux"
+.constant	k68	"productIds"
+.constant	k69	"table"
+.constant	k70	"resolveStoreIdToProduct"
+.constant	k71	"rootProducts"
+.constant	k72	"sort"
+.constant	k73	"id"
+.constant	k74	"displayName"
+.constant	k75	"comma_value"
+.constant	k76	"quantity"
+.constant	k77	"desc2"
+.constant	k78	"localizedPrice"
+.constant	k79	"getProductStoreId"
+
+gettable      r2    r0    k0
+self          r2    r2    k1
+call          r2     2     1
+getglobal     r2    k2
+self          r2    r2    k3
+loadk         r4    k4
+getupval      r5    u0
+call          r2     4     1
+getupval      r2    u0
+gettable      r2    r2    k0
+getglobal     r3    k5
+gettable      r3    r3    k6
+getglobal     r4    k7
+call          r3     2     3
+getupval      r5    u1
+test          r5     0
+jmp          l20
+getupval      r5    u2
+call          r5     1     1
+.label	l20
+getglobal     r5    k8
+sub           r5    r5    k9
+loadk         r6   k10
+getglobal     r7    k8
+lt             0   k11    r7
+jmp          l27
+loadk         r6   k12
+.label	l27
+getglobal     r7   k13
+loadk         r8   k14
+call          r7     2     2
+gettable      r7    r7   k15
+newtable      r8     0     5
+settable      r8   k16    r5
+settable      r8   k17   k18
+settable      r8   k19    r6
+newtable      r9     4     0
+loadk        r10   k21
+loadk        r11   k21
+loadk        r12   k21
+loadk        r13   k22
+setlist       r9     4     1
+settable      r8   k20    r9
+getglobal     r9   k24
+gettable      r9    r9   k25
+settable      r8   k23    r9
+call          r7     2     2
+setupval      r7    u1
+getupval      r7    u1
+newtable      r8     0     0
+settable      r7   k26    r8
+getupval      r7    u1
+self          r7    r7   k27
+getglobal     r9   k28
+gettable      r9    r9   k29
+call          r7     3     1
+self          r7    r2   k30
+getupval      r9    u1
+call          r7     3     1
+getupval      r7    u1
+getglobal     r8   k32
+getglobal     r9    k8
+div           r9    r9   k33
+add           r8    r8    r9
+settable      r7   k31    r8
+getupval      r7    u1
+settable      r7   k34   k35
+getglobal     r7   k28
+gettable      r7    r7   k36
+call          r7     1     2
+getupval      r8    u1
+self          r8    r8   k30
+move         r10    r7
+call          r8     3     1
+getupval      r8    u1
+gettable      r8    r8   k37
+settable      r8   k38   k39
+getupval      r8    u1
+settable      r8   k40    r7
+loadk         r8   k22
+loadk         r9   k41
+getglobal    r10   k42
+gettable     r10   r10   k43
+call         r10     1     2
+test         r10     0
+jmp         l113
+getupval     r10    u3
+move         r11    r7
+move         r12    r3
+move         r13    r4
+newtable     r14     0     5
+settable     r14   k44   k45
+settable     r14   k46   k47
+settable     r14   k48   k49
+settable     r14   k50   k51
+closure      r15    f0
+getupval      r0    u4
+getupval      r0    u5
+settable     r14   k52   r15
+call         r10     5     2
+mul          r11    r9    r8
+gettable     r12   r10   k53
+div          r12   r12   k33
+add          r11   r11   r12
+gettable     r12   r10   k53
+mul          r12   r12    r8
+add          r11   r11   r12
+settable     r10   k31   r11
+getupval     r11    u1
+gettable     r11   r11   k54
+div          r11   r11   k33
+sub          r11   r11   k55
+settable     r10   k34   r11
+add           r8    r8   k56
+.label	l113
+getglobal    r10   k57
+gettable     r10   r10   k43
+call         r10     1     2
+test         r10     0
+jmp         l145
+getupval     r10    u3
+move         r11    r7
+move         r12    r3
+move         r13    r4
+newtable     r14     0     5
+settable     r14   k44   k58
+settable     r14   k46   k59
+settable     r14   k48   k60
+settable     r14   k50   k51
+closure      r15    f1
+getupval      r0    u6
+settable     r14   k52   r15
+call         r10     5     2
+mul          r11    r9    r8
+gettable     r12   r10   k53
+div          r12   r12   k33
+add          r11   r11   r12
+gettable     r12   r10   k53
+mul          r12   r12    r8
+add          r11   r11   r12
+settable     r10   k31   r11
+getupval     r11    u1
+gettable     r11   r11   k54
+div          r11   r11   k33
+sub          r11   r11   k55
+settable     r10   k34   r11
+add           r8    r8   k56
+.label	l145
+getglobal    r10   k61
+gettable     r10   r10   k62
+test         r10     0
+jmp         l205
+closure      r10    f2
+getupval     r11    u3
+move         r12    r7
+move         r13    r3
+move         r14    r4
+newtable     r15     0     5
+settable     r15   k44   k51
+settable     r15   k46   k63
+settable     r15   k48   k64
+settable     r15   k50   k65
+closure      r16    f3
+move          r0   r10
+settable     r15   k52   r16
+call         r11     5     2
+mul          r12    r9    r8
+gettable     r13   r11   k53
+div          r13   r13   k33
+add          r12   r12   r13
+gettable     r13   r11   k53
+mul          r13   r13    r8
+add          r12   r12   r13
+settable     r11   k31   r12
+getupval     r12    u1
+gettable     r12   r12   k54
+div          r12   r12   k33
+sub          r12   r12   k55
+settable     r11   k34   r12
+add           r8    r8   k56
+getupval     r12    u3
+move         r13    r7
+move         r14    r3
+move         r15    r4
+newtable     r16     0     5
+settable     r16   k44   k51
+settable     r16   k46   k63
+settable     r16   k48   k66
+settable     r16   k50   k65
+closure      r17    f4
+move          r0   r10
+settable     r16   k52   r17
+call         r12     5     2
+mul          r13    r9    r8
+gettable     r14   r12   k53
+div          r14   r14   k33
+add          r13   r13   r14
+gettable     r14   r12   k53
+mul          r14   r14    r8
+add          r13   r13   r14
+settable     r12   k31   r13
+getupval     r13    u1
+gettable     r13   r13   k54
+div          r13   r13   k33
+sub          r13   r13   k55
+settable     r12   k34   r13
+add           r8    r8   k56
+close        r10
+.label	l205
+closure      r10    f5
+getupval      r0    u7
+newtable     r11     0     0
+loadk        r12   k56
+getglobal    r13   k67
+gettable     r13   r13   k68
+len          r13   r13
+loadk        r14   k56
+forprep      r12  l226
+.label	l214
+getglobal    r16   k69
+gettable     r16   r16   k30
+move         r17   r11
+getupval     r18    u8
+gettable     r18   r18   k70
+getglobal    r19   k67
+gettable     r19   r19   k68
+gettable     r19   r19   r15
+getglobal    r20   k67
+gettable     r20   r20   k71
+call         r18     3     0
+call         r16     0     1
+.label	l226
+forloop      r12  l214
+getglobal    r12   k69
+gettable     r12   r12   k72
+move         r13   r11
+closure      r14    f6
+call         r12     3     1
+loadk        r12   k56
+len          r13   r11
+loadk        r14   k56
+forprep      r12  l280
+.label	l236
+gettable     r16   r11   r15
+gettable     r17   r16   k73
+gettable     r18   r16   k74
+getglobal    r19   k24
+gettable     r19   r19   k75
+gettable     r20   r16   k76
+call         r19     2     2
+gettable     r20   r16   k77
+gettable     r21   r16   k44
+gettable     r22   r16   k78
+getupval     r23    u8
+gettable     r23   r23   k79
+move         r24   r16
+call         r23     2     2
+test         r22     0
+jmp         l280
+getupval     r24    u3
+move         r25    r7
+move         r26    r3
+move         r27    r4
+newtable     r28     0     5
+settable     r28   k44   r21
+settable     r28   k46   r19
+settable     r28   k48   r22
+settable     r28   k50   r20
+move         r29   r10
+move         r30   r23
+call         r29     2     2
+settable     r28   k52   r29
+call         r24     5     2
+mul          r25    r9    r8
+gettable     r26   r24   k53
+div          r26   r26   k33
+add          r25   r25   r26
+gettable     r26   r24   k53
+mul          r26   r26    r8
+add          r25   r25   r26
+settable     r24   k31   r25
+getupval     r25    u1
+gettable     r25   r25   k54
+div          r25   r25   k33
+sub          r25   r25   k55
+settable     r24   k34   r25
+add           r8    r8   k56
+.label	l280
+forloop      r12  l236
+return        r0     1
+
+.function	main/f5/f0
+
+.source	null
+.linedefined	269
+.lastlinedefined	281
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"facebookSupport"
+.constant	k1	"solicit"
+
+getupval      r0    u0
+test          r0     1
+jmp          l11
+loadbool      r0     1     0
+setupval      r0    u0
+getglobal     r0    k0
+gettable      r0    r0    k1
+closure       r1    f0
+getupval      r0    u1
+call          r0     2     1
+.label	l11
+return        r0     1
+
+.function	main/f5/f0/f0
+
+.source	null
+.linedefined	275
+.lastlinedefined	279
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+test          r0     0
+jmp           l5
+getupval      r1    u0
+call          r1     1     1
+.label	l5
+return        r0     1
+
+.function	main/f5/f1
+
+.source	null
+.linedefined	293
+.lastlinedefined	303
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"sound"
+.constant	k1	"playSound"
+.constant	k2	"globalSounds"
+.constant	k3	"button"
+.constant	k4	"twitterSupport"
+.constant	k5	"solicit"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k0
+gettable      r1    r1    k2
+gettable      r1    r1    k3
+call          r0     2     1
+getglobal     r0    k4
+gettable      r0    r0    k5
+closure       r1    f0
+getupval      r0    u0
+call          r0     2     1
+return        r0     1
+
+.function	main/f5/f1/f0
+
+.source	null
+.linedefined	296
+.lastlinedefined	301
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"utils"
+.constant	k1	"logEvent"
+.constant	k2	"Twitter Warbux "
+.constant	k3	"tostring"
+.constant	k4	2000
+.constant	k5	"warbux"
+.constant	k6	"credit"
+.constant	k7	"settings"
+.constant	k8	"save"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+loadk         r1    k2
+getglobal     r2    k3
+loadk         r3    k4
+call          r2     2     2
+concat        r1    r1    r2
+call          r0     2     1
+getglobal     r0    k5
+self          r0    r0    k6
+loadk         r2    k4
+call          r0     3     1
+getglobal     r0    k7
+self          r0    r0    k8
+call          r0     2     1
+getupval      r0    u0
+call          r0     1     1
+return        r0     1
+
+.function	main/f5/f2
+
+.source	null
+.linedefined	311
+.lastlinedefined	335
+.numparams	2
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"display"
+.constant	k1	"newRect"
+.constant	k2	"screenX"
+.constant	k3	0
+.constant	k4	"screenWidth"
+.constant	k5	"contentHeight"
+.constant	k6	"setFillColor"
+.constant	k7	"alpha"
+.constant	k8	0.75
+.constant	k9	"native"
+.constant	k10	"newTextField"
+.constant	k11	15
+.constant	k12	70
+.constant	k13	280
+.constant	k14	30
+.constant	k15	"inputType"
+.constant	k16	"numeric"
+.constant	k17	"text"
+.constant	k18	"tostring"
+.constant	k19	"utils"
+.constant	k20	"getBasicButton"
+.constant	k21	"buttonText"
+.constant	k22	"Go"
+.constant	k23	"onComplete"
+.constant	k24	"setReferencePoint"
+.constant	k25	"CenterLeftReferencePoint"
+.constant	k26	"x"
+.constant	k27	"y"
+.constant	k28	"contentBounds"
+.constant	k29	"xMax"
+.constant	k30	"yMax"
+.constant	k31	"isEditable"
+.constant	k32	true
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+getglobal     r3    k2
+loadk         r4    k3
+getglobal     r5    k4
+getglobal     r6    k0
+gettable      r6    r6    k5
+call          r2     5     2
+self          r3    r2    k6
+loadk         r5    k3
+loadk         r6    k3
+loadk         r7    k3
+call          r3     5     1
+settable      r2    k7    k8
+getglobal     r3    k9
+gettable      r3    r3   k10
+loadk         r4   k11
+loadk         r5   k12
+loadk         r6   k13
+loadk         r7   k14
+call          r3     5     2
+settable      r3   k15   k16
+getglobal     r4   k18
+move          r5    r0
+call          r4     2     2
+settable      r3   k17    r4
+loadnil       r4    r4
+getglobal     r5   k19
+gettable      r5    r5   k20
+newtable      r6     0     2
+settable      r6   k21   k22
+closure       r7    f0
+move          r0    r2
+move          r0    r3
+move          r0    r4
+move          r0    r1
+settable      r6   k23    r7
+call          r5     2     2
+move          r4    r5
+self          r5    r4   k24
+getglobal     r7    k0
+gettable      r7    r7   k25
+call          r5     3     1
+gettable      r5    r3   k28
+gettable      r5    r5   k29
+add           r5    r5   k14
+gettable      r6    r3   k28
+gettable      r6    r6   k30
+sub           r6    r6   k11
+settable      r4   k27    r6
+settable      r4   k26    r5
+settable      r3   k31   k32
+return        r0     1
+
+.function	main/f5/f2/f0
+
+.source	null
+.linedefined	321
+.lastlinedefined	331
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"removeSelf"
+.constant	k1	"text"
+.constant	k2	"tonumber"
+
+getupval      r0    u0
+self          r0    r0    k0
+call          r0     2     1
+getupval      r0    u1
+self          r0    r0    k0
+call          r0     2     1
+getupval      r0    u2
+self          r0    r0    k0
+call          r0     2     1
+getupval      r0    u1
+gettable      r0    r0    k1
+getglobal     r1    k2
+move          r2    r0
+call          r1     2     2
+test          r1     0
+jmp          l20
+getupval      r2    u3
+move          r3    r1
+call          r2     2     1
+.label	l20
+loadbool      r2     1     0
+return        r2     2
+return        r0     1
+
+.function	main/f5/f3
+
+.source	null
+.linedefined	343
+.lastlinedefined	345
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"tostring"
+.constant	k1	"warbux"
+.constant	k2	"balance"
+
+getupval      r0    u0
+getglobal     r1    k0
+getglobal     r2    k1
+gettable      r2    r2    k2
+call          r1     2     2
+closure       r2    f0
+call          r0     3     1
+return        r0     1
+
+.function	main/f5/f3/f0
+
+.source	null
+.linedefined	344
+.lastlinedefined	344
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"warbux"
+.constant	k1	"set"
+
+getglobal     r1    k0
+self          r1    r1    k1
+move          r3    r0
+call          r1     3     1
+return        r0     1
+
+.function	main/f5/f4
+
+.source	null
+.linedefined	356
+.lastlinedefined	358
+.numparams	0
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"settings"
+.constant	k1	"get"
+.constant	k2	"statistics.kills"
+.constant	k3	0
+
+getupval      r0    u0
+getglobal     r1    k0
+self          r1    r1    k1
+loadk         r3    k2
+loadk         r4    k3
+call          r1     4     2
+closure       r2    f0
+call          r0     3     1
+return        r0     1
+
+.function	main/f5/f4/f0
+
+.source	null
+.linedefined	357
+.lastlinedefined	357
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"settings"
+.constant	k1	"set"
+.constant	k2	"statistics.kills"
+
+getglobal     r1    k0
+self          r1    r1    k1
+loadk         r3    k2
+move          r4    r0
+call          r1     4     1
+return        r0     1
+
+.function	main/f5/f5
+
+.source	null
+.linedefined	365
+.lastlinedefined	372
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+closure       r1    f0
+getupval      r0    u0
+move          r0    r0
+return        r1     2
+return        r0     1
+
+.function	main/f5/f5/f0
+
+.source	null
+.linedefined	366
+.lastlinedefined	371
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"warbux"
+.constant	k1	"purchaseCurrency"
+
+getupval      r0    u0
+test          r0     1
+jmp          l12
+loadbool      r0     1     0
+setupval      r0    u0
+getglobal     r0    k0
+self          r0    r0    k1
+newtable      r2     1     0
+getupval      r3    u1
+setlist       r2     1     1
+call          r0     3     1
+.label	l12
+return        r0     1
+
+.function	main/f5/f6
+
+.source	null
+.linedefined	381
+.lastlinedefined	383
+.numparams	2
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"quantity"
+
+gettable      r2    r0    k0
+gettable      r3    r1    k0
+lt             1    r2    r3
+jmp           l6
+loadbool      r2     0     1
+.label	l6
+loadbool      r2     1     0
+return        r2     2
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	418
+.lastlinedefined	435
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"checkDialog"
+.constant	k1	"type"
+.constant	k2	"applicationResume"
+.constant	k3	"utils"
+.constant	k4	"getDrawnDialogBox"
+.constant	k5	"title"
+.constant	k6	"FACEBOOK"
+.constant	k7	"closeable"
+.constant	k8	false
+.constant	k9	"width"
+.constant	k10	680
+.constant	k11	"height"
+.constant	k12	387
+.constant	k13	"onShow"
+.constant	k14	"facebookSupport"
+.constant	k15	"refreshLikes"
+.constant	k16	"getOutlinedText"
+.constant	k17	"REFRESHING LIKES"
+.constant	k18	"size"
+.constant	k19	50
+.constant	k20	"insert"
+.constant	k21	"x"
+.constant	k22	"y"
+.constant	k23	0
+.constant	k24	5
+
+getupval      r2    u0
+test          r2     0
+jmp          l43
+getupval      r2    u1
+gettable      r2    r2    k0
+test          r2     1
+jmp          l43
+gettable      r2    r1    k1
+eq             0    r2    k2
+jmp          l43
+getupval      r2    u1
+getglobal     r3    k3
+gettable      r3    r3    k4
+newtable      r4     0     5
+settable      r4    k5    k6
+settable      r4    k7    k8
+settable      r4    k9   k10
+settable      r4   k11   k12
+closure       r5    f0
+settable      r4   k13    r5
+call          r3     2     2
+settable      r2    k0    r3
+getglobal     r2   k14
+gettable      r2    r2   k15
+closure       r3    f1
+getupval      r0    u1
+getupval      r0    u2
+call          r2     2     1
+getglobal     r2    k3
+gettable      r2    r2   k16
+loadk         r3   k17
+newtable      r4     0     1
+settable      r4   k18   k19
+call          r2     3     2
+getupval      r3    u1
+gettable      r3    r3    k0
+self          r3    r3   k20
+move          r5    r2
+call          r3     3     1
+loadk         r3   k23
+settable      r2   k22   k24
+settable      r2   k21    r3
+.label	l43
+return        r0     1
+
+.function	main/f6/f0
+
+.source	null
+.linedefined	421
+.lastlinedefined	421
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f6/f1
+
+.source	null
+.linedefined	422
+.lastlinedefined	430
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"checkDialog"
+.constant	k1	"parent"
+.constant	k2	"close"
+.constant	k3	nil
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    k1
+test          r1     0
+jmp          l12
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    k2
+call          r1     1     1
+getupval      r1    u0
+settable      r1    k0    k3
+.label	l12
+test          r0     0
+jmp          l16
+getupval      r1    u1
+call          r1     1     1
+.label	l16
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	438
+.lastlinedefined	441
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"Runtime"
+.constant	k1	"removeEventListener"
+.constant	k2	"system"
+
+getglobal     r2    k0
+self          r2    r2    k1
+loadk         r4    k2
+getupval      r5    u0
+call          r2     4     1
+getupval      r2    u1
+call          r2     1     1
+return        r0     1
+
+.function	main/f8
+
+.source	null
+.linedefined	445
+.lastlinedefined	449
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"warbux"
+.constant	k1	"removeBalanceListener"
+.constant	k2	"warbuxListener"
+.constant	k3	"spritesheetmanager"
+.constant	k4	"disposeSpriteSet"
+.constant	k5	"res/ui/store_screen.png"
+
+getglobal     r2    k0
+self          r2    r2    k1
+getupval      r4    u0
+gettable      r4    r4    k2
+call          r2     3     1
+getglobal     r2    k3
+gettable      r2    r2    k4
+loadk         r3    k5
+call          r2     2     1
+return        r0     1
+

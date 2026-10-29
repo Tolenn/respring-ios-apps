@@ -1,0 +1,702 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	6
+
+.constant	k0	"require"
+.constant	k1	"twitterSupport"
+.constant	k2	"storyboard"
+.constant	k3	"newScene"
+.constant	k4	"createScene"
+.constant	k5	"enterScene"
+.constant	k6	"exitScene"
+.constant	k7	"destroyScene"
+.constant	k8	"addEventListener"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     1
+getglobal     r0    k2
+gettable      r0    r0    k3
+call          r0     1     2
+loadnil       r1    r1
+closure       r2    f0
+settable      r0    k4    r2
+closure       r2    f1
+settable      r0    k5    r2
+closure       r2    f2
+settable      r0    k6    r2
+closure       r2    f3
+settable      r0    k7    r2
+self          r2    r0    k8
+loadk         r4    k4
+move          r5    r0
+call          r2     4     1
+self          r2    r0    k8
+loadk         r4    k5
+move          r5    r0
+call          r2     4     1
+self          r2    r0    k8
+loadk         r4    k6
+move          r5    r0
+call          r2     4     1
+self          r2    r0    k8
+loadk         r4    k7
+move          r5    r0
+call          r2     4     1
+return        r0     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	11
+.lastlinedefined	124
+.numparams	2
+.is_vararg	0
+.maxstacksize	12
+
+.constant	k0	"previousScene"
+.constant	k1	"storyboard"
+.constant	k2	"getPrevious"
+.constant	k3	"view"
+.constant	k4	"utils"
+.constant	k5	"drawBasicSceneBackground"
+.constant	k6	"group"
+.constant	k7	"title"
+.constant	k8	"TWITTER"
+.constant	k9	"showBottomBar"
+.constant	k10	false
+.constant	k11	"onClose"
+.constant	k12	"display"
+.constant	k13	"newRect"
+.constant	k14	0
+.constant	k15	700
+.constant	k16	440
+.constant	k17	"strokeWidth"
+.constant	k18	20
+.constant	k19	"setStrokeColor"
+.constant	k20	98
+.constant	k21	64
+.constant	k22	23
+.constant	k23	"setFillColor"
+.constant	k24	"setReferencePoint"
+.constant	k25	"TopCenterReferencePoint"
+.constant	k26	"x"
+.constant	k27	"screenX"
+.constant	k28	"screenWidth"
+.constant	k29	2
+.constant	k30	"y"
+.constant	k31	120
+.constant	k32	"insert"
+.constant	k33	10
+.constant	k34	245
+.constant	k35	167
+.constant	k36	88
+.constant	k37	5
+.constant	k38	"pcall"
+.constant	k39	"print"
+.constant	k40	"error"
+
+getglobal     r2    k1
+gettable      r2    r2    k2
+call          r2     1     2
+settable      r0    k0    r2
+gettable      r2    r0    k3
+getglobal     r3    k4
+gettable      r3    r3    k5
+newtable      r4     0     4
+settable      r4    k6    r2
+settable      r4    k7    k8
+settable      r4    k9   k10
+closure       r5    f0
+move          r0    r0
+settable      r4   k11    r5
+call          r3     2     2
+getglobal     r4   k12
+gettable      r4    r4   k13
+move          r5    r2
+loadk         r6   k14
+loadk         r7   k14
+loadk         r8   k15
+loadk         r9   k16
+call          r4     6     2
+settable      r4   k17   k18
+self          r5    r4   k19
+loadk         r7   k20
+loadk         r8   k21
+loadk         r9   k22
+call          r5     5     1
+self          r5    r4   k23
+loadk         r7   k14
+loadk         r8   k14
+loadk         r9   k14
+loadk        r10   k14
+call          r5     6     1
+self          r5    r4   k24
+getglobal     r7   k12
+gettable      r7    r7   k25
+call          r5     3     1
+getglobal     r5   k27
+getglobal     r6   k28
+div           r6    r6   k29
+add           r5    r5    r6
+settable      r4   k26    r5
+settable      r4   k30   k31
+self          r5    r2   k32
+move          r7    r4
+call          r5     3     1
+getglobal     r5   k12
+gettable      r5    r5   k13
+move          r6    r2
+loadk         r7   k14
+loadk         r8   k14
+loadk         r9   k15
+loadk        r10   k16
+call          r5     6     2
+settable      r5   k17   k33
+self          r6    r5   k24
+getglobal     r8   k12
+gettable      r8    r8   k25
+call          r6     3     1
+self          r6    r5   k19
+loadk         r8   k34
+loadk         r9   k35
+loadk        r10   k36
+call          r6     5     1
+self          r6    r5   k23
+loadk         r8   k14
+loadk         r9   k14
+loadk        r10   k14
+loadk        r11   k14
+call          r6     6     1
+gettable      r6    r4   k26
+settable      r5   k26    r6
+gettable      r6    r4   k30
+add           r6    r6   k37
+settable      r5   k30    r6
+self          r6    r2   k32
+move          r8    r5
+call          r6     3     1
+closure       r6    f1
+move          r0    r0
+getglobal     r7   k38
+closure       r8    f2
+move          r0    r0
+move          r0    r6
+move          r0    r4
+call          r7     2     3
+test          r7     1
+jmp          l97
+getglobal     r9   k39
+loadk        r10   k40
+move         r11    r8
+call          r9     3     1
+move          r9    r6
+call          r9     1     1
+.label	l97
+return        r0     1
+
+.function	main/f0/f0
+
+.source	null
+.linedefined	19
+.lastlinedefined	26
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"sound"
+.constant	k1	"playSound"
+.constant	k2	"globalSounds"
+.constant	k3	"button"
+.constant	k4	"storyboard"
+.constant	k5	"getCurrentSceneName"
+.constant	k6	"timer"
+.constant	k7	"performWithDelay"
+.constant	k8	1
+.constant	k9	"gotoScene"
+.constant	k10	"previousScene"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k0
+gettable      r1    r1    k2
+gettable      r1    r1    k3
+call          r0     2     1
+getglobal     r0    k4
+gettable      r0    r0    k5
+call          r0     1     2
+getglobal     r1    k6
+gettable      r1    r1    k7
+loadk         r2    k8
+closure       r3    f0
+move          r0    r0
+call          r1     3     1
+getglobal     r1    k4
+gettable      r1    r1    k9
+getupval      r2    u0
+gettable      r2    r2   k10
+call          r1     2     1
+return        r0     1
+
+.function	main/f0/f0/f0
+
+.source	null
+.linedefined	22
+.lastlinedefined	24
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"storyboard"
+.constant	k1	"removeScene"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getupval      r1    u0
+call          r0     2     1
+return        r0     1
+
+.function	main/f0/f1
+
+.source	null
+.linedefined	50
+.lastlinedefined	58
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"utils"
+.constant	k1	"getDialog"
+.constant	k2	"textLine1"
+.constant	k3	"Unable to contact Twitter at this time."
+.constant	k4	"confirmFunction"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+newtable      r1     0     2
+settable      r1    k2    k3
+closure       r2    f0
+getupval      r0    u0
+settable      r1    k4    r2
+call          r0     2     1
+return        r0     1
+
+.function	main/f0/f1/f0
+
+.source	null
+.linedefined	51
+.lastlinedefined	57
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"storyboard"
+.constant	k1	"getCurrentSceneName"
+.constant	k2	"timer"
+.constant	k3	"performWithDelay"
+.constant	k4	1
+.constant	k5	"gotoScene"
+.constant	k6	"previousScene"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+call          r0     1     2
+getglobal     r1    k2
+gettable      r1    r1    k3
+loadk         r2    k4
+closure       r3    f0
+move          r0    r0
+call          r1     3     1
+getglobal     r1    k0
+gettable      r1    r1    k5
+getupval      r2    u0
+gettable      r2    r2    k6
+call          r1     2     1
+return        r0     1
+
+.function	main/f0/f1/f0/f0
+
+.source	null
+.linedefined	53
+.lastlinedefined	55
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"storyboard"
+.constant	k1	"removeScene"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getupval      r1    u0
+call          r0     2     1
+return        r0     1
+
+.function	main/f0/f2
+
+.source	null
+.linedefined	60
+.lastlinedefined	119
+.numparams	0
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"oAuth"
+.constant	k1	"getRequestToken"
+.constant	k2	"twitterSupport"
+.constant	k3	"CONSUMER_KEY"
+.constant	k4	"finished"
+.constant	k5	"http://twitter.com/oauth/request_token"
+.constant	k6	"CONSUMER_SECRET"
+.constant	k7	"token"
+.constant	k8	"token_secret"
+.constant	k9	60
+.constant	k10	120
+.constant	k11	"contentWidth"
+.constant	k12	40
+.constant	k13	"contentHeight"
+.constant	k14	"native"
+.constant	k15	"showWebPopup"
+.constant	k16	"screenX"
+.constant	k17	"screenWidth"
+.constant	k18	2
+.constant	k19	20
+.constant	k20	140
+.constant	k21	"https://api.twitter.com/oauth/authorize?oauth_token="
+.constant	k22	"urlRequest"
+.constant	k23	"print"
+.constant	k24	"no request token"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k2
+gettable      r1    r1    k3
+loadk         r2    k4
+loadk         r3    k5
+getglobal     r4    k2
+gettable      r4    r4    k6
+call          r0     5     2
+gettable      r1    r0    k7
+gettable      r2    r0    k8
+closure       r3    f0
+move          r0    r2
+getupval      r0    u0
+getupval      r0    u1
+loadk         r4    k9
+loadk         r5   k10
+getupval      r6    u2
+gettable      r6    r6   k11
+sub           r6    r6   k12
+getupval      r7    u2
+gettable      r7    r7   k13
+sub           r7    r7   k12
+test          r1     0
+jmp          l46
+getglobal     r8   k14
+gettable      r8    r8   k15
+getglobal     r9   k16
+getglobal    r10   k17
+getupval     r11    u2
+gettable     r11   r11   k11
+sub          r10   r10   r11
+div          r10   r10   k18
+add           r9    r9   r10
+add           r9    r9   k19
+loadk        r10   k20
+move         r11    r6
+move         r12    r7
+loadk        r13   k21
+move         r14    r1
+concat       r13   r13   r14
+newtable     r14     0     1
+settable     r14   k22    r3
+call          r8     7     1
+jmp          l51
+.label	l46
+getglobal     r8   k23
+loadk         r9   k24
+call          r8     2     1
+getupval      r8    u1
+call          r8     1     1
+.label	l51
+return        r0     1
+
+.function	main/f0/f2/f0
+
+.source	null
+.linedefined	65
+.lastlinedefined	107
+.numparams	1
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"url"
+.constant	k1	"find"
+.constant	k2	"finished"
+.constant	k3	"sub"
+.constant	k4	"?"
+.constant	k5	1
+.constant	k6	"len"
+.constant	k7	"oAuth"
+.constant	k8	"responseToTable"
+.constant	k9	"="
+.constant	k10	"&"
+.constant	k11	"getAccessToken"
+.constant	k12	"oauth_token"
+.constant	k13	"oauth_verifier"
+.constant	k14	"twitterSupport"
+.constant	k15	"CONSUMER_KEY"
+.constant	k16	"CONSUMER_SECRET"
+.constant	k17	"https://api.twitter.com/oauth/access_token"
+.constant	k18	"accessToken"
+.constant	k19	"accessTokenSecret"
+.constant	k20	"oauth_token_secret"
+.constant	k21	"userId"
+.constant	k22	"user_id"
+.constant	k23	"screenName"
+.constant	k24	"screen_name"
+.constant	k25	"twitterEnabled"
+.constant	k26	true
+.constant	k27	"settings"
+.constant	k28	"set"
+.constant	k29	"ACCESS_TOKEN"
+.constant	k30	"ACCESS_TOKEN_SECRET"
+.constant	k31	"TWITTER_ENABLED"
+.constant	k32	"save"
+.constant	k33	"storyboard"
+.constant	k34	"getCurrentSceneName"
+.constant	k35	"timer"
+.constant	k36	"performWithDelay"
+.constant	k37	"gotoScene"
+.constant	k38	"previousScene"
+.constant	k39	"print"
+.constant	k40	"no accessToken"
+
+loadbool      r1     1     0
+gettable      r2    r0    k0
+self          r3    r2    k1
+loadk         r5    k2
+call          r3     3     2
+test          r3     0
+jmp         l105
+self          r3    r2    k3
+self          r5    r2    k1
+loadk         r7    k4
+call          r5     3     2
+add           r5    r5    k5
+self          r6    r2    k6
+call          r6     2     0
+call          r3     0     2
+move          r2    r3
+getglobal     r3    k7
+gettable      r3    r3    k8
+move          r4    r2
+newtable      r5     2     0
+loadk         r6    k9
+loadk         r7   k10
+setlist       r5     2     1
+call          r3     3     2
+loadbool      r1     0     0
+getglobal     r4    k7
+gettable      r4    r4   k11
+gettable      r5    r3   k12
+gettable      r6    r3   k13
+getupval      r7    u0
+getglobal     r8   k14
+gettable      r8    r8   k15
+getglobal     r9   k14
+gettable      r9    r9   k16
+loadk        r10   k17
+call          r4     7     2
+test          r4     0
+jmp         l100
+getglobal     r5    k7
+gettable      r5    r5    k8
+move          r6    r4
+newtable      r7     2     0
+loadk         r8    k9
+loadk         r9   k10
+setlist       r7     2     1
+call          r5     3     2
+getglobal     r6   k14
+gettable      r7    r5   k12
+settable      r6   k18    r7
+getglobal     r6   k14
+gettable      r7    r5   k20
+settable      r6   k19    r7
+getglobal     r6   k14
+gettable      r7    r5   k22
+settable      r6   k21    r7
+getglobal     r6   k14
+gettable      r7    r5   k24
+settable      r6   k23    r7
+getglobal     r6   k14
+settable      r6   k25   k26
+getglobal     r6   k27
+self          r6    r6   k28
+getglobal     r8   k14
+gettable      r8    r8   k29
+getglobal     r9   k14
+gettable      r9    r9   k18
+call          r6     4     1
+getglobal     r6   k27
+self          r6    r6   k28
+getglobal     r8   k14
+gettable      r8    r8   k30
+getglobal     r9   k14
+gettable      r9    r9   k19
+call          r6     4     1
+getglobal     r6   k27
+self          r6    r6   k28
+getglobal     r8   k14
+gettable      r8    r8   k31
+loadbool      r9     1     0
+call          r6     4     1
+getglobal     r6   k27
+self          r6    r6   k32
+call          r6     2     1
+getglobal     r6   k33
+gettable      r6    r6   k34
+call          r6     1     2
+getglobal     r7   k35
+gettable      r7    r7   k36
+loadk         r8    k5
+closure       r9    f0
+move          r0    r6
+call          r7     3     1
+getglobal     r7   k33
+gettable      r7    r7   k37
+getupval      r8    u1
+gettable      r8    r8   k38
+call          r7     2     1
+close         r5
+jmp         l105
+.label	l100
+getglobal     r5   k39
+loadk         r6   k40
+call          r5     2     1
+getupval      r5    u2
+call          r5     1     1
+.label	l105
+return        r1     2
+return        r0     1
+
+.function	main/f0/f2/f0/f0
+
+.source	null
+.linedefined	92
+.lastlinedefined	99
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"storyboard"
+.constant	k1	"removeScene"
+.constant	k2	"twitterSupport"
+.constant	k3	"onSuccess"
+.constant	k4	nil
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getupval      r1    u0
+call          r0     2     1
+getglobal     r0    k2
+gettable      r0    r0    k3
+test          r0     0
+jmp          l15
+getglobal     r0    k2
+gettable      r0    r0    k3
+getglobal     r1    k2
+settable      r1    k3    k4
+move          r1    r0
+call          r1     1     1
+.label	l15
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	127
+.lastlinedefined	130
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"view"
+.constant	k1	"toFront"
+
+gettable      r2    r0    k0
+self          r3    r2    k1
+call          r3     2     1
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	134
+.lastlinedefined	135
+.numparams	2
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	139
+.lastlinedefined	142
+.numparams	2
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"native"
+.constant	k1	"cancelWebPopup"
+.constant	k2	"spritesheetmanager"
+.constant	k3	"disposeSpriteSet"
+.constant	k4	"res/twitter/twitter.png"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+call          r2     1     1
+getglobal     r2    k2
+gettable      r2    r2    k3
+loadk         r3    k4
+call          r2     2     1
+return        r0     1
+

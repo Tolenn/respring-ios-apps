@@ -1,0 +1,2060 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	8
+
+.constant	k0	"require"
+.constant	k1	"spritesheetmanager"
+.constant	k2	"CUSTOM_OVERRIDES"
+.constant	k3	"MULTIPLAYER_USERS_ENDPOINT"
+.constant	k4	"http://users.little-generals.com/"
+.constant	k5	"notificationQueue"
+.constant	k6	"getSignupDialog"
+
+newtable      r0     0     0
+getglobal     r1    k0
+loadk         r2    k1
+call          r1     2     1
+getglobal     r1    k2
+gettable      r1    r1    k3
+test          r1     1
+jmp          l10
+loadk         r1    k4
+.label	l10
+getglobal     r2    k0
+loadk         r3    k5
+call          r2     2     2
+closure       r3    f0
+move          r0    r2
+closure       r4    f1
+move          r0    r2
+closure       r5    f2
+closure       r6    f3
+move          r0    r1
+move          r0    r5
+move          r0    r4
+move          r0    r3
+closure       r7    f4
+move          r0    r1
+move          r0    r5
+move          r0    r6
+settable      r0    k6    r7
+return        r0     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	7
+.lastlinedefined	18
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"match"
+.constant	k1	"^[_A-Za-z0-9-.\\+]+@[A-Za-z0-9-\\.]+$"
+.constant	k2	"add"
+.constant	k3	"text"
+.constant	k4	"Please enter a valid email"
+.constant	k5	"direction"
+.constant	k6	"right"
+.constant	k7	"yPos"
+.constant	k8	240
+
+self          r1    r0    k0
+loadk         r3    k1
+call          r1     3     2
+test          r1     0
+jmp           l9
+loadbool      r1     1     0
+return        r1     2
+jmp          l18
+.label	l9
+getupval      r1    u0
+gettable      r1    r1    k2
+newtable      r2     0     3
+settable      r2    k3    k4
+settable      r2    k5    k6
+settable      r2    k7    k8
+call          r1     2     1
+loadbool      r1     0     0
+return        r1     2
+.label	l18
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	20
+.lastlinedefined	31
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"match"
+.constant	k1	"^[A-Za-z0-9-]+$"
+.constant	k2	"add"
+.constant	k3	"text"
+.constant	k4	"A-Z, 0-9, '-' only please"
+.constant	k5	"direction"
+.constant	k6	"right"
+.constant	k7	"yPos"
+.constant	k8	240
+
+self          r1    r0    k0
+loadk         r3    k1
+call          r1     3     2
+test          r1     0
+jmp           l9
+loadbool      r1     1     0
+return        r1     2
+jmp          l18
+.label	l9
+getupval      r1    u0
+gettable      r1    r1    k2
+newtable      r2     0     3
+settable      r2    k3    k4
+settable      r2    k5    k6
+settable      r2    k7    k8
+call          r1     2     1
+loadbool      r1     0     0
+return        r1     2
+.label	l18
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	33
+.lastlinedefined	46
+.numparams	3
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"print"
+.constant	k1	"SETTING"
+.constant	k2	"settings"
+.constant	k3	"set"
+.constant	k4	"multiplayerId"
+.constant	k5	"multiplayerAlias"
+.constant	k6	"require"
+.constant	k7	"push"
+.constant	k8	"register"
+.constant	k9	"close"
+.constant	k10	"storyboard"
+.constant	k11	"gotoScene"
+.constant	k12	"multiplayer.multiplayerSelectScene"
+
+getglobal     r3    k0
+loadk         r4    k1
+move          r5    r0
+move          r6    r1
+call          r3     4     1
+test          r0     0
+jmp          l33
+test          r1     0
+jmp          l33
+getglobal     r3    k2
+self          r3    r3    k3
+loadk         r5    k4
+move          r6    r0
+call          r3     4     1
+getglobal     r3    k2
+self          r3    r3    k3
+loadk         r5    k5
+move          r6    r1
+call          r3     4     1
+getglobal     r3    k6
+loadk         r4    k7
+call          r3     2     2
+gettable      r3    r3    k8
+call          r3     1     1
+test          r2     0
+jmp          l29
+gettable      r3    r2    k9
+call          r3     1     1
+.label	l29
+getglobal     r3   k10
+gettable      r3    r3   k11
+loadk         r4   k12
+call          r3     2     1
+.label	l33
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	48
+.lastlinedefined	251
+.numparams	0
+.is_vararg	0
+.maxstacksize	17
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"spritesheetmanager"
+.constant	k1	"getSpriteSet"
+.constant	k2	"UI_SPRITE_SHEET"
+.constant	k3	375
+.constant	k4	"utils"
+.constant	k5	"getDrawnDialogBox"
+.constant	k6	"title"
+.constant	k7	"ACCOUNT LOGIN"
+.constant	k8	"height"
+.constant	k9	"onShow"
+.constant	k10	"contentWidth"
+.constant	k11	60
+.constant	k12	70
+.constant	k13	2
+.constant	k14	"titleBar"
+.constant	k15	"contentHeight"
+.constant	k16	1.75
+.constant	k17	"getBasicButton"
+.constant	k18	"buttonText"
+.constant	k19	"Login"
+.constant	k20	"buttonTextSize"
+.constant	k21	"width"
+.constant	k22	"buttonTextShadowSize"
+.constant	k23	0
+.constant	k24	"normalTextColor"
+.constant	k25	"pack"
+.constant	k26	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k27	"normalTopColor"
+.constant	k28	"LITTLE_GENERALS_BACKGROUND_LIGHT"
+.constant	k29	"normalBottomColor"
+.constant	k30	"pressedTopColor"
+.constant	k31	"LITTLE_GENERALS_BLUE_LIGHT"
+.constant	k32	"pressedBottomColor"
+.constant	k33	"onComplete"
+.constant	k34	"insert"
+.constant	k35	"x"
+.constant	k36	"y"
+.constant	k37	15
+.constant	k38	"getOutlinedText"
+.constant	k39	"Login with your existing Little Generals account"
+.constant	k40	"size"
+.constant	k41	30
+.constant	k42	"fontColor"
+.constant	k43	"shadowColor"
+.constant	k44	255
+.constant	k45	"Signup"
+.constant	k46	"Signup for a Little Generals account"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k2
+call          r0     2     3
+loadk         r2    k3
+getglobal     r3    k4
+gettable      r3    r3    k5
+newtable      r4     0     3
+settable      r4    k6    k7
+settable      r4    k8    r2
+closure       r5    f0
+settable      r4    k9    r5
+call          r3     2     2
+gettable      r4    r3   k10
+sub           r4    r4   k11
+loadk         r5   k12
+unm           r6    r2
+div           r6    r6   k13
+gettable      r7    r3   k14
+gettable      r7    r7   k15
+mul           r7    r7   k16
+add           r6    r6    r7
+getglobal     r7    k4
+gettable      r7    r7   k17
+newtable      r8     0    11
+settable      r8   k18   k19
+settable      r8   k20   k11
+settable      r8   k21    r4
+settable      r8    k8    r5
+settable      r8   k22   k23
+getglobal     r9    k4
+gettable      r9    r9   k25
+getglobal    r10   k26
+call         r10     1     0
+call          r9     0     2
+settable      r8   k24    r9
+getglobal     r9    k4
+gettable      r9    r9   k25
+getglobal    r10   k28
+call         r10     1     0
+call          r9     0     2
+settable      r8   k27    r9
+getglobal     r9    k4
+gettable      r9    r9   k25
+getglobal    r10   k28
+call         r10     1     0
+call          r9     0     2
+settable      r8   k29    r9
+getglobal     r9    k4
+gettable      r9    r9   k25
+getglobal    r10   k31
+call         r10     1     0
+call          r9     0     2
+settable      r8   k30    r9
+getglobal     r9    k4
+gettable      r9    r9   k25
+getglobal    r10   k31
+call         r10     1     0
+call          r9     0     2
+settable      r8   k32    r9
+closure       r9    f1
+getupval      r0    u0
+getupval      r0    u1
+move          r0    r3
+getupval      r0    u2
+settable      r8   k33    r9
+call          r7     2     2
+self          r8    r3   k34
+move         r10    r7
+call          r8     3     1
+loadk         r8   k23
+settable      r7   k36    r6
+settable      r7   k35    r8
+gettable      r8    r7   k15
+div           r8    r8   k13
+add           r8    r6    r8
+add           r6    r8   k37
+getglobal     r8    k4
+gettable      r8    r8   k38
+loadk         r9   k39
+newtable     r10     0     3
+settable     r10   k40   k41
+getglobal    r11    k4
+gettable     r11   r11   k25
+getglobal    r12   k26
+call         r12     1     0
+call         r11     0     2
+settable     r10   k42   r11
+newtable     r11     3     0
+loadk        r12   k44
+loadk        r13   k44
+loadk        r14   k44
+setlist      r11     3     1
+settable     r10   k43   r11
+call          r8     3     2
+loadk         r9   k23
+settable      r8   k36    r6
+settable      r8   k35    r9
+self          r9    r3   k34
+move         r11    r8
+call          r9     3     1
+gettable      r9    r8   k15
+add           r9    r6    r9
+add           r6    r9   k41
+getglobal     r9    k4
+gettable      r9    r9   k17
+newtable     r10     0    11
+settable     r10   k18   k45
+settable     r10   k20   k11
+settable     r10   k21    r4
+settable     r10    k8    r5
+settable     r10   k22   k23
+getglobal    r11    k4
+gettable     r11   r11   k25
+getglobal    r12   k26
+call         r12     1     0
+call         r11     0     2
+settable     r10   k24   r11
+getglobal    r11    k4
+gettable     r11   r11   k25
+getglobal    r12   k28
+call         r12     1     0
+call         r11     0     2
+settable     r10   k27   r11
+getglobal    r11    k4
+gettable     r11   r11   k25
+getglobal    r12   k28
+call         r12     1     0
+call         r11     0     2
+settable     r10   k29   r11
+getglobal    r11    k4
+gettable     r11   r11   k25
+getglobal    r12   k31
+call         r12     1     0
+call         r11     0     2
+settable     r10   k30   r11
+getglobal    r11    k4
+gettable     r11   r11   k25
+getglobal    r12   k31
+call         r12     1     0
+call         r11     0     2
+settable     r10   k32   r11
+closure      r11    f2
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u3
+getupval      r0    u2
+move          r0    r3
+settable     r10   k33   r11
+call          r9     2     2
+self         r10    r3   k34
+move         r12    r9
+call         r10     3     1
+loadk        r10   k23
+settable      r9   k36    r6
+settable      r9   k35   r10
+gettable     r10    r9   k15
+div          r10   r10   k13
+add          r10    r6   r10
+add           r6   r10   k37
+getglobal    r10    k4
+gettable     r10   r10   k38
+loadk        r11   k46
+newtable     r12     0     3
+settable     r12   k40   k41
+getglobal    r13    k4
+gettable     r13   r13   k25
+getglobal    r14   k26
+call         r14     1     0
+call         r13     0     2
+settable     r12   k42   r13
+newtable     r13     3     0
+loadk        r14   k44
+loadk        r15   k44
+loadk        r16   k44
+setlist      r13     3     1
+settable     r12   k43   r13
+call         r10     3     2
+loadk        r11   k23
+settable     r10   k36    r6
+settable     r10   k35   r11
+self         r11    r3   k34
+move         r13   r10
+call         r11     3     1
+gettable     r11   r10   k15
+add          r11    r6   r11
+add           r6   r11   k41
+return        r0     1
+
+.function	main/f3/f0
+
+.source	null
+.linedefined	52
+.lastlinedefined	55
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f3/f1
+
+.source	null
+.linedefined	74
+.lastlinedefined	126
+.numparams	0
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+closure       r2    f0
+move          r0    r1
+move          r0    r0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u2
+closure       r3    f1
+move          r0    r0
+move          r0    r2
+getupval      r0    u3
+move          r4    r3
+call          r4     1     1
+return        r0     1
+
+.function	main/f3/f1/f0
+
+.source	null
+.linedefined	78
+.lastlinedefined	111
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"require"
+.constant	k1	"multiplayer.trashDialog"
+.constant	k2	"create"
+.constant	k3	"allowsEmptyString"
+.constant	k4	false
+.constant	k5	"inputLength"
+.constant	k6	140
+.constant	k7	"font"
+.constant	k8	"native"
+.constant	k9	"systemFontBold"
+.constant	k10	"caption"
+.constant	k11	"Enter your password"
+.constant	k12	"confirmLabel"
+.constant	k13	"LOGIN"
+.constant	k14	"textEntered"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+gettable      r1    r0    k2
+newtable      r2     0     6
+settable      r2    k3    k4
+settable      r2    k5    k6
+getglobal     r3    k8
+gettable      r3    r3    k9
+settable      r2    k7    r3
+settable      r2   k10   k11
+settable      r2   k12   k13
+closure       r3    f0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u2
+getupval      r0    u3
+getupval      r0    u4
+settable      r2   k14    r3
+call          r1     2     1
+return        r0     1
+
+.function	main/f3/f1/f0/f0
+
+.source	null
+.linedefined	81
+.lastlinedefined	108
+.numparams	1
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"print"
+.constant	k1	"password"
+.constant	k2	"tostring"
+.constant	k3	"os"
+.constant	k4	"time"
+.constant	k5	"body"
+.constant	k6	"string"
+.constant	k7	"format"
+.constant	k8	"requestId=%s&version=%s&password=%s&username=%s&hmac=%s"
+.constant	k9	"CURRENT_VERSION"
+.constant	k10	"utils"
+.constant	k11	"urlencode"
+.constant	k12	"crypto"
+.constant	k13	"hmac"
+.constant	k14	"sha1"
+.constant	k15	"REMOTE_SIGNING_KEY"
+.constant	k16	"getMinimalistLoadingOverlay"
+.constant	k17	"loadingText"
+.constant	k18	"Contacting HQ..."
+.constant	k19	"blockHits"
+.constant	k20	true
+.constant	k21	"x"
+.constant	k22	"y"
+.constant	k23	"screenX"
+.constant	k24	"screenWidth"
+.constant	k25	2
+.constant	k26	"display"
+.constant	k27	"contentHeight"
+.constant	k28	"network"
+.constant	k29	"request"
+.constant	k30	"%s/login"
+.constant	k31	"POST"
+
+getglobal     r1    k0
+loadk         r2    k1
+move          r3    r0
+call          r1     3     1
+setupval      r0    u0
+getglobal     r1    k2
+getglobal     r2    k3
+gettable      r2    r2    k4
+call          r2     1     0
+call          r1     0     2
+newtable      r2     0     1
+getglobal     r3    k6
+gettable      r3    r3    k7
+loadk         r4    k8
+move          r5    r1
+getglobal     r6    k9
+getglobal     r7   k10
+gettable      r7    r7   k11
+getupval      r8    u0
+call          r7     2     2
+getglobal     r8   k10
+gettable      r8    r8   k11
+getupval      r9    u1
+call          r8     2     2
+getglobal     r9   k12
+gettable      r9    r9   k13
+getglobal    r10   k12
+gettable     r10   r10   k14
+getupval     r11    u1
+getupval     r12    u0
+getglobal    r13    k9
+move         r14    r1
+concat       r11   r11   r14
+getglobal    r12   k15
+call          r9     4     0
+call          r3     0     2
+settable      r2    k5    r3
+getglobal     r3   k10
+gettable      r3    r3   k16
+newtable      r4     0     2
+settable      r4   k17   k18
+settable      r4   k19   k20
+call          r3     2     2
+getglobal     r4   k23
+getglobal     r5   k24
+div           r5    r5   k25
+add           r4    r4    r5
+getglobal     r5   k26
+gettable      r5    r5   k27
+div           r5    r5   k25
+settable      r3   k22    r5
+settable      r3   k21    r4
+getglobal     r4   k28
+gettable      r4    r4   k29
+getglobal     r5    k6
+gettable      r5    r5    k7
+loadk         r6   k30
+getupval      r7    u2
+call          r5     3     2
+loadk         r6   k31
+closure       r7    f0
+getupval      r0    u3
+getupval      r0    u1
+getupval      r0    u4
+move          r0    r3
+move          r8    r2
+call          r4     5     1
+return        r0     1
+
+.function	main/f3/f1/f0/f0/f0
+
+.source	null
+.linedefined	93
+.lastlinedefined	107
+.numparams	1
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"utils"
+.constant	k1	"table_print"
+.constant	k2	"status"
+.constant	k3	200
+.constant	k4	"verifyHmac"
+.constant	k5	"response"
+.constant	k6	"crypto"
+.constant	k7	"sha1"
+.constant	k8	"REMOTE_SIGNING_KEY"
+.constant	k9	"true"
+.constant	k10	"getDialog"
+.constant	k11	"textLine1"
+.constant	k12	"Incorrect username/password."
+.constant	k13	"textLine2"
+.constant	k14	"Please try again."
+.constant	k15	"Problem logging in. Please try again."
+.constant	k16	"display"
+.constant	k17	"remove"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     1
+gettable      r1    r0    k2
+eq             0    r1    k3
+jmp          l30
+getglobal     r1    k0
+gettable      r1    r1    k4
+gettable      r2    r0    k5
+getglobal     r3    k6
+gettable      r3    r3    k7
+getglobal     r4    k8
+call          r1     4     2
+eq             0    r1    k9
+jmp          l23
+getupval      r2    u0
+getupval      r3    u1
+getupval      r4    u1
+getupval      r5    u2
+call          r2     4     1
+jmp          l35
+.label	l23
+getglobal     r2    k0
+gettable      r2    r2   k10
+newtable      r3     0     2
+settable      r3   k11   k12
+settable      r3   k13   k14
+call          r2     2     1
+jmp          l35
+.label	l30
+getglobal     r1    k0
+gettable      r1    r1   k10
+newtable      r2     0     1
+settable      r2   k11   k15
+call          r1     2     1
+.label	l35
+getglobal     r1   k16
+gettable      r1    r1   k17
+getupval      r2    u3
+call          r1     2     1
+loadnil       r1    r1
+setupval      r1    u3
+return        r0     1
+
+.function	main/f3/f1/f1
+
+.source	null
+.linedefined	112
+.lastlinedefined	124
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"require"
+.constant	k1	"multiplayer.trashDialog"
+.constant	k2	"create"
+.constant	k3	"allowsEmptyString"
+.constant	k4	false
+.constant	k5	"inputLength"
+.constant	k6	140
+.constant	k7	"font"
+.constant	k8	"native"
+.constant	k9	"systemFontBold"
+.constant	k10	"caption"
+.constant	k11	"Enter your username"
+.constant	k12	"confirmLabel"
+.constant	k13	"NEXT"
+.constant	k14	"textEntered"
+.constant	k15	"validationFunction"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+gettable      r1    r0    k2
+newtable      r2     0     7
+settable      r2    k3    k4
+settable      r2    k5    k6
+getglobal     r3    k8
+gettable      r3    r3    k9
+settable      r2    k7    r3
+settable      r2   k10   k11
+settable      r2   k12   k13
+closure       r3    f0
+getupval      r0    u0
+getupval      r0    u1
+settable      r2   k14    r3
+getupval      r3    u2
+settable      r2   k15    r3
+call          r1     2     1
+return        r0     1
+
+.function	main/f3/f1/f1/f0
+
+.source	null
+.linedefined	115
+.lastlinedefined	121
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"print"
+.constant	k1	"username"
+.constant	k2	nil
+.constant	k3	"string"
+.constant	k4	"lower"
+
+getglobal     r1    k0
+loadk         r2    k1
+move          r3    r0
+call          r1     3     1
+eq             1    r0    k2
+jmp          l12
+getglobal     r1    k3
+gettable      r1    r1    k4
+move          r2    r0
+call          r1     2     2
+setupval      r1    u0
+.label	l12
+getupval      r1    u1
+call          r1     1     1
+return        r0     1
+
+.function	main/f3/f2
+
+.source	null
+.linedefined	151
+.lastlinedefined	238
+.numparams	0
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"close"
+
+closure       r2    f0
+move          r0    r1
+move          r0    r0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u2
+closure       r3    f1
+move          r0    r0
+getupval      r0    u0
+move          r0    r2
+move          r0    r3
+getupval      r0    u3
+move          r4    r3
+call          r4     1     1
+getupval      r4    u4
+gettable      r4    r4    k0
+call          r4     1     1
+return        r0     1
+
+.function	main/f3/f2/f0
+
+.source	null
+.linedefined	155
+.lastlinedefined	190
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"require"
+.constant	k1	"multiplayer.trashDialog"
+.constant	k2	"create"
+.constant	k3	"allowsEmptyString"
+.constant	k4	false
+.constant	k5	"inputLength"
+.constant	k6	140
+.constant	k7	"font"
+.constant	k8	"native"
+.constant	k9	"systemFontBold"
+.constant	k10	"caption"
+.constant	k11	"Enter your email address"
+.constant	k12	"confirmLabel"
+.constant	k13	"SIGN UP"
+.constant	k14	"textEntered"
+.constant	k15	"validationFunction"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+gettable      r1    r0    k2
+newtable      r2     0     7
+settable      r2    k3    k4
+settable      r2    k5    k6
+getglobal     r3    k8
+gettable      r3    r3    k9
+settable      r2    k7    r3
+settable      r2   k10   k11
+settable      r2   k12   k13
+closure       r3    f0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u2
+getupval      r0    u3
+settable      r2   k14    r3
+getupval      r3    u4
+settable      r2   k15    r3
+call          r1     2     1
+return        r0     1
+
+.function	main/f3/f2/f0/f0
+
+.source	null
+.linedefined	158
+.lastlinedefined	187
+.numparams	1
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	nil
+.constant	k1	"string"
+.constant	k2	"lower"
+.constant	k3	"print"
+.constant	k4	"email"
+.constant	k5	"tostring"
+.constant	k6	"os"
+.constant	k7	"time"
+.constant	k8	"body"
+.constant	k9	"format"
+.constant	k10	"requestId=%s&version=%s&email=%s&username=%s&hmac=%s&completeRegistration=true"
+.constant	k11	"CURRENT_VERSION"
+.constant	k12	"utils"
+.constant	k13	"urlencode"
+.constant	k14	"crypto"
+.constant	k15	"hmac"
+.constant	k16	"sha1"
+.constant	k17	"REMOTE_SIGNING_KEY"
+.constant	k18	"getMinimalistLoadingOverlay"
+.constant	k19	"loadingText"
+.constant	k20	"Enlisting..."
+.constant	k21	"blockHits"
+.constant	k22	true
+.constant	k23	"x"
+.constant	k24	"y"
+.constant	k25	"screenX"
+.constant	k26	"screenWidth"
+.constant	k27	2
+.constant	k28	"display"
+.constant	k29	"contentHeight"
+.constant	k30	"network"
+.constant	k31	"request"
+.constant	k32	"%s/signup"
+.constant	k33	"POST"
+
+eq             1    r0    k0
+jmp           l8
+getglobal     r1    k1
+gettable      r1    r1    k2
+move          r2    r0
+call          r1     2     2
+setupval      r1    u0
+.label	l8
+getglobal     r1    k3
+loadk         r2    k4
+getupval      r3    u0
+call          r1     3     1
+getglobal     r1    k5
+getglobal     r2    k6
+gettable      r2    r2    k7
+call          r2     1     0
+call          r1     0     2
+newtable      r2     0     1
+getglobal     r3    k1
+gettable      r3    r3    k9
+loadk         r4   k10
+move          r5    r1
+getglobal     r6   k11
+getglobal     r7   k12
+gettable      r7    r7   k13
+getupval      r8    u0
+call          r7     2     2
+getglobal     r8   k12
+gettable      r8    r8   k13
+getupval      r9    u1
+call          r8     2     2
+getglobal     r9   k14
+gettable      r9    r9   k15
+getglobal    r10   k14
+gettable     r10   r10   k16
+getupval     r11    u0
+getupval     r12    u1
+getglobal    r13   k11
+move         r14    r1
+concat       r11   r11   r14
+getglobal    r12   k17
+call          r9     4     0
+call          r3     0     2
+settable      r2    k8    r3
+getglobal     r3   k12
+gettable      r3    r3   k18
+newtable      r4     0     2
+settable      r4   k19   k20
+settable      r4   k21   k22
+call          r3     2     2
+getglobal     r4   k25
+getglobal     r5   k26
+div           r5    r5   k27
+add           r4    r4    r5
+getglobal     r5   k28
+gettable      r5    r5   k29
+div           r5    r5   k27
+settable      r3   k24    r5
+settable      r3   k23    r4
+getglobal     r4   k30
+gettable      r4    r4   k31
+getglobal     r5    k1
+gettable      r5    r5    k9
+loadk         r6   k32
+getupval      r7    u2
+call          r5     3     2
+loadk         r6   k33
+closure       r7    f0
+getupval      r0    u3
+getupval      r0    u1
+move          r0    r3
+move          r8    r2
+call          r4     5     1
+return        r0     1
+
+.function	main/f3/f2/f0/f0/f0
+
+.source	null
+.linedefined	173
+.lastlinedefined	186
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"utils"
+.constant	k1	"table_print"
+.constant	k2	"status"
+.constant	k3	200
+.constant	k4	"getDialog"
+.constant	k5	"textLine1"
+.constant	k6	"Registration successful!"
+.constant	k7	403
+.constant	k8	"response"
+.constant	k9	"string"
+.constant	k10	"lower"
+.constant	k11	"forbidden"
+.constant	k12	"That email exists already. Please try again."
+.constant	k13	"Problem completing registration. Please try again."
+.constant	k14	"display"
+.constant	k15	"remove"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     1
+gettable      r1    r0    k2
+eq             0    r1    k3
+jmp          l18
+getglobal     r1    k0
+gettable      r1    r1    k4
+newtable      r2     0     1
+settable      r2    k5    k6
+call          r1     2     1
+getupval      r1    u0
+getupval      r2    u1
+getupval      r3    u1
+call          r1     3     1
+jmp          l41
+.label	l18
+gettable      r1    r0    k2
+eq             1    r1    k7
+jmp          l30
+gettable      r1    r0    k8
+test          r1     0
+jmp          l36
+getglobal     r1    k9
+gettable      r1    r1   k10
+gettable      r2    r0    k8
+call          r1     2     2
+eq             0    r1   k11
+jmp          l36
+.label	l30
+getglobal     r1    k0
+gettable      r1    r1    k4
+newtable      r2     0     1
+settable      r2    k5   k12
+call          r1     2     1
+jmp          l41
+.label	l36
+getglobal     r1    k0
+gettable      r1    r1    k4
+newtable      r2     0     1
+settable      r2    k5   k13
+call          r1     2     1
+.label	l41
+getglobal     r1   k14
+gettable      r1    r1   k15
+getupval      r2    u2
+call          r1     2     1
+loadnil       r1    r1
+setupval      r1    u2
+return        r0     1
+
+.function	main/f3/f2/f1
+
+.source	null
+.linedefined	191
+.lastlinedefined	234
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"require"
+.constant	k1	"multiplayer.trashDialog"
+.constant	k2	"create"
+.constant	k3	"allowsEmptyString"
+.constant	k4	false
+.constant	k5	"inputLength"
+.constant	k6	140
+.constant	k7	"font"
+.constant	k8	"native"
+.constant	k9	"systemFontBold"
+.constant	k10	"caption"
+.constant	k11	"Enter your desired alias"
+.constant	k12	"confirmLabel"
+.constant	k13	"CHECK AVAILABILITY"
+.constant	k14	"textEntered"
+.constant	k15	"validationFunction"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+gettable      r1    r0    k2
+newtable      r2     0     7
+settable      r2    k3    k4
+settable      r2    k5    k6
+getglobal     r3    k8
+gettable      r3    r3    k9
+settable      r2    k7    r3
+settable      r2   k10   k11
+settable      r2   k12   k13
+closure       r3    f0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u2
+getupval      r0    u3
+settable      r2   k14    r3
+getupval      r3    u4
+settable      r2   k15    r3
+call          r1     2     1
+return        r0     1
+
+.function	main/f3/f2/f1/f0
+
+.source	null
+.linedefined	194
+.lastlinedefined	232
+.numparams	1
+.is_vararg	0
+.maxstacksize	14
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	nil
+.constant	k1	"string"
+.constant	k2	"lower"
+.constant	k3	"print"
+.constant	k4	"username"
+.constant	k5	"tostring"
+.constant	k6	"os"
+.constant	k7	"time"
+.constant	k8	"utils"
+.constant	k9	"getMinimalistLoadingOverlay"
+.constant	k10	"loadingText"
+.constant	k11	"Contacting HQ..."
+.constant	k12	"blockHits"
+.constant	k13	true
+.constant	k14	"x"
+.constant	k15	"y"
+.constant	k16	"screenX"
+.constant	k17	"screenWidth"
+.constant	k18	2
+.constant	k19	"display"
+.constant	k20	"contentHeight"
+.constant	k21	"body"
+.constant	k22	"format"
+.constant	k23	"username=%s&version=%s&requestId=%s&hmac=%s"
+.constant	k24	"urlencode"
+.constant	k25	"CURRENT_VERSION"
+.constant	k26	"crypto"
+.constant	k27	"hmac"
+.constant	k28	"sha1"
+.constant	k29	"REMOTE_SIGNING_KEY"
+.constant	k30	"network"
+.constant	k31	"request"
+.constant	k32	"%s/availability"
+.constant	k33	"POST"
+
+eq             1    r0    k0
+jmp           l8
+getglobal     r1    k1
+gettable      r1    r1    k2
+move          r2    r0
+call          r1     2     2
+setupval      r1    u0
+.label	l8
+getglobal     r1    k3
+loadk         r2    k4
+getupval      r3    u0
+call          r1     3     1
+getglobal     r1    k5
+getglobal     r2    k6
+gettable      r2    r2    k7
+call          r2     1     0
+call          r1     0     2
+getglobal     r2    k8
+gettable      r2    r2    k9
+newtable      r3     0     2
+settable      r3   k10   k11
+settable      r3   k12   k13
+call          r2     2     2
+getglobal     r3   k16
+getglobal     r4   k17
+div           r4    r4   k18
+add           r3    r3    r4
+getglobal     r4   k19
+gettable      r4    r4   k20
+div           r4    r4   k18
+settable      r2   k15    r4
+settable      r2   k14    r3
+newtable      r3     0     1
+getglobal     r4    k1
+gettable      r4    r4   k22
+loadk         r5   k23
+getglobal     r6    k8
+gettable      r6    r6   k24
+getupval      r7    u0
+call          r6     2     2
+getglobal     r7   k25
+move          r8    r1
+getglobal     r9   k26
+gettable      r9    r9   k27
+getglobal    r10   k26
+gettable     r10   r10   k28
+getupval     r11    u0
+getglobal    r12   k25
+move         r13    r1
+concat       r11   r11   r13
+getglobal    r12   k29
+call          r9     4     0
+call          r4     0     2
+settable      r3   k21    r4
+getglobal     r4   k30
+gettable      r4    r4   k31
+getglobal     r5    k1
+gettable      r5    r5   k22
+loadk         r6   k32
+getupval      r7    u1
+call          r5     3     2
+loadk         r6   k33
+closure       r7    f0
+getupval      r0    u2
+getupval      r0    u3
+move          r0    r2
+move          r8    r3
+call          r4     5     1
+return        r0     1
+
+.function	main/f3/f2/f1/f0/f0
+
+.source	null
+.linedefined	212
+.lastlinedefined	230
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"status"
+.constant	k1	404
+.constant	k2	"response"
+.constant	k3	"string"
+.constant	k4	"lower"
+.constant	k5	"not found"
+.constant	k6	"utils"
+.constant	k7	"getDialog"
+.constant	k8	"textLine1"
+.constant	k9	"This name is in use. Please choose another."
+.constant	k10	"confirmFunction"
+.constant	k11	"display"
+.constant	k12	"remove"
+
+gettable      r1    r0    k0
+eq             1    r1    k1
+jmp          l13
+gettable      r1    r0    k2
+test          r1     0
+jmp          l16
+getglobal     r1    k3
+gettable      r1    r1    k4
+gettable      r2    r0    k2
+call          r1     2     2
+eq             0    r1    k5
+jmp          l16
+.label	l13
+getupval      r1    u0
+call          r1     1     1
+jmp          l23
+.label	l16
+getglobal     r1    k6
+gettable      r1    r1    k7
+newtable      r2     0     2
+settable      r2    k8    k9
+getupval      r3    u1
+settable      r2   k10    r3
+call          r1     2     1
+.label	l23
+getglobal     r1   k11
+gettable      r1    r1   k12
+getupval      r2    u2
+call          r1     2     1
+loadnil       r1    r1
+setupval      r1    u2
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	253
+.lastlinedefined	424
+.numparams	0
+.is_vararg	0
+.maxstacksize	22
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"spritesheetmanager"
+.constant	k1	"getSpriteSet"
+.constant	k2	"UI_SPRITE_SHEET"
+.constant	k3	500
+.constant	k4	"utils"
+.constant	k5	"isIOSDevice"
+.constant	k6	370
+.constant	k7	"getDrawnDialogBox"
+.constant	k8	"title"
+.constant	k9	"SIGN IN"
+.constant	k10	"height"
+.constant	k11	"onShow"
+.constant	k12	"contentWidth"
+.constant	k13	60
+.constant	k14	70
+.constant	k15	2
+.constant	k16	"titleBar"
+.constant	k17	"contentHeight"
+.constant	k18	1.75
+.constant	k19	"getBasicButton"
+.constant	k20	"buttonText"
+.constant	k21	"Login with Facebook"
+.constant	k22	"buttonTextSize"
+.constant	k23	"width"
+.constant	k24	"buttonTextShadowSize"
+.constant	k25	0
+.constant	k26	"normalTextColor"
+.constant	k27	"pack"
+.constant	k28	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k29	"normalTopColor"
+.constant	k30	"LITTLE_GENERALS_BACKGROUND_LIGHT"
+.constant	k31	"normalBottomColor"
+.constant	k32	"pressedTopColor"
+.constant	k33	"LITTLE_GENERALS_BLUE_LIGHT"
+.constant	k34	"pressedBottomColor"
+.constant	k35	"onComplete"
+.constant	k36	"insert"
+.constant	k37	"x"
+.constant	k38	"y"
+.constant	k39	"newImageFromSpriteSet"
+.constant	k40	"facebook_icon.png"
+.constant	k41	20
+.constant	k42	15
+.constant	k43	"getOutlinedText"
+.constant	k44	"Facebook is the best and easiest way to play with your friends."
+.constant	k45	"size"
+.constant	k46	30
+.constant	k47	"fontColor"
+.constant	k48	"shadowColor"
+.constant	k49	255
+.constant	k50	"Login with email"
+.constant	k51	"No Facebook account? How about email?"
+.constant	k52	"display"
+.constant	k53	"newImage"
+.constant	k54	"res/ui/email.png"
+.constant	k55	"scaleTo"
+.constant	k56	"Login with gamecenter"
+.constant	k57	"gamecenter_icon.png"
+.constant	k58	"Play with your gamecenter friends."
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+getglobal     r1    k2
+call          r0     2     3
+loadk         r2    k3
+getglobal     r3    k4
+gettable      r3    r3    k5
+call          r3     1     2
+test          r3     1
+jmp          l12
+loadk         r2    k6
+.label	l12
+getglobal     r3    k4
+gettable      r3    r3    k7
+newtable      r4     0     3
+settable      r4    k8    k9
+settable      r4   k10    r2
+closure       r5    f0
+settable      r4   k11    r5
+call          r3     2     2
+gettable      r4    r3   k12
+sub           r4    r4   k13
+loadk         r5   k14
+unm           r6    r2
+div           r6    r6   k15
+gettable      r7    r3   k16
+gettable      r7    r7   k17
+mul           r7    r7   k18
+add           r6    r6    r7
+getglobal     r7    k4
+gettable      r7    r7   k19
+newtable      r8     0    11
+settable      r8   k20   k21
+settable      r8   k22   k13
+settable      r8   k23    r4
+settable      r8   k10    r5
+settable      r8   k24   k25
+getglobal     r9    k4
+gettable      r9    r9   k27
+getglobal    r10   k28
+call         r10     1     0
+call          r9     0     2
+settable      r8   k26    r9
+getglobal     r9    k4
+gettable      r9    r9   k27
+getglobal    r10   k30
+call         r10     1     0
+call          r9     0     2
+settable      r8   k29    r9
+getglobal     r9    k4
+gettable      r9    r9   k27
+getglobal    r10   k30
+call         r10     1     0
+call          r9     0     2
+settable      r8   k31    r9
+getglobal     r9    k4
+gettable      r9    r9   k27
+getglobal    r10   k33
+call         r10     1     0
+call          r9     0     2
+settable      r8   k32    r9
+getglobal     r9    k4
+gettable      r9    r9   k27
+getglobal    r10   k33
+call         r10     1     0
+call          r9     0     2
+settable      r8   k34    r9
+closure       r9    f1
+getupval      r0    u0
+getupval      r0    u1
+move          r0    r3
+settable      r8   k35    r9
+call          r7     2     2
+self          r8    r3   k36
+move         r10    r7
+call          r8     3     1
+loadk         r8   k25
+settable      r7   k38    r6
+settable      r7   k37    r8
+getglobal     r8    k4
+gettable      r8    r8   k39
+move          r9    r0
+move         r10    r1
+loadk        r11   k40
+call          r8     4     2
+self          r9    r3   k36
+move         r11    r8
+call          r9     3     1
+gettable      r9    r7   k37
+gettable     r10    r7   k12
+div          r10   r10   k15
+sub           r9    r9   r10
+gettable     r10    r8   k12
+div          r10   r10   k15
+add           r9    r9   r10
+add           r9    r9   k41
+gettable     r10    r7   k38
+settable      r8   k38   r10
+settable      r8   k37    r9
+gettable      r9    r7   k17
+div           r9    r9   k15
+add           r9    r6    r9
+add           r6    r9   k42
+getglobal     r9    k4
+gettable      r9    r9   k43
+loadk        r10   k44
+newtable     r11     0     3
+settable     r11   k45   k46
+getglobal    r12    k4
+gettable     r12   r12   k27
+getglobal    r13   k28
+call         r13     1     0
+call         r12     0     2
+settable     r11   k47   r12
+newtable     r12     3     0
+loadk        r13   k49
+loadk        r14   k49
+loadk        r15   k49
+setlist      r12     3     1
+settable     r11   k48   r12
+call          r9     3     2
+loadk        r10   k25
+settable      r9   k38    r6
+settable      r9   k37   r10
+self         r10    r3   k36
+move         r12    r9
+call         r10     3     1
+gettable     r10    r9   k17
+add          r10    r6   r10
+add           r6   r10   k46
+getglobal    r10    k4
+gettable     r10   r10   k19
+newtable     r11     0    11
+settable     r11   k20   k50
+settable     r11   k22   k13
+settable     r11   k23    r4
+settable     r11   k10    r5
+settable     r11   k24   k25
+getglobal    r12    k4
+gettable     r12   r12   k27
+getglobal    r13   k28
+call         r13     1     0
+call         r12     0     2
+settable     r11   k26   r12
+getglobal    r12    k4
+gettable     r12   r12   k27
+getglobal    r13   k30
+call         r13     1     0
+call         r12     0     2
+settable     r11   k29   r12
+getglobal    r12    k4
+gettable     r12   r12   k27
+getglobal    r13   k30
+call         r13     1     0
+call         r12     0     2
+settable     r11   k31   r12
+getglobal    r12    k4
+gettable     r12   r12   k27
+getglobal    r13   k33
+call         r13     1     0
+call         r12     0     2
+settable     r11   k32   r12
+getglobal    r12    k4
+gettable     r12   r12   k27
+getglobal    r13   k33
+call         r13     1     0
+call         r12     0     2
+settable     r11   k34   r12
+closure      r12    f2
+move          r0    r3
+getupval      r0    u2
+settable     r11   k35   r12
+call         r10     2     2
+self         r11    r3   k36
+move         r13   r10
+call         r11     3     1
+loadk        r11   k25
+settable     r10   k38    r6
+settable     r10   k37   r11
+gettable     r11   r10   k17
+div          r11   r11   k15
+add          r11    r6   r11
+add           r6   r11   k42
+getglobal    r11    k4
+gettable     r11   r11   k43
+loadk        r12   k51
+newtable     r13     0     3
+settable     r13   k45   k46
+getglobal    r14    k4
+gettable     r14   r14   k27
+getglobal    r15   k28
+call         r15     1     0
+call         r14     0     2
+settable     r13   k47   r14
+newtable     r14     3     0
+loadk        r15   k49
+loadk        r16   k49
+loadk        r17   k49
+setlist      r14     3     1
+settable     r13   k48   r14
+call         r11     3     2
+loadk        r12   k25
+settable     r11   k38    r6
+settable     r11   k37   r12
+self         r12    r3   k36
+move         r14   r11
+call         r12     3     1
+gettable     r12   r11   k17
+add          r12    r6   r12
+add           r6   r12   k46
+getglobal    r12   k52
+gettable     r12   r12   k53
+loadk        r13   k54
+loadk        r14   k25
+loadk        r15   k25
+loadbool     r16     1     0
+call         r12     5     2
+self         r13    r3   k36
+move         r15   r12
+call         r13     3     1
+gettable     r13   r10   k37
+gettable     r14   r10   k12
+div          r14   r14   k15
+sub          r13   r13   r14
+gettable     r14   r12   k12
+div          r14   r14   k15
+add          r13   r13   r14
+add          r13   r13   k41
+gettable     r14   r10   k38
+settable     r12   k38   r14
+settable     r12   k37   r13
+getglobal    r13    k4
+gettable     r13   r13   k55
+move         r14    r8
+gettable     r15   r12   k12
+call         r13     3     1
+gettable     r13   r12   k37
+settable      r8   k37   r13
+getglobal    r13    k4
+gettable     r13   r13    k5
+call         r13     1     2
+test         r13     0
+jmp         l340
+getglobal    r13    k4
+gettable     r13   r13   k19
+newtable     r14     0    11
+settable     r14   k20   k56
+settable     r14   k22   k13
+settable     r14   k23    r4
+settable     r14   k10    r5
+settable     r14   k24   k25
+getglobal    r15    k4
+gettable     r15   r15   k27
+getglobal    r16   k28
+call         r16     1     0
+call         r15     0     2
+settable     r14   k26   r15
+getglobal    r15    k4
+gettable     r15   r15   k27
+getglobal    r16   k30
+call         r16     1     0
+call         r15     0     2
+settable     r14   k29   r15
+getglobal    r15    k4
+gettable     r15   r15   k27
+getglobal    r16   k30
+call         r16     1     0
+call         r15     0     2
+settable     r14   k31   r15
+getglobal    r15    k4
+gettable     r15   r15   k27
+getglobal    r16   k33
+call         r16     1     0
+call         r15     0     2
+settable     r14   k32   r15
+getglobal    r15    k4
+gettable     r15   r15   k27
+getglobal    r16   k33
+call         r16     1     0
+call         r15     0     2
+settable     r14   k34   r15
+closure      r15    f3
+getupval      r0    u1
+move          r0    r3
+settable     r14   k35   r15
+call         r13     2     2
+self         r14    r3   k36
+move         r16   r13
+call         r14     3     1
+loadk        r14   k25
+settable     r13   k38    r6
+settable     r13   k37   r14
+gettable     r14   r13   k17
+div          r14   r14   k15
+add          r14    r6   r14
+add           r6   r14   k42
+getglobal    r14    k4
+gettable     r14   r14   k39
+move         r15    r0
+move         r16    r1
+loadk        r17   k57
+call         r14     4     2
+self         r15    r3   k36
+move         r17   r14
+call         r15     3     1
+gettable     r15   r13   k37
+gettable     r16   r13   k12
+div          r16   r16   k15
+sub          r15   r15   r16
+gettable     r16   r14   k12
+div          r16   r16   k15
+add          r15   r15   r16
+add          r15   r15   k41
+gettable     r16   r13   k38
+settable     r14   k38   r16
+settable     r14   k37   r15
+getglobal    r15    k4
+gettable     r15   r15   k43
+loadk        r16   k58
+newtable     r17     0     3
+settable     r17   k45   k46
+getglobal    r18    k4
+gettable     r18   r18   k27
+getglobal    r19   k28
+call         r19     1     0
+call         r18     0     2
+settable     r17   k47   r18
+newtable     r18     3     0
+loadk        r19   k49
+loadk        r20   k49
+loadk        r21   k49
+setlist      r18     3     1
+settable     r17   k48   r18
+call         r15     3     2
+loadk        r16   k25
+settable     r15   k38    r6
+settable     r15   k37   r16
+self         r16    r3   k36
+move         r18   r15
+call         r16     3     1
+.label	l340
+return        r0     1
+
+.function	main/f4/f0
+
+.source	null
+.linedefined	263
+.lastlinedefined	266
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f4/f1
+
+.source	null
+.linedefined	284
+.lastlinedefined	330
+.numparams	0
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"require"
+.constant	k1	"facebookSupport"
+.constant	k2	"facebookEnabled"
+.constant	k3	"init"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+loadnil       r1    r1
+closure       r2    f0
+move          r0    r1
+getupval      r0    u0
+closure       r3    f1
+move          r0    r1
+move          r0    r0
+getupval      r0    u1
+getupval      r0    u2
+gettable      r4    r0    k2
+test          r4     0
+jmp          l19
+move          r4    r3
+call          r4     1     1
+jmp          l22
+.label	l19
+gettable      r4    r0    k3
+move          r5    r3
+call          r4     2     1
+.label	l22
+return        r0     1
+
+.function	main/f4/f1/f0
+
+.source	null
+.linedefined	287
+.lastlinedefined	310
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"timer"
+.constant	k1	"performWithDelay"
+.constant	k2	1
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+loadk         r2    k2
+closure       r3    f0
+move          r0    r0
+getupval      r0    u0
+getupval      r0    u1
+call          r1     3     1
+return        r0     1
+
+.function	main/f4/f1/f0/f0
+
+.source	null
+.linedefined	288
+.lastlinedefined	309
+.numparams	0
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"print"
+.constant	k1	"Attempting to register email"
+.constant	k2	"tostring"
+.constant	k3	"os"
+.constant	k4	"time"
+.constant	k5	"body"
+.constant	k6	"string"
+.constant	k7	"format"
+.constant	k8	"requestId=%s&version=%s&email=%s&id=%s&hmac=%s&type=facebook"
+.constant	k9	"CURRENT_VERSION"
+.constant	k10	"utils"
+.constant	k11	"urlencode"
+.constant	k12	"crypto"
+.constant	k13	"hmac"
+.constant	k14	"sha1"
+.constant	k15	"facebook"
+.constant	k16	"REMOTE_SIGNING_KEY"
+.constant	k17	"network"
+.constant	k18	"request"
+.constant	k19	"%s/emailRegistration"
+.constant	k20	"POST"
+
+getglobal     r0    k0
+loadk         r1    k1
+getupval      r2    u0
+call          r0     3     1
+getglobal     r0    k2
+getglobal     r1    k3
+gettable      r1    r1    k4
+call          r1     1     0
+call          r0     0     2
+newtable      r1     0     1
+getglobal     r2    k6
+gettable      r2    r2    k7
+loadk         r3    k8
+move          r4    r0
+getglobal     r5    k9
+getglobal     r6   k10
+gettable      r6    r6   k11
+getupval      r7    u0
+call          r6     2     2
+getglobal     r7   k10
+gettable      r7    r7   k11
+getupval      r8    u1
+call          r7     2     2
+getglobal     r8   k12
+gettable      r8    r8   k13
+getglobal     r9   k12
+gettable      r9    r9   k14
+getupval     r10    u0
+getupval     r11    u1
+loadk        r12   k15
+getglobal    r13    k9
+move         r14    r0
+concat       r10   r10   r14
+getglobal    r11   k16
+call          r8     4     0
+call          r2     0     2
+settable      r1    k5    r2
+getglobal     r2   k17
+gettable      r2    r2   k18
+getglobal     r3    k6
+gettable      r3    r3    k7
+loadk         r4   k19
+getupval      r5    u2
+call          r3     3     2
+loadk         r4   k20
+closure       r5    f0
+move          r6    r1
+call          r2     5     1
+return        r0     1
+
+.function	main/f4/f1/f0/f0/f0
+
+.source	null
+.linedefined	294
+.lastlinedefined	308
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"utils"
+.constant	k1	"table_print"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+call          r1     2     1
+return        r0     1
+
+.function	main/f4/f1/f1
+
+.source	null
+.linedefined	311
+.lastlinedefined	324
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"login"
+.constant	k1	"phase"
+.constant	k2	"facebookId"
+.constant	k3	"facebookName"
+.constant	k4	"require"
+.constant	k5	"notificationQueue"
+.constant	k6	"add"
+.constant	k7	"text"
+.constant	k8	"Please authorize Facebook to continue"
+
+test          r0     0
+jmp           l6
+gettable      r1    r0    k1
+eq             0    k0    r1
+jmp          l17
+.label	l6
+getupval      r1    u1
+gettable      r1    r1    k2
+setupval      r1    u0
+getupval      r1    u2
+getupval      r2    u1
+gettable      r2    r2    k2
+getupval      r3    u1
+gettable      r3    r3    k3
+getupval      r4    u3
+call          r1     4     1
+jmp          l24
+.label	l17
+getglobal     r1    k4
+loadk         r2    k5
+call          r1     2     2
+gettable      r2    r1    k6
+newtable      r3     0     1
+settable      r3    k7    k8
+call          r2     2     1
+.label	l24
+return        r0     1
+
+.function	main/f4/f2
+
+.source	null
+.linedefined	360
+.lastlinedefined	363
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"close"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+call          r0     1     1
+getupval      r0    u1
+call          r0     1     1
+return        r0     1
+
+.function	main/f4/f3
+
+.source	null
+.linedefined	400
+.lastlinedefined	404
+.numparams	0
+.is_vararg	0
+.maxstacksize	7
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"require"
+.constant	k1	"gamecenterSupport"
+.constant	k2	"utils"
+.constant	k3	"sanitizeId"
+.constant	k4	"gamecenterId"
+.constant	k5	"gamecenterAlias"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+getglobal     r1    k2
+gettable      r1    r1    k3
+gettable      r2    r0    k4
+call          r1     2     2
+gettable      r2    r0    k5
+getupval      r3    u0
+move          r4    r1
+move          r5    r2
+getupval      r6    u1
+call          r3     4     1
+return        r0     1
+

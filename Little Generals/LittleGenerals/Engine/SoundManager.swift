@@ -9,6 +9,24 @@ public class SoundManager {
     public var soundEnabled: Bool = true
     public var musicEnabled: Bool = true
 
+    // Bundle audio index
+    private var audioIndex: [String: URL] = {
+        var index: [String: URL] = [:]
+        let bundleURL = Bundle.main.bundleURL
+        let fileManager = FileManager.default
+        if let enumerator = fileManager.enumerator(at: bundleURL, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+            for case let url as URL in enumerator {
+                let lowerName = url.lastPathComponent.lowercased()
+                index[lowerName] = url
+                let baseName = url.deletingPathExtension().lastPathComponent.lowercased()
+                if index[baseName] == nil {
+                    index[baseName] = url
+                }
+            }
+        }
+        return index
+    }()
+
     private init() {
         configureAudioSession()
     }
@@ -25,21 +43,14 @@ public class SoundManager {
     public func playSound(_ filename: String) {
         guard soundEnabled else { return }
 
-        let name = (filename as NSString).deletingPathExtension
-        let ext = (filename as NSString).pathExtension.isEmpty ? "mp3" : (filename as NSString).pathExtension
+        let lower = (filename as NSString).lastPathComponent.lowercased()
+        let base = (filename as NSString).deletingPathExtension.lowercased()
+        let soundURL = audioIndex[lower] ?? audioIndex[base] ?? Bundle.main.url(forResource: base, withExtension: (filename as NSString).pathExtension)
 
-        let candidates = [
-            Bundle.main.url(forResource: name, withExtension: ext),
-            Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "res/sounds"),
-            Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Resources/res/sounds")
-        ]
-
-        guard let soundURL = candidates.compactMap({ $0 }).first else {
-            return
-        }
+        guard let url = soundURL else { return }
 
         do {
-            let player = try AVAudioPlayer(contentsOf: soundURL)
+            let player = try AVAudioPlayer(contentsOf: url)
             player.prepareToPlay()
             player.play()
             players[filename] = player
@@ -51,22 +62,15 @@ public class SoundManager {
     public func playMusic(_ filename: String, loop: Bool = true) {
         guard musicEnabled else { return }
 
-        let name = (filename as NSString).deletingPathExtension
-        let ext = (filename as NSString).pathExtension.isEmpty ? "mp3" : (filename as NSString).pathExtension
+        let lower = (filename as NSString).lastPathComponent.lowercased()
+        let base = (filename as NSString).deletingPathExtension.lowercased()
+        let soundURL = audioIndex[lower] ?? audioIndex[base] ?? Bundle.main.url(forResource: base, withExtension: (filename as NSString).pathExtension)
 
-        let candidates = [
-            Bundle.main.url(forResource: name, withExtension: ext),
-            Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "res/sounds"),
-            Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Resources/res/sounds")
-        ]
-
-        guard let musicURL = candidates.compactMap({ $0 }).first else {
-            return
-        }
+        guard let url = soundURL else { return }
 
         do {
             musicPlayer?.stop()
-            musicPlayer = try AVAudioPlayer(contentsOf: musicURL)
+            musicPlayer = try AVAudioPlayer(contentsOf: url)
             musicPlayer?.numberOfLoops = loop ? -1 : 0
             musicPlayer?.volume = 0.65
             musicPlayer?.prepareToPlay()
@@ -80,4 +84,3 @@ public class SoundManager {
         musicPlayer?.stop()
     }
 }
-

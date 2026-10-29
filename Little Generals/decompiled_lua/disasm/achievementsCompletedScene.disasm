@@ -1,0 +1,828 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	14
+
+.constant	k0	"storyboard"
+.constant	k1	"newScene"
+.constant	k2	100
+.constant	k3	"createScene"
+.constant	k4	"enterScene"
+.constant	k5	"exitScene"
+.constant	k6	"destroyScene"
+.constant	k7	"addEventListener"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+call          r0     1     2
+loadk         r1    k2
+loadnil       r2    r5
+closure       r6    f0
+closure       r7    f1
+closure       r8    f2
+move          r0    r7
+move          r0    r6
+closure       r9    f3
+move          r0    r4
+move          r0    r8
+settable      r0    k3    r9
+closure       r9    f4
+move          r0    r5
+closure      r10    f5
+settable      r0    k4   r10
+closure      r10    f6
+settable      r0    k5   r10
+closure      r10    f7
+move          r0    r4
+settable      r0    k6   r10
+self         r10    r0    k7
+loadk        r12    k3
+move         r13    r0
+call         r10     4     1
+self         r10    r0    k7
+loadk        r12    k4
+move         r13    r0
+call         r10     4     1
+self         r10    r0    k7
+loadk        r12    k5
+move         r13    r0
+call         r10     4     1
+self         r10    r0    k7
+loadk        r12    k6
+move         r13    r0
+call         r10     4     1
+return        r0     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	12
+.lastlinedefined	29
+.numparams	2
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"display"
+.constant	k1	"newGroup"
+.constant	k2	"newText"
+.constant	k3	0
+.constant	k4	"SingleSleeve"
+.constant	k5	60
+.constant	k6	"setTextColor"
+.constant	k7	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k8	"setReferencePoint"
+.constant	k9	"TopCenterReferencePoint"
+.constant	k10	"x"
+.constant	k11	"y"
+.constant	k12	"contentHeight"
+.constant	k13	"insert"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+call          r2     1     2
+getglobal     r3    k0
+gettable      r3    r3    k2
+move          r4    r2
+move          r5    r1
+loadk         r6    k3
+loadk         r7    k3
+loadk         r8    k4
+loadk         r9    k5
+call          r3     7     2
+self          r4    r3    k6
+getglobal     r6    k7
+call          r6     1     0
+call          r4     0     1
+self          r4    r2    k8
+getglobal     r6    k0
+gettable      r6    r6    k9
+call          r4     3     1
+loadk         r4    k3
+gettable      r5    r0   k12
+settable      r2   k11    r5
+settable      r2   k10    r4
+self          r4    r0   k13
+move          r6    r2
+call          r4     3     1
+return        r2     2
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	32
+.lastlinedefined	72
+.numparams	4
+.is_vararg	0
+.maxstacksize	14
+
+.constant	k0	"display"
+.constant	k1	"newGroup"
+.constant	k2	"achievementList"
+.constant	k3	"getAchievementImage"
+.constant	k4	0
+.constant	k5	350
+.constant	k6	20
+.constant	k7	"newCircle"
+.constant	k8	3
+.constant	k9	"strokeWidth"
+.constant	k10	"setStrokeColor"
+.constant	k11	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k12	"alpha"
+.constant	k13	0.5
+.constant	k14	"insert"
+.constant	k15	"x"
+.constant	k16	"y"
+.constant	k17	"utils"
+.constant	k18	"getXYfromVector"
+.constant	k19	60
+.constant	k20	"scale"
+.constant	k21	"setReferencePoint"
+.constant	k22	"TopLeftReferencePoint"
+.constant	k23	"getOutlinedText"
+.constant	k24	"size"
+.constant	k25	40
+.constant	k26	"contentWidth"
+.constant	k27	10
+.constant	k28	-7
+.constant	k29	"newText"
+.constant	k30	"SingleSleeve"
+.constant	k31	30
+.constant	k32	"setTextColor"
+.constant	k33	"contentHeight"
+.constant	k34	15
+
+getglobal     r4    k0
+gettable      r4    r4    k1
+call          r4     1     2
+getglobal     r5    k2
+gettable      r5    r5    k3
+move          r6    r1
+call          r5     2     2
+test          r5     1
+jmp          l41
+getglobal     r6    k0
+gettable      r6    r6    k1
+call          r6     1     2
+move          r5    r6
+loadk         r6    k4
+loadk         r7    k5
+loadk         r8    k6
+forprep       r6   l40
+.label	l18
+getglobal    r10    k0
+gettable     r10   r10    k7
+loadk        r11    k4
+loadk        r12    k4
+loadk        r13    k8
+call         r10     4     2
+settable     r10    k9    k8
+self         r11   r10   k10
+getglobal    r13   k11
+call         r13     1     0
+call         r11     0     1
+settable     r10   k12   k13
+self         r11    r5   k14
+move         r13   r10
+call         r11     3     1
+getglobal    r11   k17
+gettable     r11   r11   k18
+move         r12    r9
+loadk        r13   k19
+call         r11     3     3
+settable     r10   k16   r12
+settable     r10   k15   r11
+.label	l40
+forloop       r6   l18
+.label	l41
+self          r6    r5   k20
+loadk         r8   k13
+loadk         r9   k13
+call          r6     4     1
+self          r6    r4   k14
+move          r8    r5
+call          r6     3     1
+self          r6    r5   k21
+getglobal     r8    k0
+gettable      r8    r8   k22
+call          r6     3     1
+loadk         r6    k4
+settable      r5   k16    k4
+settable      r5   k15    r6
+getglobal     r6   k17
+gettable      r6    r6   k23
+move          r7    r2
+newtable      r8     0     1
+settable      r8   k24   k25
+call          r6     3     2
+self          r7    r4   k14
+move          r9    r6
+call          r7     3     1
+self          r7    r6   k21
+getglobal     r9    k0
+gettable      r9    r9   k22
+call          r7     3     1
+gettable      r7    r5   k26
+add           r7    r7   k27
+settable      r6   k16   k28
+settable      r6   k15    r7
+getglobal     r7    k0
+gettable      r7    r7   k29
+move          r8    r4
+move          r9    r3
+loadk        r10    k4
+loadk        r11    k4
+loadk        r12   k30
+loadk        r13   k31
+call          r7     7     2
+self          r8    r7   k21
+getglobal    r10    k0
+gettable     r10   r10   k22
+call          r8     3     1
+self          r8    r7   k32
+getglobal    r10   k11
+call         r10     1     0
+call          r8     0     1
+gettable      r8    r6   k15
+gettable      r9    r6   k33
+sub           r9    r9   k34
+settable      r7   k16    r9
+settable      r7   k15    r8
+self          r8    r4   k21
+getglobal    r10    k0
+gettable     r10   r10   k22
+call          r8     3     1
+loadk         r8    k4
+gettable      r9    r0   k33
+settable      r4   k16    r9
+settable      r4   k15    r8
+self          r8    r0   k14
+move         r10    r4
+call          r8     3     1
+return        r4     2
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	75
+.lastlinedefined	131
+.numparams	0
+.is_vararg	0
+.maxstacksize	20
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"display"
+.constant	k1	"newGroup"
+.constant	k2	"newRect"
+.constant	k3	0
+.constant	k4	10
+.constant	k5	"setFillColor"
+.constant	k6	253
+.constant	k7	209
+.constant	k8	152
+.constant	k9	"insert"
+.constant	k10	"achievementList"
+.constant	k11	"miscAchievements"
+.constant	k12	"terrainAchievements"
+.constant	k13	"battleAchievements"
+.constant	k14	"campaignAchievements"
+.constant	k15	"pairs"
+.constant	k16	"type"
+.constant	k17	"number"
+.constant	k18	"nonRankAchievements"
+.constant	k19	"achievementIsComplete"
+.constant	k20	"image"
+.constant	k21	"name"
+.constant	k22	"description"
+.constant	k23	"RANKS"
+.constant	k24	"x"
+.constant	k25	"contentWidth"
+.constant	k26	2
+.constant	k27	"ranks"
+.constant	k28	"rankData"
+.constant	k29	"playerKills"
+.constant	k30	"Accumulate"
+.constant	k31	"Rack up"
+.constant	k32	"Score"
+.constant	k33	"Tally up"
+.constant	k34	"math"
+.constant	k35	"random"
+.constant	k36	1
+.constant	k37	" "
+.constant	k38	"rewardLevel"
+.constant	k39	" wins."
+.constant	k40	"tostring"
+.constant	k41	" to go!"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+call          r0     1     2
+getglobal     r1    k0
+gettable      r1    r1    k2
+loadk         r2    k3
+loadk         r3    k3
+loadk         r4    k4
+loadk         r5    k4
+call          r1     5     2
+self          r2    r1    k5
+loadk         r4    k6
+loadk         r5    k7
+loadk         r6    k8
+call          r2     5     1
+self          r2    r0    k9
+move          r4    r1
+call          r2     3     1
+newtable      r2     4     0
+getglobal     r3   k10
+gettable      r3    r3   k11
+getglobal     r4   k10
+gettable      r4    r4   k12
+getglobal     r5   k10
+gettable      r5    r5   k13
+getglobal     r6   k10
+gettable      r6    r6   k14
+setlist       r2     4     1
+getglobal     r3   k15
+move          r4    r2
+call          r3     2     4
+jmp          l62
+.label	l33
+getglobal     r8   k15
+move          r9    r7
+call          r8     2     4
+jmp          l60
+.label	l37
+getglobal    r13   k16
+move         r14   r12
+call         r13     2     2
+eq             0   r13   k17
+jmp          l60
+loadnil      r13   r13
+getglobal    r14   k10
+gettable     r14   r14   k18
+gettable     r14   r14   r12
+getglobal    r15   k10
+gettable     r15   r15   k19
+move         r16   r12
+move         r17    r7
+call         r15     3     2
+test         r15     0
+jmp          l54
+gettable     r13   r14   k20
+.label	l54
+getupval     r15    u0
+move         r16    r0
+move         r17   r13
+gettable     r18   r14   k21
+gettable     r19   r14   k22
+call         r15     5     2
+.label	l60
+tforloop      r8     2
+jmp          l37
+.label	l62
+tforloop      r3     2
+jmp          l33
+getupval      r3    u1
+move          r4    r0
+loadk         r5   k23
+call          r3     3     2
+gettable      r4    r0   k25
+div           r4    r4   k26
+settable      r3   k24    r4
+getglobal     r4   k10
+gettable      r4    r4   k27
+gettable      r4    r4   k28
+getglobal     r5   k10
+gettable      r5    r5   k29
+call          r5     1     2
+getglobal     r6   k15
+move          r7    r4
+call          r6     2     4
+jmp         l119
+.label	l81
+loadnil      r11   r11
+newtable     r12     4     0
+loadk        r13   k30
+loadk        r14   k31
+loadk        r15   k32
+loadk        r16   k33
+setlist      r12     4     1
+getglobal    r13   k34
+gettable     r13   r13   k35
+loadk        r14   k36
+len          r15   r12
+call         r13     3     2
+gettable     r11   r12   r13
+move         r13   r11
+loadk        r14   k37
+gettable     r15   r10   k38
+loadk        r16   k39
+concat       r11   r13   r16
+loadnil      r13   r13
+gettable     r14   r10   k38
+le             0   r14    r5
+jmp         l105
+gettable     r13   r10   k20
+jmp         l113
+.label	l105
+move         r14   r11
+loadk        r15   k37
+getglobal    r16   k40
+gettable     r17   r10   k38
+sub          r17   r17    r5
+call         r16     2     2
+loadk        r17   k41
+concat       r11   r14   r17
+.label	l113
+getupval     r14    u0
+move         r15    r0
+move         r16   r13
+gettable     r17   r10   k21
+move         r18   r11
+call         r14     5     2
+.label	l119
+tforloop      r6     2
+jmp          l81
+return        r0     2
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	134
+.lastlinedefined	160
+.numparams	2
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"view"
+.constant	k1	"utils"
+.constant	k2	"drawBasicSceneBackground"
+.constant	k3	"group"
+.constant	k4	"title"
+.constant	k5	"ACHIEVEMENTS"
+.constant	k6	"showBottomBar"
+.constant	k7	false
+.constant	k8	"onClose"
+.constant	k9	"require"
+.constant	k10	"widget"
+.constant	k11	"newScrollView"
+.constant	k12	"width"
+.constant	k13	740
+.constant	k14	"height"
+.constant	k15	483
+.constant	k16	"maskFile"
+.constant	k17	"res/mask740x483.png"
+.constant	k18	"bgColor"
+.constant	k19	255
+.constant	k20	0
+.constant	k21	"setReferencePoint"
+.constant	k22	"display"
+.constant	k23	"TopLeftReferencePoint"
+.constant	k24	"insert"
+.constant	k25	"x"
+.constant	k26	30
+.constant	k27	"y"
+.constant	k28	113
+
+gettable      r2    r0    k0
+getglobal     r3    k1
+gettable      r3    r3    k2
+newtable      r4     0     4
+settable      r4    k3    r2
+settable      r4    k4    k5
+settable      r4    k6    k7
+closure       r5    f0
+settable      r4    k8    r5
+call          r3     2     2
+getglobal     r4    k9
+loadk         r5   k10
+call          r4     2     2
+gettable      r4    r4   k11
+newtable      r5     0     4
+settable      r5   k12   k13
+settable      r5   k14   k15
+settable      r5   k16   k17
+newtable      r6     4     0
+loadk         r7   k19
+loadk         r8   k19
+loadk         r9   k19
+loadk        r10   k20
+setlist       r6     4     1
+settable      r5   k18    r6
+call          r4     2     2
+setupval      r4    u0
+getupval      r4    u0
+self          r4    r4   k21
+getglobal     r6   k22
+gettable      r6    r6   k23
+call          r4     3     1
+self          r4    r2   k24
+getupval      r6    u0
+call          r4     3     1
+getupval      r4    u0
+settable      r4   k25   k26
+getupval      r4    u0
+settable      r4   k27   k28
+getupval      r4    u1
+call          r4     1     2
+getupval      r5    u0
+self          r5    r5   k24
+move          r7    r4
+call          r5     3     1
+return        r0     1
+
+.function	main/f3/f0
+
+.source	null
+.linedefined	141
+.lastlinedefined	144
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"storyboard"
+.constant	k1	"gotoScene"
+.constant	k2	"missionsScene"
+.constant	k3	"removeScene"
+.constant	k4	"achievementsCompletedScene"
+
+getglobal     r0    k0
+gettable      r0    r0    k1
+loadk         r1    k2
+call          r0     2     1
+getglobal     r0    k0
+gettable      r0    r0    k3
+loadk         r1    k4
+call          r0     2     1
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	163
+.lastlinedefined	218
+.numparams	2
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"display"
+.constant	k1	"newGroup"
+.constant	k2	"missions"
+.constant	k3	"getMissionIcon"
+.constant	k4	"insert"
+.constant	k5	"setReferencePoint"
+.constant	k6	"TopLeftReferencePoint"
+.constant	k7	"x"
+.constant	k8	"y"
+.constant	k9	0
+.constant	k10	"newText"
+.constant	k11	"name"
+.constant	k12	"SingleSleeve"
+.constant	k13	60
+.constant	k14	"setTextColor"
+.constant	k15	"LITTLE_GENERALS_BROWN_DARK"
+.constant	k16	"contentWidth"
+.constant	k17	5
+.constant	k18	"desc"
+.constant	k19	"desc2"
+.constant	k20	"getRemainder"
+.constant	k21	" "
+.constant	k22	" left!"
+.constant	k23	30
+.constant	k24	"contentHeight"
+.constant	k25	20
+.constant	k26	10
+.constant	k27	7
+.constant	k28	"More missions coming soon!"
+.constant	k29	40
+.constant	k30	25
+.constant	k31	1
+.constant	k32	120
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+call          r2     1     2
+test          r1     0
+jmp         l122
+getglobal     r3    k2
+gettable      r3    r3    k3
+move          r4    r1
+call          r3     2     2
+self          r4    r2    k4
+move          r6    r3
+call          r4     3     1
+self          r4    r3    k5
+getglobal     r6    k0
+gettable      r6    r6    k6
+call          r4     3     1
+loadk         r4    k9
+settable      r3    k8    k9
+settable      r3    k7    r4
+getglobal     r4    k0
+gettable      r4    r4   k10
+move          r5    r2
+gettable      r6    r1   k11
+loadk         r7    k9
+loadk         r8    k9
+loadk         r9   k12
+loadk        r10   k13
+call          r4     7     2
+self          r5    r4    k5
+getglobal     r7    k0
+gettable      r7    r7    k6
+call          r5     3     1
+self          r5    r4   k14
+getglobal     r7   k15
+call          r7     1     0
+call          r5     0     1
+gettable      r5    r3    k7
+gettable      r6    r3   k16
+add           r5    r5    r6
+add           r5    r5   k17
+settable      r4    k8    k9
+settable      r4    k7    r5
+gettable      r5    r1   k18
+gettable      r6    r1   k19
+gettable      r7    r1   k20
+test          r7     0
+jmp          l65
+test          r6     0
+jmp          l58
+move          r7    r6
+loadk         r8   k21
+gettable      r9    r1   k20
+getglobal    r10    k2
+call          r9     2     2
+loadk        r10   k22
+concat        r6    r7   r10
+jmp          l65
+.label	l58
+move          r7    r5
+loadk         r8   k21
+gettable      r9    r1   k20
+getglobal    r10    k2
+call          r9     2     2
+loadk        r10   k22
+concat        r5    r7   r10
+.label	l65
+getglobal     r7    k0
+gettable      r7    r7   k10
+move          r8    r2
+move          r9    r5
+loadk        r10    k9
+loadk        r11    k9
+loadk        r12   k12
+loadk        r13   k23
+call          r7     7     2
+self          r8    r7    k5
+getglobal    r10    k0
+gettable     r10   r10    k6
+call          r8     3     1
+self          r8    r7   k14
+getglobal    r10   k15
+call         r10     1     0
+call          r8     0     1
+gettable      r8    r4    k7
+gettable      r9    r4    k8
+gettable     r10    r4   k24
+add           r9    r9   r10
+settable      r7    k8    r9
+settable      r7    k7    r8
+test          r6     0
+jmp         l120
+gettable      r8    r4    k8
+sub           r8    r8   k17
+settable      r4    k8    r8
+gettable      r8    r7    k8
+sub           r8    r8   k25
+settable      r7    k8    r8
+getglobal     r8    k0
+gettable      r8    r8   k10
+move          r9    r2
+move         r10    r6
+loadk        r11    k9
+loadk        r12    k9
+loadk        r13   k12
+loadk        r14   k23
+call          r8     7     2
+self          r9    r8    k5
+getglobal    r11    k0
+gettable     r11   r11    k6
+call          r9     3     1
+self          r9    r8   k14
+getglobal    r11   k15
+call         r11     1     0
+call          r9     0     1
+gettable      r9    r7    k7
+gettable     r10    r7    k8
+gettable     r11    r7   k24
+add          r10   r10   r11
+sub          r10   r10   k26
+settable      r8    k8   r10
+settable      r8    k7    r9
+.label	l120
+settable      r3    k8   k27
+jmp         l142
+.label	l122
+getglobal     r3    k0
+gettable      r3    r3   k10
+move          r4    r2
+loadk         r5   k28
+loadk         r6    k9
+loadk         r7    k9
+loadk         r8   k12
+loadk         r9   k29
+call          r3     7     2
+self          r4    r3    k5
+getglobal     r6    k0
+gettable      r6    r6    k6
+call          r4     3     1
+self          r4    r3   k14
+getglobal     r6   k15
+call          r6     1     0
+call          r4     0     1
+loadk         r4    k9
+settable      r3    k8   k30
+settable      r3    k7    r4
+.label	l142
+sub           r3    r0   k31
+mul           r3    r3   k32
+loadk         r4    k9
+settable      r2    k8    r3
+settable      r2    k7    r4
+getupval      r4    u0
+self          r4    r4    k4
+move          r6    r2
+call          r4     3     1
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	222
+.lastlinedefined	224
+.numparams	2
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"view"
+
+gettable      r2    r0    k0
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	228
+.lastlinedefined	230
+.numparams	2
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	234
+.lastlinedefined	238
+.numparams	2
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"display"
+.constant	k1	"remove"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+getupval      r3    u0
+call          r2     2     1
+loadnil       r2    r2
+setupval      r2    u0
+return        r0     1
+
