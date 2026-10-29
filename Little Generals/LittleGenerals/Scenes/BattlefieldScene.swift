@@ -1,6 +1,8 @@
 import SpriteKit
 
 public class BattlefieldScene: SKScene {
+    public var levelNumber: Int = 1
+
     // Terrain & Environment
     private var terrain: TerrainModel?
     private var terrainShapeNode: SKShapeNode?

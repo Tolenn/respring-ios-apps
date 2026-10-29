@@ -84,6 +84,14 @@ public class TrashTalkManager {
         return preambles.randomElement() ?? "Prepare for battle!"
     }
 
+    public func randomTaunt() -> String {
+        return randomPreamble()
+    }
+
+    public func randomCheer() -> String {
+        return randomWin()
+    }
+
     public func randomMiss() -> String {
         return missedShots.randomElement() ?? "Missed me!"
     }
