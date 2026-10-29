@@ -107,3 +107,4 @@ public class TrashTalkManager {
         return loseMessages.randomElement() ?? "Defeat!"
     }
 }
+

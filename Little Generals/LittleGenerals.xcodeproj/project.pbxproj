@@ -17,6 +17,9 @@
 		210000000000000000000008 /* BattlefieldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000000000000000000008 /* BattlefieldScene.swift */; };
 		210000000000000000000009 /* BattleOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000000000000000000009 /* BattleOverScene.swift */; };
 		21000000000000000000000A /* ArmoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11000000000000000000000A /* ArmoryScene.swift */; };
+		21000000000000000000000B /* TextureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11000000000000000000000B /* TextureHelper.swift */; };
+		21000000000000000000000C /* WeaponManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11000000000000000000000C /* WeaponManager.swift */; };
+		21000000000000000000000D /* TerrainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11000000000000000000000D /* TerrainModel.swift */; };
 		210000000000000000000063 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 110000000000000000000063 /* Resources */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,9 @@
 		110000000000000000000008 /* BattlefieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scenes/BattlefieldScene.swift"; sourceTree = "<group>"; };
 		110000000000000000000009 /* BattleOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scenes/BattleOverScene.swift"; sourceTree = "<group>"; };
 		11000000000000000000000A /* ArmoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scenes/ArmoryScene.swift"; sourceTree = "<group>"; };
+		11000000000000000000000B /* TextureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine/TextureHelper.swift"; sourceTree = "<group>"; };
+		11000000000000000000000C /* WeaponManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine/WeaponManager.swift"; sourceTree = "<group>"; };
+		11000000000000000000000D /* TerrainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Engine/TerrainModel.swift"; sourceTree = "<group>"; };
 		110000000000000000000063 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +76,9 @@
 				110000000000000000000003 /* SoundManager.swift */,
 				110000000000000000000004 /* TrashTalkManager.swift */,
 				110000000000000000000005 /* GameState.swift */,
+				11000000000000000000000B /* TextureHelper.swift */,
+				11000000000000000000000C /* WeaponManager.swift */,
+				11000000000000000000000D /* TerrainModel.swift */,
 				110000000000000000000006 /* SplashScene.swift */,
 				110000000000000000000007 /* CampaignMapScene.swift */,
 				110000000000000000000008 /* BattlefieldScene.swift */,
@@ -154,6 +163,9 @@
 				210000000000000000000003 /* SoundManager.swift in Sources */,
 				210000000000000000000004 /* TrashTalkManager.swift in Sources */,
 				210000000000000000000005 /* GameState.swift in Sources */,
+				21000000000000000000000B /* TextureHelper.swift in Sources */,
+				21000000000000000000000C /* WeaponManager.swift in Sources */,
+				21000000000000000000000D /* TerrainModel.swift in Sources */,
 				210000000000000000000006 /* SplashScene.swift in Sources */,
 				210000000000000000000007 /* CampaignMapScene.swift in Sources */,
 				210000000000000000000008 /* BattlefieldScene.swift in Sources */,

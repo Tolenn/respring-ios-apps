@@ -76,3 +76,4 @@ public class SplashScene: SKScene {
         view?.presentScene(mapScene, transition: transition)
     }
 }
+

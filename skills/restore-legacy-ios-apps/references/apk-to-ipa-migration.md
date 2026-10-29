@@ -108,3 +108,4 @@ To prevent installation errors across SideStore, AltStore, LiveContainer, and Tr
   - 269 compiled Lua scripts extracted from `resource.car`.
   - 749 genuine game textures, maps, sounds, and fonts extracted from APK.
   - Full SpriteKit & AVFoundation native reconstruction in Swift with authentic ballistic physics, elevation deformation, wind resistance, and dialog engine from `trashtalk.csv`.
+
