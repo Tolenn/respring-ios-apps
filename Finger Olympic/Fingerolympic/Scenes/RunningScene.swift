@@ -370,7 +370,7 @@ public class RunningScene: SKScene {
         let disc = GameState.shared.currentDiscipline
         GameState.shared.lastScore = elapsedTime
         GameState.shared.medalWon = (elapsedTime < 11.5) ? "Gold" : ((elapsedTime < 13.5) ? "Silver" : "Bronze")
-        DatabaseManager.shared.saveRecord(disciplineId: disc.rawValue, score: elapsedTime)
+        DatabaseManager.shared.addRecord(name: GameState.shared.selectedCountryName, score: elapsedTime, disciplineId: disc.rawValue)
         
         run(SKAction.sequence([
             SKAction.wait(forDuration: 1.8),

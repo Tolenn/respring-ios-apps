@@ -113,6 +113,10 @@ public final class DatabaseManager {
         sqlite3_finalize(stmt)
     }
     
+    public func saveRecord(disciplineId: Int, score: Double, name: String = "Player") {
+        addRecord(name: name, score: score, disciplineId: disciplineId)
+    }
+    
     public func isDisciplineUnlocked(disciplineId: Int) -> Bool {
         if disciplineId == 1 { return true }
         let query = "SELECT enabled FROM disciplines WHERE IDdiscipline = ? LIMIT 1;"
@@ -138,4 +142,3 @@ public final class DatabaseManager {
         sqlite3_finalize(stmt)
     }
 }
-

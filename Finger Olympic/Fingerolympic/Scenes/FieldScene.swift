@@ -226,7 +226,7 @@ public class FieldScene: SKScene {
         let disc = GameState.shared.currentDiscipline
         GameState.shared.lastScore = distanceMeters
         GameState.shared.medalWon = (distanceMeters > 70.0 || (!isJavelin && distanceMeters > 8.0)) ? "Gold" : "Silver"
-        DatabaseManager.shared.saveRecord(disciplineId: disc.rawValue, score: distanceMeters)
+        DatabaseManager.shared.addRecord(name: GameState.shared.selectedCountryName, score: distanceMeters, disciplineId: disc.rawValue)
         
         run(SKAction.sequence([
             SKAction.wait(forDuration: 2.0),
