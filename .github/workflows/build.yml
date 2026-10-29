@@ -62,9 +62,8 @@ jobs:
           cp -R "$APP_PATH" build/Payload_FO/
 
           if [ -d "build/Payload_FO/Fingerolympic.app/Resources" ]; then
-            echo "Flattening nested Resources into bundle root..."
+            echo "Copying nested Resources into bundle root while preserving Resources/..."
             cp -R "build/Payload_FO/Fingerolympic.app/Resources/"* "build/Payload_FO/Fingerolympic.app/"
-            rm -rf "build/Payload_FO/Fingerolympic.app/Resources"
           fi
 
           rm -rf "build/Payload_FO/Fingerolympic.app/FBConnect.bundle"
@@ -113,9 +112,8 @@ jobs:
           cp -R "$APP_PATH" build/Payload_LG/
 
           if [ -d "build/Payload_LG/LittleGenerals.app/Resources" ]; then
-            echo "Flattening nested Resources into bundle root..."
+            echo "Copying nested Resources into bundle root while preserving Resources/..."
             cp -R "build/Payload_LG/LittleGenerals.app/Resources/"* "build/Payload_LG/LittleGenerals.app/"
-            rm -rf "build/Payload_LG/LittleGenerals.app/Resources"
           fi
 
           rm -rf "build/Payload_LG/LittleGenerals.app/_CodeSignature"

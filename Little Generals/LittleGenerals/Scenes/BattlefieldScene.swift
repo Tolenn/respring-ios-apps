@@ -3,29 +3,30 @@ import SpriteKit
 public class BattlefieldScene: SKScene {
     public var levelNumber: Int = 1
 
-    private var terrain: TerrainModel!
-    private var terrainNode: SKShapeNode!
+    private var terrain: TerrainModel?
+    private var terrainNode: SKShapeNode?
     private var flairNodes: [SKNode] = []
 
     // Player Tank
-    private var playerTankNode: SKNode!
-    private var playerBodySprite: SKSpriteNode!
-    private var playerTurret: SKNode!
+    private var playerTankNode: SKNode?
+    private var playerBodySprite: SKSpriteNode?
+    private var playerTurret: SKNode?
     private var playerHealth: Double = 100
     private var playerMaxHealth: Double = 100
-    private var playerHealthBar: SKShapeNode!
-    private var playerHpText: SKLabelNode!
+    private var playerHealthBar: SKShapeNode?
+    private var playerHpText: SKLabelNode?
     private var playerShieldNode: SKShapeNode?
     private var hasPlayerShield: Bool = false
     private var playerFuel: CGFloat = 100.0
+    private var playerDriveFrame: Int = 1
 
     // AI Tank
-    private var aiTankNode: SKNode!
-    private var aiTurret: SKNode!
+    private var aiTankNode: SKNode?
+    private var aiTurret: SKNode?
     private var aiHealth: Double = 100
     private var aiMaxHealth: Double = 100
-    private var aiHealthBar: SKShapeNode!
-    private var aiHpText: SKLabelNode!
+    private var aiHealthBar: SKShapeNode?
+    private var aiHpText: SKLabelNode?
     private var aiShieldNode: SKShapeNode?
     private var hasAiShield: Bool = false
 
@@ -35,23 +36,22 @@ public class BattlefieldScene: SKScene {
     private var windSpeed: CGFloat = 0.0
 
     private var currentWeapon: WeaponType = .missile
-    private var weaponLabel: SKLabelNode!
+    private var weaponLabel: SKLabelNode?
     private var weaponIconSprite: SKSpriteNode?
-    private var angleLabel: SKLabelNode!
-    private var powerLabel: SKLabelNode!
-    private var windLabel: SKLabelNode!
+    private var angleLabel: SKLabelNode?
+    private var powerLabel: SKLabelNode?
+    private var windLabel: SKLabelNode?
     private var windsockNode: SKSpriteNode?
     private var fuelBarNode: SKShapeNode?
     private var fireBtnNode: SKSpriteNode?
 
     // Trajectory Arc (shotPath from battleControls.lua)
     private var trajectoryDots: [SKNode] = []
-    private var trajectoryContainer: SKNode!
-    private var playerDriveFrame: Int = 1
+    private var trajectoryContainer: SKNode?
 
     // Avatars & Speech
-    private var playerAvatarNode: SKNode!
-    private var aiAvatarNode: SKNode!
+    private var playerAvatarNode: SKNode?
+    private var aiAvatarNode: SKNode?
     private var activeSpeechNode: SKNode?
 
     private var isPlayerTurn: Bool = true
@@ -59,15 +59,16 @@ public class BattlefieldScene: SKScene {
 
     public override func didMove(to view: SKView) {
         backgroundColor = SKColor(red: 0.52, green: 0.78, blue: 0.95, alpha: 1.0)
-        terrain = TerrainModel(width: size.width, height: size.height)
+        let safeTerrain = TerrainModel(width: size.width, height: size.height)
+        self.terrain = safeTerrain
 
         setupParallaxBackdrop()
         setupBedrockBase()
         setupTerrainNode()
         setupTerrainFlairs()
-        setupTanks()
+        setupTopAvatarsHUD()      // Set up Avatars FIRST so speech bubbles always have targets
+        setupTanks()              // Set up Tanks after Avatars
         setupTrajectoryArc()
-        setupTopAvatarsHUD()
         setupBottomControlsHUD()
 
         startTurn()
@@ -134,7 +135,6 @@ public class BattlefieldScene: SKScene {
 
     // MARK: - 2. Bedrock Substrate & Terrain
     private func setupBedrockBase() {
-        // Tiled bedrock at base as discovered in battlefieldScene.lua
         let bedrockTex = TextureHelper.loadTexture(named: "bedrock.png", fallbackColor: SKColor(white: 0.15, alpha: 1.0), size: CGSize(width: 128, height: 80))
         let tileWidth: CGFloat = 120
         var xPos: CGFloat = 0
@@ -149,6 +149,7 @@ public class BattlefieldScene: SKScene {
     }
 
     private func setupTerrainNode() {
+        guard let terrain = terrain else { return }
         let ground = SKShapeNode(path: terrain.createPath())
         ground.fillColor = SKColor(red: 0.78, green: 0.52, blue: 0.28, alpha: 1.0)
         ground.strokeColor = SKColor(red: 0.55, green: 0.35, blue: 0.18, alpha: 1.0)
@@ -159,6 +160,7 @@ public class BattlefieldScene: SKScene {
     }
 
     private func setupTerrainFlairs() {
+        guard let terrain = terrain else { return }
         flairNodes.forEach { $0.removeFromParent() }
         flairNodes.removeAll()
 
@@ -182,8 +184,8 @@ public class BattlefieldScene: SKScene {
     }
 
     private func updateTerrainMesh() {
-        terrainNode.path = terrain.createPath()
-        // Reposition flairs on cratering
+        guard let terrain = terrain else { return }
+        terrainNode?.path = terrain.createPath()
         for flair in flairNodes {
             let x = flair.position.x
             let y = terrain.valueAt(x: x)
@@ -195,6 +197,7 @@ public class BattlefieldScene: SKScene {
 
     // MARK: - 3. Tanks Setup
     private func setupTanks() {
+        guard let terrain = terrain else { return }
         let selectedTank = GameState.shared.selectedTank
         playerMaxHealth = Double(selectedTank.armor)
         playerHealth = playerMaxHealth
@@ -202,71 +205,79 @@ public class BattlefieldScene: SKScene {
         // Player Tank
         let playerX: CGFloat = 140
         let playerY = terrain.valueAt(x: playerX)
-        playerTankNode = SKNode()
-        playerTankNode.position = CGPoint(x: playerX, y: playerY + 14)
-        playerTankNode.zRotation = terrain.slopeAt(x: playerX)
-        playerTankNode.zPosition = 5
-        addChild(playerTankNode)
+        let pNode = SKNode()
+        pNode.position = CGPoint(x: playerX, y: playerY + 14)
+        pNode.zRotation = terrain.slopeAt(x: playerX)
+        pNode.zPosition = 5
+        addChild(pNode)
+        self.playerTankNode = pNode
 
         let tankTex = TextureHelper.loadTexture(named: selectedTank.textureName, fallbackColor: SKColor(red: 0.25, green: 0.6, blue: 0.25, alpha: 1.0), size: CGSize(width: 55, height: 30))
-        playerBodySprite = SKSpriteNode(texture: tankTex, size: CGSize(width: 52, height: 26))
-        playerTankNode.addChild(playerBodySprite)
+        let pBody = SKSpriteNode(texture: tankTex, size: CGSize(width: 52, height: 26))
+        pNode.addChild(pBody)
+        self.playerBodySprite = pBody
 
-        playerTurret = SKNode()
-        playerTurret.position = CGPoint(x: 4, y: 6)
+        let pTurret = SKNode()
+        pTurret.position = CGPoint(x: 4, y: 6)
         let playerBarrel = SKShapeNode(rectOf: CGSize(width: 26, height: 5), cornerRadius: 2)
         playerBarrel.fillColor = SKColor(white: 0.2, alpha: 1.0)
         playerBarrel.strokeColor = .clear
         playerBarrel.position = CGPoint(x: 13, y: 0)
-        playerTurret.addChild(playerBarrel)
-        playerTankNode.addChild(playerTurret)
+        pTurret.addChild(playerBarrel)
+        pNode.addChild(pTurret)
+        self.playerTurret = pTurret
         updatePlayerTurretAngle()
 
-        playerHealthBar = SKShapeNode(rectOf: CGSize(width: 52, height: 6), cornerRadius: 2)
-        playerHealthBar.fillColor = .green
-        playerHealthBar.strokeColor = .black
-        playerHealthBar.position = CGPoint(x: 0, y: 28)
-        playerTankNode.addChild(playerHealthBar)
+        let pHealthBar = SKShapeNode(rectOf: CGSize(width: 52, height: 6), cornerRadius: 2)
+        pHealthBar.fillColor = .green
+        pHealthBar.strokeColor = .black
+        pHealthBar.position = CGPoint(x: 0, y: 28)
+        pNode.addChild(pHealthBar)
+        self.playerHealthBar = pHealthBar
 
         // AI Enemy Tank
         let aiX: CGFloat = size.width - 140
         let aiY = terrain.valueAt(x: aiX)
-        aiTankNode = SKNode()
-        aiTankNode.position = CGPoint(x: aiX, y: aiY + 14)
-        aiTankNode.zRotation = terrain.slopeAt(x: aiX)
-        aiTankNode.zPosition = 5
-        addChild(aiTankNode)
+        let aNode = SKNode()
+        aNode.position = CGPoint(x: aiX, y: aiY + 14)
+        aNode.zRotation = terrain.slopeAt(x: aiX)
+        aNode.zPosition = 5
+        addChild(aNode)
+        self.aiTankNode = aNode
 
         aiMaxHealth = 95.0 + Double(levelNumber) * 15.0
         aiHealth = aiMaxHealth
 
         let aiTex = TextureHelper.loadTexture(named: "hummera.png", fallbackColor: SKColor(red: 0.8, green: 0.25, blue: 0.2, alpha: 1.0), size: CGSize(width: 52, height: 26))
         let aiBody = SKSpriteNode(texture: aiTex, size: CGSize(width: 52, height: 26))
-        aiTankNode.addChild(aiBody)
+        aNode.addChild(aiBody)
 
-        aiTurret = SKNode()
-        aiTurret.position = CGPoint(x: -4, y: 6)
+        let aTurret = SKNode()
+        aTurret.position = CGPoint(x: -4, y: 6)
         let aiBarrel = SKShapeNode(rectOf: CGSize(width: 26, height: 5), cornerRadius: 2)
         aiBarrel.fillColor = SKColor(white: 0.2, alpha: 1.0)
         aiBarrel.strokeColor = .clear
         aiBarrel.position = CGPoint(x: -13, y: 0)
-        aiTurret.addChild(aiBarrel)
-        aiTankNode.addChild(aiTurret)
+        aTurret.addChild(aiBarrel)
+        aNode.addChild(aTurret)
+        self.aiTurret = aTurret
 
-        aiHealthBar = SKShapeNode(rectOf: CGSize(width: 52, height: 6), cornerRadius: 2)
-        aiHealthBar.fillColor = .red
-        aiHealthBar.strokeColor = .black
-        aiHealthBar.position = CGPoint(x: 0, y: 28)
-        aiTankNode.addChild(aiHealthBar)
+        let aHealthBar = SKShapeNode(rectOf: CGSize(width: 52, height: 6), cornerRadius: 2)
+        aHealthBar.fillColor = .red
+        aHealthBar.strokeColor = .black
+        aHealthBar.position = CGPoint(x: 0, y: 28)
+        aNode.addChild(aHealthBar)
+        self.aiHealthBar = aHealthBar
 
         showSpeech(TrashTalkManager.shared.randomPreamble(), fromPlayer: false)
     }
 
     // MARK: - 4. Live Ballistic Aiming Arc (shotPath)
     private func setupTrajectoryArc() {
-        trajectoryContainer = SKNode()
-        trajectoryContainer.zPosition = 8
-        addChild(trajectoryContainer)
+        let container = SKNode()
+        container.zPosition = 8
+        addChild(container)
+        self.trajectoryContainer = container
 
         let largeTex = TextureHelper.loadTexture(named: "largecircle.png", fallbackColor: .white, size: CGSize(width: 10, height: 10))
         let smallTex = TextureHelper.loadTexture(named: "smallcircle.png", fallbackColor: .white, size: CGSize(width: 6, height: 6))
@@ -277,27 +288,27 @@ public class BattlefieldScene: SKScene {
             sprite.color = .yellow
             sprite.colorBlendFactor = 0.5
             trajectoryDots.append(sprite)
-            trajectoryContainer.addChild(sprite)
+            container.addChild(sprite)
         }
         updateTrajectoryArc()
     }
 
     private func updateTrajectoryArc() {
+        guard let pNode = playerTankNode, let container = trajectoryContainer else { return }
         guard isPlayerTurn, !isProjectileActive else {
-            trajectoryContainer.isHidden = true
+            container.isHidden = true
             return
         }
-        trajectoryContainer.isHidden = false
+        container.isHidden = false
 
         let rad = aimAngle * .pi / 180.0
         let speed = firePower * 10.5
         let vx = cos(rad) * speed
         let vy = sin(rad) * speed
 
-        let startX = playerTankNode.position.x + 22
-        let startY = playerTankNode.position.y + 12
+        let startX = pNode.position.x + 22
+        let startY = pNode.position.y + 12
 
-        // Formula from battleControls.lua: stepX = vx * t, stepY = vy * t - 5 * t * t
         for (i, dot) in trajectoryDots.enumerated() {
             let t = CGFloat(i + 1) * 0.12
             let dx = vx * t + 0.5 * (windSpeed * 12.0) * t * t
@@ -313,20 +324,21 @@ public class BattlefieldScene: SKScene {
     // MARK: - 5. Top Avatars & Trash Talk HUD
     private func setupTopAvatarsHUD() {
         // Player General (Top-Left)
-        playerAvatarNode = SKNode()
-        playerAvatarNode.position = CGPoint(x: 55, y: size.height - 45)
-        playerAvatarNode.zPosition = 25
-        addChild(playerAvatarNode)
+        let pNode = SKNode()
+        pNode.position = CGPoint(x: 55, y: size.height - 45)
+        pNode.zPosition = 25
+        addChild(pNode)
+        self.playerAvatarNode = pNode
 
         let pFrame = SKShapeNode(circleOfRadius: 26)
         pFrame.fillColor = SKColor(red: 0.15, green: 0.35, blue: 0.65, alpha: 0.9)
         pFrame.strokeColor = SKColor(red: 0.9, green: 0.85, blue: 0.3, alpha: 1.0)
         pFrame.lineWidth = 2.5
-        playerAvatarNode.addChild(pFrame)
+        pNode.addChild(pFrame)
 
         let pPortraitTex = TextureHelper.loadTexture(named: "gensilhouette.png", fallbackColor: .white, size: CGSize(width: 36, height: 36))
         let pPortrait = SKSpriteNode(texture: pPortraitTex, size: CGSize(width: 38, height: 38))
-        playerAvatarNode.addChild(pPortrait)
+        pNode.addChild(pPortrait)
 
         let pName = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         pName.text = "GEN. PLAYER"
@@ -334,32 +346,34 @@ public class BattlefieldScene: SKScene {
         pName.fontColor = .white
         pName.position = CGPoint(x: 35, y: 10)
         pName.horizontalAlignmentMode = .left
-        playerAvatarNode.addChild(pName)
+        pNode.addChild(pName)
 
-        playerHpText = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        playerHpText.text = "HP: \(Int(playerHealth))/\(Int(playerMaxHealth))"
-        playerHpText.fontSize = 12
-        playerHpText.fontColor = .green
-        playerHpText.position = CGPoint(x: 35, y: -8)
-        playerHpText.horizontalAlignmentMode = .left
-        playerAvatarNode.addChild(playerHpText)
+        let pHP = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        pHP.text = "HP: \(Int(playerHealth))/\(Int(playerMaxHealth))"
+        pHP.fontSize = 12
+        pHP.fontColor = .green
+        pHP.position = CGPoint(x: 35, y: -8)
+        pHP.horizontalAlignmentMode = .left
+        pNode.addChild(pHP)
+        self.playerHpText = pHP
 
         // Enemy OPFOR General (Top-Right)
-        aiAvatarNode = SKNode()
-        aiAvatarNode.position = CGPoint(x: size.width - 55, y: size.height - 45)
-        aiAvatarNode.zPosition = 25
-        addChild(aiAvatarNode)
+        let aNode = SKNode()
+        aNode.position = CGPoint(x: size.width - 55, y: size.height - 45)
+        aNode.zPosition = 25
+        addChild(aNode)
+        self.aiAvatarNode = aNode
 
         let aiFrame = SKShapeNode(circleOfRadius: 26)
         aiFrame.fillColor = SKColor(red: 0.65, green: 0.2, blue: 0.15, alpha: 0.9)
         aiFrame.strokeColor = SKColor(red: 0.95, green: 0.85, blue: 0.3, alpha: 1.0)
         aiFrame.lineWidth = 2.5
-        aiAvatarNode.addChild(aiFrame)
+        aNode.addChild(aiFrame)
 
         let aiPortraitTex = TextureHelper.loadTexture(named: "gensilhouette.png", fallbackColor: .red, size: CGSize(width: 36, height: 36))
         let aiPortrait = SKSpriteNode(texture: aiPortraitTex, size: CGSize(width: 38, height: 38))
         aiPortrait.xScale = -1
-        aiAvatarNode.addChild(aiPortrait)
+        aNode.addChild(aiPortrait)
 
         let aiName = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         aiName.text = "OPFOR GEN"
@@ -367,15 +381,16 @@ public class BattlefieldScene: SKScene {
         aiName.fontColor = .white
         aiName.position = CGPoint(x: -35, y: 10)
         aiName.horizontalAlignmentMode = .right
-        aiAvatarNode.addChild(aiName)
+        aNode.addChild(aiName)
 
-        aiHpText = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        aiHpText.text = "HP: \(Int(aiHealth))/\(Int(aiMaxHealth))"
-        aiHpText.fontSize = 12
-        aiHpText.fontColor = .red
-        aiHpText.position = CGPoint(x: -35, y: -8)
-        aiHpText.horizontalAlignmentMode = .right
-        aiAvatarNode.addChild(aiHpText)
+        let aHP = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        aHP.text = "HP: \(Int(aiHealth))/\(Int(aiMaxHealth))"
+        aHP.fontSize = 12
+        aHP.fontColor = .red
+        aHP.position = CGPoint(x: -35, y: -8)
+        aHP.horizontalAlignmentMode = .right
+        aNode.addChild(aHP)
+        self.aiHpText = aHP
     }
 
     private func showSpeech(_ text: String, fromPlayer: Bool) {
@@ -397,11 +412,13 @@ public class BattlefieldScene: SKScene {
         quote.position = CGPoint(x: 0, y: 2)
         bubbleGroup.addChild(quote)
 
-        if fromPlayer {
-            bubbleGroup.position = CGPoint(x: playerAvatarNode.position.x + 130, y: playerAvatarNode.position.y - 12)
-        } else {
-            bubbleGroup.position = CGPoint(x: aiAvatarNode.position.x - 130, y: aiAvatarNode.position.y - 12)
-        }
+        // Safe anchor lookup with reliable fallbacks
+        let defaultPlayerAnchor = CGPoint(x: 55, y: size.height - 45)
+        let defaultAiAnchor = CGPoint(x: size.width - 55, y: size.height - 45)
+        let anchor = fromPlayer ? (playerAvatarNode?.position ?? defaultPlayerAnchor) : (aiAvatarNode?.position ?? defaultAiAnchor)
+        let dx: CGFloat = fromPlayer ? 130 : -130
+        bubbleGroup.position = CGPoint(x: anchor.x + dx, y: anchor.y - 12)
+
         bubbleGroup.zPosition = 35
         addChild(bubbleGroup)
         self.activeSpeechNode = bubbleGroup
@@ -415,14 +432,12 @@ public class BattlefieldScene: SKScene {
 
     // MARK: - 6. Bottom Controls HUD
     private func setupBottomControlsHUD() {
-        // Metallic Controlbar Back
         let barTex = TextureHelper.loadTexture(named: "controlbar_back.png", fallbackColor: SKColor(white: 0.12, alpha: 0.95), size: CGSize(width: size.width, height: 78))
         let controlBar = SKSpriteNode(texture: barTex, size: CGSize(width: size.width, height: 78))
         controlBar.position = CGPoint(x: size.width / 2, y: 39)
         controlBar.zPosition = 20
         addChild(controlBar)
 
-        // Fuel Tank Gauge (gastank_back.png / gastank_fill.png)
         let gasIconTex = TextureHelper.loadTexture(named: "gas_icon.png", fallbackColor: .red, size: CGSize(width: 20, height: 20))
         let gasIcon = SKSpriteNode(texture: gasIconTex, size: CGSize(width: 20, height: 20))
         gasIcon.position = CGPoint(x: 25, y: 56)
@@ -451,24 +466,26 @@ public class BattlefieldScene: SKScene {
         // Angle Steppers
         createSmallButton(name: "angle_down", label: "▼", pos: CGPoint(x: 135, y: 39))
         createSmallButton(name: "angle_up", label: "▲", pos: CGPoint(x: 215, y: 39))
-        angleLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        angleLabel.fontSize = 15
-        angleLabel.fontColor = .white
-        angleLabel.position = CGPoint(x: 175, y: 32)
-        angleLabel.zPosition = 21
-        addChild(angleLabel)
+        let aLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        aLabel.fontSize = 15
+        aLabel.fontColor = .white
+        aLabel.position = CGPoint(x: 175, y: 32)
+        aLabel.zPosition = 21
+        addChild(aLabel)
+        self.angleLabel = aLabel
 
         // Power Steppers
         createSmallButton(name: "power_down", label: "-", pos: CGPoint(x: 265, y: 39))
         createSmallButton(name: "power_up", label: "+", pos: CGPoint(x: 345, y: 39))
-        powerLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        powerLabel.fontSize = 15
-        powerLabel.fontColor = .white
-        powerLabel.position = CGPoint(x: 305, y: 32)
-        powerLabel.zPosition = 21
-        addChild(powerLabel)
+        let pLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        pLabel.fontSize = 15
+        pLabel.fontColor = .white
+        pLabel.position = CGPoint(x: 305, y: 32)
+        pLabel.zPosition = 21
+        addChild(pLabel)
+        self.powerLabel = pLabel
 
-        // Weapon Selection Button (weapon_normal_btn.png)
+        // Weapon Selection Button
         let weaponBtnTex = TextureHelper.loadTexture(named: "weapon_normal_btn.png", fallbackColor: SKColor(red: 0.25, green: 0.45, blue: 0.75, alpha: 1.0), size: CGSize(width: 140, height: 42))
         let weaponBtn = SKSpriteNode(texture: weaponBtnTex, size: CGSize(width: 140, height: 42))
         weaponBtn.name = "weapon_cycle"
@@ -484,14 +501,15 @@ public class BattlefieldScene: SKScene {
         addChild(wIcon)
         self.weaponIconSprite = wIcon
 
-        weaponLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        weaponLabel.name = "weapon_cycle"
-        weaponLabel.fontSize = 12
-        weaponLabel.fontColor = .white
-        weaponLabel.verticalAlignmentMode = .center
-        weaponLabel.position = CGPoint(x: 460, y: 39)
-        weaponLabel.zPosition = 22
-        addChild(weaponLabel)
+        let wLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        wLabel.name = "weapon_cycle"
+        wLabel.fontSize = 12
+        wLabel.fontColor = .white
+        wLabel.verticalAlignmentMode = .center
+        wLabel.position = CGPoint(x: 460, y: 39)
+        wLabel.zPosition = 22
+        addChild(wLabel)
+        self.weaponLabel = wLabel
 
         // Wind Indicator
         let windsockTex = TextureHelper.loadTexture(named: "windsock.png", fallbackColor: .orange, size: CGSize(width: 24, height: 18))
@@ -501,14 +519,15 @@ public class BattlefieldScene: SKScene {
         addChild(sock)
         self.windsockNode = sock
 
-        windLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        windLabel.fontSize = 13
-        windLabel.fontColor = SKColor(red: 0.95, green: 0.95, blue: 0.3, alpha: 1.0)
-        windLabel.position = CGPoint(x: 605, y: 33)
-        windLabel.zPosition = 21
-        addChild(windLabel)
+        let wiLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        wiLabel.fontSize = 13
+        wiLabel.fontColor = SKColor(red: 0.95, green: 0.95, blue: 0.3, alpha: 1.0)
+        wiLabel.position = CGPoint(x: 605, y: 33)
+        wiLabel.zPosition = 21
+        addChild(wiLabel)
+        self.windLabel = wiLabel
 
-        // Authentic Big Red Fire Button (fire_normal_btn.png)
+        // Authentic Big Red Fire Button
         let fireTex = TextureHelper.loadTexture(named: "fire_normal_btn.png", fallbackColor: SKColor(red: 0.92, green: 0.22, blue: 0.15, alpha: 1.0), size: CGSize(width: 58, height: 58))
         let fireBtn = SKSpriteNode(texture: fireTex, size: CGSize(width: 56, height: 56))
         fireBtn.name = "fire_btn"
@@ -542,11 +561,11 @@ public class BattlefieldScene: SKScene {
     }
 
     private func updateHUD() {
-        angleLabel.text = "\(Int(aimAngle))°"
-        powerLabel.text = "\(Int(firePower))%"
-        weaponLabel.text = currentWeapon.rawValue
+        angleLabel?.text = "\(Int(aimAngle))°"
+        powerLabel?.text = "\(Int(firePower))%"
+        weaponLabel?.text = currentWeapon.rawValue
         let dir = windSpeed >= 0 ? "▶" : "◀"
-        windLabel.text = "\(dir) \(String(format: "%.1f", abs(windSpeed)))"
+        windLabel?.text = "\(dir) \(String(format: "%.1f", abs(windSpeed)))"
 
         windsockNode?.xScale = windSpeed >= 0 ? 1.0 : -1.0
         fuelBarNode?.xScale = max(0, playerFuel / 100.0)
@@ -558,7 +577,7 @@ public class BattlefieldScene: SKScene {
 
     private func updatePlayerTurretAngle() {
         let rad = aimAngle * .pi / 180.0
-        playerTurret.zRotation = rad
+        playerTurret?.zRotation = rad
         updateTrajectoryArc()
     }
 
@@ -570,7 +589,7 @@ public class BattlefieldScene: SKScene {
         if isPlayerTurn {
             updateTrajectoryArc()
         } else {
-            trajectoryContainer.isHidden = true
+            trajectoryContainer?.isHidden = true
             runAITurn()
         }
     }
@@ -628,11 +647,12 @@ public class BattlefieldScene: SKScene {
     }
 
     private func drivePlayerTank(dx: CGFloat) {
+        guard let terrain = terrain, let pNode = playerTankNode else { return }
         guard playerFuel > 0 else {
             SoundManager.shared.playSound("carNoStart.mp3")
             return
         }
-        let newX = max(30, min(size.width * 0.45, playerTankNode.position.x + dx))
+        let newX = max(30, min(size.width * 0.45, pNode.position.x + dx))
         let newY = terrain.valueAt(x: newX)
         let newRot = terrain.slopeAt(x: newX)
 
@@ -640,12 +660,11 @@ public class BattlefieldScene: SKScene {
         updateHUD()
         SoundManager.shared.playSound("treads.wav")
 
-        // Animated tank tread cycling
         playerDriveFrame = (playerDriveFrame % 4) + 1
         let driveTexName = "blue_tankdrive\(playerDriveFrame).png"
-        playerBodySprite.texture = TextureHelper.loadTexture(named: driveTexName, fallbackColor: .green, size: CGSize(width: 52, height: 26))
+        playerBodySprite?.texture = TextureHelper.loadTexture(named: driveTexName, fallbackColor: .green, size: CGSize(width: 52, height: 26))
 
-        playerTankNode.run(SKAction.group([
+        pNode.run(SKAction.group([
             SKAction.move(to: CGPoint(x: newX, y: newY + 14), duration: 0.15),
             SKAction.rotate(toAngle: newRot, duration: 0.15)
         ])) { [weak self] in
@@ -663,9 +682,10 @@ public class BattlefieldScene: SKScene {
     }
 
     private func firePlayerWeapon() {
+        guard let pNode = playerTankNode else { return }
         guard !isProjectileActive else { return }
         isProjectileActive = true
-        trajectoryContainer.isHidden = true
+        trajectoryContainer?.isHidden = true
 
         if currentWeapon == .shield {
             activateShield(forPlayer: true)
@@ -682,7 +702,7 @@ public class BattlefieldScene: SKScene {
         let vx = cos(rad) * speed
         let vy = sin(rad) * speed
 
-        let spawnPos = CGPoint(x: playerTankNode.position.x + 22, y: playerTankNode.position.y + 12)
+        let spawnPos = CGPoint(x: pNode.position.x + 22, y: pNode.position.y + 12)
         animateMuzzleFlash(at: spawnPos, zRotation: rad, isPlayer: true)
         spawnProjectile(weapon: currentWeapon, from: spawnPos, velocity: CGVector(dx: vx, dy: vy), isPlayer: true)
     }
@@ -716,23 +736,24 @@ public class BattlefieldScene: SKScene {
     private func runAITurn() {
         showSpeech("Calculating firing solution...", fromPlayer: false)
 
-        let distance = aiTankNode.position.x - playerTankNode.position.x
+        guard let pNode = playerTankNode, let aNode = aiTankNode else { return }
+        let distance = aNode.position.x - pNode.position.x
         let estimatedAngle: CGFloat = CGFloat.random(in: 40...52)
         let rad = estimatedAngle * .pi / 180.0
         let targetSpeed = sqrt((distance * 480.0) / sin(2 * rad))
         let inaccuracy = CGFloat.random(in: -20...20) / CGFloat(levelNumber)
         let aiPower = max(20, min(100, (targetSpeed / 10.5) + inaccuracy))
 
-        aiTurret.zRotation = -rad
+        aiTurret?.zRotation = -rad
 
         run(SKAction.wait(forDuration: 1.4)) { [weak self] in
-            guard let self = self else { return }
+            guard let self = self, let aNode = self.aiTankNode else { return }
             let aiWeapon = WeaponType.missile
             SoundManager.shared.playSound(aiWeapon.launchSound)
 
             let vx = -cos(rad) * (aiPower * 10.5)
             let vy = sin(rad) * (aiPower * 10.5)
-            let spawnPos = CGPoint(x: self.aiTankNode.position.x - 22, y: self.aiTankNode.position.y + 12)
+            let spawnPos = CGPoint(x: aNode.position.x - 22, y: aNode.position.y + 12)
             self.animateMuzzleFlash(at: spawnPos, zRotation: -rad + .pi, isPlayer: false)
             self.spawnProjectile(weapon: aiWeapon, from: spawnPos, velocity: CGVector(dx: vx, dy: vy), isPlayer: false)
         }
@@ -756,7 +777,7 @@ public class BattlefieldScene: SKScene {
         var bouncesRemaining = weapon == .grenade ? 2 : 0
 
         let flyAction = SKAction.customAction(withDuration: 4.5) { [weak self] _, _ in
-            guard let self = self else { return }
+            guard let self = self, let terrain = self.terrain else { return }
             curVx += self.windSpeed * 12.0 * dt
             curVy += gravity * dt
             currentPos.x += curVx * dt
@@ -783,7 +804,7 @@ public class BattlefieldScene: SKScene {
             }
 
             // Terrain Collision check
-            let groundY = self.terrain.valueAt(x: currentPos.x)
+            let groundY = terrain.valueAt(x: currentPos.x)
             let targetNode = isPlayer ? self.aiTankNode : self.playerTankNode
             let hitTarget = targetNode != nil && targetNode!.position.distance(to: currentPos) < 28
 
@@ -824,17 +845,17 @@ public class BattlefieldScene: SKScene {
             let dt: CGFloat = 1.0 / 60.0
 
             sub.run(SKAction.customAction(withDuration: 3.0) { [weak self] _, _ in
-                guard let self = self else { return }
+                guard let self = self, let terrain = self.terrain, let aNode = self.aiTankNode else { return }
                 vy -= 480.0 * dt
                 cPos.x += vx * dt
                 cPos.y += vy * dt
                 sub.position = cPos
 
-                let gY = self.terrain.valueAt(x: cPos.x)
-                if cPos.y <= gY || self.aiTankNode.position.distance(to: cPos) < 26 {
+                let gY = terrain.valueAt(x: cPos.x)
+                if cPos.y <= gY || aNode.position.distance(to: cPos) < 26 {
                     sub.removeAllActions()
                     sub.removeFromParent()
-                    self.handleImpact(weapon: .babyMissile, at: cPos, hitTank: self.aiTankNode.position.distance(to: cPos) < 26, isPlayerAttacker: true)
+                    self.handleImpact(weapon: .babyMissile, at: cPos, hitTank: aNode.position.distance(to: cPos) < 26, isPlayerAttacker: true)
                 }
             })
         }
@@ -845,7 +866,7 @@ public class BattlefieldScene: SKScene {
 
         // Terrain cratering deformation
         let craterRadius = weapon.blastRadius
-        terrain.applyCrater(center: pos, radius: craterRadius)
+        terrain?.applyCrater(center: pos, radius: craterRadius)
         updateTerrainMesh()
 
         // Explosion effect
@@ -880,13 +901,13 @@ public class BattlefieldScene: SKScene {
             if isPlayerAttacker && hasAiShield {
                 hasAiShield = false
                 aiShieldNode?.removeFromParent()
-                showDamageText("BLOCKED!", at: aiTankNode.position, color: .cyan)
+                if let aNode = aiTankNode { showDamageText("BLOCKED!", at: aNode.position, color: .cyan) }
                 SoundManager.shared.playSound("shield_collision.mp3")
                 rawDamage = 0
             } else if !isPlayerAttacker && hasPlayerShield {
                 hasPlayerShield = false
                 playerShieldNode?.removeFromParent()
-                showDamageText("BLOCKED!", at: playerTankNode.position, color: .cyan)
+                if let pNode = playerTankNode { showDamageText("BLOCKED!", at: pNode.position, color: .cyan) }
                 SoundManager.shared.playSound("shield_collision.mp3")
                 rawDamage = 0
             }
@@ -894,16 +915,20 @@ public class BattlefieldScene: SKScene {
             if rawDamage > 0 {
                 if isPlayerAttacker {
                     aiHealth = max(0, aiHealth - rawDamage)
-                    aiHealthBar.xScale = CGFloat(aiHealth / aiMaxHealth)
-                    aiHpText.text = "HP: \(Int(aiHealth))/\(Int(aiMaxHealth))"
-                    showDamageText("-\(Int(rawDamage))", at: aiTankNode.position, color: .red)
-                    let talk = TrashTalkManager.shared.randomHit(currentHealth: aiHealth, maxHealth: aiMaxHealth)
-                    showSpeech(talk, fromPlayer: false)
+                    aiHealthBar?.xScale = CGFloat(aiHealth / aiMaxHealth)
+                    aiHpText?.text = "HP: \(Int(aiHealth))/\(Int(aiMaxHealth))"
+                    if let aNode = aiTankNode {
+                        showDamageText("-\(Int(rawDamage))", at: aNode.position, color: .red)
+                        let talk = TrashTalkManager.shared.randomHit(currentHealth: aiHealth, maxHealth: aiMaxHealth)
+                        showSpeech(talk, fromPlayer: false)
+                    }
                 } else {
                     playerHealth = max(0, playerHealth - rawDamage)
-                    playerHealthBar.xScale = CGFloat(playerHealth / playerMaxHealth)
-                    playerHpText.text = "HP: \(Int(playerHealth))/\(Int(playerMaxHealth))"
-                    showDamageText("-\(Int(rawDamage))", at: playerTankNode.position, color: .red)
+                    playerHealthBar?.xScale = CGFloat(playerHealth / playerMaxHealth)
+                    playerHpText?.text = "HP: \(Int(playerHealth))/\(Int(playerMaxHealth))"
+                    if let pNode = playerTankNode {
+                        showDamageText("-\(Int(rawDamage))", at: pNode.position, color: .red)
+                    }
                     showSpeech("Critical damage sustained!", fromPlayer: true)
                 }
             }
@@ -914,23 +939,36 @@ public class BattlefieldScene: SKScene {
         }
 
         // Adjust tanks to new elevations
-        let pY = terrain.valueAt(x: playerTankNode.position.x)
-        playerTankNode.position.y = pY + 14
-        playerTankNode.zRotation = terrain.slopeAt(x: playerTankNode.position.x)
-
-        let aY = terrain.valueAt(x: aiTankNode.position.x)
-        aiTankNode.position.y = aY + 14
-        aiTankNode.zRotation = terrain.slopeAt(x: aiTankNode.position.x)
+        if let terrain = terrain {
+            if let pNode = playerTankNode {
+                let pY = terrain.valueAt(x: pNode.position.x)
+                pNode.position.y = pY + 14
+                pNode.zRotation = terrain.slopeAt(x: pNode.position.x)
+            }
+            if let aNode = aiTankNode {
+                let aY = terrain.valueAt(x: aNode.position.x)
+                aNode.position.y = aY + 14
+                aNode.zRotation = terrain.slopeAt(x: aNode.position.x)
+            }
+        }
 
         // Check Victory / Defeat
         run(SKAction.wait(forDuration: 1.5)) { [weak self] in
             guard let self = self else { return }
             if self.aiHealth <= 0 {
-                self.animateTankDestruction(tankNode: self.aiTankNode) {
+                if let aNode = self.aiTankNode {
+                    self.animateTankDestruction(tankNode: aNode) {
+                        self.endBattle(victory: true)
+                    }
+                } else {
                     self.endBattle(victory: true)
                 }
             } else if self.playerHealth <= 0 {
-                self.animateTankDestruction(tankNode: self.playerTankNode) {
+                if let pNode = self.playerTankNode {
+                    self.animateTankDestruction(tankNode: pNode) {
+                        self.endBattle(victory: false)
+                    }
+                } else {
                     self.endBattle(victory: false)
                 }
             } else {
