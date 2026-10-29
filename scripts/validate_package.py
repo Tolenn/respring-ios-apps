@@ -13,13 +13,14 @@ def validate(root=ROOT):
     errors = []
     skill = root / 'skills/restore-legacy-ios-apps'
     required = ['SKILL.md', 'agents/openai.yaml', 'assets/investigation-record.md',
-                'references/source-evidence.json', 'references/sources.md']
+                'references/source-evidence.json', 'references/sources.md',
+                'references/apk-to-ipa-migration.md']
     for name in required:
         if not (skill / name).is_file():
             errors.append('Missing: ' + name)
     if errors:
         return errors
-    text = (skill / 'SKILL.md').read_text()
+    text = (skill / 'SKILL.md').read_text(encoding='utf-8')
     match = re.match(r'^---\n(.*?)\n---\n', text, re.S)
     if not match:
         errors.append('Missing skill frontmatter')
@@ -30,7 +31,10 @@ def validate(root=ROOT):
     for path in root.rglob('*'):
         if path.suffix not in ('.md', '.json', '.yaml'):
             continue
-        text = path.read_text()
+        # Skip external third-party reverse-skill modules with external relative link trees
+        if any(part in ('reverse-engineering', 'mobile-reverse', '.git') for part in path.parts):
+            continue
+        text = path.read_text(encoding='utf-8', errors='ignore')
         if re.search(r'/Users/|/home/[^/]+/|BEGIN (?:RSA |OPENSSH )?PRIVATE KEY', text):
             errors.append('Private path/key marker: ' + str(path.relative_to(root)))
         if re.search(r'\bTODO\b|\[INSERT\b', text):
@@ -38,13 +42,13 @@ def validate(root=ROOT):
         if path.suffix != '.md':
             continue
         for target in re.findall(r'\]\(([^)]+)\)', text):
-            if '://' in target or target.startswith('#'):
+            if '://' in target or target.startswith('#') or target.startswith('mailto:'):
                 continue
             target = unquote(target.split('#')[0].strip('<>'))
             resolved = (path.parent / target).resolve()
             if root.resolve() not in resolved.parents or not resolved.exists():
                 errors.append('Broken/escaping link: ' + target + ' in ' + str(path.relative_to(root)))
-    evidence = json.loads((skill / 'references/source-evidence.json').read_text())
+    evidence = json.loads((skill / 'references/source-evidence.json').read_text(encoding='utf-8'))
     for repo in evidence['repositories']:
         if not re.fullmatch(r'[0-9a-f]{40}', repo['commit']):
             errors.append('Invalid source commit: ' + repo['app'])

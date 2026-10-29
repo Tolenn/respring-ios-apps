@@ -22,7 +22,8 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode.app
           xcodebuild -version
 
-      - name: Revert Legacy CgBI PNG Optimizations
+      # --- 1. Finger Olympic Pipeline ---
+      - name: Revert Legacy CgBI PNG Optimizations (Finger Olympic)
         run: |
           echo "Uncrushing legacy Apple CgBI-compressed PNGs to standard RGBA format..."
           COUNT=0
@@ -37,87 +38,148 @@ jobs:
           done
           echo "Successfully uncrushed $COUNT legacy textures to standard RGBA format."
 
-      - name: Build Xcode Project
+      - name: Build Finger Olympic Xcode Project
         run: |
           xcodebuild -project "Finger Olympic/Fingerolympic.xcodeproj" \
                      -scheme Fingerolympic \
                      -destination 'generic/platform=iOS' \
                      -configuration Release \
-                     -derivedDataPath build/DerivedData \
+                     -derivedDataPath build/DerivedData_FO \
                      CODE_SIGN_IDENTITY="" \
                      CODE_SIGNING_REQUIRED=NO \
                      CODE_SIGNING_ALLOWED=NO \
                      build
 
-      - name: Package and Sign IPA
+      - name: Package and Sign Finger Olympic IPA
         run: |
-          mkdir -p build/Payload
-          APP_PATH=$(find build/DerivedData -name "Fingerolympic.app" -type d | head -n 1)
+          mkdir -p build/Payload_FO
+          APP_PATH=$(find build/DerivedData_FO -name "Fingerolympic.app" -type d | head -n 1)
           if [ -z "$APP_PATH" ]; then
             echo "Error: Fingerolympic.app not found!"
             exit 1
           fi
           echo "Found compiled app at: $APP_PATH"
-          cp -R "$APP_PATH" build/Payload/
+          cp -R "$APP_PATH" build/Payload_FO/
 
-          # 1. Flatten Resources folder if present into the root of .app
-          # iOS expects icons, databases, and assets to sit at the root of the .app bundle
-          if [ -d "build/Payload/Fingerolympic.app/Resources" ]; then
+          if [ -d "build/Payload_FO/Fingerolympic.app/Resources" ]; then
             echo "Flattening nested Resources into bundle root..."
-            cp -R "build/Payload/Fingerolympic.app/Resources/"* "build/Payload/Fingerolympic.app/"
-            rm -rf "build/Payload/Fingerolympic.app/Resources"
+            cp -R "build/Payload_FO/Fingerolympic.app/Resources/"* "build/Payload_FO/Fingerolympic.app/"
+            rm -rf "build/Payload_FO/Fingerolympic.app/Resources"
           fi
 
-          # 2. Clean out any legacy or conflicting files
-          rm -rf "build/Payload/Fingerolympic.app/FBConnect.bundle"
-          rm -f "build/Payload/Fingerolympic.app/ResourceRules.plist"
-          rm -rf "build/Payload/Fingerolympic.app/_CodeSignature"
+          rm -rf "build/Payload_FO/Fingerolympic.app/FBConnect.bundle"
+          rm -f "build/Payload_FO/Fingerolympic.app/ResourceRules.plist"
+          rm -rf "build/Payload_FO/Fingerolympic.app/_CodeSignature"
 
-          # 3. Apply standard ad-hoc code signature with explicit bundle identifier
-          # -i binds CFBundleIdentifier com.fingerway.fingerolympicfull into CodeDirectory
-          # --generate-entitlement-der embeds DER entitlements required for iOS 15+
           echo "Signing application bundle with com.fingerway.fingerolympicfull..."
           codesign --force --sign - \
                    --identifier "com.fingerway.fingerolympicfull" \
                    --generate-entitlement-der \
                    --timestamp=none \
-                   "build/Payload/Fingerolympic.app"
+                   "build/Payload_FO/Fingerolympic.app"
 
-          # 4. Verify signature details and inspect CodeDirectory
-          echo "=== Verifying Code Signature ==="
-          codesign -dvvv "build/Payload/Fingerolympic.app"
+          echo "=== Verifying Finger Olympic Code Signature ==="
+          codesign -dvvv "build/Payload_FO/Fingerolympic.app"
 
-          # 5. Package into IPA
           cd build
+          mv Payload_FO Payload
           zip -r Fingerolympic.ipa Payload
+          rm -rf Payload
           ls -lh Fingerolympic.ipa
+          cd ..
 
-      - name: Upload IPA Artifact
+      # --- 2. Little Generals Pipeline (APK-to-IPA Restoration) ---
+      - name: Build Little Generals Xcode Project
+        run: |
+          xcodebuild -project "Little Generals/LittleGenerals.xcodeproj" \
+                     -scheme LittleGenerals \
+                     -destination 'generic/platform=iOS' \
+                     -configuration Release \
+                     -derivedDataPath build/DerivedData_LG \
+                     CODE_SIGN_IDENTITY="" \
+                     CODE_SIGNING_REQUIRED=NO \
+                     CODE_SIGNING_ALLOWED=NO \
+                     build
+
+      - name: Package and Sign Little Generals IPA
+        run: |
+          mkdir -p build/Payload_LG
+          APP_PATH=$(find build/DerivedData_LG -name "LittleGenerals.app" -type d | head -n 1)
+          if [ -z "$APP_PATH" ]; then
+            echo "Error: LittleGenerals.app not found!"
+            exit 1
+          fi
+          echo "Found compiled app at: $APP_PATH"
+          cp -R "$APP_PATH" build/Payload_LG/
+
+          if [ -d "build/Payload_LG/LittleGenerals.app/Resources" ]; then
+            echo "Flattening nested Resources into bundle root..."
+            cp -R "build/Payload_LG/LittleGenerals.app/Resources/"* "build/Payload_LG/LittleGenerals.app/"
+            rm -rf "build/Payload_LG/LittleGenerals.app/Resources"
+          fi
+
+          rm -rf "build/Payload_LG/LittleGenerals.app/_CodeSignature"
+
+          echo "Signing application bundle with com.smarterapps.littlegenerals..."
+          codesign --force --sign - \
+                   --identifier "com.smarterapps.littlegenerals" \
+                   --generate-entitlement-der \
+                   --timestamp=none \
+                   "build/Payload_LG/LittleGenerals.app"
+
+          echo "=== Verifying Little Generals Code Signature ==="
+          codesign -dvvv "build/Payload_LG/LittleGenerals.app"
+
+          cd build
+          mv Payload_LG Payload
+          zip -r LittleGenerals.ipa Payload
+          rm -rf Payload
+          ls -lh LittleGenerals.ipa
+          cd ..
+
+      # --- 3. Artifact Uploads & Releases ---
+      - name: Upload Finger Olympic IPA Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Fingerolympic-iOS-IPA
           path: build/Fingerolympic.ipa
           retention-days: 14
 
+      - name: Upload Little Generals IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LittleGenerals-iOS-IPA
+          path: build/LittleGenerals.ipa
+          retention-days: 14
+
       - name: Create or Update GitHub Release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.4.2
-          name: "Finger Olympic v1.4.2 (Full Graphics & Authentic Art Restoration)"
+          tag_name: v1.5.0
+          name: "Respring v1.5.0: Finger Olympic & Little Generals 64-bit Restoration"
           body: |
-            ### Finger Olympic Modern 64-bit iOS Restoration (v1.4.2)
+            ### Respring Modern 64-bit iOS Restorations (v1.5.0)
 
-            **Major Graphics & Visual Restoration:**
-            - **Uncrushed 334 Legacy CgBI Textures**: Uncrushed all Apple-proprietary CgBI PNG textures back to standard W3C RGBA so modern SpriteKit and Metal render every sprite, background, and character crisply.
-            - **Authentic Full-Screen Environments**: Restored `fondoHome.png` (Home Screen), `fondoMenuDiscip.png` (Disciplines Carousel), `background.png` (Stadium Track), and `podium.png` (Olympic Awards Ceremony).
-            - **Real Controls & HUD**: Restored authentic fingerprint buttons (`HuellaIzquierda.png`, `HuellaDerecha.png`, `HuellaTocada`), authentic hurdle barriers (`valla.png`), and digital scoreboard (`ScoreBoard.png`).
-            - **High-Fidelity CGImage Cropping**: Overhauled `AtlasLoader.swift` to extract pixel-perfect subtextures from Zwoptex Format 3 sprite atlases.
+            #### 1. Little Generals (`LittleGenerals.ipa`)
+            - **Cross-Platform APK to iOS IPA Conversion**: Restored from the original Android APK release (`com.smarterapps.littlegenerals`).
+            - **Solar2D / Corona Architecture**: Decompiled and extracted 269 compiled Lua scripts from `resource.car` via `scripts/car_unpack.py`.
+            - **Genuine High-Resolution Assets**: Extracted all 749 native textures, backgrounds, audio tracks, and fonts via `scripts/apk_extract.py`.
+            - **Authentic Turn-Based Artillery Combat**: Full ballistic trajectory physics, elevation deformation, wind factor, interactive controls, and authentic dialog from `trashtalk.csv`.
+            - **Armory & Campaign**: Global Campaign Theater, WarBux currency, tank shop, and upgrades.
+            - **Modern iOS 15+ Compatibility**: Clean flat bundle layout, explicit bundle identifier (`-i com.smarterapps.littlegenerals`), and embedded DER entitlements for SideStore, AltStore, LiveContainer, and TrollStore.
 
-            **Installation:**
-            - **SideStore / AltStore**: Download `Fingerolympic.ipa` and open in SideStore / AltStore to install.
-            - **LiveContainer**: Import `Fingerolympic.ipa` directly into LiveContainer.
-            - **Sideloadly / TrollStore**: Direct install supported.
-          files: build/Fingerolympic.ipa
+            #### 2. Finger Olympic (`Fingerolympic.ipa`)
+            - **Uncrushed 334 Legacy CgBI Textures**: Uncrushed all Apple CgBI PNG textures to standard W3C RGBA.
+            - **Authentic Full-Screen Environments**: Restored `fondoHome.png`, `fondoMenuDiscip.png`, `background.png`, and `podium.png`.
+            - **Real Controls & HUD**: Restored authentic fingerprint buttons, hurdles, and scoreboard.
+
+            #### Installation
+            - **SideStore / AltStore**: Download `.ipa` and open in SideStore / AltStore to install.
+            - **LiveContainer**: Import `.ipa` directly into LiveContainer without sandbox signing failures.
+            - **TrollStore / Sideloadly**: Direct install supported.
+          files: |
+            build/Fingerolympic.ipa
+            build/LittleGenerals.ipa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
