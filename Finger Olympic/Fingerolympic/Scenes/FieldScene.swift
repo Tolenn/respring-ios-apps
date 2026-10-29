@@ -2,58 +2,69 @@ import SpriteKit
 
 public class FieldScene: SKScene {
     private var athlete: SKSpriteNode!
-    private var fieldNode: SKNode!
     private var javelinNode: SKSpriteNode?
+    private var fieldNode: SKNode!
     
-    private var fixedDelta: TimeInterval = 1.0 / 60.0
-    private var lastTime: TimeInterval = 0
-    private var accumulator: TimeInterval = 0
-    
+    // Mode
     private var isJavelin: Bool = false
-    private var isActionActive: Bool = false
-    private var hasLaunched: Bool = false
-    private var isFinished: Bool = false
     
+    // Physics & Run-up
+    private var isRunning: Bool = false
+    private var hasLaunched: Bool = false
     private var runSpeed: Double = 0.0
-    private var runDistance: Double = 0.0
-    private var maxRunSpeed: Double = 28.0
+    private var maxSpeed: Double = 26.0
     private var lastTappedSide: String = ""
     
-    private var finalScore: Double = 0.0
-    private var jumpVelocityY: Double = 0.0
-    private var jumpVelocityX: Double = 0.0
-    private var gravity: Double = -9.8
+    // Launch angle & trajectory
+    private var angleDegrees: Double = 45.0
+    private var distanceMeters: Double = 0.0
     
-    private var hudLabel: SKLabelNode!
-    private var actionLabel: SKLabelNode!
+    // HUD & Controls
+    private var scoreboard: SKSpriteNode!
+    private var distDisplay: SKLabelNode!
+    private var promptDisplay: SKLabelNode!
+    
+    private var leftPrintNode: SKSpriteNode!
+    private var rightPrintNode: SKSpriteNode!
+    private var actionButton: SKSpriteNode!
     
     public override func didMove(to view: SKView) {
-        backgroundColor = SKColor(red: 0.15, green: 0.55, blue: 0.85, alpha: 1.0)
-        
+        backgroundColor = .black
         isJavelin = (GameState.shared.currentDiscipline == .javelin)
         
-        setupField()
+        setupEnvironment()
         setupAthlete()
-        setupUI()
+        setupHUD()
+        setupControls()
     }
     
-    private func setupField() {
+    private func setupEnvironment() {
+        // Grandstand & Stadium Background
+        let bg = SKSpriteNode(imageNamed: "background.png")
+        bg.position = CGPoint(x: 240, y: 160)
+        bg.size = CGSize(width: 480, height: 320)
+        bg.zPosition = 0
+        addChild(bg)
+        
         fieldNode = SKNode()
+        fieldNode.zPosition = 1
         addChild(fieldNode)
         
+        // Pista runway & grass
         for i in 0..<20 {
             let grass = SKSpriteNode(imageNamed: "06-pista.png")
             grass.anchorPoint = .zero
-            grass.position = CGPoint(x: CGFloat(i * 64), y: 40)
-            grass.size = CGSize(width: 64, height: 64)
+            grass.position = CGPoint(x: CGFloat(i * 64), y: 55)
+            grass.size = CGSize(width: 64, height: 75)
             fieldNode.addChild(grass)
         }
         
-        // Foul / Throw line indicator
-        let foulLine = SKShapeNode(rectOf: CGSize(width: 8, height: 60))
-        foulLine.fillColor = .red
-        foulLine.position = CGPoint(x: 320, y: 70)
-        fieldNode.addChild(foulLine)
+        // Foul / Launch Line
+        let line = SKShapeNode(rectOf: CGSize(width: 6, height: 75))
+        line.fillColor = .red
+        line.position = CGPoint(x: 340, y: 92)
+        line.zPosition = 4
+        fieldNode.addChild(line)
     }
     
     private func setupAthlete() {
@@ -63,215 +74,177 @@ public class FieldScene: SKScene {
         
         athlete = SKSpriteNode(texture: textures.first ?? SKTexture())
         athlete.size = CGSize(width: 80, height: 80)
-        athlete.position = CGPoint(x: 60, y: 75)
+        athlete.position = CGPoint(x: 100, y: 105)
         athlete.zPosition = 10
         addChild(athlete)
         
         if !textures.isEmpty {
-            athlete.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.07)))
+            athlete.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.08)))
         }
     }
     
-    private func setupUI() {
-        hudLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-        hudLabel.text = isJavelin ? "JAVELIN: Tap Alternating to Run -> Tap THROW!" : "LONG JUMP: Run Fast -> Tap JUMP at Line!"
-        hudLabel.fontSize = 13
-        hudLabel.fontColor = .yellow
-        hudLabel.position = CGPoint(x: 240, y: 295)
-        addChild(hudLabel)
+    private func setupHUD() {
+        scoreboard = SKSpriteNode(imageNamed: "ScoreBoard.png")
+        scoreboard.position = CGPoint(x: 240, y: 285)
+        scoreboard.size = CGSize(width: 140, height: 62)
+        scoreboard.zPosition = 20
+        addChild(scoreboard)
         
-        // Left & Right running buttons
-        let leftBtn = SKShapeNode(rectOf: CGSize(width: 90, height: 45), cornerRadius: 8)
-        leftBtn.position = CGPoint(x: 70, y: 30)
-        leftBtn.fillColor = SKColor(red: 0.2, green: 0.4, blue: 0.8, alpha: 0.8)
-        leftBtn.name = "btnLeft"
-        leftBtn.zPosition = 20
-        addChild(leftBtn)
+        distDisplay = SKLabelNode(fontNamed: "Courier-Bold")
+        distDisplay.text = "00.00m"
+        distDisplay.fontSize = 13
+        distDisplay.fontColor = .yellow
+        distDisplay.position = CGPoint(x: 240, y: 285)
+        distDisplay.zPosition = 21
+        addChild(distDisplay)
         
-        let leftLbl = SKLabelNode(fontNamed: "Helvetica-Bold")
-        leftLbl.text = "LEFT"
-        leftLbl.fontSize = 14
-        leftLbl.position = CGPoint(x: 70, y: 25)
-        leftLbl.name = "btnLeft"
-        leftLbl.zPosition = 21
-        addChild(leftLbl)
+        promptDisplay = SKLabelNode(fontNamed: "Helvetica-Bold")
+        promptDisplay.text = isJavelin ? "Tap Alternating Feet -> Tap THROW!" : "Tap Alternating Feet -> Tap JUMP!"
+        promptDisplay.fontSize = 11
+        promptDisplay.fontColor = .white
+        promptDisplay.position = CGPoint(x: 240, y: 245)
+        promptDisplay.zPosition = 21
+        addChild(promptDisplay)
         
-        let rightBtn = SKShapeNode(rectOf: CGSize(width: 90, height: 45), cornerRadius: 8)
-        rightBtn.position = CGPoint(x: 180, y: 30)
-        rightBtn.fillColor = SKColor(red: 0.8, green: 0.3, blue: 0.2, alpha: 0.8)
-        rightBtn.name = "btnRight"
-        rightBtn.zPosition = 20
-        addChild(rightBtn)
+        // Exit / Back Button
+        let homeBtn = SKSpriteNode(imageNamed: "btnHome.png")
+        homeBtn.position = CGPoint(x: 35, y: 290)
+        homeBtn.size = CGSize(width: 44, height: 44)
+        homeBtn.name = "btnExit"
+        homeBtn.zPosition = 20
+        addChild(homeBtn)
+    }
+    
+    private func setupControls() {
+        // Left Footprint / Fingerprint
+        leftPrintNode = SKSpriteNode(imageNamed: "HuellaIzquierda.png")
+        leftPrintNode.position = CGPoint(x: 65, y: 65)
+        leftPrintNode.size = CGSize(width: 75, height: 105)
+        leftPrintNode.name = "btnLeftPrint"
+        leftPrintNode.zPosition = 25
+        addChild(leftPrintNode)
         
-        let rightLbl = SKLabelNode(fontNamed: "Helvetica-Bold")
-        rightLbl.text = "RIGHT"
-        rightLbl.fontSize = 14
-        rightLbl.position = CGPoint(x: 180, y: 25)
-        rightLbl.name = "btnRight"
-        rightLbl.zPosition = 21
-        addChild(rightLbl)
+        // Right Footprint / Fingerprint
+        rightPrintNode = SKSpriteNode(imageNamed: "HuellaDerecha.png")
+        rightPrintNode.position = CGPoint(x: 415, y: 65)
+        rightPrintNode.size = CGSize(width: 75, height: 105)
+        rightPrintNode.name = "btnRightPrint"
+        rightPrintNode.zPosition = 25
+        addChild(rightPrintNode)
         
-        // Action Button (JUMP or THROW)
-        let actionBtn = SKShapeNode(rectOf: CGSize(width: 120, height: 45), cornerRadius: 8)
-        actionBtn.position = CGPoint(x: 390, y: 30)
-        actionBtn.fillColor = SKColor(red: 0.1, green: 0.7, blue: 0.3, alpha: 0.8)
-        actionBtn.name = "btnAction"
-        actionBtn.zPosition = 20
-        addChild(actionBtn)
-        
-        actionLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-        actionLabel.text = isJavelin ? "THROW" : "JUMP"
-        actionLabel.fontSize = 15
-        actionLabel.position = CGPoint(x: 390, y: 25)
-        actionLabel.name = "btnAction"
-        actionLabel.zPosition = 21
-        addChild(actionLabel)
+        // Action Button (Throw / Jump)
+        let actionImg = isJavelin ? "btnThrow.png" : "btnJump.png"
+        actionButton = SKSpriteNode(imageNamed: actionImg)
+        actionButton.position = CGPoint(x: 240, y: 55)
+        actionButton.size = CGSize(width: 75, height: 75)
+        actionButton.name = "btnAction"
+        actionButton.zPosition = 25
+        addChild(actionButton)
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !hasLaunched, let touch = touches.first else { return }
+        guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
         
         for node in touchedNodes {
             guard let name = node.name else { continue }
             
-            if name == "btnLeft" {
-                if lastTappedSide != "left" {
-                    lastTappedSide = "left"
-                    runSpeed = min(maxRunSpeed, runSpeed + 4.0)
-                    SoundManager.shared.playSound(named: "step.mp3")
-                }
-            } else if name == "btnRight" {
-                if lastTappedSide != "right" {
-                    lastTappedSide = "right"
-                    runSpeed = min(maxRunSpeed, runSpeed + 4.0)
-                    SoundManager.shared.playSound(named: "step.mp3")
-                }
+            if name == "btnExit" {
+                SoundManager.shared.playSound(named: "Click.caf")
+                let menu = MenuScene(size: CGSize(width: 480, height: 320))
+                menu.scaleMode = .aspectFit
+                view?.presentScene(menu, transition: SKTransition.fade(withDuration: 0.3))
+                return
+            }
+            
+            guard !hasLaunched else { return }
+            
+            if name == "btnLeftPrint" {
+                leftPrintNode.texture = SKTexture(imageNamed: "HuellaTocadaIzq.png")
+                processTap(side: "left")
+            } else if name == "btnRightPrint" {
+                rightPrintNode.texture = SKTexture(imageNamed: "HuellaTocadaDer.png")
+                processTap(side: "right")
             } else if name == "btnAction" {
-                triggerAction()
+                executeLaunch()
             }
         }
     }
     
-    private func triggerAction() {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        leftPrintNode.texture = SKTexture(imageNamed: "HuellaIzquierda.png")
+        rightPrintNode.texture = SKTexture(imageNamed: "HuellaDerecha.png")
+    }
+    
+    private func processTap(side: String) {
+        if side != lastTappedSide {
+            runSpeed = min(maxSpeed, runSpeed + 3.2)
+            lastTappedSide = side
+            isRunning = true
+        } else {
+            runSpeed = max(0.0, runSpeed - 2.0)
+            SoundManager.shared.playSound(named: "wrong.caf")
+        }
+    }
+    
+    private func executeLaunch() {
         guard !hasLaunched else { return }
         hasLaunched = true
         
-        let launchSpeed = max(10.0, runSpeed)
+        let charType = GameState.shared.selectedCharacter.rawValue
         
         if isJavelin {
-            // Throw Javelin
             SoundManager.shared.playSound(named: "arrowShot.mp3")
-            let javelin = SKSpriteNode(color: .white, size: CGSize(width: 40, height: 4))
-            javelin.position = CGPoint(x: athlete.position.x + 20, y: athlete.position.y + 10)
-            javelin.zRotation = 0.45
-            javelin.zPosition = 15
-            addChild(javelin)
-            javelinNode = javelin
             
-            jumpVelocityX = launchSpeed * 2.8
-            jumpVelocityY = launchSpeed * 1.5
-            finalScore = (launchSpeed * 2.6) + Double.random(in: 15.0...25.0)
-        } else {
-            // Long Jump
-            SoundManager.shared.playSound(named: "Boing.wav")
-            jumpVelocityX = launchSpeed * 0.8
-            jumpVelocityY = launchSpeed * 0.9
-            finalScore = (launchSpeed * 0.25) + Double.random(in: 1.5...2.5)
+            // Javelin release
+            distanceMeters = max(18.0, runSpeed * 3.4)
+            distDisplay.text = String(format: "%05.2fm", distanceMeters)
             
-            let charType = GameState.shared.selectedCharacter.rawValue
-            let textures = AtlasLoader.shared.getAnimationSequence(atlasName: "\(charType)Jump", prefix: "\(charType)Jump")
+            let textures = AtlasLoader.shared.getAnimationSequence(atlasName: "\(charType)Festeja", prefix: "\(charType)Festeja")
             if !textures.isEmpty {
                 athlete.removeAllActions()
-                athlete.run(SKAction.animate(with: textures, timePerFrame: 0.1))
+                athlete.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.1)))
             }
+        } else {
+            SoundManager.shared.playSound(named: "Boing.wav")
+            
+            // Long Jump
+            distanceMeters = max(4.0, runSpeed * 0.36)
+            distDisplay.text = String(format: "%05.2fm", distanceMeters)
+            
+            let jumpUp = SKAction.moveBy(x: 100, y: 55, duration: 0.35)
+            jumpUp.timingMode = .easeOut
+            let fallDown = SKAction.moveBy(x: 60, y: -55, duration: 0.35)
+            fallDown.timingMode = .easeIn
+            athlete.run(SKAction.sequence([jumpUp, fallDown]))
         }
+        
+        SoundManager.shared.playSound(named: "Crowd_cheer.caf")
+        
+        // Save score & transition to podium
+        let disc = GameState.shared.currentDiscipline
+        GameState.shared.lastScore = distanceMeters
+        GameState.shared.medalWon = (distanceMeters > 70.0 || (!isJavelin && distanceMeters > 8.0)) ? "Gold" : "Silver"
+        DatabaseManager.shared.saveRecord(disciplineId: disc.rawValue, score: distanceMeters)
+        
+        run(SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.run { [weak self] in
+                let medals = MedalsScene(size: CGSize(width: 480, height: 320))
+                medals.scaleMode = .aspectFit
+                self?.view?.presentScene(medals, transition: SKTransition.fade(withDuration: 0.5))
+            }
+        ]))
     }
     
     public override func update(_ currentTime: TimeInterval) {
-        if lastTime == 0 {
-            lastTime = currentTime
-            return
-        }
-        var dt = currentTime - lastTime
-        lastTime = currentTime
-        if dt > 0.1 { dt = 0.1 }
-        
-        accumulator += dt
-        while accumulator >= fixedDelta {
-            tickFieldPhysics(dt: fixedDelta)
-            accumulator -= fixedDelta
-        }
-    }
-    
-    private func tickFieldPhysics(dt: TimeInterval) {
-        guard !isFinished else { return }
-        
-        if !hasLaunched {
-            // Running up
-            runSpeed = max(0, runSpeed - (1.5 * dt))
-            runDistance += runSpeed * dt
-            athlete.position.x = min(300, 60 + CGFloat(runDistance * 10))
-            if athlete.position.x >= 295 {
-                // Auto trigger at foul line if not tapped
-                triggerAction()
-            }
-        } else {
-            // Flight phase
-            if isJavelin, let jav = javelinNode {
-                jav.position.x += CGFloat(jumpVelocityX * dt * 8.0)
-                jav.position.y += CGFloat(jumpVelocityY * dt * 4.0)
-                jumpVelocityY += gravity * dt * 6.0
-                jav.zRotation -= CGFloat(0.5 * dt)
-                
-                if jav.position.y <= 50 {
-                    // Javelin stuck in ground
-                    SoundManager.shared.playSound(named: "clava.mp3")
-                    finishEvent()
-                }
-            } else {
-                // Long jump flight
-                athlete.position.x += CGFloat(jumpVelocityX * dt * 8.0)
-                athlete.position.y += CGFloat(jumpVelocityY * dt * 4.0)
-                jumpVelocityY += gravity * dt * 6.0
-                
-                if athlete.position.y <= 75 {
-                    athlete.position.y = 75
-                    SoundManager.shared.playSound(named: "step.mp3")
-                    finishEvent()
-                }
+        if isRunning && !hasLaunched {
+            runSpeed = max(0.0, runSpeed - 0.08)
+            fieldNode.position.x -= CGFloat(runSpeed * 0.8)
+            if fieldNode.position.x <= -64.0 {
+                fieldNode.position.x += 64.0
             }
         }
-    }
-    
-    private func finishEvent() {
-        isFinished = true
-        SoundManager.shared.playSound(named: "Medal.caf")
-        
-        let disc = GameState.shared.currentDiscipline
-        GameState.shared.lastScore = finalScore
-        
-        let records = DatabaseManager.shared.getRecords(forDiscipline: disc.rawValue)
-        let bestRecord = records.first?.score ?? 0.0
-        let isRecord = (finalScore > bestRecord)
-        GameState.shared.isNewRecord = isRecord
-        
-        if isRecord {
-            DatabaseManager.shared.addRecord(name: GameState.shared.selectedCountryName, score: finalScore, disciplineId: disc.rawValue)
-        }
-        
-        if disc.rawValue < 5 {
-            DatabaseManager.shared.unlockDiscipline(disciplineId: disc.rawValue + 1)
-        }
-        
-        let wait = SKAction.wait(forDuration: 1.5)
-        let transition = SKAction.run { [weak self] in
-            let scene = MedalsScene(size: CGSize(width: 480, height: 320))
-            scene.scaleMode = .aspectFit
-            self?.view?.presentScene(scene, transition: SKTransition.fade(withDuration: 0.5))
-        }
-        run(SKAction.sequence([wait, transition]))
     }
 }
-

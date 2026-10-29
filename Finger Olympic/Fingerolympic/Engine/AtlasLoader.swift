@@ -1,5 +1,6 @@
 import Foundation
 import SpriteKit
+import UIKit
 
 public final class AtlasLoader {
     public static let shared = AtlasLoader()
@@ -14,8 +15,9 @@ public final class AtlasLoader {
         
         let plistName = name.hasSuffix(".plist") ? name : "\(name).plist"
         let pngName = name.hasSuffix(".png") ? name : "\(name).png"
+        let baseName = plistName.replacingOccurrences(of: ".plist", with: "")
         
-        guard let plistURL = Bundle.main.url(forResource: plistName.replacingOccurrences(of: ".plist", with: ""), withExtension: "plist"),
+        guard let plistURL = Bundle.main.url(forResource: baseName, withExtension: "plist"),
               let plistData = try? Data(contentsOf: plistURL),
               let dict = try? PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any],
               let frames = dict["frames"] as? [String: [String: Any]] else {
@@ -26,7 +28,6 @@ public final class AtlasLoader {
         // Find matching image
         var imageURL = Bundle.main.url(forResource: pngName.replacingOccurrences(of: ".png", with: ""), withExtension: "png")
         if imageURL == nil {
-            let baseName = plistName.replacingOccurrences(of: ".plist", with: "")
             imageURL = Bundle.main.url(forResource: baseName, withExtension: "png")
         }
         
@@ -36,23 +37,36 @@ public final class AtlasLoader {
             return [:]
         }
         
-        let imageSize = uiImage.size
         let baseTexture = SKTexture(image: uiImage)
         var result: [String: SKTexture] = [:]
+        let imageSize = uiImage.size
         
         for (frameName, frameInfo) in frames {
-            guard let rectStr = frameInfo["textureRect"] as? String else { continue }
-            let rect = parseCGRect(from: rectStr)
+            var rect: CGRect = .zero
+            if let rectStr = frameInfo["textureRect"] as? String {
+                rect = parseCGRect(from: rectStr)
+            } else if let x = frameInfo["x"] as? Double,
+                      let y = frameInfo["y"] as? Double,
+                      let w = frameInfo["width"] as? Double,
+                      let h = frameInfo["height"] as? Double {
+                rect = CGRect(x: x, y: y, width: w, height: h)
+            }
             
-            // Normalized coordinates for SpriteKit (origin at bottom-left)
-            let normX = rect.origin.x / imageSize.width
-            let normY = (imageSize.height - (rect.origin.y + rect.size.height)) / imageSize.height
-            let normW = rect.size.width / imageSize.width
-            let normH = rect.size.height / imageSize.height
+            guard rect.width > 0 && rect.height > 0 else { continue }
             
-            let normRect = CGRect(x: normX, y: normY, width: normW, height: normH)
-            let subTexture = SKTexture(rect: normRect, in: baseTexture)
-            result[frameName] = subTexture
+            // Try high-fidelity CGImage crop first (exact pixel coordinates)
+            if let cgImage = uiImage.cgImage,
+               let cropped = cgImage.cropping(to: rect) {
+                result[frameName] = SKTexture(cgImage: cropped)
+            } else {
+                // Fallback to SpriteKit unit coordinate rect
+                let normX = rect.origin.x / imageSize.width
+                let normY = (imageSize.height - (rect.origin.y + rect.size.height)) / imageSize.height
+                let normW = rect.size.width / imageSize.width
+                let normH = rect.size.height / imageSize.height
+                let normRect = CGRect(x: normX, y: normY, width: normW, height: normH)
+                result[frameName] = SKTexture(rect: normRect, in: baseTexture)
+            }
         }
         
         cachedAtlases[name] = result
@@ -66,7 +80,6 @@ public final class AtlasLoader {
     }
     
     private func parseCGRect(from str: String) -> CGRect {
-        // Form: {{x, y}, {w, h}}
         let cleaned = str.replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}", with: "")
         let parts = cleaned.components(separatedBy: ",").compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
         if parts.count >= 4 {
@@ -75,4 +88,3 @@ public final class AtlasLoader {
         return .zero
     }
 }
-

@@ -1,111 +1,179 @@
 import SpriteKit
 
 public class MenuScene: SKScene {
+    private enum MenuState {
+        case home
+        case disciplines
+    }
+    
+    private var state: MenuState = .home
+    private var rootNode: SKNode!
+    
     private var countries: [CountryItem] = []
     private var countryIndex: Int = 0
-    private var countryLabel: SKLabelNode!
+    private var selectedDisciplineIndex: Int = 0
+    private let availableDisciplines: [DisciplineType] = [
+        .dash100m, .dash400m, .hurdles, .longJump, .javelin
+    ]
+    
     private var characterNode: SKSpriteNode!
+    private var disciplineSprite: SKSpriteNode?
+    private var countryLabel: SKLabelNode?
     
     public override func didMove(to view: SKView) {
-        backgroundColor = SKColor(red: 0.15, green: 0.5, blue: 0.8, alpha: 1.0)
+        backgroundColor = .black
         
         countries = DatabaseManager.shared.getCountries()
         if countries.isEmpty {
             countries = [CountryItem(id: 1, name: "Argentina")]
         }
         
-        setupUI()
+        setupScene()
         SoundManager.shared.playSound(named: "Crowd.caf")
     }
     
-    private func setupUI() {
-        // Title banner
-        let titleLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-        titleLabel.text = "FINGER OLYMPIC"
-        titleLabel.fontSize = 28
-        titleLabel.fontColor = .yellow
-        titleLabel.position = CGPoint(x: 240, y: 275)
-        addChild(titleLabel)
+    private func setupScene() {
+        removeAllChildren()
+        rootNode = SKNode()
+        addChild(rootNode)
         
-        let subTitle = SKLabelNode(fontNamed: "Helvetica")
-        subTitle.text = "Legacy 32-bit iOS Restoration"
-        subTitle.fontSize = 12
-        subTitle.fontColor = .white
-        subTitle.position = CGPoint(x: 240, y: 255)
-        addChild(subTitle)
-        
-        // Character preview
-        let charType = GameState.shared.selectedCharacter.rawValue
-        let atlasName = "\(charType)Corre"
-        let textures = AtlasLoader.shared.getAnimationSequence(atlasName: atlasName, prefix: "\(charType)Corre")
-        
-        characterNode = SKSpriteNode(texture: textures.first ?? SKTexture())
-        characterNode.size = CGSize(width: 80, height: 80)
-        characterNode.position = CGPoint(x: 100, y: 170)
-        characterNode.name = "btnCharacter"
-        addChild(characterNode)
-        
-        if !textures.isEmpty {
-            let anim = SKAction.animate(with: textures, timePerFrame: 0.08)
-            characterNode.run(SKAction.repeatForever(anim))
-        }
-        
-        let charLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-        charLabel.text = "Tap Athlete: \(GameState.shared.selectedCharacter.rawValue.capitalized)"
-        charLabel.fontSize = 11
-        charLabel.fontColor = .white
-        charLabel.position = CGPoint(x: 100, y: 115)
-        charLabel.name = "btnCharacter"
-        addChild(charLabel)
-        
-        // Country Selector
-        let countryBox = SKShapeNode(rectOf: CGSize(width: 140, height: 36), cornerRadius: 6)
-        countryBox.position = CGPoint(x: 100, y: 65)
-        countryBox.fillColor = SKColor(white: 0.0, alpha: 0.3)
-        countryBox.strokeColor = .white
-        countryBox.name = "btnCountry"
-        addChild(countryBox)
-        
-        countryLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-        countryLabel.text = countries[countryIndex].name
-        countryLabel.fontSize = 13
-        countryLabel.fontColor = .white
-        countryLabel.position = CGPoint(x: 100, y: 60)
-        countryLabel.name = "btnCountry"
-        addChild(countryLabel)
-        
-        // Discipline Buttons
-        let disciplines: [(DisciplineType, String)] = [
-            (.dash100m, "100m Sprint"),
-            (.dash400m, "400m Sprint"),
-            (.hurdles, "110m Hurdles"),
-            (.longJump, "Long Jump"),
-            (.javelin, "Javelin Throw")
-        ]
-        
-        var yPos: CGFloat = 220
-        for (disc, name) in disciplines {
-            let unlocked = DatabaseManager.shared.isDisciplineUnlocked(disciplineId: disc.rawValue)
-            let btn = SKShapeNode(rectOf: CGSize(width: 200, height: 34), cornerRadius: 8)
-            btn.position = CGPoint(x: 330, y: yPos)
-            btn.fillColor = unlocked ? SKColor(red: 0.1, green: 0.65, blue: 0.2, alpha: 1.0) : SKColor.darkGray
-            btn.strokeColor = .white
-            btn.lineWidth = 1.5
-            btn.name = "btnDisc_\(disc.rawValue)"
-            addChild(btn)
-            
-            let lbl = SKLabelNode(fontNamed: "Helvetica-Bold")
-            lbl.text = unlocked ? name : "\(name) (Locked)"
-            lbl.fontSize = 13
-            lbl.fontColor = .white
-            lbl.position = CGPoint(x: 330, y: yPos - 5)
-            lbl.name = "btnDisc_\(disc.rawValue)"
-            addChild(lbl)
-            
-            yPos -= 42
+        switch state {
+        case .home:
+            setupHomeScreen()
+        case .disciplines:
+            setupDisciplinesScreen()
         }
     }
     
+    // MARK: - Home Screen
+    private func setupHomeScreen() {
+        // Fullscreen background (480x320)
+        let bg = SKSpriteNode(imageNamed: "fondoHome.png")
+        bg.position = CGPoint(x: 240, y: 160)
+        bg.size = CGSize(width: 480, height: 320)
+        bg.zPosition = 0
+        rootNode.addChild(bg)
+        
+        // Play Button
+        let playBtn = SKSpriteNode(imageNamed: "btnMainPlay.png")
+        playBtn.position = CGPoint(x: 240, y: 110)
+        playBtn.name = "btnPlayMenu"
+        playBtn.zPosition = 10
+        rootNode.addChild(playBtn)
+        
+        // Settings Button
+        let settingsBtn = SKSpriteNode(imageNamed: "btnSettings.png")
+        settingsBtn.position = CGPoint(x: 410, y: 40)
+        settingsBtn.name = "btnSettings"
+        settingsBtn.zPosition = 10
+        rootNode.addChild(settingsBtn)
+        
+        // Medals / Records Button
+        let medalsBtn = SKSpriteNode(imageNamed: "medalsIcon.png")
+        medalsBtn.position = CGPoint(x: 70, y: 40)
+        medalsBtn.name = "btnMedals"
+        medalsBtn.zPosition = 10
+        rootNode.addChild(medalsBtn)
+        
+        // Animated Athlete Preview
+        let charType = GameState.shared.selectedCharacter.rawValue
+        let textures = AtlasLoader.shared.getAnimationSequence(atlasName: "\(charType)Corre", prefix: "\(charType)Corre")
+        characterNode = SKSpriteNode(texture: textures.first ?? SKTexture())
+        characterNode.size = CGSize(width: 80, height: 80)
+        characterNode.position = CGPoint(x: 240, y: 200)
+        characterNode.name = "btnAthlete"
+        characterNode.zPosition = 5
+        rootNode.addChild(characterNode)
+        
+        if !textures.isEmpty {
+            characterNode.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.08)))
+        }
+        
+        let charPrompt = SKLabelNode(fontNamed: "Helvetica-Bold")
+        charPrompt.text = "Athlete: \(GameState.shared.selectedCharacter.rawValue.capitalized) (Tap to change)"
+        charPrompt.fontSize = 11
+        charPrompt.fontColor = .yellow
+        charPrompt.position = CGPoint(x: 240, y: 155)
+        charPrompt.name = "btnAthlete"
+        charPrompt.zPosition = 6
+        rootNode.addChild(charPrompt)
+    }
+    
+    // MARK: - Disciplines Selection Screen
+    private func setupDisciplinesScreen() {
+        let bg = SKSpriteNode(imageNamed: "fondoMenuDiscip.png")
+        bg.position = CGPoint(x: 240, y: 160)
+        bg.size = CGSize(width: 480, height: 320)
+        bg.zPosition = 0
+        rootNode.addChild(bg)
+        
+        // Current Discipline Card (discip1.png ... discip5.png)
+        updateDisciplineCard()
+        
+        // Left & Right Selection Arrows
+        let leftArrow = SKSpriteNode(imageNamed: "btnBack.png")
+        leftArrow.position = CGPoint(x: 45, y: 160)
+        leftArrow.name = "btnPrevDisc"
+        leftArrow.zPosition = 10
+        rootNode.addChild(leftArrow)
+        
+        let rightArrow = SKSpriteNode(imageNamed: "btnNext.png")
+        rightArrow.position = CGPoint(x: 435, y: 160)
+        rightArrow.name = "btnNextDisc"
+        rightArrow.zPosition = 10
+        rootNode.addChild(rightArrow)
+        
+        // Bottom Start / Play Button
+        let startBtn = SKSpriteNode(imageNamed: "btnPlay.png")
+        startBtn.position = CGPoint(x: 390, y: 40)
+        startBtn.name = "btnStartDiscipline"
+        startBtn.zPosition = 10
+        rootNode.addChild(startBtn)
+        
+        // Back to Home Button
+        let backBtn = SKSpriteNode(imageNamed: "btnHome.png")
+        backBtn.position = CGPoint(x: 90, y: 40)
+        backBtn.name = "btnBackToHome"
+        backBtn.zPosition = 10
+        rootNode.addChild(backBtn)
+        
+        // Country Selector
+        let countryBox = SKShapeNode(rectOf: CGSize(width: 170, height: 28), cornerRadius: 5)
+        countryBox.position = CGPoint(x: 240, y: 35)
+        countryBox.fillColor = SKColor(white: 0.0, alpha: 0.5)
+        countryBox.strokeColor = .white
+        countryBox.name = "btnCycleCountry"
+        countryBox.zPosition = 10
+        rootNode.addChild(countryBox)
+        
+        countryLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
+        countryLabel?.text = "Country: \(countries[countryIndex].name)"
+        countryLabel?.fontSize = 12
+        countryLabel?.fontColor = .white
+        countryLabel?.position = CGPoint(x: 240, y: 31)
+        countryLabel?.name = "btnCycleCountry"
+        countryLabel?.zPosition = 11
+        rootNode.addChild(countryLabel!)
+    }
+    
+    private func updateDisciplineCard() {
+        disciplineSprite?.removeFromParent()
+        
+        let disc = availableDisciplines[selectedDisciplineIndex]
+        let discId = disc.rawValue
+        let isUnlocked = DatabaseManager.shared.isDisciplineUnlocked(disciplineId: discId)
+        
+        let imageName = isUnlocked ? "discip\(discId).png" : "discip\(discId)lock.png"
+        let card = SKSpriteNode(imageNamed: imageName)
+        card.position = CGPoint(x: 240, y: 170)
+        card.size = CGSize(width: 300, height: 210)
+        card.name = "btnStartDiscipline"
+        card.zPosition = 5
+        rootNode.addChild(card)
+        disciplineSprite = card
+    }
+    
+    // MARK: - Touch Handling
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
@@ -116,27 +184,60 @@ public class MenuScene: SKScene {
             
             SoundManager.shared.playSound(named: "Click.caf")
             
-            if name == "btnCharacter" {
-                // Toggle Character between fingy and pinky
+            switch name {
+            case "btnPlayMenu":
+                state = .disciplines
+                setupScene()
+                return
+                
+            case "btnBackToHome":
+                state = .home
+                setupScene()
+                return
+                
+            case "btnAthlete":
+                // Toggle athlete character
                 GameState.shared.selectedCharacter = (GameState.shared.selectedCharacter == .fingy) ? .pinky : .fingy
                 let charType = GameState.shared.selectedCharacter.rawValue
                 let textures = AtlasLoader.shared.getAnimationSequence(atlasName: "\(charType)Corre", prefix: "\(charType)Corre")
-                characterNode.removeAllActions()
+                characterNode?.removeAllActions()
                 if !textures.isEmpty {
-                    characterNode.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.08)))
+                    characterNode?.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.08)))
                 }
-            } else if name == "btnCountry" {
-                // Cycle country
+                setupScene()
+                return
+                
+            case "btnCycleCountry":
                 countryIndex = (countryIndex + 1) % countries.count
-                countryLabel.text = countries[countryIndex].name
+                countryLabel?.text = "Country: \(countries[countryIndex].name)"
                 GameState.shared.selectedCountryId = countries[countryIndex].id
                 GameState.shared.selectedCountryName = countries[countryIndex].name
-            } else if name.hasPrefix("btnDisc_") {
-                let discIdStr = name.replacingOccurrences(of: "btnDisc_", with: "")
-                if let discId = Int(discIdStr), let disc = DisciplineType(rawValue: discId) {
-                    GameState.shared.currentDiscipline = disc
-                    launchDiscipline(disc)
-                }
+                return
+                
+            case "btnPrevDisc":
+                selectedDisciplineIndex = (selectedDisciplineIndex - 1 + availableDisciplines.count) % availableDisciplines.count
+                updateDisciplineCard()
+                return
+                
+            case "btnNextDisc":
+                selectedDisciplineIndex = (selectedDisciplineIndex + 1) % availableDisciplines.count
+                updateDisciplineCard()
+                return
+                
+            case "btnStartDiscipline":
+                let disc = availableDisciplines[selectedDisciplineIndex]
+                GameState.shared.currentDiscipline = disc
+                launchDiscipline(disc)
+                return
+                
+            case "btnMedals":
+                let medalsScene = MedalsScene(size: CGSize(width: 480, height: 320))
+                medalsScene.scaleMode = .aspectFit
+                view?.presentScene(medalsScene, transition: SKTransition.fade(withDuration: 0.4))
+                return
+                
+            default:
+                break
             }
         }
     }
@@ -155,4 +256,3 @@ public class MenuScene: SKScene {
         }
     }
 }
-
