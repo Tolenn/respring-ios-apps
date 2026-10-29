@@ -40,7 +40,7 @@ public class GameState {
     }
 
     public let availableTanks: [TankInfo] = [
-        TankInfo(id: "basic_tank", name: "Standard Issue", textureName: "basic_tank.png", armor: 100, firepower: 30, cost: 0),
+        TankInfo(id: "basic_tank", name: "Standard Issue", textureName: "blue_tankdrive1.png", armor: 100, firepower: 30, cost: 0),
         TankInfo(id: "hummera", name: "Desert Humvee", textureName: "hummera.png", armor: 120, firepower: 35, cost: 250),
         TankInfo(id: "mlrsa", name: "MLRS Rocket Carrier", textureName: "mlrsa.png", armor: 140, firepower: 45, cost: 500),
         TankInfo(id: "lowrider", name: "Lowrider", textureName: "lowrider.png", armor: 160, firepower: 40, cost: 750),

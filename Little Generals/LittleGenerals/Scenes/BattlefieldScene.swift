@@ -219,25 +219,13 @@ public class BattlefieldScene: SKScene {
         windLabel.zPosition = 21
         addChild(windLabel)
 
-        // Fire Button
-        let fireBtn = SKShapeNode(rectOf: CGSize(width: 110, height: 48), cornerRadius: 10)
+        // Fire Button using authentic tutorial_fire_btn.png
+        let fireTex = TextureHelper.loadTexture(named: "tutorial_fire_btn.png", fallbackColor: SKColor(red: 0.92, green: 0.22, blue: 0.15, alpha: 1.0), size: CGSize(width: 54, height: 54))
+        let fireBtn = SKSpriteNode(texture: fireTex, size: CGSize(width: 52, height: 52))
         fireBtn.name = "fire_btn"
-        fireBtn.fillColor = SKColor(red: 0.92, green: 0.22, blue: 0.15, alpha: 1.0)
-        fireBtn.strokeColor = .white
-        fireBtn.lineWidth = 2.0
-        fireBtn.position = CGPoint(x: size.width - 70, y: 37)
+        fireBtn.position = CGPoint(x: size.width - 60, y: 37)
         fireBtn.zPosition = 21
         addChild(fireBtn)
-
-        let fireText = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        fireText.name = "fire_btn"
-        fireText.text = "FIRE!"
-        fireText.fontSize = 20
-        fireText.fontColor = .white
-        fireText.verticalAlignmentMode = .center
-        fireText.position = fireBtn.position
-        fireText.zPosition = 22
-        addChild(fireText)
 
         updateHUD()
     }

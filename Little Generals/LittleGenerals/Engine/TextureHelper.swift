@@ -16,9 +16,15 @@ public class TextureHelper {
             Bundle.main.url(forResource: cleanName, withExtension: ext),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res"),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/tanks"),
+            Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/tanks/parts"),
+            Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/tanks/basic_tank_frames"),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/themes/arizonatheme"),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/weapons"),
+            Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/weapons/icons"),
+            Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/weapons/weapon_icons_frames"),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/ui"),
+            Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/ui/elements"),
+            Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/ui/newui_frames"),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/maps"),
             Bundle.main.url(forResource: cleanName, withExtension: ext, subdirectory: "res/splash"),
             Bundle.main.url(forResource: name, withExtension: nil)
@@ -50,3 +56,4 @@ public class TextureHelper {
         return fallbackTex
     }
 }
+

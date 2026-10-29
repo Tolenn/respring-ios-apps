@@ -16,11 +16,17 @@ public class BattleOverScene: SKScene {
     }
 
     private func setupResults(won: Bool) {
+        let bannerTex = TextureHelper.loadTexture(named: won ? "win.png" : "lose.png", fallbackColor: won ? .yellow : .red, size: CGSize(width: 180, height: 60))
+        let banner = SKSpriteNode(texture: bannerTex)
+        banner.position = CGPoint(x: size.width / 2, y: size.height * 0.80)
+        banner.zPosition = 10
+        addChild(banner)
+
         let title = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         title.text = won ? "VICTORY ACHIEVED!" : "TACTICAL DEFEAT"
-        title.fontSize = 40
+        title.fontSize = 32
         title.fontColor = won ? SKColor(red: 1.0, green: 0.85, blue: 0.2, alpha: 1.0) : SKColor(red: 0.9, green: 0.25, blue: 0.25, alpha: 1.0)
-        title.position = CGPoint(x: size.width / 2, y: size.height * 0.72)
+        title.position = CGPoint(x: size.width / 2, y: size.height * 0.68)
         title.zPosition = 10
         addChild(title)
 

@@ -74,4 +74,21 @@ public enum WeaponType: String, CaseIterable {
         default: return "explosion.mp3"
         }
     }
+
+    public var iconName: String {
+        switch self {
+        case .missile: return "missile.png"
+        case .babyMissile: return "babymissile.png"
+        case .mirv: return "mirv.png"
+        case .nuke: return "nuke.png"
+        case .roller: return "roller.png"
+        case .grenade: return "grenade.png"
+        case .laser: return "laser.png"
+        case .napalm: return "Napalm.png"
+        case .funkyBomb: return "funkybomb.png"
+        case .santa: return "santa_bomb.png"
+        case .shield: return "shield.png"
+        }
+    }
 }
+
