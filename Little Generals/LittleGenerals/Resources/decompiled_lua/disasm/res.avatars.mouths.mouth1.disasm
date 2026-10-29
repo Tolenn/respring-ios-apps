@@ -1,0 +1,556 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	3
+
+.constant	k0	"module"
+.constant	k1	"package"
+.constant	k2	"seeall"
+.constant	k3	"sprite"
+.constant	k4	"require"
+.constant	k5	"buildAnimations"
+.constant	k6	"idleAnimation"
+.constant	k7	"talkAnimation"
+.constant	k8	"stunAnimation"
+.constant	k9	"angerAnimation"
+.constant	k10	"laughAnimation"
+.constant	k11	"stopAnimation"
+.constant	k12	"getSpriteSheetData"
+
+getglobal     r0    k0
+vararg        r1     2
+getglobal     r2    k1
+gettable      r2    r2    k2
+call          r0     3     1
+getglobal     r0    k4
+loadk         r1    k3
+call          r0     2     2
+setglobal     r0    k3
+closure       r0    f0
+setglobal     r0    k5
+closure       r0    f1
+setglobal     r0    k6
+closure       r0    f2
+setglobal     r0    k7
+closure       r0    f3
+setglobal     r0    k8
+closure       r0    f4
+setglobal     r0    k9
+closure       r0    f5
+setglobal     r0   k10
+closure       r0    f6
+setglobal     r0   k11
+closure       r0    f7
+setglobal     r0   k12
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	14
+.lastlinedefined	21
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"sprite"
+.constant	k1	"add"
+.constant	k2	"idle"
+.constant	k3	2
+.constant	k4	3
+.constant	k5	1200
+.constant	k6	1
+.constant	k7	"hurtIdle"
+.constant	k8	"talking"
+.constant	k9	5
+.constant	k10	1000
+.constant	k11	0
+.constant	k12	"stun"
+.constant	k13	6
+.constant	k14	"anger"
+.constant	k15	"laugh"
+.constant	k16	500
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+loadk         r3    k2
+loadk         r4    k3
+loadk         r5    k4
+loadk         r6    k5
+loadk         r7    k6
+call          r1     7     1
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+loadk         r3    k7
+loadk         r4    k3
+loadk         r5    k4
+loadk         r6    k5
+loadk         r7    k6
+call          r1     7     1
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+loadk         r3    k8
+loadk         r4    k9
+loadk         r5    k4
+loadk         r6   k10
+loadk         r7   k11
+call          r1     7     1
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+loadk         r3   k12
+loadk         r4   k13
+loadk         r5    k6
+loadk         r6   k10
+loadk         r7   k11
+call          r1     7     1
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+loadk         r3   k14
+loadk         r4    k6
+loadk         r5    k6
+loadk         r6   k10
+loadk         r7   k11
+call          r1     7     1
+getglobal     r1    k0
+gettable      r1    r1    k1
+move          r2    r0
+loadk         r3   k15
+loadk         r4   k13
+loadk         r5    k3
+loadk         r6   k16
+loadk         r7   k11
+call          r1     7     1
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	23
+.lastlinedefined	47
+.numparams	2
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"idle"
+.constant	k1	1000
+.constant	k2	1500
+.constant	k3	"hurtIdle"
+.constant	k4	0
+.constant	k5	2000
+.constant	k6	"prepare"
+.constant	k7	"addEventListener"
+.constant	k8	"sprite"
+.constant	k9	"play"
+
+loadk         r2    k0
+loadk         r3    k1
+loadk         r4    k2
+test          r1     0
+jmp           l9
+loadk         r2    k3
+loadk         r3    k4
+loadk         r4    k5
+.label	l9
+closure       r5    f0
+move          r0    r3
+move          r0    r4
+move          r0    r0
+move          r0    r2
+self          r6    r0    k6
+move          r8    r2
+call          r6     3     1
+self          r6    r0    k7
+loadk         r8    k8
+move          r9    r5
+call          r6     4     1
+self          r6    r0    k9
+call          r6     2     1
+return        r0     1
+
+.function	main/f1/f0
+
+.source	null
+.linedefined	33
+.lastlinedefined	43
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"phase"
+.constant	k1	"end"
+.constant	k2	"timer"
+.constant	k3	"performWithDelay"
+.constant	k4	"math"
+.constant	k5	"random"
+
+gettable      r1    r0    k0
+eq             0    r1    k1
+jmp          l15
+getglobal     r1    k2
+gettable      r1    r1    k3
+getglobal     r2    k4
+gettable      r2    r2    k5
+getupval      r3    u0
+getupval      r4    u1
+call          r2     3     2
+closure       r3    f0
+getupval      r0    u2
+getupval      r0    u3
+call          r1     3     1
+.label	l15
+return        r0     1
+
+.function	main/f1/f0/f0
+
+.source	null
+.linedefined	36
+.lastlinedefined	41
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"prepare"
+.constant	k1	"play"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+test          r0     0
+jmp          l12
+getupval      r0    u0
+self          r0    r0    k0
+getupval      r2    u1
+call          r0     3     1
+getupval      r0    u0
+self          r0    r0    k1
+call          r0     2     1
+.label	l12
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	49
+.lastlinedefined	56
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"prepare"
+.constant	k1	"talking"
+.constant	k2	"play"
+.constant	k3	"idleAnimation"
+
+test          r1     0
+jmp           l9
+self          r2    r0    k0
+loadk         r4    k1
+call          r2     3     1
+self          r2    r0    k2
+call          r2     2     1
+jmp          l13
+.label	l9
+getglobal     r2    k3
+move          r3    r0
+loadbool      r4     0     0
+call          r2     3     1
+.label	l13
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	58
+.lastlinedefined	61
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"prepare"
+.constant	k1	"stun"
+.constant	k2	"play"
+
+self          r1    r0    k0
+loadk         r3    k1
+call          r1     3     1
+self          r1    r0    k2
+call          r1     2     1
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	63
+.lastlinedefined	66
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"prepare"
+.constant	k1	"anger"
+.constant	k2	"play"
+
+self          r1    r0    k0
+loadk         r3    k1
+call          r1     3     1
+self          r1    r0    k2
+call          r1     2     1
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	68
+.lastlinedefined	71
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"prepare"
+.constant	k1	"laugh"
+.constant	k2	"play"
+
+self          r1    r0    k0
+loadk         r3    k1
+call          r1     3     1
+self          r1    r0    k2
+call          r1     2     1
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	73
+.lastlinedefined	75
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	78
+.lastlinedefined	150
+.numparams	0
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"frames"
+.constant	k1	"name"
+.constant	k2	"angry_mouth.png"
+.constant	k3	"spriteColorRect"
+.constant	k4	"x"
+.constant	k5	0
+.constant	k6	"y"
+.constant	k7	"width"
+.constant	k8	85
+.constant	k9	"height"
+.constant	k10	50
+.constant	k11	"textureRect"
+.constant	k12	55
+.constant	k13	"spriteSourceSize"
+.constant	k14	"spriteTrimmed"
+.constant	k15	true
+.constant	k16	"textureRotated"
+.constant	k17	false
+.constant	k18	"normal_mouth1.png"
+.constant	k19	1
+.constant	k20	14
+.constant	k21	107
+.constant	k22	16
+.constant	k23	"normal_mouth2.png"
+.constant	k24	46
+.constant	k25	8
+.constant	k26	52
+.constant	k27	10
+.constant	k28	"normal_mouth3.png"
+.constant	k29	60
+.constant	k30	39
+.constant	k31	87
+.constant	k32	41
+.constant	k33	"open_mouth.png"
+.constant	k34	31
+.constant	k35	100
+.constant	k36	96
+.constant	k37	33
+.constant	k38	"surprised_mouth.png"
+.constant	k39	26
+.constant	k40	28
+.constant	k41	"yelling_mouth.png"
+.constant	k42	94
+.constant	k43	53
+
+newtable      r0     0     1
+newtable      r1     7     0
+newtable      r2     0     6
+settable      r2    k1    k2
+newtable      r3     0     4
+settable      r3    k4    k5
+settable      r3    k6    k5
+settable      r3    k7    k8
+settable      r3    k9   k10
+settable      r2    k3    r3
+newtable      r3     0     4
+settable      r3    k4    k5
+settable      r3    k6   k12
+settable      r3    k7    k8
+settable      r3    k9   k10
+settable      r2   k11    r3
+newtable      r3     0     2
+settable      r3    k7    k8
+settable      r3    k9   k10
+settable      r2   k13    r3
+settable      r2   k14   k15
+settable      r2   k16   k17
+newtable      r3     0     6
+settable      r3    k1   k18
+newtable      r4     0     4
+settable      r4    k4    k5
+settable      r4    k6   k19
+settable      r4    k7   k10
+settable      r4    k9   k20
+settable      r3    k3    r4
+newtable      r4     0     4
+settable      r4    k4    k5
+settable      r4    k6   k21
+settable      r4    k7   k10
+settable      r4    k9   k20
+settable      r3   k11    r4
+newtable      r4     0     2
+settable      r4    k7   k10
+settable      r4    k9   k22
+settable      r3   k13    r4
+settable      r3   k14   k15
+settable      r3   k16   k17
+newtable      r4     0     6
+settable      r4    k1   k23
+newtable      r5     0     4
+settable      r5    k4    k5
+settable      r5    k6   k19
+settable      r5    k7   k24
+settable      r5    k9   k25
+settable      r4    k3    r5
+newtable      r5     0     4
+settable      r5    k4   k26
+settable      r5    k6   k21
+settable      r5    k7   k24
+settable      r5    k9   k25
+settable      r4   k11    r5
+newtable      r5     0     2
+settable      r5    k7   k24
+settable      r5    k9   k27
+settable      r4   k13    r5
+settable      r4   k14   k15
+settable      r4   k16   k17
+newtable      r5     0     6
+settable      r5    k1   k28
+newtable      r6     0     4
+settable      r6    k4    k5
+settable      r6    k6   k19
+settable      r6    k7   k29
+settable      r6    k9   k30
+settable      r5    k3    r6
+newtable      r6     0     4
+settable      r6    k4   k31
+settable      r6    k6   k12
+settable      r6    k7   k29
+settable      r6    k9   k30
+settable      r5   k11    r6
+newtable      r6     0     2
+settable      r6    k7   k29
+settable      r6    k9   k32
+settable      r5   k13    r6
+settable      r5   k14   k15
+settable      r5   k16   k17
+newtable      r6     0     6
+settable      r6    k1   k33
+newtable      r7     0     4
+settable      r7    k4    k5
+settable      r7    k6   k19
+settable      r7    k7   k26
+settable      r7    k9   k34
+settable      r6    k3    r7
+newtable      r7     0     4
+settable      r7    k4   k35
+settable      r7    k6   k36
+settable      r7    k7   k26
+settable      r7    k9   k34
+settable      r6   k11    r7
+newtable      r7     0     2
+settable      r7    k7   k26
+settable      r7    k9   k37
+settable      r6   k13    r7
+settable      r6   k14   k15
+settable      r6   k16   k17
+newtable      r7     0     6
+settable      r7    k1   k38
+newtable      r8     0     4
+settable      r8    k4   k19
+settable      r8    k6    k5
+settable      r8    k7   k39
+settable      r8    k9   k37
+settable      r7    k3    r8
+newtable      r8     0     4
+settable      r8    k4   k36
+settable      r8    k6    k5
+settable      r8    k7   k39
+settable      r8    k9   k37
+settable      r7   k11    r8
+newtable      r8     0     2
+settable      r8    k7   k40
+settable      r8    k9   k37
+settable      r7   k13    r8
+settable      r7   k14   k15
+settable      r7   k16   k17
+newtable      r8     0     6
+settable      r8    k1   k41
+newtable      r9     0     4
+settable      r9    k4    k5
+settable      r9    k6    k5
+settable      r9    k7   k42
+settable      r9    k9   k43
+settable      r8    k3    r9
+newtable      r9     0     4
+settable      r9    k4    k5
+settable      r9    k6    k5
+settable      r9    k7   k42
+settable      r9    k9   k43
+settable      r8   k11    r9
+newtable      r9     0     2
+settable      r9    k7   k42
+settable      r9    k9   k43
+settable      r8   k13    r9
+settable      r8   k14   k15
+settable      r8   k16   k17
+setlist       r1     7     1
+settable      r0    k0    r1
+return        r0     2
+return        r0     1
+

@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "island1.png"
+	;({}).x = 0
+	;({}).y = 2
+	;({}).width = 430
+	;({}).spriteColorRect, ({}).height = {}, 237
+	;({}).x = 0
+	;({}).y = 273
+	;({}).width = 430
+	;({}).textureRect, ({}).height = {}, 237
+	;({}).width = 430
+	;({}).spriteSourceSize, ({}).height = {}, 239
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "island2.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 536
+	;({}).spriteColorRect, ({}).height = {}, 271
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 536
+	;({}).textureRect, ({}).height = {}, 271
+	;({}).width = 536
+	;({}).spriteSourceSize, ({}).height = {}, 271
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "island3.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 448
+	;({}).spriteColorRect, ({}).height = {}, 196
+	;({}).x = 432
+	;({}).y = 273
+	;({}).width = 448
+	;({}).textureRect, ({}).height = {}, 196
+	;({}).width = 448
+	;({}).spriteSourceSize, ({}).height = {}, 196
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "island4.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 295
+	;({}).spriteColorRect, ({}).height = {}, 174
+	;({}).x = 538
+	;({}).y = 0
+	;({}).width = 295
+	;({}).textureRect, ({}).height = {}, 174
+	;({}).width = 295
+	;({}).spriteSourceSize, ({}).height = {}, 174
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

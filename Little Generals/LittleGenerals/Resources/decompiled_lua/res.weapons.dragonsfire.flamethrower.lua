@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "flamethrowerorigin01.png"
+	;({}).x = 2
+	;({}).y = 6
+	;({}).width = 34
+	;({}).spriteColorRect, ({}).height = {}, 24
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 34
+	;({}).textureRect, ({}).height = {}, 24
+	;({}).width = 36
+	;({}).spriteSourceSize, ({}).height = {}, 34
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "flamethrowerorigin02.png"
+	;({}).x = 2
+	;({}).y = 4
+	;({}).width = 32
+	;({}).spriteColorRect, ({}).height = {}, 28
+	;({}).x = 36
+	;({}).y = 0
+	;({}).width = 32
+	;({}).textureRect, ({}).height = {}, 28
+	;({}).width = 36
+	;({}).spriteSourceSize, ({}).height = {}, 34
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "flamethrowerorigin03.png"
+	;({}).x = 1
+	;({}).y = 1
+	;({}).width = 32
+	;({}).spriteColorRect, ({}).height = {}, 32
+	;({}).x = 70
+	;({}).y = 0
+	;({}).width = 32
+	;({}).textureRect, ({}).height = {}, 32
+	;({}).width = 36
+	;({}).spriteSourceSize, ({}).height = {}, 34
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "flamethrowerorigin04.png"
+	;({}).x = 2
+	;({}).y = 4
+	;({}).width = 32
+	;({}).spriteColorRect, ({}).height = {}, 28
+	;({}).x = 0
+	;({}).y = 34
+	;({}).width = 32
+	;({}).textureRect, ({}).height = {}, 28
+	;({}).width = 36
+	;({}).spriteSourceSize, ({}).height = {}, 34
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

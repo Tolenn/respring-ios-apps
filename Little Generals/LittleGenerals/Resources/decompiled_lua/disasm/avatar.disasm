@@ -1,0 +1,1121 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	12
+
+.constant	k0	"module"
+.constant	k1	"package"
+.constant	k2	"seeall"
+.constant	k3	"Avatar"
+.constant	k4	"head"
+.constant	k5	"eyes"
+.constant	k6	"mouth"
+.constant	k7	"hat"
+.constant	k8	"mustache"
+.constant	k9	"nose"
+.constant	k10	"pipe"
+.constant	k11	"body"
+.constant	k12	"eyebrow_l"
+.constant	k13	"eyebrow_r"
+.constant	k14	"glasses"
+.constant	k15	"Avatar_mt"
+.constant	k16	"__index"
+.constant	k17	"create"
+.constant	k18	"heads"
+.constant	k19	"hair"
+.constant	k20	"eyebrows_l"
+.constant	k21	"eyebrows_r"
+.constant	k22	"noses"
+.constant	k23	"mouths"
+.constant	k24	"bodies"
+.constant	k25	"hats"
+.constant	k26	"mustaches"
+.constant	k27	"eyemods"
+.constant	k28	"combinedEyewear"
+.constant	k29	"pipes"
+.constant	k30	"randomPart"
+.constant	k31	"randomAvatar"
+.constant	k32	"changeToSkinTone"
+.constant	k33	"validateAvatar"
+.constant	k34	"playerAvatar"
+.constant	k35	"setPlayerAvatar"
+
+getglobal     r0    k0
+vararg        r1     2
+getglobal     r2    k1
+gettable      r2    r2    k2
+call          r0     3     1
+newtable      r0    11     0
+getglobal     r1    k4
+getglobal     r2    k5
+getglobal     r3    k6
+getglobal     r4    k7
+getglobal     r5    k8
+getglobal     r6    k9
+getglobal     r7   k10
+getglobal     r8   k11
+getglobal     r9   k12
+getglobal    r10   k13
+getglobal    r11   k14
+setlist       r0    11     1
+setglobal     r0    k3
+newtable      r0     0     1
+getglobal     r1    k3
+settable      r0   k16    r1
+setglobal     r0   k15
+closure       r0    f0
+closure       r1    f1
+setglobal     r1   k17
+closure       r1    f2
+move          r0    r0
+setglobal     r1   k18
+closure       r1    f3
+setglobal     r1   k19
+closure       r1    f4
+setglobal     r1    k5
+closure       r1    f5
+setglobal     r1   k20
+closure       r1    f6
+setglobal     r1   k21
+closure       r1    f7
+setglobal     r1   k22
+closure       r1    f8
+setglobal     r1   k23
+closure       r1    f9
+setglobal     r1   k24
+closure       r1   f10
+setglobal     r1   k25
+closure       r1   f11
+setglobal     r1   k26
+closure       r1   f12
+setglobal     r1   k27
+closure       r1   f13
+setglobal     r1   k14
+closure       r1   f14
+setglobal     r1   k28
+closure       r1   f15
+setglobal     r1   k29
+closure       r1   f16
+setglobal     r1   k30
+closure       r1   f17
+setglobal     r1   k31
+closure       r1   f18
+closure       r2   f19
+move          r0    r1
+setglobal     r2   k32
+closure       r2   f20
+setglobal     r2   k33
+closure       r2   f21
+setglobal     r2   k34
+closure       r2   f22
+setglobal     r2   k35
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	9
+.lastlinedefined	19
+.numparams	1
+.is_vararg	0
+.maxstacksize	14
+
+.constant	k0	"pairs"
+.constant	k1	1
+.constant	k2	"table"
+.constant	k3	"insert"
+
+newtable      r1     0     0
+getglobal     r2    k0
+move          r3    r0
+call          r2     2     4
+jmp          l16
+.label	l6
+loadk         r7    k1
+len           r8    r6
+loadk         r9    k1
+forprep       r7   l15
+.label	l10
+getglobal    r11    k2
+gettable     r11   r11    k3
+move         r12    r1
+gettable     r13    r6   r10
+call         r11     3     1
+.label	l15
+forloop       r7   l10
+.label	l16
+tforloop      r2     2
+jmp           l6
+return        r1     2
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	21
+.lastlinedefined	28
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"setmetatable"
+.constant	k1	"Avatar_mt"
+.constant	k2	"pairs"
+
+newtable      r1     0     0
+getglobal     r2    k0
+move          r3    r1
+getglobal     r4    k1
+call          r2     3     1
+getglobal     r2    k2
+move          r3    r0
+call          r2     2     4
+jmp          l11
+.label	l10
+settable      r1    r5    r6
+.label	l11
+tforloop      r2     2
+jmp          l10
+return        r1     2
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	31
+.lastlinedefined	43
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"light"
+.constant	k1	"res/avatars/heads/light/head1"
+.constant	k2	"res/avatars/heads/light/head2"
+.constant	k3	"res/avatars/heads/light/head3"
+.constant	k4	"res/avatars/heads/light/head4"
+.constant	k5	"res/avatars/heads/light/head5"
+.constant	k6	"tan"
+.constant	k7	"res/avatars/heads/tan/head1_tan"
+.constant	k8	"res/avatars/heads/tan/head2_tan"
+.constant	k9	"res/avatars/heads/tan/head3_tan"
+.constant	k10	"res/avatars/heads/tan/head4_tan"
+.constant	k11	"res/avatars/heads/tan/head5_tan"
+.constant	k12	"dark"
+.constant	k13	"res/avatars/heads/dark/head1_dark"
+.constant	k14	"res/avatars/heads/dark/head2_dark"
+.constant	k15	"res/avatars/heads/dark/head3_dark"
+.constant	k16	"res/avatars/heads/dark/head4_dark"
+.constant	k17	"res/avatars/heads/dark/head5_dark"
+.constant	k18	"all"
+
+newtable      r1     0     3
+newtable      r2     5     0
+loadk         r3    k1
+loadk         r4    k2
+loadk         r5    k3
+loadk         r6    k4
+loadk         r7    k5
+setlist       r2     5     1
+settable      r1    k0    r2
+newtable      r2     5     0
+loadk         r3    k7
+loadk         r4    k8
+loadk         r5    k9
+loadk         r6   k10
+loadk         r7   k11
+setlist       r2     5     1
+settable      r1    k6    r2
+newtable      r2     5     0
+loadk         r3   k13
+loadk         r4   k14
+loadk         r5   k15
+loadk         r6   k16
+loadk         r7   k17
+setlist       r2     5     1
+settable      r1   k12    r2
+test          r0     1
+jmp          l30
+return        r1     2
+jmp          l36
+.label	l30
+eq             0    r0   k18
+jmp          l36
+getupval      r2    u0
+move          r3    r1
+tailcall      r2     2
+return        r2     0
+.label	l36
+gettable      r2    r1    r0
+return        r2     2
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	45
+.lastlinedefined	46
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	48
+.lastlinedefined	58
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"light"
+.constant	k1	"res/avatars/eyes/light/eyes1"
+.constant	k2	"tan"
+.constant	k3	"res/avatars/eyes/tan/eyes1_tan"
+.constant	k4	"dark"
+.constant	k5	"res/avatars/eyes/dark/eyes1_dark"
+
+newtable      r1     0     3
+newtable      r2     1     0
+loadk         r3    k1
+setlist       r2     1     1
+settable      r1    k0    r2
+newtable      r2     1     0
+loadk         r3    k3
+setlist       r2     1     1
+settable      r1    k2    r2
+newtable      r2     1     0
+loadk         r3    k5
+setlist       r2     1     1
+settable      r1    k4    r2
+test          r0     1
+jmp          l17
+return        r1     2
+.label	l17
+gettable      r2    r1    r0
+return        r2     2
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	60
+.lastlinedefined	62
+.numparams	0
+.is_vararg	0
+.maxstacksize	6
+
+.constant	k0	"res/avatars/eyebrows/eyebrow1_a"
+.constant	k1	"res/avatars/eyebrows/eyebrow2_a"
+.constant	k2	"res/avatars/eyebrows/eyebrow3_a"
+.constant	k3	"res/avatars/eyebrows/eyebrow4_a"
+.constant	k4	"res/avatars/eyebrows/eyebrow5_a"
+
+newtable      r0     5     0
+loadk         r1    k0
+loadk         r2    k1
+loadk         r3    k2
+loadk         r4    k3
+loadk         r5    k4
+setlist       r0     5     1
+return        r0     2
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	64
+.lastlinedefined	66
+.numparams	0
+.is_vararg	0
+.maxstacksize	6
+
+.constant	k0	"res/avatars/eyebrows/eyebrow1_b"
+.constant	k1	"res/avatars/eyebrows/eyebrow2_b"
+.constant	k2	"res/avatars/eyebrows/eyebrow3_b"
+.constant	k3	"res/avatars/eyebrows/eyebrow4_b"
+.constant	k4	"res/avatars/eyebrows/eyebrow5_b"
+
+newtable      r0     5     0
+loadk         r1    k0
+loadk         r2    k1
+loadk         r3    k2
+loadk         r4    k3
+loadk         r5    k4
+setlist       r0     5     1
+return        r0     2
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	68
+.lastlinedefined	78
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"light"
+.constant	k1	"res/avatars/noses/light/nose1"
+.constant	k2	"res/avatars/noses/light/nose2"
+.constant	k3	"res/avatars/noses/light/nose3"
+.constant	k4	"res/avatars/noses/light/nose4"
+.constant	k5	"res/avatars/noses/light/nose5"
+.constant	k6	"tan"
+.constant	k7	"res/avatars/noses/tan/nose1_tan"
+.constant	k8	"res/avatars/noses/tan/nose2_tan"
+.constant	k9	"res/avatars/noses/tan/nose3_tan"
+.constant	k10	"res/avatars/noses/tan/nose4_tan"
+.constant	k11	"res/avatars/noses/tan/nose5_tan"
+.constant	k12	"dark"
+.constant	k13	"res/avatars/noses/dark/nose1_dark"
+.constant	k14	"res/avatars/noses/dark/nose2_dark"
+.constant	k15	"res/avatars/noses/dark/nose3_dark"
+.constant	k16	"res/avatars/noses/dark/nose4_dark"
+.constant	k17	"res/avatars/noses/dark/nose5_dark"
+
+newtable      r1     0     3
+newtable      r2     5     0
+loadk         r3    k1
+loadk         r4    k2
+loadk         r5    k3
+loadk         r6    k4
+loadk         r7    k5
+setlist       r2     5     1
+settable      r1    k0    r2
+newtable      r2     5     0
+loadk         r3    k7
+loadk         r4    k8
+loadk         r5    k9
+loadk         r6   k10
+loadk         r7   k11
+setlist       r2     5     1
+settable      r1    k6    r2
+newtable      r2     5     0
+loadk         r3   k13
+loadk         r4   k14
+loadk         r5   k15
+loadk         r6   k16
+loadk         r7   k17
+setlist       r2     5     1
+settable      r1   k12    r2
+test          r0     1
+jmp          l29
+return        r1     2
+.label	l29
+gettable      r2    r1    r0
+return        r2     2
+return        r0     1
+
+.function	main/f8
+
+.source	null
+.linedefined	80
+.lastlinedefined	82
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"res/avatars/mouths/mouth1"
+
+newtable      r0     1     0
+loadk         r1    k0
+setlist       r0     1     1
+return        r0     2
+return        r0     1
+
+.function	main/f9
+
+.source	null
+.linedefined	84
+.lastlinedefined	94
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"light"
+.constant	k1	"res/avatars/bodies/light/body1"
+.constant	k2	"res/avatars/bodies/light/body2"
+.constant	k3	"res/avatars/bodies/light/body3"
+.constant	k4	"res/avatars/bodies/light/body4"
+.constant	k5	"res/avatars/bodies/light/body5"
+.constant	k6	"tan"
+.constant	k7	"res/avatars/bodies/tan/body1_tan"
+.constant	k8	"res/avatars/bodies/tan/body2_tan"
+.constant	k9	"res/avatars/bodies/tan/body3_tan"
+.constant	k10	"res/avatars/bodies/tan/body4_tan"
+.constant	k11	"res/avatars/bodies/tan/body5_tan"
+.constant	k12	"dark"
+.constant	k13	"res/avatars/bodies/dark/body1_dark"
+.constant	k14	"res/avatars/bodies/dark/body2_dark"
+.constant	k15	"res/avatars/bodies/dark/body3_dark"
+.constant	k16	"res/avatars/bodies/dark/body4_dark"
+.constant	k17	"res/avatars/bodies/dark/body5_dark"
+
+newtable      r1     0     3
+newtable      r2     5     0
+loadk         r3    k1
+loadk         r4    k2
+loadk         r5    k3
+loadk         r6    k4
+loadk         r7    k5
+setlist       r2     5     1
+settable      r1    k0    r2
+newtable      r2     5     0
+loadk         r3    k7
+loadk         r4    k8
+loadk         r5    k9
+loadk         r6   k10
+loadk         r7   k11
+setlist       r2     5     1
+settable      r1    k6    r2
+newtable      r2     5     0
+loadk         r3   k13
+loadk         r4   k14
+loadk         r5   k15
+loadk         r6   k16
+loadk         r7   k17
+setlist       r2     5     1
+settable      r1   k12    r2
+test          r0     1
+jmp          l29
+return        r1     2
+.label	l29
+gettable      r2    r1    r0
+return        r2     2
+return        r0     1
+
+.function	main/f10
+
+.source	null
+.linedefined	96
+.lastlinedefined	98
+.numparams	0
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"res/avatars/hats/hat1"
+.constant	k1	"res/avatars/hats/hat2"
+.constant	k2	"res/avatars/hats/hat3"
+.constant	k3	"res/avatars/hats/hat4"
+.constant	k4	"res/avatars/hats/hat5"
+
+newtable      r0     6     0
+loadnil       r1    r1
+loadk         r2    k0
+loadk         r3    k1
+loadk         r4    k2
+loadk         r5    k3
+loadk         r6    k4
+setlist       r0     6     1
+return        r0     2
+return        r0     1
+
+.function	main/f11
+
+.source	null
+.linedefined	100
+.lastlinedefined	102
+.numparams	0
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"res/avatars/mustaches/mustache1"
+.constant	k1	"res/avatars/mustaches/mustache2"
+.constant	k2	"res/avatars/mustaches/mustache3"
+.constant	k3	"res/avatars/mustaches/mustache4"
+.constant	k4	"res/avatars/mustaches/mustache5"
+
+newtable      r0     6     0
+loadnil       r1    r1
+loadk         r2    k0
+loadk         r3    k1
+loadk         r4    k2
+loadk         r5    k3
+loadk         r6    k4
+setlist       r0     6     1
+return        r0     2
+return        r0     1
+
+.function	main/f12
+
+.source	null
+.linedefined	104
+.lastlinedefined	106
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"res/avatars/glasses/eyepatch"
+
+newtable      r0     1     0
+loadk         r1    k0
+setlist       r0     1     1
+return        r0     2
+return        r0     1
+
+.function	main/f13
+
+.source	null
+.linedefined	108
+.lastlinedefined	110
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"res/avatars/glasses/sunglasses"
+.constant	k1	"res/avatars/glasses/spectacle"
+
+newtable      r0     3     0
+loadnil       r1    r1
+loadk         r2    k0
+loadk         r3    k1
+setlist       r0     3     1
+return        r0     2
+return        r0     1
+
+.function	main/f14
+
+.source	null
+.linedefined	112
+.lastlinedefined	126
+.numparams	0
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"res/avatars/glasses/sunglasses"
+.constant	k1	"res/avatars/glasses/spectacle"
+.constant	k2	"res/avatars/glasses/eyepatch"
+
+newtable      r0     4     0
+loadnil       r1    r1
+loadk         r2    k0
+loadk         r3    k1
+loadk         r4    k2
+setlist       r0     4     1
+return        r0     2
+return        r0     1
+
+.function	main/f15
+
+.source	null
+.linedefined	128
+.lastlinedefined	130
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"res/avatars/pipes/cigar1"
+
+newtable      r0     2     0
+loadnil       r1    r1
+loadk         r2    k0
+setlist       r0     2     1
+return        r0     2
+return        r0     1
+
+.function	main/f16
+
+.source	null
+.linedefined	182
+.lastlinedefined	184
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"math"
+.constant	k1	"random"
+.constant	k2	1
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+loadk         r2    k2
+len           r3    r0
+call          r1     3     2
+gettable      r1    r0    r1
+return        r1     2
+return        r0     1
+
+.function	main/f17
+
+.source	null
+.linedefined	186
+.lastlinedefined	217
+.numparams	1
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"light"
+.constant	k1	"tan"
+.constant	k2	"dark"
+.constant	k3	"math"
+.constant	k4	"random"
+.constant	k5	1
+.constant	k6	"eyebrows_l"
+.constant	k7	"combinedEyewear"
+.constant	k8	"avatar"
+.constant	k9	"glasses"
+.constant	k10	"eyemods"
+.constant	k11	"body"
+.constant	k12	"randomPart"
+.constant	k13	"bodies"
+.constant	k14	"eyes"
+.constant	k15	"nose"
+.constant	k16	"noses"
+.constant	k17	"head"
+.constant	k18	"heads"
+.constant	k19	"mouth"
+.constant	k20	"mouths"
+.constant	k21	"hat"
+.constant	k22	"hats"
+.constant	k23	"eyemod"
+.constant	k24	"mustache"
+.constant	k25	"mustaches"
+.constant	k26	"pipe"
+.constant	k27	"pipes"
+.constant	k28	"eyebrow_l"
+.constant	k29	"eyebrow_r"
+.constant	k30	"eyebrows_r"
+
+move          r1    r0
+test          r1     1
+jmp          l15
+newtable      r2     3     0
+loadk         r3    k0
+loadk         r4    k1
+loadk         r5    k2
+setlist       r2     3     1
+getglobal     r3    k3
+gettable      r3    r3    k4
+loadk         r4    k5
+len           r5    r2
+call          r3     3     2
+gettable      r1    r2    r3
+.label	l15
+getglobal     r2    k3
+gettable      r2    r2    k4
+loadk         r3    k5
+getglobal     r4    k6
+call          r4     1     2
+len           r4    r4
+call          r2     3     2
+getglobal     r3    k3
+gettable      r3    r3    k4
+loadk         r4    k5
+getglobal     r5    k7
+call          r5     1     2
+len           r5    r5
+call          r3     3     2
+loadnil       r4    r5
+getglobal     r6    k8
+gettable      r6    r6    k9
+call          r6     1     2
+len           r6    r6
+lt             0    r6    r3
+jmp          l46
+getglobal     r6   k10
+call          r6     1     2
+getglobal     r7    k8
+gettable      r7    r7    k9
+call          r7     1     2
+len           r7    r7
+sub           r7    r3    r7
+gettable      r5    r6    r7
+loadnil       r4    r4
+jmp          l51
+.label	l46
+getglobal     r6    k8
+gettable      r6    r6    k9
+call          r6     1     2
+gettable      r4    r6    r3
+loadnil       r5    r5
+.label	l51
+newtable      r6     0    12
+getglobal     r7   k12
+getglobal     r8   k13
+move          r9    r1
+call          r8     2     0
+call          r7     0     2
+settable      r6   k11    r7
+getglobal     r7   k12
+getglobal     r8   k14
+move          r9    r1
+call          r8     2     0
+call          r7     0     2
+settable      r6   k14    r7
+getglobal     r7   k12
+getglobal     r8   k16
+move          r9    r1
+call          r8     2     0
+call          r7     0     2
+settable      r6   k15    r7
+getglobal     r7   k12
+getglobal     r8   k18
+move          r9    r1
+call          r8     2     0
+call          r7     0     2
+settable      r6   k17    r7
+getglobal     r7   k12
+getglobal     r8   k20
+call          r8     1     0
+call          r7     0     2
+settable      r6   k19    r7
+getglobal     r7   k12
+getglobal     r8   k22
+call          r8     1     0
+call          r7     0     2
+settable      r6   k21    r7
+settable      r6    k9    r4
+settable      r6   k23    r5
+getglobal     r7   k12
+getglobal     r8   k25
+call          r8     1     0
+call          r7     0     2
+settable      r6   k24    r7
+getglobal     r7   k12
+getglobal     r8   k27
+call          r8     1     0
+call          r7     0     2
+settable      r6   k26    r7
+getglobal     r7    k6
+call          r7     1     2
+gettable      r7    r7    r2
+settable      r6   k28    r7
+getglobal     r7   k30
+call          r7     1     2
+gettable      r7    r7    r2
+settable      r6   k29    r7
+move          r7    r1
+return        r6     3
+return        r0     1
+
+.function	main/f18
+
+.source	null
+.linedefined	222
+.lastlinedefined	233
+.numparams	2
+.is_vararg	0
+.maxstacksize	12
+
+.constant	k0	"pairs"
+.constant	k1	1
+
+getglobal     r2    k0
+move          r3    r0
+call          r2     2     4
+jmp          l14
+.label	l5
+loadk         r7    k1
+len           r8    r6
+loadk         r9    k1
+forprep       r7   l13
+.label	l9
+gettable     r11    r6   r10
+eq             0    r1   r11
+jmp          l13
+return       r10     2
+.label	l13
+forloop       r7    l9
+.label	l14
+tforloop      r2     2
+jmp           l5
+loadnil       r2    r2
+return        r2     2
+return        r0     1
+
+.function	main/f19
+
+.source	null
+.linedefined	236
+.lastlinedefined	275
+.numparams	3
+.is_vararg	0
+.maxstacksize	14
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"pairs"
+.constant	k1	1
+.constant	k2	"heads"
+.constant	k3	"head"
+.constant	k4	"bodies"
+.constant	k5	"body"
+.constant	k6	"noses"
+.constant	k7	"nose"
+.constant	k8	"eyes"
+
+getglobal     r4    k0
+move          r5    r1
+call          r4     2     4
+jmp          l18
+.label	l5
+loadk         r9    k1
+len          r10    r8
+loadk        r11    k1
+forprep       r9   l14
+.label	l9
+gettable     r13    r8   r12
+eq             0    r2   r13
+jmp          l14
+move          r3    r7
+jmp          l15
+.label	l14
+forloop       r9    l9
+.label	l15
+test          r3     0
+jmp          l18
+jmp          l20
+.label	l18
+tforloop      r4     2
+jmp           l5
+.label	l20
+test          r3     0
+jmp          l70
+getupval      r4    u0
+getglobal     r5    k2
+call          r5     1     2
+gettable      r6    r0    k3
+call          r4     3     2
+test          r4     0
+jmp          l34
+getglobal     r5    k2
+move          r6    r3
+call          r5     2     2
+gettable      r5    r5    r4
+settable      r0    k3    r5
+.label	l34
+getupval      r5    u0
+getglobal     r6    k4
+call          r6     1     2
+gettable      r7    r0    k5
+call          r5     3     2
+test          r5     0
+jmp          l46
+getglobal     r6    k4
+move          r7    r3
+call          r6     2     2
+gettable      r6    r6    r5
+settable      r0    k5    r6
+.label	l46
+getupval      r6    u0
+getglobal     r7    k6
+call          r7     1     2
+gettable      r8    r0    k7
+call          r6     3     2
+test          r6     0
+jmp          l58
+getglobal     r7    k6
+move          r8    r3
+call          r7     2     2
+gettable      r7    r7    r6
+settable      r0    k7    r7
+.label	l58
+getupval      r7    u0
+getglobal     r8    k8
+call          r8     1     2
+gettable      r9    r0    k8
+call          r7     3     2
+test          r7     0
+jmp          l70
+getglobal     r8    k8
+move          r9    r3
+call          r8     2     2
+gettable      r8    r8    r7
+settable      r0    k8    r8
+.label	l70
+return        r3     2
+return        r0     1
+
+.function	main/f20
+
+.source	null
+.linedefined	277
+.lastlinedefined	311
+.numparams	1
+.is_vararg	0
+.maxstacksize	21
+
+.constant	k0	"head"
+.constant	k1	"eyes"
+.constant	k2	"mouth"
+.constant	k3	"nose"
+.constant	k4	"body"
+.constant	k5	"eyebrow_l"
+.constant	k6	"eyebrow_r"
+.constant	k7	"heads"
+.constant	k8	"mouths"
+.constant	k9	"noses"
+.constant	k10	"bodies"
+.constant	k11	"eyebrows_l"
+.constant	k12	"eyebrows_r"
+.constant	k13	"package"
+.constant	k14	"loaded"
+.constant	k15	"avatar"
+.constant	k16	1
+.constant	k17	0
+.constant	k18	"pairs"
+
+newtable      r1     7     0
+loadk         r2    k0
+loadk         r3    k1
+loadk         r4    k2
+loadk         r5    k3
+loadk         r6    k4
+loadk         r7    k5
+loadk         r8    k6
+setlist       r1     7     1
+newtable      r2     7     0
+loadk         r3    k7
+loadk         r4    k1
+loadk         r5    k8
+loadk         r6    k9
+loadk         r7   k10
+loadk         r8   k11
+loadk         r9   k12
+setlist       r2     7     1
+getglobal     r3   k13
+gettable      r3    r3   k14
+gettable      r3    r3   k15
+loadk         r4   k16
+len           r5    r1
+loadk         r6   k16
+forprep       r4   l65
+.label	l26
+gettable      r8    r1    r7
+gettable      r8    r0    r8
+test          r8     1
+jmp          l33
+loadbool      r9     0     0
+return        r9     2
+jmp          l65
+.label	l33
+gettable      r9    r2    r7
+gettable      r9    r3    r9
+call          r9     1     2
+loadbool     r10     0     0
+len          r11    r9
+lt             0   k17   r11
+jmp          l42
+loadbool     r10     1     0
+jmp          l61
+.label	l42
+getglobal    r11   k18
+move         r12    r9
+call         r11     2     4
+jmp          l59
+.label	l46
+loadk        r16   k16
+len          r17   r15
+loadk        r18   k16
+forprep      r16   l55
+.label	l50
+gettable     r20   r15   r19
+eq             0   r20    r8
+jmp          l55
+loadbool     r10     1     0
+jmp          l56
+.label	l55
+forloop      r16   l50
+.label	l56
+test         r10     0
+jmp          l59
+jmp          l61
+.label	l59
+tforloop     r11     2
+jmp          l46
+.label	l61
+test         r10     1
+jmp          l65
+loadbool     r11     0     0
+return       r11     2
+.label	l65
+forloop       r4   l26
+loadbool      r4     1     0
+return        r4     2
+return        r0     1
+
+.function	main/f21
+
+.source	null
+.linedefined	313
+.lastlinedefined	322
+.numparams	0
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"settings"
+.constant	k1	"get"
+.constant	k2	"playerAvatar"
+.constant	k3	"validateAvatar"
+.constant	k4	"randomAvatar"
+.constant	k5	"set"
+.constant	k6	"save"
+
+getglobal     r0    k0
+self          r0    r0    k1
+loadk         r2    k2
+call          r0     3     2
+test          r0     0
+jmp          l12
+getglobal     r1    k3
+move          r2    r0
+call          r1     2     2
+test          r1     1
+jmp          l23
+.label	l12
+getglobal     r1    k4
+call          r1     1     2
+move          r0    r1
+getglobal     r1    k0
+self          r1    r1    k5
+loadk         r3    k2
+move          r4    r0
+call          r1     4     1
+getglobal     r1    k0
+self          r1    r1    k6
+call          r1     2     1
+.label	l23
+return        r0     2
+return        r0     1
+
+.function	main/f22
+
+.source	null
+.linedefined	324
+.lastlinedefined	327
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"settings"
+.constant	k1	"set"
+.constant	k2	"playerAvatar"
+.constant	k3	"save"
+
+getglobal     r1    k0
+self          r1    r1    k1
+loadk         r3    k2
+move          r4    r0
+call          r1     4     1
+getglobal     r1    k0
+self          r1    r1    k3
+call          r1     2     1
+return        r0     1
+

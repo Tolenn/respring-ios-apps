@@ -46,7 +46,20 @@ public class GameState {
         TankInfo(id: "lowrider", name: "Lowrider", textureName: "lowrider.png", armor: 160, firepower: 40, cost: 750),
         TankInfo(id: "dragontank", name: "Dragon Firestorm", textureName: "dragontank.png", armor: 180, firepower: 55, cost: 1200),
         TankInfo(id: "goldtank", name: "General's Gold", textureName: "goldtank.png", armor: 220, firepower: 65, cost: 2000),
-        TankInfo(id: "nuketank", name: "Atomic Behemoth", textureName: "nuketank.png", armor: 250, firepower: 80, cost: 3500)
+        TankInfo(id: "nuketank", name: "Atomic Behemoth", textureName: "nuketank.png", armor: 250, firepower: 80, cost: 3500),
+        // Country Tanks
+        TankInfo(id: "usa_tank", name: "USA Stars & Stripes", textureName: "usa.png", armor: 130, firepower: 40, cost: 400),
+        TankInfo(id: "uk_tank", name: "British Challenger", textureName: "uk.png", armor: 140, firepower: 42, cost: 450),
+        TankInfo(id: "russia_tank", name: "Russian T-80", textureName: "russia.png", armor: 150, firepower: 44, cost: 500),
+        TankInfo(id: "germany_tank", name: "German Panzer", textureName: "germany.png", armor: 155, firepower: 46, cost: 550),
+        TankInfo(id: "canada_tank", name: "Canadian Maple", textureName: "canada.png", armor: 135, firepower: 38, cost: 400),
+        TankInfo(id: "china_tank", name: "Chinese Dragon", textureName: "china.png", armor: 145, firepower: 45, cost: 500),
+        TankInfo(id: "ireland_tank", name: "Irish Shamrock", textureName: "ireland.png", armor: 130, firepower: 36, cost: 350),
+        TankInfo(id: "italy_tank", name: "Italian Centauro", textureName: "italy.png", armor: 135, firepower: 40, cost: 420),
+        // Specialty Novelty Tanks
+        TankInfo(id: "pink_icecream", name: "Pink Ice Cream Van", textureName: "pink_icecreamtruck.png", armor: 160, firepower: 50, cost: 900),
+        TankInfo(id: "pumpkin_tank", name: "Halloween Pumpkin", textureName: "pumpkintank.png", armor: 170, firepower: 52, cost: 1000),
+        TankInfo(id: "sleigh_tank", name: "Santa's Armored Sleigh", textureName: "sleigh_tank.png", armor: 185, firepower: 58, cost: 1500)
     ]
 
     public var selectedTank: TankInfo {
@@ -76,4 +89,3 @@ public class GameState {
         return true
     }
 }
-

@@ -1,0 +1,185 @@
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = tankModels
+L1_1 = tankModels
+L1_1 = L1_1.SLEIGH_TANK
+L2_2 = {}
+L2_2.maxHealth = 250
+L3_3 = tankModels
+L3_3 = L3_3.tankClasses
+L3_3 = L3_3.SPECIAL
+L2_2.tankClass = L3_3
+L2_2.damageSpriteXValue = 20
+L2_2.damageSpriteYValue = -10
+L2_2.sheetFile = "res/tanks/sleigh_tank.png"
+L2_2.sheetDataFile = "res.tanks.sleigh_tank"
+L2_2.tankGroundOffset = 30
+L2_2.speedForceExt = 1.5
+L2_2.speedForceInt = 0.5
+L2_2.upgradeSlots = 1
+L3_3 = {}
+L4_4 = tankConstants
+L4_4 = L4_4.TANK_DENSITY
+L3_3.density = L4_4
+L3_3.friction = 10
+L3_3.bounce = 0
+L4_4 = {}
+local L5_5 = L5_5
+local L6_6 = L6_6
+local L7_7 = L7_7
+local L8_8 = L8_8
+local L9_9 = L9_9
+local L10_10 = L10_10
+local L11_11 = L11_11
+local L12_12 = L12_12
+local L13_13 = L13_13
+local L14_14 = L14_14
+local L15_15 = L15_15
+local L16_16 = L16_16
+local L17_17 = L17_17
+local L18_18 = L18_18
+local L19_19 = L19_19
+local L20_20 = L20_20
+local L21_21 = L21_21
+L4_4[1] = L5_5
+L4_4[2] = L6_6
+L4_4[3] = L7_7
+L4_4[4] = L8_8
+L4_4[5] = L9_9
+L4_4[6] = L10_10
+L4_4[7] = L11_11
+L4_4[8] = L12_12
+L4_4[9] = L13_13
+L4_4[10] = L14_14
+L4_4[11] = L15_15
+L4_4[12] = L16_16
+L4_4[13] = L17_17
+L4_4[14] = L18_18
+L4_4[15] = L19_19
+L4_4[16] = L20_20
+L4_4[17] = L21_21
+local L4_4[18], L22_22 = -9, L22_22
+L3_3.shape = L4_4
+L4_4 = TANK_FILTER
+L3_3.filter = L4_4
+L2_2.tankPhysics = L3_3
+L3_3 = {}
+L3_3.treads = "res/sounds/sleighbells.mp3"
+L2_2.sounds = L3_3
+L3_3 = {}
+L4_4 = tankConstants
+L4_4 = L4_4.TANK_DENSITY
+L4_4 = 2 * L4_4
+L3_3.density = L4_4
+L3_3.friction = 20
+L3_3.bounce = 0
+L4_4 = tankConstants
+L4_4 = L4_4.SMALL_WHEEL_RADIUS
+L3_3.radius = L4_4
+L4_4 = TANK_FILTER
+L3_3.filter = L4_4
+L2_2.smallWheelPhysics = L3_3
+L3_3 = {}
+L4_4 = tankConstants
+L4_4 = L4_4.TRACK_DENSITY2
+L3_3.density = L4_4
+L3_3.friction = 20
+L3_3.bounce = 0
+L4_4 = tankConstants
+L4_4 = L4_4.WHEEL_RADIUS
+L3_3.radius = L4_4
+L4_4 = TANK_FILTER
+L3_3.filter = L4_4
+L2_2.wheelPhysics = L3_3
+L3_3 = {}
+L4_4 = {}
+L4_4.x = -10
+L4_4.y = -31
+L4_4.xRef = -10
+L4_4.yRef = 1
+L3_3.cannon = L4_4
+L4_4 = {}
+L4_4.x = 0
+L4_4.y = -22
+L3_3.tank_body = L4_4
+L2_2.sprites = L3_3
+function L3_3(A0_23, A1_24, A2_25, A3_26)
+	local L4_27 = display.newGroup()
+	local L5_28 = L5_28
+	L5_28 = L5_28(A0_23, A2_25 - 35, A3_26 - 5, tankConstants.SMALL_WHEEL_RADIUS, A1_24.smallWheelPhysics)
+	L4_27:insert(L5_28)
+	L5_28 = getWheel(A0_23, A2_25 - 20, A3_26 + 8, tankConstants.WHEEL_RADIUS, A1_24.wheelPhysics)
+	L4_27:insert(L5_28)
+	L5_28 = getWheel(A0_23, A2_25 - 0, A3_26 + 8, tankConstants.WHEEL_RADIUS, A1_24.wheelPhysics)
+	L4_27:insert(L5_28)
+	L5_28 = getWheel(A0_23, A2_25 + 20, A3_26 + 8, tankConstants.WHEEL_RADIUS, A1_24.wheelPhysics)
+	L4_27:insert(L5_28)
+	L9_32 = L9_32(A0_23, A2_25 + 35, A3_26 - 5, tankConstants.SMALL_WHEEL_RADIUS, A1_24.smallWheelPhysics)
+	L5_28 = L9_32
+	L9_32 = L4_27.insert
+	L9_32(L7_30, L5_28)
+	A0_23.wheelGroup = L4_27
+	L9_32 = 1
+	L7_30 = A0_23.wheelGroup
+	L7_30 = L7_30.numChildren
+	L7_30 = L7_30 - 1
+	L8_31 = 1
+	for _FORV_9_ = L9_32, L7_30, L8_31 do
+		local L11_34 = L11_34
+		local L12_35 = L12_35
+		local L13_36 = L13_36
+		local L14_37 = L14_37
+		local L15_38 = L15_38
+		local L16_39 = L16_39
+		local L18_41 = L18_41
+		L11_34 = L11_34(L12_35, L13_36, L14_37, L15_38, L16_39, L18_41, A0_23.wheelGroup[_FORV_9_ + 1].y)
+		L11_34.dampingRatio = 1
+	end
+end
+L2_2.bindWheels = L3_3
+L0_0[L1_1] = L2_2
+L0_0 = tankTypes
+L1_1 = tankTypes
+L1_1 = L1_1.SLEIGH_TANK
+L2_2 = {}
+L2_2.name = "Santa's Slay"
+L2_2.desc = "A more modern and robust way to deliver gifts...explosive gifts! Exclusive and unlimited access to the S.A.N.T.A munition. Painfully slow on all but snowy terrain."
+L3_3 = nonConsumableContent
+L3_3 = L3_3.unlockables
+L3_3 = L3_3["com.smarterapps.littlegenerals.santatank"]
+L2_2.unlockable = L3_3
+L2_2.isNew = false
+L3_3 = tankModels
+L3_3 = L3_3.SLEIGH_TANK
+L2_2.tankModel = L3_3
+L3_3 = {}
+L3_3.start = 1
+L3_3.frames = 8
+L3_3.duration = 160
+L2_2.fireSequence = L3_3
+L3_3 = {}
+L3_3.start = 9
+L3_3.frames = 2
+L3_3.duration = 150
+L2_2.driveSequence = L3_3
+L3_3 = {}
+L3_3.start = 11
+L3_3.frames = 2
+L3_3.duration = 150
+L2_2.reverseDriveSequence = L3_3
+function L3_3(A0_42)
+	local L3_45, L4_46 = L3_45, L4_46
+	if getCurrentBattle then
+		L3_45 = getCurrentBattle
+		L3_45 = L3_45()
+		if L3_45 then
+			L4_46 = L3_45.getTheme
+			L4_46 = L4_46()
+			if L4_46 and L4_46.landType == landType.SNOW then
+				A0_42.speedForceExt = 3.5
+				A0_42.speedForceInt = 3
+			end
+		end
+	end
+end
+L2_2.onTankCreate = L3_3
+L0_0[L1_1] = L2_2

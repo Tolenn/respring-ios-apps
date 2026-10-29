@@ -1,0 +1,6091 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	48
+
+.constant	k0	"debug"
+.constant	k1	true
+.constant	k2	"gGravity"
+.constant	k3	0.98
+.constant	k4	"gEmitterColorR"
+.constant	k5	255
+.constant	k6	"gEmitterColorG"
+.constant	k7	"gEmitterColorB"
+.constant	k8	"gFXFieldColorR"
+.constant	k9	0
+.constant	k10	"gFXFieldColorG"
+.constant	k11	"gFXFieldColorB"
+.constant	k12	"PI"
+.constant	k13	"math"
+.constant	k14	"atan"
+.constant	k15	1
+.constant	k16	4
+.constant	k17	"PI2"
+.constant	k18	2
+.constant	k19	"gLastTime"
+.constant	k20	"system"
+.constant	k21	"getTimer"
+.constant	k22	"gSuspTime"
+.constant	k23	"gLostTime"
+.constant	k24	"gSystemFrozen"
+.constant	k25	"gParticlesRendered"
+.constant	k26	"Emitters"
+.constant	k27	"EmitterIndex"
+.constant	k28	"FXFields"
+.constant	k29	"FXFieldIndex"
+.constant	k30	"ParticleTypes"
+.constant	k31	"ParticleTypeIndex"
+.constant	k32	"Particles"
+.constant	k33	"gMaxParticles"
+.constant	k34	"gSpriteAPI"
+.constant	k35	nil
+.constant	k36	"gCleanUpCalled"
+.constant	k37	false
+.constant	k38	"timeScale"
+.constant	k39	"Abs"
+.constant	k40	"abs"
+.constant	k41	"Cos"
+.constant	k42	"cos"
+.constant	k43	"Sin"
+.constant	k44	"sin"
+.constant	k45	"Rnd"
+.constant	k46	"random"
+.constant	k47	"Ceil"
+.constant	k48	"ceil"
+.constant	k49	"Atan2"
+.constant	k50	"atan2"
+.constant	k51	"Sqrt"
+.constant	k52	"sqrt"
+.constant	k53	"gScrLeftX"
+.constant	k54	"screenX"
+.constant	k55	"gScrRightX"
+.constant	k56	"screenWidth"
+.constant	k57	"gScrW"
+.constant	k58	"display"
+.constant	k59	"contentWidth"
+.constant	k60	"gScrH"
+.constant	k61	"contentHeight"
+.constant	k62	"print"
+.constant	k63	"--> PARTICLE SYSTEM READY. LET'S ROCK."
+.constant	k64	"EnableDebug"
+.constant	k65	"CreateFXField"
+.constant	k66	"GetFXField"
+.constant	k67	"EnableFXField"
+.constant	k68	"DeleteFXField"
+.constant	k69	"AddFXListener"
+.constant	k70	"RemoveFXListener"
+.constant	k71	"DeleteEmissionShape"
+.constant	k72	"CreateEmitter"
+.constant	k73	"DeleteEmitter"
+.constant	k74	"ListEmitters"
+.constant	k75	"StartEmitter"
+.constant	k76	"StopEmitter"
+.constant	k77	"DefineEmissionShape"
+.constant	k78	"GetEmitter"
+.constant	k79	"EmitterIsActive"
+.constant	k80	"SetEmitterScale"
+.constant	k81	"GetEmitterScale"
+.constant	k82	"SetEmitterListener"
+.constant	k83	"SetEmitterSound"
+.constant	k84	"SetEmitterTarget"
+.constant	k85	"ChangeEmissionRate"
+.constant	k86	"PrepareParticleSettings"
+.constant	k87	"CreateParticleType"
+.constant	k88	"DeleteParticleType"
+.constant	k89	"SetParticleProperty"
+.constant	k90	"AttachParticleType"
+.constant	k91	"DetachParticleTypes"
+.constant	k92	"DeleteParticle"
+.constant	k93	"ClearParticles"
+.constant	k94	"CleanUp"
+.constant	k95	"Update"
+.constant	k96	"CountParticles"
+.constant	k97	"GetMaxParticles"
+.constant	k98	"GetParticle"
+.constant	k99	"Freeze"
+.constant	k100	"WakeUp"
+.constant	k101	"SetEmitterColor"
+.constant	k102	"UseSpriteAPI"
+.constant	k103	"StartAutoUpdate"
+.constant	k104	"StopAutoUpdate"
+.constant	k105	"onSuspend"
+.constant	k106	"onRotate"
+.constant	k107	"Runtime"
+.constant	k108	"addEventListener"
+.constant	k109	"orientation"
+
+newtable      r0     0     0
+settable      r0    k0    k1
+settable      r0    k2    k3
+settable      r0    k4    k5
+settable      r0    k6    k5
+settable      r0    k7    k5
+settable      r0    k8    k9
+settable      r0   k10    k5
+settable      r0   k11    k5
+getglobal     r1   k13
+gettable      r1    r1   k14
+loadk         r2   k15
+call          r1     2     2
+mul           r1   k16    r1
+settable      r0   k12    r1
+gettable      r1    r0   k12
+mul           r1   k18    r1
+settable      r0   k17    r1
+getglobal     r1   k20
+gettable      r1    r1   k21
+call          r1     1     2
+settable      r0   k19    r1
+settable      r0   k22    k9
+settable      r0   k23    k9
+settable      r0   k24    k9
+settable      r0   k25    k9
+newtable      r1     0     0
+settable      r0   k26    r1
+newtable      r1     0     0
+settable      r0   k27    r1
+newtable      r1     0     0
+settable      r0   k28    r1
+newtable      r1     0     0
+settable      r0   k29    r1
+newtable      r1     0     0
+settable      r0   k30    r1
+newtable      r1     0     0
+settable      r0   k31    r1
+newtable      r1     0     0
+settable      r0   k32    r1
+settable      r0   k33    k9
+settable      r0   k34   k35
+settable      r0   k36   k37
+settable      r0   k38   k15
+getglobal     r1   k13
+gettable      r1    r1   k40
+settable      r0   k39    r1
+getglobal     r1   k13
+gettable      r1    r1   k42
+settable      r0   k41    r1
+getglobal     r1   k13
+gettable      r1    r1   k44
+settable      r0   k43    r1
+getglobal     r1   k13
+gettable      r1    r1   k46
+settable      r0   k45    r1
+getglobal     r1   k13
+gettable      r1    r1   k48
+settable      r0   k47    r1
+getglobal     r1   k13
+gettable      r1    r1   k50
+settable      r0   k49    r1
+getglobal     r1   k13
+gettable      r1    r1   k52
+settable      r0   k51    r1
+getglobal     r1   k54
+settable      r0   k53    r1
+getglobal     r1   k54
+getglobal     r2   k56
+add           r1    r1    r2
+settable      r0   k55    r1
+getglobal     r1   k58
+gettable      r1    r1   k59
+settable      r0   k57    r1
+getglobal     r1   k58
+gettable      r1    r1   k61
+settable      r0   k60    r1
+loadnil       r1    r1
+gettable      r2    r0    k0
+test          r2     0
+jmp          l89
+getglobal     r2   k62
+call          r2     1     1
+getglobal     r2   k62
+call          r2     1     1
+getglobal     r2   k62
+loadk         r3   k63
+call          r2     2     1
+.label	l89
+closure       r2    f0
+move          r0    r0
+settable      r0   k64    r2
+closure       r3    f1
+move          r0    r0
+settable      r0   k65    r3
+closure       r4    f2
+move          r0    r0
+settable      r0   k66    r4
+closure       r5    f3
+move          r0    r0
+settable      r0   k67    r5
+closure       r6    f4
+move          r0    r0
+settable      r0   k68    r6
+closure       r7    f5
+move          r0    r0
+settable      r0   k69    r7
+closure       r8    f6
+move          r0    r0
+settable      r0   k70    r8
+closure       r9    f7
+move          r0    r0
+settable      r0   k71    r9
+closure      r10    f8
+move          r0    r0
+settable      r0   k72   r10
+closure      r11    f9
+move          r0    r0
+move          r0    r9
+settable      r0   k73   r11
+closure      r12   f10
+move          r0    r0
+settable      r0   k74   r12
+closure      r13   f11
+move          r0    r0
+settable      r0   k75   r13
+closure      r14   f12
+move          r0    r0
+settable      r0   k76   r14
+closure      r15   f13
+move          r0    r0
+settable      r0   k77   r15
+closure      r16   f14
+move          r0    r0
+settable      r0   k78   r16
+closure      r17   f15
+move          r0    r0
+settable      r0   k79   r17
+closure      r18   f16
+move          r0    r0
+settable      r0   k80   r18
+closure      r19   f17
+move          r0    r0
+settable      r0   k81   r19
+closure      r20   f18
+move          r0    r0
+settable      r0   k82   r20
+closure      r21   f19
+move          r0    r0
+settable      r0   k83   r21
+closure      r22   f20
+move          r0    r0
+settable      r0   k84   r22
+closure      r23   f21
+move          r0    r0
+settable      r0   k85   r23
+closure      r24   f22
+move          r0    r0
+settable      r0   k86   r24
+closure      r25   f23
+move          r0    r0
+move          r0   r24
+settable      r0   k87   r25
+closure      r26   f24
+move          r0    r0
+settable      r0   k88   r26
+closure      r27   f25
+move          r0    r0
+move          r0   r24
+settable      r0   k89   r27
+closure      r28   f26
+move          r0    r0
+settable      r0   k90   r28
+closure      r29   f27
+move          r0    r0
+move          r0   r14
+move          r0   r21
+settable      r0   k91   r29
+closure      r30   f28
+move          r0    r0
+settable      r0   k92   r30
+closure      r31   f29
+move          r0    r0
+move          r0   r30
+settable      r0   k93   r31
+closure      r32   f30
+move          r0    r1
+move          r0   r31
+move          r0    r0
+move          r0    r6
+move          r0   r26
+move          r0   r11
+settable      r0   k94   r32
+closure      r33   f31
+move          r0    r0
+move          r0   r13
+move          r0   r14
+move          r0   r11
+move          r0   r30
+settable      r0   k95   r33
+closure      r34   f32
+move          r0    r0
+settable      r0   k96   r34
+closure      r35   f33
+move          r0    r0
+settable      r0   k97   r35
+closure      r36   f34
+move          r0    r0
+settable      r0   k98   r36
+closure      r37   f35
+move          r0    r0
+settable      r0   k99   r37
+closure      r38   f36
+move          r0    r0
+settable      r0  k100   r38
+closure      r39   f37
+move          r0    r0
+settable      r0  k101   r39
+closure      r40   f38
+move          r0    r0
+settable      r0  k102   r40
+closure      r41   f39
+move          r0   r33
+settable      r0  k103   r41
+closure       r1   f40
+move          r0   r33
+settable      r0  k104    r1
+closure      r42   f41
+move          r0   r37
+move          r0   r38
+settable      r0  k105   r42
+closure      r43   f42
+settable      r0  k106   r43
+getglobal    r44  k107
+self         r44   r44  k108
+loadk        r46   k20
+move         r47   r42
+call         r44     4     1
+getglobal    r44  k107
+self         r44   r44  k108
+loadk        r46  k109
+move         r47   r43
+call         r44     4     1
+return        r0     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	95
+.lastlinedefined	97
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"debug"
+.constant	k1	true
+
+getupval      r1    u0
+eq             0    r0    k1
+jmp           l7
+loadbool      r2     1     0
+test          r2     1
+jmp           l8
+.label	l7
+loadbool      r2     0     0
+.label	l8
+settable      r1    k0    r2
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	106
+.lastlinedefined	158
+.numparams	8
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"FXFields"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.CreateFXField(): FX FIELD '"
+.constant	k4	"' NOT CREATED - (ALREADY EXISTS)! NAME MUST BE UNIQUE."
+.constant	k5	"table"
+.constant	k6	"insert"
+.constant	k7	"FXFieldIndex"
+.constant	k8	0
+.constant	k9	true
+.constant	k10	1
+.constant	k11	"display"
+.constant	k12	"newGroup"
+.constant	k13	"x"
+.constant	k14	"y"
+.constant	k15	"newCircle"
+.constant	k16	"setFillColor"
+.constant	k17	"strokeWidth"
+.constant	k18	"setStrokeColor"
+.constant	k19	"gFXFieldColorR"
+.constant	k20	"gFXFieldColorG"
+.constant	k21	"gFXFieldColorB"
+.constant	k22	3
+.constant	k23	4
+.constant	k24	"newLine"
+.constant	k25	0.1
+.constant	k26	0.5
+.constant	k27	"append"
+.constant	k28	"setColor"
+.constant	k29	"name"
+.constant	k30	"isVisible"
+.constant	k31	"mode"
+.constant	k32	"strength"
+.constant	k33	"radius"
+.constant	k34	"fxID"
+.constant	k35	"enabled"
+.constant	k36	"uniqueID"
+.constant	k37	"Ceil"
+.constant	k38	"Rnd"
+.constant	k39	5000
+.constant	k40	"debug"
+.constant	k41	"--> Particles.CreateFxField(): ADDED FX FIELD '"
+.constant	k42	"'"
+
+getupval      r8    u0
+gettable      r8    r8    k0
+gettable      r8    r8    r0
+eq             1    r8    k1
+jmp          l13
+getglobal     r8    k2
+loadk         r9    k3
+move         r10    r0
+loadk        r11    k4
+concat        r9    r9   r11
+call          r8     2     1
+return        r0     1
+.label	l13
+getglobal     r8    k5
+gettable      r8    r8    k6
+getupval      r9    u0
+gettable      r9    r9    k7
+move         r10    r0
+call          r8     3     1
+eq             1    r7    k1
+jmp          l23
+test          r7     1
+jmp          l24
+.label	l23
+loadk         r7    k8
+.label	l24
+eq             0    r6    k9
+jmp          l29
+loadbool      r8     1     0
+testset       r6    r8     1
+jmp          l30
+.label	l29
+loadbool      r6     0     0
+.label	l30
+eq             1    r1    k1
+jmp          l34
+test          r1     1
+jmp          l35
+.label	l34
+loadk         r1    k8
+.label	l35
+eq             1    r4    k1
+jmp          l39
+test          r4     1
+jmp          l40
+.label	l39
+loadk         r4   k10
+.label	l40
+eq             1    r5    k1
+jmp          l44
+test          r5     1
+jmp          l45
+.label	l44
+loadk         r5   k10
+.label	l45
+getupval      r8    u0
+gettable      r8    r8    k0
+getglobal     r9   k11
+gettable      r9    r9   k12
+call          r9     1     2
+settable      r8    r0    r9
+getupval      r8    u0
+gettable      r8    r8    k0
+gettable      r8    r8    r0
+settable      r8   k13    r2
+getupval      r8    u0
+gettable      r8    r8    k0
+gettable      r8    r8    r0
+settable      r8   k14    r3
+loadnil       r8    r8
+getglobal     r9   k11
+gettable      r9    r9   k15
+loadk        r10    k8
+loadk        r11    k8
+move         r12    r5
+call          r9     4     2
+move          r8    r9
+self          r9    r8   k16
+loadk        r11    k8
+loadk        r12    k8
+loadk        r13    k8
+loadk        r14    k8
+call          r9     6     1
+settable      r8   k17   k10
+self          r9    r8   k18
+getupval     r11    u0
+gettable     r11   r11   k19
+getupval     r12    u0
+gettable     r12   r12   k20
+getupval     r13    u0
+gettable     r13   r13   k21
+call          r9     5     1
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+self          r9    r9    k6
+move         r11    r8
+call          r9     3     1
+eq             1    r1   k22
+jmp          l92
+eq             0    r1   k23
+jmp         l147
+.label	l92
+getglobal     r9   k11
+gettable      r9    r9   k24
+unm          r10    r5
+mul          r10   r10   k25
+loadk        r11    k8
+unm          r12    r5
+mul          r12   r12   k25
+unm          r13    r5
+mul          r13   r13   k26
+call          r9     5     2
+move          r8    r9
+self          r9    r8   k27
+unm          r11    r5
+mul          r11   r11   k26
+unm          r12    r5
+mul          r12   r12   k26
+call          r9     4     1
+self          r9    r8   k27
+loadk        r11    k8
+unm          r12    r5
+call          r9     4     1
+self          r9    r8   k27
+mul          r11    r5   k26
+unm          r12    r5
+mul          r12   r12   k26
+call          r9     4     1
+self          r9    r8   k27
+mul          r11    r5   k25
+unm          r12    r5
+mul          r12   r12   k26
+call          r9     4     1
+self          r9    r8   k27
+mul          r11    r5   k25
+loadk        r12    k8
+call          r9     4     1
+self          r9    r8   k27
+unm          r11    r5
+mul          r11   r11   k25
+loadk        r12    k8
+call          r9     4     1
+settable      r8   k17   k10
+self          r9    r8   k28
+getupval     r11    u0
+gettable     r11   r11   k19
+getupval     r12    u0
+gettable     r12   r12   k20
+getupval     r13    u0
+gettable     r13   r13   k21
+call          r9     5     1
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+self          r9    r9    k6
+move         r11    r8
+call          r9     3     1
+.label	l147
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k29    r0
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k13    r2
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k14    r3
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k30    r6
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k31    r1
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k32    r4
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k33    r5
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k34    r7
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9   k35    k9
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+add          r10    r2    r3
+add          r10   r10    r5
+add          r10   r10    r7
+getupval     r11    u0
+gettable     r11   r11   k37
+getupval     r12    u0
+gettable     r12   r12   k38
+call         r12     1     2
+mul          r12   r12   k39
+call         r11     2     2
+add          r10   r10   r11
+settable      r9   k36   r10
+getupval      r9    u0
+gettable      r9    r9   k40
+test          r9     0
+jmp         l208
+getglobal     r9    k2
+loadk        r10   k41
+move         r11    r0
+loadk        r12   k42
+concat       r10   r10   r12
+call          r9     2     1
+.label	l208
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	165
+.lastlinedefined	167
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"FXFields"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+return        r1     2
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	173
+.lastlinedefined	176
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"FXFields"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"--> Particles.EnableFXField(): SPECIFIED FX FIELD '"
+.constant	k4	"' DOES NOT EXIST."
+.constant	k5	"enabled"
+.constant	k6	true
+
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             0    r2    k1
+jmp          l12
+getglobal     r2    k2
+loadk         r3    k3
+move          r4    r0
+loadk         r5    k4
+concat        r3    r3    r5
+call          r2     2     1
+.label	l12
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             0    r1    k6
+jmp          l20
+loadbool      r3     1     0
+test          r3     1
+jmp          l21
+.label	l20
+loadbool      r3     0     0
+.label	l21
+settable      r2    k5    r3
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	183
+.lastlinedefined	203
+.numparams	1
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"FXFields"
+.constant	k1	nil
+.constant	k2	0
+.constant	k3	"ipairs"
+.constant	k4	"FXFieldIndex"
+.constant	k5	"table"
+.constant	k6	"remove"
+.constant	k7	"RemoveFXListener"
+.constant	k8	"numChildren"
+.constant	k9	1
+.constant	k10	"removeSelf"
+.constant	k11	"debug"
+.constant	k12	"print"
+.constant	k13	"--> Particles.DeleteFXField(): DELETED FX FIELD '"
+.constant	k14	"'"
+.constant	k15	"!!! Particles.DeleteFXField(): COULD NOT DELETE FX FIELD '"
+.constant	k16	"' (NOT FOUND)"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             1    r1    k1
+jmp          l60
+loadk         r1    k2
+loadnil       r2    r2
+getglobal     r3    k3
+getupval      r4    u0
+gettable      r4    r4    k4
+call          r3     2     4
+jmp          l22
+.label	l13
+eq             0    r7    r0
+jmp          l22
+getglobal     r8    k5
+gettable      r8    r8    k6
+getupval      r9    u0
+gettable      r9    r9    k4
+move         r10    r6
+call          r8     3     1
+jmp          l24
+.label	l22
+tforloop      r3     2
+jmp          l13
+.label	l24
+getupval      r3    u0
+gettable      r3    r3    k7
+move          r4    r0
+call          r3     2     1
+.label	l28
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r3    r3    k8
+lt             0    k2    r3
+jmp          l41
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r3    r3    k9
+self          r3    r3   k10
+call          r3     2     1
+jmp          l28
+.label	l41
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+self          r3    r3   k10
+call          r3     2     1
+getupval      r3    u0
+gettable      r3    r3    k0
+settable      r3    r0    k1
+getupval      r3    u0
+gettable      r3    r3   k11
+test          r3     0
+jmp          l59
+getglobal     r3   k12
+loadk         r4   k13
+move          r5    r0
+loadk         r6   k14
+concat        r4    r4    r6
+call          r3     2     1
+.label	l59
+return        r0     1
+.label	l60
+getglobal     r1   k12
+loadk         r2   k15
+move          r3    r0
+loadk         r4   k16
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	210
+.lastlinedefined	216
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"FXFields"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"--> Particles.AddFXListener(): SPECIFIED FX FIELD '"
+.constant	k4	"' DOES NOT EXIST."
+.constant	k5	"Listener"
+.constant	k6	"addEventListener"
+.constant	k7	"name"
+
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             0    r2    k1
+jmp          l12
+getglobal     r2    k2
+loadk         r3    k3
+move          r4    r0
+loadk         r5    k4
+concat        r3    r3    r5
+call          r2     2     1
+.label	l12
+eq             1    r1    k1
+jmp          l31
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k5    r1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+self          r2    r2    k6
+getupval      r4    u0
+gettable      r4    r4    k0
+gettable      r4    r4    r0
+gettable      r4    r4    k7
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+gettable      r5    r5    k5
+call          r2     4     1
+.label	l31
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	220
+.lastlinedefined	226
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"FXFields"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"--> Particles.RemoveFXListener(): SPECIFIED FX FIELD '"
+.constant	k4	"' DOES NOT EXIST."
+.constant	k5	"Listener"
+.constant	k6	"removeEventListener"
+.constant	k7	"name"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             0    r1    k1
+jmp          l12
+getglobal     r1    k2
+loadk         r2    k3
+move          r3    r0
+loadk         r4    k4
+concat        r2    r2    r4
+call          r1     2     1
+.label	l12
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k5
+eq             1    r1    k1
+jmp          l35
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+self          r1    r1    k6
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r3    r3    k7
+getupval      r4    u0
+gettable      r4    r4    k0
+gettable      r4    r4    r0
+gettable      r4    r4    k5
+call          r1     4     1
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+settable      r1    k5    k1
+.label	l35
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	233
+.lastlinedefined	249
+.numparams	1
+.is_vararg	0
+.maxstacksize	7
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.DeleteEmissionShape(): EMITTER '"
+.constant	k4	"' NOT FOUND!"
+.constant	k5	"Shape"
+.constant	k6	1
+.constant	k7	"Segments"
+.constant	k8	"removeSelf"
+.constant	k9	"debug"
+.constant	k10	"--> Particles.DeleteEmissionShape(): REMOVED EMISSION SHAPE FROM EMITTER '"
+.constant	k11	"'"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             0    r1    k1
+jmp          l13
+getglobal     r1    k2
+loadk         r2    k3
+move          r3    r0
+loadk         r4    k4
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+.label	l13
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k5
+eq             0    r1    k1
+jmp          l20
+return        r0     1
+.label	l20
+loadnil       r1    r1
+loadk         r2    k6
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r3    r3    k5
+gettable      r3    r3    k7
+len           r3    r3
+loadk         r4    k6
+forprep       r2   l36
+.label	l30
+getupval      r6    u0
+gettable      r6    r6    k0
+gettable      r6    r6    r0
+gettable      r6    r6    k5
+gettable      r6    r6    k7
+settable      r6    r5    k1
+.label	l36
+forloop       r2   l30
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k5
+settable      r2    k7    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k5
+self          r2    r2    k8
+call          r2     2     1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k5    k1
+getupval      r2    u0
+gettable      r2    r2    k9
+test          r2     0
+jmp          l62
+getglobal     r2    k2
+loadk         r3   k10
+move          r4    r0
+loadk         r5   k11
+concat        r3    r3    r5
+call          r2     2     1
+.label	l62
+return        r0     1
+
+.function	main/f8
+
+.source	null
+.linedefined	256
+.lastlinedefined	311
+.numparams	7
+.is_vararg	0
+.maxstacksize	13
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.CreateEmitter(): EMITTER '"
+.constant	k4	"' NOT CREATED - (ALREADY EXISTS)! NAME MUST BE UNIQUE."
+.constant	k5	"gCleanUpCalled"
+.constant	k6	true
+.constant	k7	"gLastTime"
+.constant	k8	"system"
+.constant	k9	"getTimer"
+.constant	k10	false
+.constant	k11	"table"
+.constant	k12	"insert"
+.constant	k13	"EmitterIndex"
+.constant	k14	"display"
+.constant	k15	"newGroup"
+.constant	k16	"name"
+.constant	k17	"PTypes"
+.constant	k18	"PTypeIndex"
+.constant	k19	"PTypeSettings"
+.constant	k20	"active"
+.constant	k21	"startTime"
+.constant	k22	0
+.constant	k23	"scale"
+.constant	k24	1
+.constant	k25	"Listener"
+.constant	k26	"x"
+.constant	k27	"y"
+.constant	k28	"xOrigin"
+.constant	k29	8
+.constant	k30	"xReference"
+.constant	k31	"width"
+.constant	k32	"isVisible"
+.constant	k33	"loop"
+.constant	k34	"autoDestroy"
+.constant	k35	"rotation"
+.constant	k36	"oneShot"
+.constant	k37	"Sound"
+.constant	k38	"SoundProperties"
+.constant	k39	"soundAutoStop"
+.constant	k40	"soundDelay"
+.constant	k41	"soundChannel"
+.constant	k42	"FollowObject"
+.constant	k43	"Arrow"
+.constant	k44	"newLine"
+.constant	k45	16
+.constant	k46	"setColor"
+.constant	k47	"gEmitterColorR"
+.constant	k48	"gEmitterColorG"
+.constant	k49	"gEmitterColorB"
+.constant	k50	255
+.constant	k51	"append"
+.constant	k52	-24
+.constant	k53	"debug"
+.constant	k54	"--> Particles.CreateEmitter(): ADDED EMITTER '"
+.constant	k55	"'"
+
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+eq             1    r7    k1
+jmp          l13
+getglobal     r7    k2
+loadk         r8    k3
+move          r9    r0
+loadk        r10    k4
+concat        r8    r8   r10
+call          r7     2     1
+return        r0     1
+.label	l13
+getupval      r7    u0
+gettable      r7    r7    k5
+eq             0    r7    k6
+jmp          l24
+getupval      r7    u0
+getglobal     r8    k8
+gettable      r8    r8    k9
+call          r8     1     2
+settable      r7    k7    r8
+getupval      r7    u0
+settable      r7    k5   k10
+.label	l24
+getglobal     r7   k11
+gettable      r7    r7   k12
+getupval      r8    u0
+gettable      r8    r8   k13
+move          r9    r0
+call          r7     3     1
+getupval      r7    u0
+gettable      r7    r7    k0
+getglobal     r8   k14
+gettable      r8    r8   k15
+call          r8     1     2
+settable      r7    r0    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k16    r0
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+newtable      r8     0     0
+settable      r7   k17    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+newtable      r8     0     0
+settable      r7   k18    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+newtable      r8     0     0
+settable      r7   k19    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k20   k10
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k21   k22
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k23   k24
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k25    k1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k26    r1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k27    r2
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+sub           r8    r1   k29
+settable      r7   k28    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k30   k29
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k31   k24
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+eq             0    r4    k6
+jmp         l100
+loadbool      r8     1     0
+test          r8     1
+jmp         l101
+.label	l100
+loadbool      r8     0     0
+.label	l101
+settable      r7   k32    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+eq             0    r5    k6
+jmp         l110
+loadbool      r8     1     0
+test          r8     1
+jmp         l111
+.label	l110
+loadbool      r8     0     0
+.label	l111
+settable      r7   k33    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+eq             0    r6    k6
+jmp         l120
+loadbool      r8     1     0
+test          r8     1
+jmp         l121
+.label	l120
+loadbool      r8     0     0
+.label	l121
+settable      r7   k34    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+eq             1    r3    k1
+jmp         l129
+testset       r8    r3     1
+jmp         l130
+.label	l129
+loadk         r8   k22
+.label	l130
+settable      r7   k35    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k36   k10
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k37    k1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k38    k1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k39   k10
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k40   k22
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k41   k22
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+settable      r7   k42    k1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+getglobal     r8   k14
+gettable      r8    r8   k44
+loadk         r9   k22
+loadk        r10   k22
+loadk        r11   k45
+loadk        r12   k22
+call          r8     5     2
+settable      r7   k43    r8
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+gettable      r7    r7   k43
+self          r7    r7   k46
+getupval      r9    u0
+gettable      r9    r9   k47
+getupval     r10    u0
+gettable     r10   r10   k48
+getupval     r11    u0
+gettable     r11   r11   k49
+loadk        r12   k50
+call          r7     6     1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+gettable      r7    r7   k43
+self          r7    r7   k51
+loadk         r9   k29
+loadk        r10   k52
+loadk        r11   k22
+loadk        r12   k22
+call          r7     6     1
+getupval      r7    u0
+gettable      r7    r7    k0
+gettable      r7    r7    r0
+self          r7    r7   k12
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+gettable      r9    r9   k43
+call          r7     3     1
+getupval      r7    u0
+gettable      r7    r7   k53
+test          r7     0
+jmp         l212
+getglobal     r7    k2
+loadk         r8   k54
+move          r9    r0
+loadk        r10   k55
+concat        r8    r8   r10
+call          r7     2     1
+.label	l212
+return        r0     1
+
+.function	main/f9
+
+.source	null
+.linedefined	318
+.lastlinedefined	359
+.numparams	1
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	0
+.constant	k3	"ipairs"
+.constant	k4	"EmitterIndex"
+.constant	k5	"table"
+.constant	k6	"remove"
+.constant	k7	"Listener"
+.constant	k8	"Runtime"
+.constant	k9	"removeEventListener"
+.constant	k10	"particleKilled"
+.constant	k11	"Sound"
+.constant	k12	"SoundProperties"
+.constant	k13	"FollowObject"
+.constant	k14	"Arrow"
+.constant	k15	"PTypes"
+.constant	k16	"PTypeIndex"
+.constant	k17	"PTypeSettings"
+.constant	k18	"removeSelf"
+.constant	k19	"debug"
+.constant	k20	"print"
+.constant	k21	"--> Particles.DeleteEmitter(): DELETED EMITTER '"
+.constant	k22	"'"
+.constant	k23	"!!! Particles.DeleteEmitter(): COULD NOT DELETE EMITTER '"
+.constant	k24	"' (NOT FOUND)"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             1    r1    k1
+jmp          l92
+loadk         r1    k2
+loadnil       r2    r2
+getglobal     r3    k3
+getupval      r4    u0
+gettable      r4    r4    k4
+call          r3     2     4
+jmp          l22
+.label	l13
+eq             0    r7    r0
+jmp          l22
+getglobal     r8    k5
+gettable      r8    r8    k6
+getupval      r9    u0
+gettable      r9    r9    k4
+move         r10    r6
+call          r8     3     1
+jmp          l24
+.label	l22
+tforloop      r3     2
+jmp          l13
+.label	l24
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r3    r3    k7
+eq             1    r3    k1
+jmp          l42
+getglobal     r3    k8
+self          r3    r3    k9
+loadk         r5   k10
+getupval      r6    u0
+gettable      r6    r6    k0
+gettable      r6    r6    r0
+gettable      r6    r6    k7
+call          r3     4     1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3    k7    k1
+.label	l42
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k11    k1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k12    k1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k13    k1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k14    k1
+getupval      r3    u1
+move          r4    r0
+call          r3     2     1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k15    k1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k16    k1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k17    k1
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+self          r3    r3   k18
+call          r3     2     1
+getupval      r3    u0
+gettable      r3    r3    k0
+settable      r3    r0    k1
+getupval      r3    u0
+gettable      r3    r3   k19
+test          r3     0
+jmp          l91
+getglobal     r3   k20
+loadk         r4   k21
+move          r5    r0
+loadk         r6   k22
+concat        r4    r4    r6
+call          r3     2     1
+.label	l91
+return        r0     1
+.label	l92
+getglobal     r1   k20
+loadk         r2   k23
+move          r3    r0
+loadk         r4   k24
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+
+.function	main/f10
+
+.source	null
+.linedefined	366
+.lastlinedefined	390
+.numparams	0
+.is_vararg	0
+.maxstacksize	19
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"print"
+.constant	k1	"---------------------------"
+.constant	k2	"ParticleTypeIndex"
+.constant	k3	" PARTICLE TYPES:"
+.constant	k4	"pairs"
+.constant	k5	"ParticleTypes"
+.constant	k6	"- '"
+.constant	k7	"'"
+.constant	k8	"EmitterIndex"
+.constant	k9	" EMITTERS:"
+.constant	k10	"Emitters"
+.constant	k11	"EMITTER: '"
+.constant	k12	"name"
+.constant	k13	"ipairs"
+.constant	k14	"PTypeIndex"
+.constant	k15	"|-"
+
+getglobal     r5    k0
+call          r5     1     1
+getglobal     r5    k0
+loadk         r6    k1
+call          r5     2     1
+getglobal     r5    k0
+getupval      r6    u0
+gettable      r6    r6    k2
+len           r6    r6
+loadk         r7    k3
+concat        r6    r6    r7
+call          r5     2     1
+getglobal     r5    k4
+getupval      r6    u0
+gettable      r6    r6    k5
+call          r5     2     4
+jmp          l24
+.label	l18
+getglobal    r10    k0
+loadk        r11    k6
+move         r12    r8
+loadk        r13    k7
+concat       r11   r11   r13
+call         r10     2     1
+.label	l24
+tforloop      r5     2
+jmp          l18
+getglobal     r5    k0
+call          r5     1     1
+getglobal     r5    k0
+getupval      r6    u0
+gettable      r6    r6    k8
+len           r6    r6
+loadk         r7    k9
+concat        r6    r6    r7
+call          r5     2     1
+getglobal     r5    k4
+getupval      r6    u0
+gettable      r6    r6   k10
+call          r5     2     4
+jmp          l66
+.label	l40
+getglobal    r10    k0
+call         r10     1     1
+getglobal    r10    k0
+loadk        r11   k11
+getupval     r12    u0
+gettable     r12   r12   k10
+gettable     r12   r12    r8
+gettable     r12   r12   k12
+loadk        r13    k7
+concat       r11   r11   r13
+call         r10     2     1
+getglobal    r10   k13
+getupval     r11    u0
+gettable     r11   r11   k10
+gettable     r11   r11    r8
+gettable     r11   r11   k14
+call         r10     2     4
+jmp          l64
+.label	l58
+getglobal    r15    k0
+loadk        r16   k15
+move         r17   r14
+loadk        r18    k7
+concat       r16   r16   r18
+call         r15     2     1
+.label	l64
+tforloop     r10     2
+jmp          l58
+.label	l66
+tforloop      r5     2
+jmp          l40
+getglobal     r5    k0
+loadk         r6    k1
+call          r5     2     1
+getglobal     r5    k0
+call          r5     1     1
+return        r0     1
+
+.function	main/f11
+
+.source	null
+.linedefined	397
+.lastlinedefined	427
+.numparams	2
+.is_vararg	0
+.maxstacksize	13
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"gSystemFrozen"
+.constant	k1	0
+.constant	k2	"print"
+.constant	k3	"!!! Particles.StartEmitter(): CANNOT START EMITTER WHILE SYSTEM IS FROZEN. RESUME FIRST!"
+.constant	k4	"Emitters"
+.constant	k5	nil
+.constant	k6	"!!! Particles.StartEmitter(): EMITTER '"
+.constant	k7	"' NOT FOUND!"
+.constant	k8	"system"
+.constant	k9	"getTimer"
+.constant	k10	"gLostTime"
+.constant	k11	"active"
+.constant	k12	true
+.constant	k13	"startTime"
+.constant	k14	"oneShot"
+.constant	k15	"soundChannel"
+.constant	k16	"ipairs"
+.constant	k17	"PTypeIndex"
+.constant	k18	"PTypeSettings"
+.constant	k19	"delay"
+.constant	k20	"endTime"
+.constant	k21	"duration"
+.constant	k22	"particlesToEmit"
+.constant	k23	"debug"
+.constant	k24	"--> Particles.StartEmitter(): EMITTER '"
+.constant	k25	"' STARTED."
+
+getupval      r2    u0
+gettable      r2    r2    k0
+lt             0    k1    r2
+jmp           l9
+getglobal     r2    k2
+loadk         r3    k3
+call          r2     2     1
+return        r0     1
+.label	l9
+getupval      r2    u0
+gettable      r2    r2    k4
+gettable      r2    r2    r0
+eq             0    r2    k5
+jmp          l21
+getglobal     r2    k2
+loadk         r3    k6
+move          r4    r0
+loadk         r5    k7
+concat        r3    r3    r5
+call          r2     2     1
+return        r0     1
+.label	l21
+getglobal     r2    k8
+gettable      r2    r2    k9
+call          r2     1     2
+getupval      r3    u0
+gettable      r3    r3   k10
+sub           r2    r2    r3
+loadnil       r3    r5
+getupval      r6    u0
+gettable      r6    r6    k4
+gettable      r6    r6    r0
+settable      r6   k11   k12
+getupval      r6    u0
+gettable      r6    r6    k4
+gettable      r6    r6    r0
+settable      r6   k13    r2
+getupval      r6    u0
+gettable      r6    r6    k4
+gettable      r6    r6    r0
+eq             0    r1   k12
+jmp          l44
+loadbool      r7     1     0
+test          r7     1
+jmp          l45
+.label	l44
+loadbool      r7     0     0
+.label	l45
+settable      r6   k14    r7
+getupval      r6    u0
+gettable      r6    r6    k4
+gettable      r6    r6    r0
+settable      r6   k15    k1
+getglobal     r6   k16
+getupval      r7    u0
+gettable      r7    r7    k4
+gettable      r7    r7    r0
+gettable      r7    r7   k17
+call          r6     2     4
+jmp          l72
+.label	l57
+getupval     r11    u0
+gettable     r11   r11    k4
+gettable     r11   r11    r0
+gettable     r11   r11   k18
+gettable      r3   r11   r10
+gettable     r11    r3   k19
+add          r11    r2   r11
+settable      r3   k13   r11
+gettable     r11    r3   k19
+add          r11    r2   r11
+gettable     r12    r3   k21
+add          r11   r11   r12
+settable      r3   k20   r11
+settable      r3   k22    k1
+settable      r3   k11   k12
+.label	l72
+tforloop      r6     2
+jmp          l57
+getupval      r6    u0
+gettable      r6    r6   k23
+test          r6     0
+jmp          l84
+getglobal     r6    k2
+loadk         r7   k24
+move          r8    r0
+loadk         r9   k25
+concat        r7    r7    r9
+call          r6     2     1
+.label	l84
+return        r0     1
+
+.function	main/f12
+
+.source	null
+.linedefined	434
+.lastlinedefined	455
+.numparams	1
+.is_vararg	0
+.maxstacksize	9
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.StopEmitter(): EMITTER '"
+.constant	k4	"' NOT FOUND!"
+.constant	k5	"soundAutoStop"
+.constant	k6	true
+.constant	k7	"soundChannel"
+.constant	k8	0
+.constant	k9	"audio"
+.constant	k10	"stop"
+.constant	k11	"ipairs"
+.constant	k12	"PTypeIndex"
+.constant	k13	"PTypeSettings"
+.constant	k14	"active"
+.constant	k15	false
+.constant	k16	"debug"
+.constant	k17	"--> Particles.StopEmitter(): EMITTER '"
+.constant	k18	"' STOPPED."
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             0    r1    k1
+jmp          l13
+getglobal     r1    k2
+loadk         r2    k3
+move          r3    r0
+loadk         r4    k4
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+.label	l13
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k5
+eq             0    r1    k6
+jmp          l36
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k7
+lt             0    k8    r1
+jmp          l36
+getglobal     r1    k9
+gettable      r1    r1   k10
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k7
+call          r1     2     1
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+settable      r1    k7    k8
+.label	l36
+loadnil       r1    r2
+getglobal     r3   k11
+getupval      r4    u0
+gettable      r4    r4    k0
+gettable      r4    r4    r0
+gettable      r4    r4   k12
+call          r3     2     4
+jmp          l50
+.label	l44
+getupval      r8    u0
+gettable      r8    r8    k0
+gettable      r8    r8    r0
+gettable      r8    r8   k13
+gettable      r8    r8    r7
+settable      r8   k14   k15
+.label	l50
+tforloop      r3     2
+jmp          l44
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+settable      r3   k14   k15
+getupval      r3    u0
+gettable      r3    r3   k16
+test          r3     0
+jmp          l66
+getglobal     r3    k2
+loadk         r4   k17
+move          r5    r0
+loadk         r6   k18
+concat        r4    r4    r6
+call          r3     2     1
+.label	l66
+return        r0     1
+
+.function	main/f13
+
+.source	null
+.linedefined	462
+.lastlinedefined	509
+.numparams	5
+.is_vararg	0
+.maxstacksize	16
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.AddCustomEmissionShape(): EMITTER '"
+.constant	k4	"' NOT FOUND!"
+.constant	k5	"Shape"
+.constant	k6	"display"
+.constant	k7	"newGroup"
+.constant	k8	"myWidth"
+.constant	k9	0
+.constant	k10	"myAngle"
+.constant	k11	"Segments"
+.constant	k12	"x"
+.constant	k13	8
+.constant	k14	"insert"
+.constant	k15	"useEmitterRotation"
+.constant	k16	true
+.constant	k17	"cornersOnly"
+.constant	k18	1
+.constant	k19	"table"
+.constant	k20	"rotation"
+.constant	k21	-1
+.constant	k22	"newLine"
+.constant	k23	"setColor"
+.constant	k24	255
+.constant	k25	2
+.constant	k26	"debug"
+.constant	k27	"--> Particles.AddCustomEmissionShape(): ADDED EMISSION SHAPE TO EMITTER '"
+.constant	k28	"'"
+
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+eq             0    r5    k1
+jmp          l13
+getglobal     r6    k2
+loadk         r7    k3
+move          r8    r0
+loadk         r9    k4
+concat        r7    r7    r9
+call          r6     2     1
+return        r0     1
+.label	l13
+getglobal     r6    k6
+gettable      r6    r6    k7
+call          r6     1     2
+settable      r5    k5    r6
+gettable      r6    r5    k5
+settable      r6    k8    k9
+gettable      r6    r5    k5
+settable      r6   k10    k9
+gettable      r6    r5    k5
+newtable      r7     0     0
+settable      r6   k11    r7
+gettable      r6    r5    k5
+settable      r6   k12   k13
+self          r6    r5   k14
+gettable      r8    r5    k5
+call          r6     3     1
+gettable      r6    r5    k5
+eq             0    r2   k16
+jmp          l35
+loadbool      r7     1     0
+test          r7     1
+jmp          l36
+.label	l35
+loadbool      r7     0     0
+.label	l36
+settable      r6   k15    r7
+gettable      r6    r5    k5
+eq             0    r3   k16
+jmp          l43
+loadbool      r7     1     0
+test          r7     1
+jmp          l44
+.label	l43
+loadbool      r7     0     0
+.label	l44
+settable      r6   k17    r7
+loadnil       r6    r8
+gettable      r9    r5    k5
+loadk         r8   k18
+.label	l48
+len          r10    r1
+lt             0    r8   r10
+jmp          l98
+getglobal    r10    k6
+gettable     r10   r10    k7
+call         r10     1     2
+move          r6   r10
+gettable     r10    r1    r8
+settable      r6    k8   r10
+add          r10    r8   k18
+gettable     r10    r1   r10
+settable      r6   k10   r10
+getglobal    r10   k19
+gettable     r10   r10   k14
+gettable     r11    r5    k5
+gettable     r11   r11   k11
+move         r12    r6
+call         r10     3     1
+self         r10    r9   k14
+move         r12    r6
+call         r10     3     1
+gettable     r10    r9    k8
+settable      r6   k12   r10
+gettable     r10    r9   k10
+mul          r10   r10   k21
+gettable     r11    r6   k10
+add          r10   r10   r11
+settable      r6   k20   r10
+eq             0    r4   k16
+jmp          l95
+getglobal    r10    k6
+gettable     r10   r10   k22
+loadk        r11    k9
+loadk        r12    k9
+gettable     r13    r6    k8
+loadk        r14    k9
+call         r10     5     2
+move          r7   r10
+self         r10    r7   k23
+loadk        r12   k24
+loadk        r13   k24
+loadk        r14    k9
+loadk        r15   k24
+call         r10     6     1
+self         r10    r6   k14
+move         r12    r7
+call         r10     3     1
+.label	l95
+move          r9    r6
+add           r8    r8   k25
+jmp          l48
+.label	l98
+getupval     r10    u0
+gettable     r10   r10   k26
+test         r10     0
+jmp         l108
+getglobal    r10    k2
+loadk        r11   k27
+move         r12    r0
+loadk        r13   k28
+concat       r11   r11   r13
+call         r10     2     1
+.label	l108
+return        r0     1
+
+.function	main/f14
+
+.source	null
+.linedefined	516
+.lastlinedefined	518
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+return        r1     2
+return        r0     1
+
+.function	main/f15
+
+.source	null
+.linedefined	525
+.lastlinedefined	528
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"active"
+.constant	k3	"print"
+.constant	k4	"!!! Particles.EmitterIsActive(): COULD NOT FIND EMITTER '"
+.constant	k5	"'"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             1    r1    k1
+jmp          l11
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k2
+return        r1     2
+.label	l11
+getglobal     r1    k3
+loadk         r2    k4
+move          r3    r0
+loadk         r4    k5
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+
+.function	main/f16
+
+.source	null
+.linedefined	535
+.lastlinedefined	545
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"scale"
+.constant	k3	"xScale"
+.constant	k4	"yScale"
+.constant	k5	"print"
+.constant	k6	"!!! Particles.SetEmitterScale(): COULD NOT FIND EMITTER '"
+.constant	k7	"'"
+
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             1    r2    k1
+jmp          l19
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k2    r1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k3    r1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k4    r1
+return        r0     1
+.label	l19
+getglobal     r2    k5
+loadk         r3    k6
+move          r4    r0
+loadk         r5    k7
+concat        r3    r3    r5
+call          r2     2     1
+return        r0     1
+
+.function	main/f17
+
+.source	null
+.linedefined	552
+.lastlinedefined	555
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"scale"
+.constant	k3	"print"
+.constant	k4	"!!! Particles.GetEmitterScale(): COULD NOT FIND EMITTER '"
+.constant	k5	"'"
+
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             1    r2    k1
+jmp          l11
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k2
+return        r2     2
+.label	l11
+getglobal     r2    k3
+loadk         r3    k4
+move          r4    r0
+loadk         r5    k5
+concat        r3    r3    r5
+call          r2     2     1
+return        r0     1
+
+.function	main/f18
+
+.source	null
+.linedefined	562
+.lastlinedefined	581
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"Listener"
+.constant	k3	"Runtime"
+.constant	k4	"removeEventListener"
+.constant	k5	"particleKilled"
+.constant	k6	"addEventListener"
+.constant	k7	"print"
+.constant	k8	"!!! Particles.SetEmitterListener(): COULD NOT FIND EMITTER '"
+.constant	k9	"'"
+
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             1    r2    k1
+jmp          l39
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k2
+eq             1    r2    k1
+jmp          l24
+getglobal     r2    k3
+self          r2    r2    k4
+loadk         r4    k5
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+gettable      r5    r5    k2
+call          r2     4     1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k2    k1
+.label	l24
+eq             1    r1    k1
+jmp          l38
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2    k2    r1
+getglobal     r2    k3
+self          r2    r2    k6
+loadk         r4    k5
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+gettable      r5    r5    k2
+call          r2     4     1
+.label	l38
+return        r0     1
+.label	l39
+getglobal     r2    k7
+loadk         r3    k8
+move          r4    r0
+loadk         r5    k9
+concat        r3    r3    r5
+call          r2     2     1
+return        r0     1
+
+.function	main/f19
+
+.source	null
+.linedefined	588
+.lastlinedefined	618
+.numparams	5
+.is_vararg	0
+.maxstacksize	9
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"soundID"
+.constant	k3	"Sound"
+.constant	k4	"SoundProperties"
+.constant	k5	"soundAutoStop"
+.constant	k6	false
+.constant	k7	"soundDelay"
+.constant	k8	0
+.constant	k9	"debug"
+.constant	k10	"print"
+.constant	k11	"--> Particles.SetEmitterSound(): REMOVED SOUND FROM EMITTER '"
+.constant	k12	"'."
+.constant	k13	"channel"
+.constant	k14	1
+.constant	k15	"loops"
+.constant	k16	"fadeIn"
+.constant	k17	1000
+.constant	k18	true
+.constant	k19	"--> Particles.SetEmitterSound(): ATTACHED SOUND TO EMITTER '"
+.constant	k20	"!!! Particles.SetEmitterSound(): COULD NOT FIND EMITTER '"
+.constant	k21	"' OR MISSING SOUND ID."
+
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+eq             1    r5    k1
+jmp          l95
+getglobal     r5    k2
+eq             0    r5    k1
+jmp          l40
+eq             0    r3    k1
+jmp          l40
+eq             0    r4    k1
+jmp          l40
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k3    k1
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k4    k1
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k5    k6
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k7    k8
+getupval      r5    u0
+gettable      r5    r5    k9
+test          r5     0
+jmp          l39
+getglobal     r5   k10
+loadk         r6   k11
+move          r7    r0
+loadk         r8   k12
+concat        r6    r6    r8
+call          r5     2     1
+.label	l39
+return        r0     1
+.label	l40
+eq             1    r1    k1
+jmp          l95
+eq             0    r4    k1
+jmp          l49
+newtable      r5     0     3
+settable      r5   k13   k14
+settable      r5   k15   k14
+settable      r5   k16   k17
+move          r4    r5
+.label	l49
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k3    k1
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k4    k1
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k3    r1
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+settable      r5    k4    r4
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+eq             1    r2    k1
+jmp          l72
+testset       r6    r2     1
+jmp          l73
+.label	l72
+loadk         r6    k8
+.label	l73
+settable      r5    k7    r6
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+eq             0    r3   k18
+jmp          l82
+loadbool      r6     1     0
+test          r6     1
+jmp          l83
+.label	l82
+loadbool      r6     0     0
+.label	l83
+settable      r5    k5    r6
+getupval      r5    u0
+gettable      r5    r5    k9
+test          r5     0
+jmp          l94
+getglobal     r5   k10
+loadk         r6   k19
+move          r7    r0
+loadk         r8   k12
+concat        r6    r6    r8
+call          r5     2     1
+.label	l94
+return        r0     1
+.label	l95
+getglobal     r5   k10
+loadk         r6   k20
+move          r7    r0
+loadk         r8   k21
+concat        r6    r6    r8
+call          r5     2     1
+return        r0     1
+
+.function	main/f20
+
+.source	null
+.linedefined	625
+.lastlinedefined	644
+.numparams	6
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.FollowTarget(): EMITTER '"
+.constant	k4	"' NOT FOUND."
+.constant	k5	"FollowObject"
+.constant	k6	"followRotation"
+.constant	k7	false
+.constant	k8	"followRotationOffset"
+.constant	k9	0
+.constant	k10	"followXOff"
+.constant	k11	"followYOff"
+
+getupval      r6    u0
+gettable      r6    r6    k0
+gettable      r6    r6    r0
+eq             0    r6    k1
+jmp          l13
+getglobal     r7    k2
+loadk         r8    k3
+move          r9    r0
+loadk        r10    k4
+concat        r8    r8   r10
+call          r7     2     1
+return        r0     1
+.label	l13
+eq             0    r1    k1
+jmp          l19
+settable      r6    k5    k1
+settable      r6    k6    k7
+settable      r6    k8    k9
+return        r0     1
+.label	l19
+settable      r6    k5    r1
+settable      r6    k6    r2
+eq             1    r3    k1
+jmp          l25
+testset       r7    r3     1
+jmp          l26
+.label	l25
+loadk         r7    k9
+.label	l26
+settable      r6    k8    r7
+eq             1    r4    k1
+jmp          l31
+testset       r7    r4     1
+jmp          l32
+.label	l31
+loadk         r7    k9
+.label	l32
+settable      r6   k10    r7
+eq             1    r5    k1
+jmp          l37
+testset       r7    r5     1
+jmp          l38
+.label	l37
+loadk         r7    k9
+.label	l38
+settable      r6   k11    r7
+return        r0     1
+
+.function	main/f21
+
+.source	null
+.linedefined	651
+.lastlinedefined	666
+.numparams	3
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	"PTypeSettings"
+.constant	k2	nil
+.constant	k3	"print"
+.constant	k4	"!!! Particles.SetEmissionRate(): EMITTER '"
+.constant	k5	"' NOT FOUND."
+.constant	k6	"debug"
+.constant	k7	"!!! Particles.SetEmissionRate(): PARTICLE TYPE '"
+.constant	k8	"' NOT ATTACHED TO EMITTER '"
+.constant	k9	"'."
+.constant	k10	"emissionRate"
+.constant	k11	1000
+
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r4    r3    k1
+gettable      r4    r4    r1
+eq             0    r3    k2
+jmp          l15
+getglobal     r5    k3
+loadk         r6    k4
+move          r7    r0
+loadk         r8    k5
+concat        r6    r6    r8
+call          r5     2     1
+return        r0     1
+.label	l15
+eq             0    r4    k2
+jmp          l30
+getupval      r5    u0
+gettable      r5    r5    k6
+test          r5     0
+jmp          l29
+getglobal     r5    k3
+loadk         r6    k7
+move          r7    r1
+loadk         r8    k8
+move          r9    r0
+loadk        r10    k9
+concat        r6    r6   r10
+call          r5     2     1
+.label	l29
+return        r0     1
+.label	l30
+div           r5    r2   k11
+settable      r4   k10    r5
+return        r0     1
+
+.function	main/f22
+
+.source	null
+.linedefined	674
+.lastlinedefined	703
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"ParticleTypes"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.PrepareParticleSettings(): PARTICLE TYPE '"
+.constant	k4	"' NOT FOUND!"
+.constant	k5	"scaleStart"
+.constant	k6	0
+.constant	k7	1.0E-4
+.constant	k8	"type"
+.constant	k9	"imagePath"
+.constant	k10	"table"
+.constant	k11	"vs"
+.constant	k12	"velocityStart"
+.constant	k13	1000
+.constant	k14	"vc"
+.constant	k15	"velocityChange"
+.constant	k16	"vv"
+.constant	k17	"velocityVariation"
+.constant	k18	"rc"
+.constant	k19	"rotationChange"
+.constant	k20	"fi"
+.constant	k21	"fadeInSpeed"
+.constant	k22	"fo"
+.constant	k23	"fadeOutSpeed"
+.constant	k24	"si"
+.constant	k25	"scaleInSpeed"
+.constant	k26	"so"
+.constant	k27	"scaleOutSpeed"
+.constant	k28	"we"
+.constant	k29	"weight"
+.constant	k30	"colorChange"
+.constant	k31	"ccR"
+.constant	k32	1
+.constant	k33	"ccG"
+.constant	k34	2
+.constant	k35	"ccB"
+.constant	k36	3
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             0    r1    k1
+jmp          l13
+getglobal     r1    k2
+loadk         r2    k3
+move          r3    r0
+loadk         r4    k4
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+.label	l13
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k5
+le             0    r1    k6
+jmp          l23
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+settable      r1    k5    k7
+.label	l23
+getglobal     r1    k8
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2    k9
+call          r1     2     2
+eq             1    r1   k10
+jmp          l41
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+newtable      r2     1     0
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+gettable      r3    r3    k9
+setlist       r2     1     1
+settable      r1    k9    r2
+.label	l41
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k12
+div           r2    r2   k13
+settable      r1   k11    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k15
+div           r2    r2   k13
+settable      r1   k14    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k17
+div           r2    r2   k13
+settable      r1   k16    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k19
+div           r2    r2   k13
+settable      r1   k18    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k21
+div           r2    r2   k13
+settable      r1   k20    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k23
+div           r2    r2   k13
+settable      r1   k22    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k25
+div           r2    r2   k13
+settable      r1   k24    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k27
+div           r2    r2   k13
+settable      r1   k26    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k29
+div           r2    r2   k13
+settable      r1   k28    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1   k30
+eq             1    r1    k6
+jmp         l158
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k30
+gettable      r2    r2   k32
+div           r2    r2   k13
+settable      r1   k31    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k30
+gettable      r2    r2   k34
+div           r2    r2   k13
+settable      r1   k33    r2
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+gettable      r2    r2   k30
+gettable      r2    r2   k36
+div           r2    r2   k13
+settable      r1   k35    r2
+.label	l158
+return        r0     1
+
+.function	main/f23
+
+.source	null
+.linedefined	710
+.lastlinedefined	793
+.numparams	2
+.is_vararg	0
+.maxstacksize	10
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"ParticleTypes"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.CreateParticleType(): PARTICLE TYPE '"
+.constant	k4	"' NOT CREATED - (ALREADY EXISTS)! NAME MUST BE UNIQUE."
+.constant	k5	"type"
+.constant	k6	"table"
+.constant	k7	"!!! Particles.CreateParticleType(): '"
+.constant	k8	"' NOT CREATED - PLEASE SPECIFY A PROPERTIES TABLE AS PARAMETER!"
+.constant	k9	"insert"
+.constant	k10	"ParticleTypeIndex"
+.constant	k11	"name"
+.constant	k12	"imagePath"
+.constant	k13	"imageWidth"
+.constant	k14	16
+.constant	k15	"imageHeight"
+.constant	k16	"xReference"
+.constant	k17	0
+.constant	k18	"yReference"
+.constant	k19	"SpriteSet"
+.constant	k20	"ImageSheet"
+.constant	k21	"SheetInfo"
+.constant	k22	"AnimationInfo"
+.constant	k23	"frames"
+.constant	k24	"animSequence"
+.constant	k25	""
+.constant	k26	"weight"
+.constant	k27	"velocityStart"
+.constant	k28	"velocityChange"
+.constant	k29	"velocityVariation"
+.constant	k30	"directionVariation"
+.constant	k31	"rotationStart"
+.constant	k32	"rotationVariation"
+.constant	k33	"rotationChange"
+.constant	k34	"autoOrientation"
+.constant	k35	false
+.constant	k36	"useEmitterRotation"
+.constant	k37	true
+.constant	k38	"alphaStart"
+.constant	k39	1
+.constant	k40	"alphaVariation"
+.constant	k41	"fadeInSpeed"
+.constant	k42	"fadeOutSpeed"
+.constant	k43	"fadeOutDelay"
+.constant	k44	"scaleStart"
+.constant	k45	"scaleVariation"
+.constant	k46	"scaleInSpeed"
+.constant	k47	"scaleMax"
+.constant	k48	"scaleOutSpeed"
+.constant	k49	"scaleOutDelay"
+.constant	k50	"bounceX"
+.constant	k51	"bounceY"
+.constant	k52	"bounciness"
+.constant	k53	"emissionShape"
+.constant	k54	"emissionRadius"
+.constant	k55	"killOutsideScreen"
+.constant	k56	"lifeTime"
+.constant	k57	1000
+.constant	k58	"faceEmitter"
+.constant	k59	"fxID"
+.constant	k60	"PhysicsMaterial"
+.constant	k61	"PhysicsProperties"
+.constant	k62	"randomMotionMode"
+.constant	k63	"randomMotionInterval"
+.constant	k64	"randomMotionAmount"
+.constant	k65	"text"
+.constant	k66	"font"
+.constant	k67	"native"
+.constant	k68	"systemFont"
+.constant	k69	"fontSize"
+.constant	k70	12
+.constant	k71	"textColor"
+.constant	k72	255
+.constant	k73	"blendMode"
+.constant	k74	"normal"
+.constant	k75	"colorStart"
+.constant	k76	"colorChange"
+.constant	k77	"pairs"
+.constant	k78	"debug"
+.constant	k79	"--> Particles.CreateParticleType(): CREATED PARTICLE TYPE '"
+.constant	k80	"'."
+
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+eq             1    r2    k1
+jmp          l14
+getglobal     r2    k2
+loadk         r3    k3
+move          r4    r0
+loadk         r5    k4
+concat        r3    r3    r5
+call          r2     2     1
+return        r0     1
+jmp          l28
+.label	l14
+eq             1    r1    k1
+jmp          l21
+getglobal     r2    k5
+move          r3    r1
+call          r2     2     2
+eq             1    r2    k6
+jmp          l28
+.label	l21
+getglobal     r2    k2
+loadk         r3    k7
+move          r4    r0
+loadk         r5    k8
+concat        r3    r3    r5
+call          r2     2     1
+return        r0     1
+.label	l28
+getglobal     r2    k6
+gettable      r2    r2    k9
+getupval      r3    u0
+gettable      r3    r3   k10
+move          r4    r0
+call          r2     3     1
+getupval      r2    u0
+gettable      r2    r2    k0
+newtable      r3     0     0
+settable      r2    r0    r3
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k11    r0
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+newtable      r3     0     0
+settable      r2   k12    r3
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k13   k14
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k15   k14
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k16   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k18   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k19    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k20    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k21    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k22    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k23    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k24   k25
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k26   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k27   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k28   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k29   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k30   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k31   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k32   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k33   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k34   k35
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k36   k37
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k38   k39
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k40   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k41   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k42   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k43   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k44   k39
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k45   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k46   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k47   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k48   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k49   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k50   k35
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k51   k35
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k52   k39
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k53   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k54   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k55   k37
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k56   k57
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k58   k35
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k59   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k60    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k61    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k62   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k63   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k64   k17
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k65    k1
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+getglobal     r3   k67
+gettable      r3    r3   k68
+settable      r2   k66    r3
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k69   k70
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+newtable      r3     3     0
+loadk         r4   k72
+loadk         r5   k72
+loadk         r6   k72
+setlist       r3     3     1
+settable      r2   k71    r3
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k73   k74
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+newtable      r3     3     0
+loadk         r4   k72
+loadk         r5   k72
+loadk         r6   k72
+setlist       r3     3     1
+settable      r2   k75    r3
+getupval      r2    u0
+gettable      r2    r2    k0
+gettable      r2    r2    r0
+settable      r2   k76   k17
+loadnil       r2    r3
+getglobal     r4   k77
+move          r5    r1
+call          r4     2     4
+jmp         l276
+.label	l272
+getupval      r9    u0
+gettable      r9    r9    k0
+gettable      r9    r9    r0
+settable      r9    r7    r8
+.label	l276
+tforloop      r4     2
+jmp         l272
+getupval      r4    u1
+move          r5    r0
+call          r4     2     1
+getupval      r4    u0
+gettable      r4    r4   k78
+test          r4     0
+jmp         l291
+getglobal     r4    k2
+loadk         r5   k79
+move          r6    r0
+loadk         r7   k80
+concat        r5    r5    r7
+call          r4     2     1
+.label	l291
+return        r0     1
+
+.function	main/f24
+
+.source	null
+.linedefined	802
+.lastlinedefined	843
+.numparams	1
+.is_vararg	0
+.maxstacksize	18
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"ParticleTypes"
+.constant	k1	nil
+.constant	k2	"pairs"
+.constant	k3	"EmitterIndex"
+.constant	k4	"Emitters"
+.constant	k5	"PTypes"
+.constant	k6	"PTypeSettings"
+.constant	k7	"ipairs"
+.constant	k8	"PTypeIndex"
+.constant	k9	"table"
+.constant	k10	"remove"
+.constant	k11	"debug"
+.constant	k12	"print"
+.constant	k13	"--> Particles.DeleteParticleType(): REMOVING '"
+.constant	k14	"' FROM EMITTER '"
+.constant	k15	"name"
+.constant	k16	"'"
+.constant	k17	"ParticleTypeIndex"
+.constant	k18	"--> Particles.DeleteParticleType(): DELETED PARTICLE TYPE '"
+.constant	k19	"!!! Particles.DeleteEmitter(): COULD NOT DELETE PARTICLE TYPE '"
+.constant	k20	"' (NOT FOUND)"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             1    r1    k1
+jmp         l109
+loadnil       r1    r4
+getglobal     r5    k2
+getupval      r6    u0
+gettable      r6    r6    k3
+call          r5     2     4
+jmp          l65
+.label	l12
+getupval     r10    u0
+gettable     r10   r10    k4
+gettable     r10   r10    r9
+gettable     r10   r10    k5
+gettable     r10   r10    r0
+eq             1   r10    k1
+jmp          l65
+getupval     r10    u0
+gettable     r10   r10    k4
+gettable     r10   r10    r9
+gettable     r10   r10    k5
+settable     r10    r0    k1
+getupval     r10    u0
+gettable     r10   r10    k4
+gettable     r10   r10    r9
+gettable     r10   r10    k6
+settable     r10    r0    k1
+getglobal    r10    k7
+getupval     r11    u0
+gettable     r11   r11    k4
+gettable     r11   r11    r9
+gettable     r11   r11    k8
+call         r10     2     4
+jmp          l47
+.label	l36
+eq             0   r14    r0
+jmp          l47
+getglobal    r15    k9
+gettable     r15   r15   k10
+getupval     r16    u0
+gettable     r16   r16    k4
+gettable     r16   r16    r9
+gettable     r16   r16    k8
+move         r17   r13
+call         r15     3     1
+jmp          l49
+.label	l47
+tforloop     r10     2
+jmp          l36
+.label	l49
+getupval     r10    u0
+gettable     r10   r10   k11
+test         r10     0
+jmp          l67
+getglobal    r10   k12
+loadk        r11   k13
+move         r12    r0
+loadk        r13   k14
+getupval     r14    u0
+gettable     r14   r14    k4
+gettable     r14   r14    r9
+gettable     r14   r14   k15
+loadk        r15   k16
+concat       r11   r11   r15
+call         r10     2     1
+jmp          l67
+.label	l65
+tforloop      r5     2
+jmp          l12
+.label	l67
+getglobal     r5    k7
+getupval      r6    u0
+gettable      r6    r6   k17
+call          r5     2     4
+jmp          l81
+.label	l72
+eq             0    r9    r0
+jmp          l81
+getglobal    r10    k9
+gettable     r10   r10   k10
+getupval     r11    u0
+gettable     r11   r11   k17
+move         r12    r8
+call         r10     3     1
+jmp          l83
+.label	l81
+tforloop      r5     2
+jmp          l72
+.label	l83
+getglobal     r5    k2
+getupval      r6    u0
+gettable      r6    r6    k0
+gettable      r6    r6    r0
+call          r5     2     4
+jmp          l93
+.label	l89
+getupval     r10    u0
+gettable     r10   r10    k0
+gettable     r10   r10    r0
+settable     r10    r8    k1
+.label	l93
+tforloop      r5     2
+jmp          l89
+getupval      r5    u0
+gettable      r5    r5    k0
+settable      r5    r0    k1
+getupval      r5    u0
+gettable      r5    r5   k11
+test          r5     0
+jmp         l108
+getglobal     r5   k12
+loadk         r6   k18
+move          r7    r0
+loadk         r8   k16
+concat        r6    r6    r8
+call          r5     2     1
+.label	l108
+return        r0     1
+.label	l109
+getglobal     r1   k12
+loadk         r2   k19
+move          r3    r0
+loadk         r4   k20
+concat        r2    r2    r4
+call          r1     2     1
+return        r0     1
+
+.function	main/f25
+
+.source	null
+.linedefined	850
+.lastlinedefined	862
+.numparams	3
+.is_vararg	0
+.maxstacksize	12
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"ParticleTypes"
+.constant	k1	nil
+.constant	k2	"print"
+.constant	k3	"!!! Particles.SetParticleProperty(): YOU TRIED TO SET AN UNKNOWN PROPERTY: "
+.constant	k4	"debug"
+.constant	k5	"--> Particles.SetParticleProperty(): SET "
+.constant	k6	"."
+.constant	k7	" ("
+.constant	k8	"type"
+.constant	k9	")."
+.constant	k10	"!!! Particles.SetParticleProperty(): COULD NOT FIND PARTICLE TYPE '"
+.constant	k11	"'"
+
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+eq             1    r3    k1
+jmp          l37
+gettable      r4    r3    r1
+eq             0    r4    k1
+jmp          l16
+getglobal     r4    k2
+loadk         r5    k3
+call          r4     2     1
+getglobal     r4    k2
+move          r5    r1
+call          r4     2     1
+return        r0     1
+.label	l16
+settable      r3    r1    r2
+getupval      r4    u1
+move          r5    r0
+call          r4     2     1
+getupval      r4    u0
+gettable      r4    r4    k4
+test          r4     0
+jmp          l36
+getglobal     r4    k2
+loadk         r5    k5
+move          r6    r0
+loadk         r7    k6
+move          r8    r1
+loadk         r9    k7
+getglobal    r10    k8
+move         r11    r2
+call         r10     2     2
+loadk        r11    k9
+concat        r5    r5   r11
+call          r4     2     1
+.label	l36
+return        r0     1
+.label	l37
+getglobal     r4    k2
+loadk         r5   k10
+move          r6    r0
+loadk         r7   k11
+concat        r5    r5    r7
+call          r4     2     1
+return        r0     1
+
+.function	main/f26
+
+.source	null
+.linedefined	869
+.lastlinedefined	911
+.numparams	5
+.is_vararg	0
+.maxstacksize	20
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	"ParticleTypes"
+.constant	k2	nil
+.constant	k3	"print"
+.constant	k4	"!!! Particles.AddParticleType(): EMITTER '"
+.constant	k5	"' NOT FOUND."
+.constant	k6	"!!! Particles.AddParticleType(): PARTICLE TYPE '"
+.constant	k7	"ipairs"
+.constant	k8	"PTypeIndex"
+.constant	k9	"' ALREADY ATTACHED TO EMITTER '"
+.constant	k10	"'."
+.constant	k11	"table"
+.constant	k12	"insert"
+.constant	k13	"PTypes"
+.constant	k14	"PTypeSettings"
+.constant	k15	"name"
+.constant	k16	"emissionRate"
+.constant	k17	1000
+.constant	k18	"delay"
+.constant	k19	"duration"
+.constant	k20	"startTime"
+.constant	k21	0
+.constant	k22	"endTime"
+.constant	k23	"particlesToEmit"
+.constant	k24	"active"
+.constant	k25	false
+.constant	k26	"debug"
+.constant	k27	"--> Particles.AddParticleType(): ADDED PARTICLE TYPE '"
+.constant	k28	"' TO EMITTER '"
+
+getupval      r5    u0
+gettable      r5    r5    k0
+gettable      r5    r5    r0
+getupval      r6    u0
+gettable      r6    r6    k1
+gettable      r6    r6    r1
+eq             0    r5    k2
+jmp          l16
+getglobal     r7    k3
+loadk         r8    k4
+move          r9    r0
+loadk        r10    k5
+concat        r8    r8   r10
+call          r7     2     1
+return        r0     1
+.label	l16
+eq             0    r6    k2
+jmp          l25
+getglobal     r7    k3
+loadk         r8    k6
+move          r9    r1
+loadk        r10    k5
+concat        r8    r8   r10
+call          r7     2     1
+return        r0     1
+.label	l25
+loadnil       r7    r8
+getglobal     r9    k7
+gettable     r10    r5    k8
+call          r9     2     4
+jmp          l41
+.label	l30
+eq             0   r13    r1
+jmp          l41
+getglobal    r14    k3
+loadk        r15    k6
+move         r16    r1
+loadk        r17    k9
+move         r18    r0
+loadk        r19   k10
+concat       r15   r15   r19
+call         r14     2     1
+return        r0     1
+.label	l41
+tforloop      r9     2
+jmp          l30
+getglobal     r9   k11
+gettable      r9    r9   k12
+gettable     r10    r5    k8
+move         r11    r1
+call          r9     3     1
+gettable      r9    r5   k13
+settable      r9    r1    r6
+gettable      r9    r5   k14
+newtable     r10     0     0
+settable      r9    r1   r10
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k15    r1
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+div          r10    r2   k17
+settable      r9   k16   r10
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k18    r4
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k19    r3
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k20   k21
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k22   k21
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k23   k21
+gettable      r9    r5   k14
+gettable      r9    r9    r1
+settable      r9   k24   k25
+getupval      r9    u0
+gettable      r9    r9   k26
+test          r9     0
+jmp          l90
+getglobal     r9    k3
+loadk        r10   k27
+move         r11    r1
+loadk        r12   k28
+move         r13    r0
+loadk        r14   k10
+concat       r10   r10   r14
+call          r9     2     1
+.label	l90
+return        r0     1
+
+.function	main/f27
+
+.source	null
+.linedefined	918
+.lastlinedefined	961
+.numparams	3
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"Emitters"
+.constant	k1	0
+.constant	k2	nil
+.constant	k3	"print"
+.constant	k4	"!!! Particles.RemoveParticleType(): EMITTER '"
+.constant	k5	"' NOT FOUND."
+.constant	k6	true
+.constant	k7	""
+.constant	k8	"ipairs"
+.constant	k9	"PTypeIndex"
+.constant	k10	"PTypes"
+.constant	k11	"PTypeSettings"
+.constant	k12	1
+.constant	k13	"table"
+.constant	k14	"remove"
+.constant	k15	"debug"
+.constant	k16	"--> Particles.RemoveParticleType(): REMOVED "
+.constant	k17	" PARTICLE TYPE(S) FROM EMITTER '"
+.constant	k18	"'."
+
+getupval      r3    u0
+gettable      r3    r3    k0
+gettable      r3    r3    r0
+loadk         r4    k1
+loadnil       r5    r6
+eq             0    r3    k2
+jmp          l15
+getglobal     r7    k3
+loadk         r8    k4
+move          r9    r0
+loadk        r10    k5
+concat        r8    r8   r10
+call          r7     2     1
+return        r0     1
+.label	l15
+getupval      r7    u1
+move          r8    r0
+call          r7     2     1
+eq             1    r2    k6
+jmp          l23
+getupval      r7    u2
+move          r8    r0
+call          r7     2     1
+.label	l23
+eq             1    r1    k2
+jmp          l27
+eq             0    r1    k7
+jmp          l49
+.label	l27
+getglobal     r7    k8
+gettable      r8    r3    k9
+call          r7     2     4
+jmp          l36
+.label	l31
+gettable     r12    r3   k10
+settable     r12   r11    k2
+gettable     r12    r3   k11
+settable     r12   r11    k2
+add           r4    r4   k12
+.label	l36
+tforloop      r7     2
+jmp          l31
+.label	l38
+gettable      r7    r3    k9
+len           r7    r7
+lt             0    k1    r7
+jmp          l72
+getglobal     r7   k13
+gettable      r7    r7   k14
+gettable      r8    r3    k9
+loadk         r9   k12
+call          r7     3     1
+jmp          l38
+jmp          l72
+.label	l49
+gettable      r7    r3   k10
+gettable      r7    r7    r1
+eq             1    r7    k2
+jmp          l72
+gettable      r7    r3   k10
+settable      r7    r1    k2
+gettable      r7    r3   k11
+settable      r7    r1    k2
+getglobal     r7    k8
+gettable      r8    r3    k9
+call          r7     2     4
+jmp          l69
+.label	l61
+eq             0   r11    r1
+jmp          l69
+getglobal    r12   k13
+gettable     r12   r12   k14
+gettable     r13    r3    k9
+move         r14   r10
+call         r12     3     1
+jmp          l71
+.label	l69
+tforloop      r7     2
+jmp          l61
+.label	l71
+loadk         r4   k12
+.label	l72
+getupval      r7    u0
+gettable      r7    r7   k15
+test          r7     0
+jmp          l84
+getglobal     r7    k3
+loadk         r8   k16
+move          r9    r4
+loadk        r10   k17
+move         r11    r0
+loadk        r12   k18
+concat        r8    r8   r12
+call          r7     2     1
+.label	l84
+return        r0     1
+
+.function	main/f28
+
+.source	null
+.linedefined	968
+.lastlinedefined	981
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Particles"
+.constant	k1	nil
+.constant	k2	"PType"
+.constant	k3	"TapListener"
+.constant	k4	"removeEventListener"
+.constant	k5	"tap"
+.constant	k6	"Emitter"
+.constant	k7	"Listener"
+.constant	k8	"removeSelf"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+eq             1    r1    k1
+jmp          l44
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+gettable      r1    r1    k2
+gettable      r1    r1    k3
+eq             1    r1    k1
+jmp          l24
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+self          r1    r1    k4
+loadk         r3    k5
+getupval      r4    u0
+gettable      r4    r4    k0
+gettable      r4    r4    r0
+gettable      r4    r4    k2
+gettable      r4    r4    k3
+call          r1     4     1
+.label	l24
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+settable      r1    k6    k1
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+settable      r1    k2    k1
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+settable      r1    k7    k1
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+self          r1    r1    k8
+call          r1     2     1
+getupval      r1    u0
+gettable      r1    r1    k0
+settable      r1    r0    k1
+.label	l44
+return        r0     1
+
+.function	main/f29
+
+.source	null
+.linedefined	988
+.lastlinedefined	1007
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	nil
+.constant	k1	1
+.constant	k2	"gMaxParticles"
+.constant	k3	0
+.constant	k4	"Particles"
+.constant	k5	"emitterName"
+.constant	k6	"collectgarbage"
+.constant	k7	"collect"
+.constant	k8	"debug"
+.constant	k9	"print"
+.constant	k10	"--> Particles.ClearParticles()"
+
+eq             0    r0    k0
+jmp          l15
+loadk         r2    k1
+getupval      r3    u0
+gettable      r3    r3    k2
+loadk         r4    k1
+forprep       r2   l11
+.label	l8
+getupval      r6    u1
+move          r7    r5
+call          r6     2     1
+.label	l11
+forloop       r2    l8
+getupval      r2    u0
+settable      r2    k2    k3
+jmp          l35
+.label	l15
+loadk         r2    k1
+getupval      r3    u0
+gettable      r3    r3    k2
+loadk         r4    k1
+forprep       r2   l34
+.label	l20
+getupval      r6    u0
+gettable      r6    r6    k4
+gettable      r6    r6    r5
+eq             1    r6    k0
+jmp          l34
+getupval      r6    u0
+gettable      r6    r6    k4
+gettable      r6    r6    r5
+gettable      r6    r6    k5
+eq             0    r6    r0
+jmp          l34
+getupval      r6    u1
+move          r7    r5
+call          r6     2     1
+.label	l34
+forloop       r2   l20
+.label	l35
+getglobal     r2    k6
+loadk         r3    k7
+call          r2     2     1
+getupval      r2    u0
+gettable      r2    r2    k8
+test          r2     0
+jmp          l45
+getglobal     r2    k9
+loadk         r3   k10
+call          r2     2     1
+.label	l45
+return        r0     1
+
+.function	main/f30
+
+.source	null
+.linedefined	1014
+.lastlinedefined	1042
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"FXFieldIndex"
+.constant	k1	0
+.constant	k2	1
+.constant	k3	"ParticleTypeIndex"
+.constant	k4	"EmitterIndex"
+.constant	k5	"gLostTime"
+.constant	k6	"gSystemFrozen"
+.constant	k7	"gParticlesRendered"
+.constant	k8	"gCleanUpCalled"
+.constant	k9	true
+.constant	k10	"collectgarbage"
+.constant	k11	"collect"
+.constant	k12	"debug"
+.constant	k13	"print"
+.constant	k14	"--> Particles.CleanUp(): FINISHED."
+
+getupval      r0    u0
+call          r0     1     1
+getupval      r0    u1
+call          r0     1     1
+.label	l5
+getupval      r0    u2
+gettable      r0    r0    k0
+len           r0    r0
+lt             0    k1    r0
+jmp          l16
+getupval      r0    u3
+getupval      r1    u2
+gettable      r1    r1    k0
+gettable      r1    r1    k2
+call          r0     2     1
+jmp           l5
+.label	l16
+getupval      r0    u2
+gettable      r0    r0    k3
+len           r0    r0
+lt             0    k1    r0
+jmp          l27
+getupval      r0    u4
+getupval      r1    u2
+gettable      r1    r1    k3
+gettable      r1    r1    k2
+call          r0     2     1
+jmp          l16
+.label	l27
+getupval      r0    u2
+gettable      r0    r0    k4
+len           r0    r0
+lt             0    k1    r0
+jmp          l38
+getupval      r0    u5
+getupval      r1    u2
+gettable      r1    r1    k4
+gettable      r1    r1    k2
+call          r0     2     1
+jmp          l27
+.label	l38
+getupval      r0    u2
+settable      r0    k5    k1
+getupval      r0    u2
+settable      r0    k6    k1
+getupval      r0    u2
+settable      r0    k7    k1
+getupval      r0    u2
+settable      r0    k8    k9
+getglobal     r0   k10
+loadk         r1   k11
+call          r0     2     1
+getupval      r0    u2
+gettable      r0    r0   k12
+test          r0     0
+jmp          l56
+getglobal     r0   k13
+loadk         r1   k14
+call          r0     2     1
+.label	l56
+return        r0     1
+
+.function	main/f31
+
+.source	null
+.linedefined	1049
+.lastlinedefined	1583
+.numparams	0
+.is_vararg	0
+.maxstacksize	43
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"gSystemFrozen"
+.constant	k1	0
+.constant	k2	"system"
+.constant	k3	"getTimer"
+.constant	k4	"gLostTime"
+.constant	k5	"gLastTime"
+.constant	k6	"timeScale"
+.constant	k7	"ipairs"
+.constant	k8	"EmitterIndex"
+.constant	k9	"Emitters"
+.constant	k10	"active"
+.constant	k11	"x"
+.constant	k12	"y"
+.constant	k13	"scale"
+.constant	k14	"alpha"
+.constant	k15	"rotation"
+.constant	k16	"parent"
+.constant	k17	"FollowObject"
+.constant	k18	nil
+.constant	k19	"localToContent"
+.constant	k20	"followXOff"
+.constant	k21	"followYOff"
+.constant	k22	"contentToLocal"
+.constant	k23	"followRotation"
+.constant	k24	true
+.constant	k25	"followRotationOffset"
+.constant	k26	"Sound"
+.constant	k27	"soundChannel"
+.constant	k28	"startTime"
+.constant	k29	"soundDelay"
+.constant	k30	"SoundProperties"
+.constant	k31	"channel"
+.constant	k32	"audio"
+.constant	k33	"stop"
+.constant	k34	"play"
+.constant	k35	"PTypeIndex"
+.constant	k36	"ParticleTypes"
+.constant	k37	"PTypeSettings"
+.constant	k38	"oneShot"
+.constant	k39	"particlesToEmit"
+.constant	k40	"emissionRate"
+.constant	k41	1000
+.constant	k42	"emissionRadius"
+.constant	k43	1
+.constant	k44	"Particles"
+.constant	k45	"gMaxParticles"
+.constant	k46	"Shape"
+.constant	k47	"display"
+.constant	k48	"newGroup"
+.constant	k49	"Ceil"
+.constant	k50	"Rnd"
+.constant	k51	"Segments"
+.constant	k52	"cornersOnly"
+.constant	k53	false
+.constant	k54	"myWidth"
+.constant	k55	"insert"
+.constant	k56	"useEmitterRotation"
+.constant	k57	"myAngle"
+.constant	k58	"ImageSheet"
+.constant	k59	"AnimationInfo"
+.constant	k60	"frames"
+.constant	k61	"newImageRect"
+.constant	k62	"SheetInfo"
+.constant	k63	"width"
+.constant	k64	"height"
+.constant	k65	"newSprite"
+.constant	k66	"xReference"
+.constant	k67	"yReference"
+.constant	k68	"text"
+.constant	k69	"newText"
+.constant	k70	"font"
+.constant	k71	"fontSize"
+.constant	k72	"setTextColor"
+.constant	k73	"textColor"
+.constant	k74	2
+.constant	k75	3
+.constant	k76	"SpriteSet"
+.constant	k77	"imagePath"
+.constant	k78	"imageWidth"
+.constant	k79	"imageHeight"
+.constant	k80	"gSpriteAPI"
+.constant	k81	"prepare"
+.constant	k82	"animSequence"
+.constant	k83	"print"
+.constant	k84	"--------------------------------------------------------"
+.constant	k85	"!!! Particles.Update(): SPRITE API NOT SET! USE UseSpriteAPI() TO SET A REFERENCE!"
+.constant	k86	"blendMode"
+.constant	k87	"setFillColor"
+.constant	k88	"currColor"
+.constant	k89	"colorStart"
+.constant	k90	"TapListener"
+.constant	k91	"addEventListener"
+.constant	k92	"tap"
+.constant	k93	"emissionShape"
+.constant	k94	"PI"
+.constant	k95	90
+.constant	k96	360
+.constant	k97	"PI2"
+.constant	k98	"Sin"
+.constant	k99	"Cos"
+.constant	k100	"alfa"
+.constant	k101	"alphaStart"
+.constant	k102	"alphaVariation"
+.constant	k103	"scaleStart"
+.constant	k104	"scaleVariation"
+.constant	k105	"emitterAlpha"
+.constant	k106	"emitterScale"
+.constant	k107	"faceEmitter"
+.constant	k108	"rotationStart"
+.constant	k109	"rotationVariation"
+.constant	k110	"Atan2"
+.constant	k111	180
+.constant	k112	"directionVariation"
+.constant	k113	0.5
+.constant	k114	"xSpeed"
+.constant	k115	"vs"
+.constant	k116	"vv"
+.constant	k117	"ySpeed"
+.constant	k118	"weight"
+.constant	k119	"we"
+.constant	k120	"gGravity"
+.constant	k121	"killTime"
+.constant	k122	"lifeTime"
+.constant	k123	"fadeOutTime"
+.constant	k124	"fadeOutDelay"
+.constant	k125	"scaleOutTime"
+.constant	k126	"scaleOutDelay"
+.constant	k127	"PType"
+.constant	k128	"lastX"
+.constant	k129	"lastY"
+.constant	k130	"emitterName"
+.constant	k131	"name"
+.constant	k132	"Listener"
+.constant	k133	"currFXField"
+.constant	k134	"randomMotionMode"
+.constant	k135	"lastRandomMotion"
+.constant	k136	-1000
+.constant	k137	"nextRandomDir"
+.constant	k138	"currRandomDir"
+.constant	k139	"PhysicsMaterial"
+.constant	k140	"isPhysicsParticle"
+.constant	k141	"physics"
+.constant	k142	"addBody"
+.constant	k143	"dynamic"
+.constant	k144	"setLinearVelocity"
+.constant	k145	"angularVelocity"
+.constant	k146	"rc"
+.constant	k147	"PhysicsProperties"
+.constant	k148	"pairs"
+.constant	k149	"endTime"
+.constant	k150	"loop"
+.constant	k151	"autoDestroy"
+.constant	k152	"gParticlesRendered"
+.constant	k153	"vc"
+.constant	k154	"randomMotionInterval"
+.constant	k155	"randomMotionAmount"
+.constant	k156	"Sqrt"
+.constant	k157	8
+.constant	k158	"so"
+.constant	k159	"si"
+.constant	k160	0.001
+.constant	k161	"scaleMax"
+.constant	k162	"xScale"
+.constant	k163	"yScale"
+.constant	k164	"autoOrientation"
+.constant	k165	"getLinearVelocity"
+.constant	k166	"fo"
+.constant	k167	"fi"
+.constant	k168	"FXFieldIndex"
+.constant	k169	"Field"
+.constant	k170	"FXFields"
+.constant	k171	"enabled"
+.constant	k172	"fxID"
+.constant	k173	"Abs"
+.constant	k174	"radius"
+.constant	k175	"uniqueID"
+.constant	k176	"dispatchEvent"
+.constant	k177	"phase"
+.constant	k178	"leave"
+.constant	k179	"FXField"
+.constant	k180	"Particle"
+.constant	k181	"particleType"
+.constant	k182	"enter"
+.constant	k183	"mode"
+.constant	k184	16
+.constant	k185	"strength"
+.constant	k186	"applyForce"
+.constant	k187	4
+.constant	k188	1500
+.constant	k189	"bounciness"
+.constant	k190	"colorChange"
+.constant	k191	"ccR"
+.constant	k192	"ccG"
+.constant	k193	"ccB"
+.constant	k194	255
+.constant	k195	"killOutsideScreen"
+.constant	k196	"bounceX"
+.constant	k197	"bounceY"
+.constant	k198	"gScrLeftX"
+.constant	k199	"gScrRightX"
+.constant	k200	-1
+.constant	k201	"gScrH"
+.constant	k202	"Runtime"
+.constant	k203	"particleKilled"
+.constant	k204	"typeName"
+.constant	k205	"particleIndex"
+.constant	k206	"removeSelf"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+lt             0    k1    r0
+jmp           l6
+return        r0     1
+.label	l6
+loadnil       r0    r0
+getglobal     r1    k2
+gettable      r1    r1    k3
+call          r1     1     2
+getupval      r2    u0
+gettable      r2    r2    k4
+sub           r1    r1    r2
+getupval      r2    u0
+gettable      r2    r2    k5
+sub           r2    r1    r2
+getupval      r3    u0
+gettable      r3    r3    k6
+mul           r2    r2    r3
+getupval      r3    u0
+settable      r3    k5    r1
+loadnil       r3   r19
+getglobal    r20    k7
+getupval     r21    u0
+gettable     r21   r21    k8
+call         r20     2     4
+jmp         l708
+.label	l27
+getupval     r25    u0
+gettable     r25   r25    k9
+gettable      r0   r25   r24
+gettable     r25    r0   k10
+test         r25     0
+jmp         l708
+gettable     r11    r0   k11
+gettable     r12    r0   k12
+gettable     r14    r0   k13
+gettable     r15    r0   k14
+gettable     r13    r0   k15
+gettable     r16    r0   k16
+gettable     r25    r0   k17
+eq             1   r25   k18
+jmp          l73
+gettable     r25    r0   k17
+gettable     r25   r25   k16
+self         r25   r25   k19
+gettable     r27    r0   k17
+gettable     r27   r27   k11
+gettable     r28    r0   k20
+add          r27   r27   r28
+gettable     r28    r0   k17
+gettable     r28   r28   k12
+gettable     r29    r0   k21
+add          r28   r28   r29
+call         r25     4     3
+move         r12   r26
+move         r11   r25
+self         r25   r16   k22
+move         r27   r11
+move         r28   r12
+call         r25     4     3
+move         r12   r26
+move         r11   r25
+move         r25   r11
+settable      r0   k12   r12
+settable      r0   k11   r25
+gettable     r25    r0   k23
+eq             0   r25   k24
+jmp          l73
+gettable     r25    r0   k17
+gettable     r25   r25   k15
+gettable     r26    r0   k25
+add          r13   r25   r26
+settable      r0   k15   r13
+.label	l73
+gettable     r25    r0   k26
+eq             1   r25   k18
+jmp          l99
+gettable     r25    r0   k27
+eq             0   r25    k1
+jmp          l99
+gettable     r25    r0   k28
+sub          r25    r1   r25
+gettable     r26    r0   k29
+lt             0   r26   r25
+jmp          l99
+gettable     r25    r0   k30
+gettable     r25   r25   k31
+lt             0    k1   r25
+jmp          l93
+getglobal    r25   k32
+gettable     r25   r25   k33
+gettable     r26    r0   k30
+gettable     r26   r26   k31
+call         r25     2     1
+.label	l93
+getglobal    r25   k32
+gettable     r25   r25   k34
+gettable     r26    r0   k26
+gettable     r27    r0   k30
+call         r25     3     2
+settable      r0   k27   r25
+.label	l99
+getglobal    r25    k7
+gettable     r26    r0   k35
+call         r25     2     4
+jmp         l674
+.label	l103
+getupval     r30    u0
+gettable     r30   r30   k36
+gettable     r30   r30   r29
+gettable     r31    r0   k37
+gettable     r31   r31   r29
+gettable     r32   r31   k10
+eq             0   r32   k24
+jmp         l674
+gettable     r32   r31   k28
+lt             0   r32    r1
+jmp         l674
+gettable     r32    r0   k38
+eq             0   r32   k24
+jmp         l121
+gettable     r32   r31   k40
+mul          r32   r32   k41
+settable     r31   k39   r32
+jmp         l126
+.label	l121
+gettable     r32   r31   k39
+gettable     r33   r31   k40
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31   k39   r32
+.label	l126
+gettable     r32   r30   k42
+mul          r10   r32   r14
+.label	l128
+gettable     r32   r31   k39
+le             0   k43   r32
+jmp         l667
+loadk        r32   k43
+.label	l132
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+eq             1   r33   k18
+jmp         l139
+add          r32   r32   k43
+jmp         l132
+.label	l139
+getupval     r33    u0
+gettable     r33   r33   k45
+lt             0   r33   r32
+jmp         l145
+getupval     r33    u0
+settable     r33   k45   r32
+.label	l145
+gettable     r33    r0   k46
+eq             1   r33   k18
+jmp         l204
+eq             0   r19   k18
+jmp         l154
+getglobal    r33   k47
+gettable     r33   r33   k48
+call         r33     1     2
+move         r19   r33
+.label	l154
+getupval     r33    u0
+gettable     r33   r33   k49
+getupval     r34    u0
+gettable     r34   r34   k50
+call         r34     1     2
+gettable     r35    r0   k46
+gettable     r35   r35   k51
+len          r35   r35
+mul          r34   r34   r35
+call         r33     2     2
+move         r17   r33
+gettable     r33    r0   k46
+gettable     r33   r33   k51
+gettable     r18   r33   r17
+gettable     r33    r0   k46
+gettable     r33   r33   k52
+eq             0   r33   k53
+jmp         l183
+self         r33   r18   k19
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+gettable     r36   r18   k54
+mul          r35   r35   r36
+loadk        r36    k1
+call         r33     4     3
+move         r12   r34
+move         r11   r33
+jmp         l189
+.label	l183
+self         r33   r18   k19
+loadk        r35    k1
+loadk        r36    k1
+call         r33     4     3
+move         r12   r34
+move         r11   r33
+.label	l189
+self         r33   r16   k22
+move         r35   r11
+move         r36   r12
+call         r33     4     3
+move         r12   r34
+move         r11   r33
+self         r33   r18   k55
+move         r35   r19
+call         r33     3     1
+gettable     r33    r0   k46
+gettable     r33   r33   k56
+eq             1   r33   k24
+jmp         l204
+gettable     r33   r18   k57
+add          r13   r13   r33
+.label	l204
+gettable     r33   r30   k58
+eq             1   r33   k18
+jmp         l259
+gettable     r33   r30   k59
+eq             0   r33   k18
+jmp         l235
+gettable     r33   r30   k60
+getupval     r34    u0
+gettable     r34   r34   k50
+loadk        r35   k43
+gettable     r36   r30   k60
+len          r36   r36
+call         r34     3     2
+gettable     r33   r33   r34
+getupval     r34    u0
+gettable     r34   r34   k44
+getglobal    r35   k47
+gettable     r35   r35   k61
+gettable     r36   r30   k58
+move         r37   r33
+gettable     r38   r30   k62
+gettable     r38   r38   k60
+gettable     r38   r38   r33
+gettable     r38   r38   k63
+gettable     r39   r30   k62
+gettable     r39   r39   k60
+gettable     r39   r39   r33
+gettable     r39   r39   k64
+call         r35     5     2
+settable     r34   r32   r35
+jmp         l248
+.label	l235
+getupval     r33    u0
+gettable     r33   r33   k44
+getglobal    r34   k47
+gettable     r34   r34   k65
+gettable     r35   r30   k58
+gettable     r36   r30   k59
+call         r34     3     2
+settable     r33   r32   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+self         r33   r33   k34
+call         r33     2     1
+.label	l248
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k66
+settable     r33   k66   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k67
+settable     r33   k67   r34
+jmp         l358
+.label	l259
+gettable     r33   r30   k68
+eq             1   r33   k18
+jmp         l295
+getupval     r33    u0
+gettable     r33   r33   k44
+getglobal    r34   k47
+gettable     r34   r34   k69
+gettable     r35   r30   k68
+move         r36   r11
+move         r37   r12
+gettable     r38   r30   k70
+gettable     r39   r30   k71
+call         r34     6     2
+settable     r33   r32   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+self         r33   r33   k72
+gettable     r35   r30   k73
+gettable     r35   r35   k43
+gettable     r36   r30   k73
+gettable     r36   r36   k74
+gettable     r37   r30   k73
+gettable     r37   r37   k75
+call         r33     5     1
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k66
+settable     r33   k66   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k67
+settable     r33   k67   r34
+jmp         l358
+.label	l295
+gettable     r33   r30   k76
+eq             0   r33   k18
+jmp         l325
+getupval     r33    u0
+gettable     r33   r33   k44
+getglobal    r34   k47
+gettable     r34   r34   k61
+gettable     r35   r30   k77
+getupval     r36    u0
+gettable     r36   r36   k50
+loadk        r37   k43
+gettable     r38   r30   k77
+len          r38   r38
+call         r36     3     2
+gettable     r35   r35   r36
+gettable     r36   r30   k78
+gettable     r37   r30   k79
+call         r34     4     2
+settable     r33   r32   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k66
+settable     r33   k66   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k67
+settable     r33   k67   r34
+jmp         l358
+.label	l325
+getupval     r33    u0
+gettable     r33   r33   k80
+eq             1   r33   k18
+jmp         l349
+getupval     r33    u0
+gettable     r33   r33   k44
+getupval     r34    u0
+gettable     r34   r34   k80
+gettable     r34   r34   k65
+gettable     r35   r30   k76
+call         r34     2     2
+settable     r33   r32   r34
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+self         r33   r33   k81
+gettable     r35   r30   k82
+call         r33     3     1
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+self         r33   r33   k34
+call         r33     2     1
+jmp         l358
+.label	l349
+getglobal    r33   k83
+loadk        r34   k84
+call         r33     2     1
+getglobal    r33   k83
+loadk        r34   k85
+call         r33     2     1
+getglobal    r33   k83
+loadk        r34   k84
+call         r33     2     1
+.label	l358
+getupval     r33    u0
+gettable     r33   r33   k44
+gettable     r33   r33   r32
+gettable     r34   r30   k86
+settable     r33   k86   r34
+gettable     r34   r33   k87
+eq             1   r34   k18
+jmp         l383
+newtable     r34     3     0
+gettable     r35   r30   k89
+gettable     r35   r35   k43
+gettable     r36   r30   k89
+gettable     r36   r36   k74
+gettable     r37   r30   k89
+gettable     r37   r37   k75
+setlist      r34     3     1
+settable     r33   k88   r34
+self         r34   r33   k87
+gettable     r36   r30   k89
+gettable     r36   r36   k43
+gettable     r37   r30   k89
+gettable     r37   r37   k74
+gettable     r38   r30   k89
+gettable     r38   r38   k75
+call         r34     5     1
+.label	l383
+gettable     r34   r30   k90
+eq             1   r34   k18
+jmp         l390
+self         r34   r33   k91
+loadk        r36   k92
+gettable     r37   r30   k90
+call         r34     4     1
+.label	l390
+gettable     r34   r30   k93
+eq             0   r34    k1
+jmp         l396
+settable     r33   k11   r11
+settable     r33   k12   r12
+jmp         l500
+.label	l396
+gettable     r34   r30   k93
+eq             0   r34   k43
+jmp         l439
+getupval     r34    u0
+gettable     r34   r34   k94
+sub          r35   r13   k95
+div          r35   r35   k96
+getupval     r36    u0
+gettable     r36   r36   k97
+mul          r35   r35   r36
+sub          r34   r34   r35
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+mul          r35   r35   r10
+mul          r35   r35   k74
+getupval     r36    u0
+gettable     r36   r36   k98
+move         r37   r34
+call         r36     2     2
+mul          r36   r36   r10
+add          r36   r11   r36
+getupval     r37    u0
+gettable     r37   r37   k98
+move         r38   r34
+call         r37     2     2
+mul          r37   r37   r35
+sub          r36   r36   r37
+settable     r33   k11   r36
+getupval     r36    u0
+gettable     r36   r36   k99
+move         r37   r34
+call         r36     2     2
+mul          r36   r36   r10
+add          r36   r12   r36
+getupval     r37    u0
+gettable     r37   r37   k99
+move         r38   r34
+call         r37     2     2
+mul          r37   r37   r35
+sub          r36   r36   r37
+settable     r33   k12   r36
+jmp         l500
+.label	l439
+gettable     r34   r30   k93
+eq             0   r34   k74
+jmp         l468
+getupval     r34    u0
+gettable     r34   r34   k94
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+mul          r35   r35   k96
+div          r35   r35   k96
+getupval     r36    u0
+gettable     r36   r36   k97
+mul          r35   r35   r36
+sub          r34   r34   r35
+getupval     r35    u0
+gettable     r35   r35   k98
+move         r36   r34
+call         r35     2     2
+mul          r35   r35   r10
+add          r35   r11   r35
+settable     r33   k11   r35
+getupval     r35    u0
+gettable     r35   r35   k99
+move         r36   r34
+call         r35     2     2
+mul          r35   r35   r10
+add          r35   r12   r35
+settable     r33   k12   r35
+jmp         l500
+.label	l468
+gettable     r34   r30   k93
+eq             0   r34   k75
+jmp         l500
+getupval     r34    u0
+gettable     r34   r34   k94
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+mul          r35   r35   k96
+div          r35   r35   k96
+getupval     r36    u0
+gettable     r36   r36   k97
+mul          r35   r35   r36
+sub          r34   r34   r35
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+mul          r35   r35   r10
+getupval     r36    u0
+gettable     r36   r36   k98
+move         r37   r34
+call         r36     2     2
+mul          r36   r36   r35
+add          r36   r11   r36
+settable     r33   k11   r36
+getupval     r36    u0
+gettable     r36   r36   k99
+move         r37   r34
+call         r36     2     2
+mul          r36   r36   r35
+add          r36   r12   r36
+settable     r33   k12   r36
+.label	l500
+gettable     r34   r30  k101
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+gettable     r36   r30  k102
+mul          r35   r35   r36
+add          r34   r34   r35
+settable     r33  k100   r34
+gettable     r34   r30  k103
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+gettable     r36   r30  k104
+mul          r35   r35   r36
+add          r34   r34   r35
+settable     r33   k13   r34
+settable     r33  k105   r15
+settable     r33  k106   r14
+gettable     r34   r30  k107
+eq             0   r34   k53
+jmp         l540
+gettable     r34   r30  k108
+getupval     r35    u0
+gettable     r35   r35   k49
+getupval     r36    u0
+gettable     r36   r36   k50
+call         r36     1     2
+gettable     r37   r30  k109
+mul          r36   r36   r37
+call         r35     2     2
+add          r34   r34   r35
+settable     r33   k15   r34
+gettable     r34   r30   k56
+test         r34     0
+jmp         l538
+gettable     r34   r33   k15
+add          r34   r34   r13
+settable     r33   k15   r34
+.label	l538
+move          r9   r13
+jmp         l554
+.label	l540
+getupval     r34    u0
+gettable     r34   r34  k110
+gettable     r35   r33   k12
+sub          r35   r35   r12
+gettable     r36   r33   k11
+sub          r36   r36   r11
+call         r34     3     2
+getupval     r35    u0
+gettable     r35   r35   k94
+div          r35  k111   r35
+mul          r34   r34   r35
+sub          r34   r34   k95
+settable     r33   k15   r34
+gettable      r9   r33   k15
+.label	l554
+gettable     r34   r30  k112
+mul          r34   r34  k113
+sub          r34    r9   r34
+getupval     r35    u0
+gettable     r35   r35   k50
+call         r35     1     2
+gettable     r36   r30  k112
+mul          r35   r35   r36
+add           r9   r34   r35
+getupval     r34    u0
+gettable     r34   r34   k94
+div          r35    r9   k96
+getupval     r36    u0
+gettable     r36   r36   k97
+mul          r35   r35   r36
+sub           r9   r34   r35
+getupval     r34    u0
+gettable     r34   r34   k98
+move         r35    r9
+call         r34     2     2
+gettable     r35   r30  k115
+getupval     r36    u0
+gettable     r36   r36   k50
+call         r36     1     2
+gettable     r37   r30  k116
+mul          r36   r36   r37
+add          r35   r35   r36
+mul          r34   r34   r35
+settable     r33  k114   r34
+getupval     r34    u0
+gettable     r34   r34   k99
+move         r35    r9
+call         r34     2     2
+gettable     r35   r30  k115
+getupval     r36    u0
+gettable     r36   r36   k50
+call         r36     1     2
+gettable     r37   r30  k116
+mul          r36   r36   r37
+add          r35   r35   r36
+mul          r34   r34   r35
+settable     r33  k117   r34
+gettable     r34   r30  k119
+getupval     r35    u0
+gettable     r35   r35  k120
+mul          r34   r34   r35
+settable     r33  k118   r34
+settable     r33   k28    r1
+gettable     r34   r30  k122
+add          r34    r1   r34
+settable     r33  k121   r34
+gettable     r34   r30  k124
+add          r34    r1   r34
+settable     r33  k123   r34
+gettable     r34   r30  k126
+add          r34    r1   r34
+settable     r33  k125   r34
+settable     r33  k127   r30
+gettable     r34   r33   k11
+settable     r33  k128   r34
+gettable     r34   r33   k12
+settable     r33  k129   r34
+gettable     r34    r0  k131
+settable     r33  k130   r34
+gettable     r34    r0  k132
+settable     r33  k132   r34
+settable     r33  k133    k1
+gettable     r34   r30  k134
+eq             1   r34    k1
+jmp         l629
+settable     r33  k135  k136
+gettable     r34   r33   k15
+settable     r33  k137   r34
+gettable     r34   r33   k15
+settable     r33  k138   r34
+.label	l629
+self         r34   r16   k55
+move         r36   r33
+call         r34     3     1
+gettable     r34   r30  k139
+eq             1   r34   k18
+jmp         l662
+settable     r33  k140   k24
+getglobal    r34  k141
+gettable     r34   r34  k142
+move         r35   r33
+loadk        r36  k143
+gettable     r37   r30  k139
+call         r34     4     1
+self         r34   r33  k144
+gettable     r36   r33  k114
+mul          r36   r36   k41
+gettable     r37   r33  k117
+mul          r37   r37   k41
+call         r34     4     1
+gettable     r34   r30  k146
+mul          r34   r34   k41
+settable     r33  k145   r34
+gettable     r34   r30  k147
+test         r34     0
+jmp         l663
+getglobal    r34  k148
+gettable     r35   r30  k147
+call         r34     2     4
+jmp         l659
+.label	l658
+settable     r33   r37   r38
+.label	l659
+tforloop     r34     2
+jmp         l658
+jmp         l663
+.label	l662
+settable     r33  k140   k53
+.label	l663
+gettable     r34   r31   k39
+sub          r34   r34   k43
+settable     r31   k39   r34
+jmp         l128
+.label	l667
+gettable     r32   r31  k149
+lt             1   r32    r1
+jmp         l673
+gettable     r32    r0   k38
+eq             0   r32   k24
+jmp         l674
+.label	l673
+settable     r31   k10   k53
+.label	l674
+tforloop     r25     2
+jmp         l103
+loadk        r25    k1
+getglobal    r26    k7
+gettable     r27    r0   k35
+call         r26     2     4
+jmp         l687
+.label	l681
+gettable     r31    r0   k37
+gettable     r31   r31   r30
+gettable     r31   r31   k10
+eq             0   r31   k24
+jmp         l687
+add          r25   r25   k43
+.label	l687
+tforloop     r26     2
+jmp         l681
+eq             0   r25    k1
+jmp         l708
+gettable     r26    r0  k150
+test         r26     0
+jmp         l699
+getupval     r26    u1
+gettable     r27    r0  k131
+gettable     r28    r0   k38
+call         r26     3     1
+jmp         l708
+.label	l699
+getupval     r26    u2
+gettable     r27    r0  k131
+call         r26     2     1
+gettable     r26    r0  k151
+test         r26     0
+jmp         l708
+getupval     r26    u3
+gettable     r27    r0  k131
+call         r26     2     1
+.label	l708
+tforloop     r20     2
+jmp          l27
+getupval     r20    u0
+settable     r20  k152    k1
+loadnil      r20   r24
+getupval     r25    u0
+gettable     r25   r25   k45
+loadk        r26   k43
+move         r27   r25
+loadk        r28   k43
+forprep      r26 l1594
+.label	l719
+getupval     r30    u0
+gettable     r30   r30   k44
+gettable     r30   r30   r29
+eq             1   r30   k18
+jmp        l1594
+getupval     r30    u0
+gettable     r30   r30   k44
+gettable     r30   r30   r29
+gettable     r30   r30  k127
+getupval     r31    u0
+gettable     r31   r31   k44
+gettable     r31   r31   r29
+getupval     r32    u0
+getupval     r33    u0
+gettable     r33   r33  k152
+add          r33   r33   k43
+settable     r32  k152   r33
+gettable     r32   r31  k140
+eq             1   r32   k24
+jmp         l951
+gettable     r32   r31   k11
+settable     r31  k128   r32
+gettable     r32   r31   k12
+settable     r31  k129   r32
+gettable     r32   r31   k11
+gettable     r33   r31  k114
+gettable     r34   r31  k106
+mul          r33   r33   r34
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31   k11   r32
+gettable     r32   r31   k12
+gettable     r33   r31  k117
+gettable     r34   r31  k106
+mul          r33   r33   r34
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31   k12   r32
+gettable     r32   r30  k153
+eq             1   r32    k1
+jmp         l774
+gettable     r32   r31  k114
+gettable     r33   r31  k114
+gettable     r34   r30  k153
+mul          r33   r33   r34
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31  k114   r32
+gettable     r32   r31  k117
+gettable     r33   r31  k117
+gettable     r34   r30  k153
+mul          r33   r33   r34
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31  k117   r32
+.label	l774
+gettable     r32   r30  k134
+eq             1   r32    k1
+jmp         l884
+gettable     r32   r30  k134
+eq             0   r32   k43
+jmp         l829
+gettable     r32   r31  k135
+sub          r32    r1   r32
+gettable     r33   r30  k154
+lt             0   r33   r32
+jmp         l884
+settable     r31  k135    r1
+gettable     r32   r31  k137
+gettable     r33   r30  k155
+mul          r33   r33  k113
+sub          r32   r32   r33
+getupval     r33    u0
+gettable     r33   r33   k50
+call         r33     1     2
+gettable     r34   r30  k155
+mul          r33   r33   r34
+add          r32   r32   r33
+settable     r31  k137   r32
+getupval     r32    u0
+gettable     r32   r32   k94
+gettable     r33   r31  k137
+div          r33   r33   k96
+getupval     r34    u0
+gettable     r34   r34   k97
+mul          r33   r33   r34
+sub           r9   r32   r33
+getupval     r32    u0
+gettable     r32   r32  k156
+gettable     r33   r31  k114
+gettable     r34   r31  k114
+mul          r33   r33   r34
+gettable     r34   r31  k117
+gettable     r35   r31  k117
+mul          r34   r34   r35
+add          r33   r33   r34
+call         r32     2     2
+move         r24   r32
+getupval     r32    u0
+gettable     r32   r32   k98
+move         r33    r9
+call         r32     2     2
+mul          r32   r32   r24
+settable     r31  k114   r32
+getupval     r32    u0
+gettable     r32   r32   k99
+move         r33    r9
+call         r32     2     2
+mul          r32   r32   r24
+settable     r31  k117   r32
+jmp         l884
+.label	l829
+gettable     r32   r31  k135
+sub          r32    r1   r32
+gettable     r33   r30  k154
+lt             0   r33   r32
+jmp         l846
+settable     r31  k135    r1
+gettable     r32   r31  k138
+gettable     r33   r30  k155
+mul          r33   r33  k113
+sub          r32   r32   r33
+getupval     r33    u0
+gettable     r33   r33   k50
+call         r33     1     2
+gettable     r34   r30  k155
+mul          r33   r33   r34
+add          r32   r32   r33
+settable     r31  k137   r32
+.label	l846
+gettable     r32   r31  k138
+gettable     r33   r31  k137
+gettable     r34   r31  k138
+sub          r33   r33   r34
+div          r33   r33  k157
+add          r32   r32   r33
+settable     r31  k138   r32
+getupval     r32    u0
+gettable     r32   r32   k94
+gettable     r33   r31  k138
+div          r33   r33   k96
+getupval     r34    u0
+gettable     r34   r34   k97
+mul          r33   r33   r34
+sub           r9   r32   r33
+getupval     r32    u0
+gettable     r32   r32  k156
+gettable     r33   r31  k114
+gettable     r34   r31  k114
+mul          r33   r33   r34
+gettable     r34   r31  k117
+gettable     r35   r31  k117
+mul          r34   r34   r35
+add          r33   r33   r34
+call         r32     2     2
+move         r24   r32
+getupval     r32    u0
+gettable     r32   r32   k98
+move         r33    r9
+call         r32     2     2
+mul          r32   r32   r24
+settable     r31  k114   r32
+getupval     r32    u0
+gettable     r32   r32   k99
+move         r33    r9
+call         r32     2     2
+mul          r32   r32   r24
+settable     r31  k117   r32
+.label	l884
+gettable     r32   r31  k117
+gettable     r33   r31  k118
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31  k117   r32
+gettable     r32   r31  k125
+lt             1    r1   r32
+jmp         l895
+gettable     r32   r30  k158
+eq             0   r32    k1
+jmp         l901
+.label	l895
+gettable     r32   r31   k13
+gettable     r33   r30  k159
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31   k13   r32
+jmp         l911
+.label	l901
+gettable     r32   r31   k13
+gettable     r33   r30  k158
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31   k13   r32
+gettable     r32   r31   k13
+lt             0   r32  k160
+jmp         l911
+settable     r31   k13  k160
+settable     r31  k121    r1
+.label	l911
+gettable     r32   r30  k161
+lt             0    k1   r32
+jmp         l920
+gettable     r32   r31   k13
+gettable     r33   r30  k161
+lt             0   r33   r32
+jmp         l920
+gettable     r32   r30  k161
+settable     r31   k13   r32
+.label	l920
+gettable     r32   r31  k106
+gettable     r33   r31   k13
+mul          r32   r32   r33
+settable     r31  k162   r32
+gettable     r32   r31  k162
+settable     r31  k163   r32
+gettable     r32   r30  k164
+eq             0   r32   k53
+jmp         l935
+gettable     r32   r31   k15
+gettable     r33   r30  k146
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31   k15   r32
+jmp        l1000
+.label	l935
+getupval     r32    u0
+gettable     r32   r32  k110
+gettable     r33   r31  k129
+gettable     r34   r31   k12
+sub          r33   r33   r34
+gettable     r34   r31  k128
+gettable     r35   r31   k11
+sub          r34   r34   r35
+call         r32     3     2
+getupval     r33    u0
+gettable     r33   r33   k94
+div          r33  k111   r33
+mul          r32   r32   r33
+sub          r32   r32   k95
+settable     r31   k15   r32
+jmp        l1000
+.label	l951
+gettable     r32   r30  k134
+eq             1   r32    k1
+jmp        l1000
+gettable     r32   r31  k135
+sub          r32    r1   r32
+gettable     r33   r30  k154
+lt             0   r33   r32
+jmp        l1000
+settable     r31  k135    r1
+gettable     r32   r31  k137
+gettable     r33   r30  k155
+mul          r33   r33  k113
+sub          r32   r32   r33
+getupval     r33    u0
+gettable     r33   r33   k50
+call         r33     1     2
+gettable     r34   r30  k155
+mul          r33   r33   r34
+add          r32   r32   r33
+settable     r31  k137   r32
+getupval     r32    u0
+gettable     r32   r32   k94
+gettable     r33   r31  k137
+div          r33   r33   k96
+getupval     r34    u0
+gettable     r34   r34   k97
+mul          r33   r33   r34
+sub           r9   r32   r33
+self         r32   r31  k165
+call         r32     2     3
+getupval     r34    u0
+gettable     r34   r34  k156
+mul          r35   r32   r32
+mul          r36   r33   r33
+add          r35   r35   r36
+call         r34     2     2
+move         r24   r34
+self         r34   r31  k144
+getupval     r36    u0
+gettable     r36   r36   k98
+move         r37    r9
+call         r36     2     2
+mul          r36   r36   r24
+getupval     r37    u0
+gettable     r37   r37   k99
+move         r38    r9
+call         r37     2     2
+mul          r37   r37   r24
+call         r34     4     1
+.label	l1000
+gettable     r32   r31  k123
+lt             1    r1   r32
+jmp        l1006
+gettable     r32   r30  k166
+eq             0   r32    k1
+jmp        l1012
+.label	l1006
+gettable     r32   r31  k100
+gettable     r33   r30  k167
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31  k100   r32
+jmp        l1022
+.label	l1012
+gettable     r32   r31  k100
+gettable     r33   r30  k166
+mul          r33    r2   r33
+add          r32   r32   r33
+settable     r31  k100   r32
+gettable     r32   r31  k100
+lt             0   r32    k1
+jmp        l1022
+settable     r31  k100    k1
+settable     r31  k121    r1
+.label	l1022
+gettable     r32   r31  k100
+lt             0   k43   r32
+jmp        l1026
+settable     r31  k100   k43
+.label	l1026
+gettable     r32   r31  k105
+gettable     r33   r31  k100
+mul          r32   r32   r33
+settable     r31   k14   r32
+getglobal    r32    k7
+getupval     r33    u0
+gettable     r33   r33  k168
+call         r32     2     4
+jmp        l1421
+.label	l1035
+getupval     r37    u0
+gettable     r37   r37  k170
+gettable     r37   r37   r36
+setglobal    r37  k169
+getglobal    r37  k169
+gettable     r37   r37  k171
+test         r37     0
+jmp        l1421
+gettable     r37   r30  k172
+getglobal    r38  k169
+gettable     r38   r38  k172
+eq             0   r37   r38
+jmp        l1421
+getupval     r37    u0
+gettable     r37   r37  k173
+getglobal    r38  k169
+gettable     r38   r38   k11
+gettable     r39   r31   k11
+sub          r38   r38   r39
+call         r37     2     2
+move         r20   r37
+getupval     r37    u0
+gettable     r37   r37  k173
+getglobal    r38  k169
+gettable     r38   r38   k12
+gettable     r39   r31   k12
+sub          r38   r38   r39
+call         r37     2     2
+move         r21   r37
+mul          r37   r20   r20
+mul          r38   r21   r21
+add          r37   r37   r38
+pow          r22   r37  k113
+getglobal    r37  k169
+gettable     r37   r37  k174
+lt             0   r37   r22
+jmp        l1096
+gettable     r37   r31  k133
+getglobal    r38  k169
+gettable     r38   r38  k175
+eq             0   r37   r38
+jmp        l1421
+getglobal    r37  k169
+gettable     r37   r37  k132
+eq             1   r37   k18
+jmp        l1421
+getglobal    r37  k169
+self         r37   r37  k176
+newtable     r39     0     5
+getglobal    r40  k169
+gettable     r40   r40  k131
+settable     r39  k131   r40
+settable     r39  k177  k178
+getglobal    r40  k169
+settable     r39  k179   r40
+settable     r39  k180   r31
+gettable     r40   r30  k131
+settable     r39  k181   r40
+call         r37     3     1
+settable     r31  k133    k1
+jmp        l1421
+.label	l1096
+getglobal    r37  k169
+gettable     r37   r37  k132
+eq             1   r37   k18
+jmp        l1119
+gettable     r37   r31  k133
+eq             0   r37    k1
+jmp        l1116
+getglobal    r37  k169
+self         r37   r37  k176
+newtable     r39     0     5
+getglobal    r40  k169
+gettable     r40   r40  k131
+settable     r39  k131   r40
+settable     r39  k177  k182
+getglobal    r40  k169
+settable     r39  k179   r40
+settable     r39  k180   r31
+gettable     r40   r30  k131
+settable     r39  k181   r40
+call         r37     3     1
+.label	l1116
+getglobal    r37  k169
+gettable     r37   r37  k175
+settable     r31  k133   r37
+.label	l1119
+gettable     r37   r31  k140
+eq             0   r37   k24
+jmp        l1249
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37    k1
+jmp        l1150
+lt             0  k184   r22
+jmp        l1150
+getglobal    r37  k169
+gettable     r37   r37  k174
+div          r37   r22   r37
+sub          r37   k43   r37
+getglobal    r38  k169
+gettable     r38   r38  k185
+mul          r23   r37   r38
+self         r37   r31  k186
+getglobal    r39  k169
+gettable     r39   r39   k11
+gettable     r40   r31   k11
+sub          r39   r39   r40
+mul          r39   r39   r23
+getglobal    r40  k169
+gettable     r40   r40   k12
+gettable     r41   r31   k12
+sub          r40   r40   r41
+mul          r40   r40   r23
+gettable     r41   r31   k11
+gettable     r42   r31   k12
+call         r37     6     1
+jmp        l1421
+.label	l1150
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37   k43
+jmp        l1176
+getglobal    r37  k169
+gettable     r37   r37  k174
+div          r37   r22   r37
+sub          r37   k43   r37
+getglobal    r38  k169
+gettable     r38   r38  k185
+mul          r23   r37   r38
+self         r37   r31  k186
+gettable     r39   r31   k11
+getglobal    r40  k169
+gettable     r40   r40   k11
+sub          r39   r39   r40
+mul          r39   r39   r23
+gettable     r40   r31   k12
+getglobal    r41  k169
+gettable     r41   r41   k12
+sub          r40   r40   r41
+mul          r40   r40   r23
+gettable     r41   r31   k11
+gettable     r42   r31   k12
+call         r37     6     1
+jmp        l1421
+.label	l1176
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37   k74
+jmp        l1182
+settable     r31  k121    r1
+jmp        l1421
+.label	l1182
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37   k75
+jmp        l1217
+getglobal    r37  k169
+gettable     r37   r37  k174
+div          r37   r22   r37
+sub          r37   k43   r37
+getglobal    r38  k169
+gettable     r38   r38  k185
+mul          r23   r37   r38
+getupval     r37    u0
+gettable     r37   r37   k94
+getglobal    r38  k169
+gettable     r38   r38   k15
+div          r38   r38   k96
+getupval     r39    u0
+gettable     r39   r39   k97
+mul          r38   r38   r39
+sub           r9   r37   r38
+self         r37   r31  k186
+getupval     r39    u0
+gettable     r39   r39   k98
+move         r40    r9
+call         r39     2     2
+mul          r39   r39   r23
+getupval     r40    u0
+gettable     r40   r40   k99
+move         r41    r9
+call         r40     2     2
+mul          r40   r40   r23
+gettable     r41   r31   k11
+gettable     r42   r31   k12
+call         r37     6     1
+jmp        l1421
+.label	l1217
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37  k187
+jmp        l1421
+getupval     r37    u0
+gettable     r37   r37   k94
+getglobal    r38  k169
+gettable     r38   r38   k15
+div          r38   r38   k96
+getupval     r39    u0
+gettable     r39   r39   k97
+mul          r38   r38   r39
+sub           r9   r37   r38
+self         r37   r31  k144
+getupval     r39    u0
+gettable     r39   r39   k98
+move         r40    r9
+call         r39     2     2
+getglobal    r40  k169
+gettable     r40   r40  k185
+mul          r39   r39   r40
+getupval     r40    u0
+gettable     r40   r40   k99
+move         r41    r9
+call         r40     2     2
+getglobal    r41  k169
+gettable     r41   r41  k185
+mul          r40   r40   r41
+gettable     r41   r31   k11
+gettable     r42   r31   k12
+call         r37     6     1
+jmp        l1421
+.label	l1249
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37    k1
+jmp        l1280
+lt             0  k184   r22
+jmp        l1280
+getglobal    r37  k169
+gettable     r37   r37  k174
+div          r37   r22   r37
+sub          r37   k43   r37
+getglobal    r38  k169
+gettable     r38   r38  k185
+div          r38   r38  k188
+mul          r23   r37   r38
+gettable     r37   r31  k114
+getglobal    r38  k169
+gettable     r38   r38   k11
+gettable     r39   r31   k11
+sub          r38   r38   r39
+mul          r38   r38   r23
+add          r37   r37   r38
+settable     r31  k114   r37
+gettable     r37   r31  k117
+getglobal    r38  k169
+gettable     r38   r38   k12
+gettable     r39   r31   k12
+sub          r38   r38   r39
+mul          r38   r38   r23
+add          r37   r37   r38
+settable     r31  k117   r37
+jmp        l1411
+.label	l1280
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37   k43
+jmp        l1332
+getupval     r37    u0
+gettable     r37   r37  k110
+getglobal    r38  k169
+gettable     r38   r38   k12
+gettable     r39   r31   k12
+sub          r38   r38   r39
+getglobal    r39  k169
+gettable     r39   r39   k11
+gettable     r40   r31   k11
+sub          r39   r39   r40
+call         r37     3     2
+getupval     r38    u0
+gettable     r38   r38   k94
+div          r38  k111   r38
+mul          r37   r37   r38
+sub          r37   r37   k95
+getupval     r38    u0
+gettable     r38   r38   k94
+div          r39   r37   k96
+getupval     r40    u0
+gettable     r40   r40   k97
+mul          r39   r39   r40
+sub          r38   r38   r39
+getupval     r39    u0
+gettable     r39   r39   k98
+move         r40   r38
+call         r39     2     2
+getupval     r40    u0
+gettable     r40   r40  k173
+gettable     r41   r31  k114
+call         r40     2     2
+gettable     r41   r30  k189
+mul          r40   r40   r41
+mul          r39   r39   r40
+settable     r31  k114   r39
+getupval     r39    u0
+gettable     r39   r39   k99
+move         r40   r38
+call         r39     2     2
+getupval     r40    u0
+gettable     r40   r40  k173
+gettable     r41   r31  k117
+call         r40     2     2
+gettable     r41   r30  k189
+mul          r40   r40   r41
+mul          r39   r39   r40
+settable     r31  k117   r39
+jmp        l1411
+.label	l1332
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37   k74
+jmp        l1338
+settable     r31  k121    r1
+jmp        l1411
+.label	l1338
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37   k75
+jmp        l1380
+getglobal    r37  k169
+gettable     r37   r37  k174
+div          r37   r22   r37
+sub          r37   k43   r37
+getglobal    r38  k169
+gettable     r38   r38  k185
+div          r38   r38  k188
+mul          r23   r37   r38
+getupval     r37    u0
+gettable     r37   r37   k94
+getglobal    r38  k169
+gettable     r38   r38   k15
+div          r38   r38   k96
+getupval     r39    u0
+gettable     r39   r39   k97
+mul          r38   r38   r39
+sub           r9   r37   r38
+gettable     r37   r31  k114
+gettable     r38   r31  k114
+getupval     r39    u0
+gettable     r39   r39   k98
+move         r40    r9
+call         r39     2     2
+sub          r38   r38   r39
+mul          r38   r38   r23
+sub          r37   r37   r38
+settable     r31  k114   r37
+gettable     r37   r31  k117
+gettable     r38   r31  k117
+getupval     r39    u0
+gettable     r39   r39   k99
+move         r40    r9
+call         r39     2     2
+sub          r38   r38   r39
+mul          r38   r38   r23
+sub          r37   r37   r38
+settable     r31  k117   r37
+jmp        l1411
+.label	l1380
+getglobal    r37  k169
+gettable     r37   r37  k183
+eq             0   r37  k187
+jmp        l1411
+getupval     r37    u0
+gettable     r37   r37   k94
+getglobal    r38  k169
+gettable     r38   r38   k15
+div          r38   r38   k96
+getupval     r39    u0
+gettable     r39   r39   k97
+mul          r38   r38   r39
+sub           r9   r37   r38
+getupval     r37    u0
+gettable     r37   r37   k98
+move         r38    r9
+call         r37     2     2
+getglobal    r38  k169
+gettable     r38   r38  k185
+div          r38   r38   k41
+mul          r37   r37   r38
+settable     r31  k114   r37
+getupval     r37    u0
+gettable     r37   r37   k99
+move         r38    r9
+call         r37     2     2
+getglobal    r38  k169
+gettable     r38   r38  k185
+div          r38   r38   k41
+mul          r37   r37   r38
+settable     r31  k117   r37
+.label	l1411
+gettable     r37   r31  k128
+gettable     r38   r31  k114
+mul          r38   r38    r2
+add          r37   r37   r38
+settable     r31   k11   r37
+gettable     r37   r31  k129
+gettable     r38   r31  k117
+mul          r38   r38    r2
+add          r37   r37   r38
+settable     r31   k12   r37
+.label	l1421
+tforloop     r32     2
+jmp        l1035
+gettable     r32   r31   k87
+eq             1   r32   k18
+jmp        l1497
+gettable     r32   r30  k190
+eq             1   r32    k1
+jmp        l1497
+gettable     r32   r31   k88
+gettable     r33   r31   k88
+gettable     r33   r33   k43
+gettable     r34   r30  k191
+mul          r34   r34    r2
+add          r33   r33   r34
+settable     r32   k43   r33
+gettable     r32   r31   k88
+gettable     r33   r31   k88
+gettable     r33   r33   k74
+gettable     r34   r30  k192
+mul          r34   r34    r2
+add          r33   r33   r34
+settable     r32   k74   r33
+gettable     r32   r31   k88
+gettable     r33   r31   k88
+gettable     r33   r33   k75
+gettable     r34   r30  k193
+mul          r34   r34    r2
+add          r33   r33   r34
+settable     r32   k75   r33
+gettable     r32   r31   k88
+gettable     r32   r32   k43
+lt             0  k194   r32
+jmp        l1457
+gettable     r32   r31   k88
+settable     r32   k43  k194
+jmp        l1463
+.label	l1457
+gettable     r32   r31   k88
+gettable     r32   r32   k43
+lt             0   r32    k1
+jmp        l1463
+gettable     r32   r31   k88
+settable     r32   k43    k1
+.label	l1463
+gettable     r32   r31   k88
+gettable     r32   r32   k74
+lt             0  k194   r32
+jmp        l1470
+gettable     r32   r31   k88
+settable     r32   k74  k194
+jmp        l1476
+.label	l1470
+gettable     r32   r31   k88
+gettable     r32   r32   k74
+lt             0   r32    k1
+jmp        l1476
+gettable     r32   r31   k88
+settable     r32   k74    k1
+.label	l1476
+gettable     r32   r31   k88
+gettable     r32   r32   k75
+lt             0  k194   r32
+jmp        l1483
+gettable     r32   r31   k88
+settable     r32   k75  k194
+jmp        l1489
+.label	l1483
+gettable     r32   r31   k88
+gettable     r32   r32   k75
+lt             0   r32    k1
+jmp        l1489
+gettable     r32   r31   k88
+settable     r32   k75    k1
+.label	l1489
+self         r32   r31   k87
+gettable     r34   r31   k88
+gettable     r34   r34   k43
+gettable     r35   r31   k88
+gettable     r35   r35   k74
+gettable     r36   r31   k88
+gettable     r36   r36   k75
+call         r32     5     1
+.label	l1497
+gettable     r32   r30  k195
+eq             1   r32   k24
+jmp        l1506
+gettable     r32   r30  k196
+eq             1   r32   k24
+jmp        l1506
+gettable     r32   r30  k197
+eq             0   r32   k24
+jmp        l1561
+.label	l1506
+self         r32   r31   k19
+loadk        r34    k1
+loadk        r35    k1
+call         r32     4     3
+getupval     r34    u0
+gettable     r34   r34  k198
+lt             1   r32   r34
+jmp        l1518
+getupval     r34    u0
+gettable     r34   r34  k199
+lt             0   r34   r32
+jmp        l1537
+.label	l1518
+gettable     r34   r30  k196
+eq             0   r34   k24
+jmp        l1532
+gettable     r34   r31  k140
+eq             1   r34   k24
+jmp        l1532
+gettable     r34   r30  k189
+gettable     r35   r31  k114
+mul          r34   r34   r35
+mul          r34   r34  k200
+settable     r31  k114   r34
+gettable     r34   r31  k128
+settable     r31   k11   r34
+jmp        l1561
+.label	l1532
+gettable     r34   r30  k195
+eq             0   r34   k24
+jmp        l1561
+settable     r31  k121    r1
+jmp        l1561
+.label	l1537
+lt             1   r33    k1
+jmp        l1543
+getupval     r34    u0
+gettable     r34   r34  k201
+lt             0   r34   r33
+jmp        l1561
+.label	l1543
+gettable     r34   r30  k197
+eq             0   r34   k24
+jmp        l1557
+gettable     r34   r31  k140
+eq             1   r34   k24
+jmp        l1557
+gettable     r34   r30  k189
+gettable     r35   r31  k117
+mul          r34   r34   r35
+mul          r34   r34  k200
+settable     r31  k117   r34
+gettable     r34   r31  k129
+settable     r31   k12   r34
+jmp        l1561
+.label	l1557
+gettable     r34   r30  k195
+eq             0   r34   k24
+jmp        l1561
+settable     r31  k121    r1
+.label	l1561
+gettable     r32   r31  k121
+le             0   r32    r1
+jmp        l1594
+gettable     r32   r31  k132
+eq             1   r32   k18
+jmp        l1591
+getglobal    r32  k202
+self         r32   r32  k176
+newtable     r34     0    11
+settable     r34  k131  k203
+gettable     r35   r31   k11
+settable     r34   k11   r35
+gettable     r35   r31   k12
+settable     r34   k12   r35
+gettable     r35   r31   k15
+settable     r34   k15   r35
+gettable     r35   r31   k14
+settable     r34   k14   r35
+gettable     r35   r31  k162
+settable     r34   k13   r35
+gettable     r35   r31  k114
+settable     r34  k114   r35
+gettable     r35   r31  k117
+settable     r34  k117   r35
+gettable     r35   r30  k131
+settable     r34  k204   r35
+settable     r34  k205   r29
+gettable     r35   r31  k130
+settable     r34  k130   r35
+call         r32     3     1
+.label	l1591
+getupval     r32    u4
+move         r33   r29
+call         r32     2     1
+.label	l1594
+forloop      r26  l719
+getupval     r26    u0
+gettable     r26   r26   k45
+move         r27   r26
+loadk        r28   k43
+loadk        r29  k200
+forprep      r27 l1609
+.label	l1601
+getupval     r31    u0
+settable     r31   k45   r30
+getupval     r31    u0
+gettable     r31   r31   k44
+gettable     r31   r31   r30
+eq             1   r31   k18
+jmp        l1609
+jmp        l1610
+.label	l1609
+forloop      r27 l1601
+.label	l1610
+eq             1   r19   k18
+jmp        l1615
+self         r27   r19  k206
+call         r27     2     1
+loadnil      r19   r19
+.label	l1615
+return        r0     1
+
+.function	main/f32
+
+.source	null
+.linedefined	1590
+.lastlinedefined	1592
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"gParticlesRendered"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+return        r0     2
+return        r0     1
+
+.function	main/f33
+
+.source	null
+.linedefined	1599
+.lastlinedefined	1601
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"gMaxParticles"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+return        r1     2
+return        r0     1
+
+.function	main/f34
+
+.source	null
+.linedefined	1608
+.lastlinedefined	1610
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Particles"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r1    r1    r0
+return        r1     2
+return        r0     1
+
+.function	main/f35
+
+.source	null
+.linedefined	1617
+.lastlinedefined	1625
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"gSystemFrozen"
+.constant	k1	0
+.constant	k2	true
+.constant	k3	2
+.constant	k4	1
+.constant	k5	"gSuspTime"
+.constant	k6	"system"
+.constant	k7	"getTimer"
+.constant	k8	"debug"
+.constant	k9	"print"
+.constant	k10	"--> Particles.Freeze() - PARTICLE SYSTEM FROZEN."
+
+getupval      r1    u0
+gettable      r1    r1    k0
+lt             0    k1    r1
+jmp           l6
+return        r0     1
+.label	l6
+eq             0    r0    k2
+jmp          l11
+getupval      r1    u0
+settable      r1    k0    k3
+jmp          l13
+.label	l11
+getupval      r1    u0
+settable      r1    k0    k4
+.label	l13
+getupval      r1    u0
+getglobal     r2    k6
+gettable      r2    r2    k7
+call          r2     1     2
+settable      r1    k5    r2
+getupval      r1    u0
+gettable      r1    r1    k8
+test          r1     0
+jmp          l25
+getglobal     r1    k9
+loadk         r2   k10
+call          r1     2     1
+.label	l25
+return        r0     1
+
+.function	main/f36
+
+.source	null
+.linedefined	1631
+.lastlinedefined	1639
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"gSystemFrozen"
+.constant	k1	0
+.constant	k2	true
+.constant	k3	1
+.constant	k4	"gLostTime"
+.constant	k5	"system"
+.constant	k6	"getTimer"
+.constant	k7	"gSuspTime"
+.constant	k8	"debug"
+.constant	k9	"print"
+.constant	k10	"--> Particles.WakeUp() - PARTICLE SYSTEM RESUMED."
+
+getupval      r1    u0
+gettable      r1    r1    k0
+eq             0    r1    k1
+jmp           l6
+return        r0     1
+.label	l6
+eq             0    r0    k2
+jmp          l13
+getupval      r1    u0
+gettable      r1    r1    k0
+eq             0    r1    k3
+jmp          l13
+return        r0     1
+.label	l13
+getupval      r1    u0
+settable      r1    k0    k1
+getupval      r1    u0
+getupval      r2    u0
+gettable      r2    r2    k4
+getglobal     r3    k5
+gettable      r3    r3    k6
+call          r3     1     2
+add           r2    r2    r3
+getupval      r3    u0
+gettable      r3    r3    k7
+sub           r2    r2    r3
+settable      r1    k4    r2
+getupval      r1    u0
+gettable      r1    r1    k8
+test          r1     0
+jmp          l33
+getglobal     r1    k9
+loadk         r2   k10
+call          r1     2     1
+.label	l33
+return        r0     1
+
+.function	main/f37
+
+.source	null
+.linedefined	1646
+.lastlinedefined	1657
+.numparams	3
+.is_vararg	0
+.maxstacksize	15
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"gEmitterColorR"
+.constant	k1	"gEmitterColorG"
+.constant	k2	"gEmitterColorB"
+.constant	k3	"ipairs"
+.constant	k4	"EmitterIndex"
+.constant	k5	"Emitters"
+.constant	k6	"setColor"
+
+getupval      r5    u0
+settable      r5    k0    r0
+getupval      r5    u0
+settable      r5    k1    r1
+getupval      r5    u0
+settable      r5    k2    r2
+getglobal     r5    k3
+getupval      r6    u0
+gettable      r6    r6    k4
+call          r5     2     4
+jmp          l23
+.label	l12
+getupval     r10    u0
+gettable     r10   r10    k5
+gettable     r10   r10    r9
+self         r10   r10    k6
+getupval     r12    u0
+gettable     r12   r12    k0
+getupval     r13    u0
+gettable     r13   r13    k1
+getupval     r14    u0
+gettable     r14   r14    k2
+call         r10     5     1
+.label	l23
+tforloop      r5     2
+jmp          l12
+return        r0     1
+
+.function	main/f38
+
+.source	null
+.linedefined	1664
+.lastlinedefined	1671
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	nil
+.constant	k1	"print"
+.constant	k2	"--> Particles.UseSpriteAPI() - SPRITE API NOT FOUND!"
+.constant	k3	"gSpriteAPI"
+.constant	k4	"debug"
+.constant	k5	"--> Particles.UseSpriteAPI() - SPRITE API SET."
+
+eq             0    r0    k0
+jmp           l7
+getglobal     r1    k1
+loadk         r2    k2
+call          r1     2     1
+return        r0     1
+.label	l7
+getupval      r1    u0
+settable      r1    k3    r0
+getupval      r1    u0
+gettable      r1    r1    k4
+test          r1     0
+jmp          l16
+getglobal     r1    k1
+loadk         r2    k5
+call          r1     2     1
+.label	l16
+return        r0     1
+
+.function	main/f39
+
+.source	null
+.linedefined	1678
+.lastlinedefined	1680
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Runtime"
+.constant	k1	"addEventListener"
+.constant	k2	"enterFrame"
+
+getglobal     r0    k0
+self          r0    r0    k1
+loadk         r2    k2
+getupval      r3    u0
+call          r0     4     1
+return        r0     1
+
+.function	main/f40
+
+.source	null
+.linedefined	1687
+.lastlinedefined	1689
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Runtime"
+.constant	k1	"removeEventListener"
+.constant	k2	"enterFrame"
+
+getglobal     r0    k0
+self          r0    r0    k1
+loadk         r2    k2
+getupval      r3    u0
+call          r0     4     1
+return        r0     1
+
+.function	main/f41
+
+.source	null
+.linedefined	1696
+.lastlinedefined	1703
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"type"
+.constant	k1	"applicationSuspend"
+.constant	k2	"applicationResume"
+
+gettable      r1    r0    k0
+eq             0    r1    k1
+jmp           l8
+getupval      r1    u0
+loadbool      r2     1     0
+call          r1     2     1
+jmp          l14
+.label	l8
+gettable      r1    r0    k0
+eq             0    r1    k2
+jmp          l14
+getupval      r1    u1
+loadbool      r2     1     0
+call          r1     2     1
+.label	l14
+return        r0     1
+
+.function	main/f42
+
+.source	null
+.linedefined	1710
+.lastlinedefined	1712
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+

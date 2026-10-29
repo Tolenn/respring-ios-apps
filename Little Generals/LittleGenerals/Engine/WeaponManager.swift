@@ -13,6 +13,14 @@ public enum WeaponType: String, CaseIterable {
     case funkyBomb = "Funky Bomb"
     case santa = "Santa Presents"
     case shield = "Energy Shield"
+    case dirtbomb = "Dirt Bomb"
+    case drill = "Sub-Terrain Drill"
+    case frog = "Leaping Frog"
+    case fBomb = "F-Bomb Cluster"
+    case icecream = "Ice Cream Freeze"
+    case pumpkin = "Pumpkin Patch"
+    case sandwedge = "Sand Wedge Loft"
+    case tracer = "Tracer Round"
 
     public var damage: Double {
         switch self {
@@ -27,6 +35,14 @@ public enum WeaponType: String, CaseIterable {
         case .funkyBomb: return 45
         case .santa: return 32
         case .shield: return 0
+        case .dirtbomb: return 15
+        case .drill: return 55
+        case .frog: return 30
+        case .fBomb: return 60
+        case .icecream: return 35
+        case .pumpkin: return 40
+        case .sandwedge: return 30
+        case .tracer: return 10
         }
     }
 
@@ -43,12 +59,20 @@ public enum WeaponType: String, CaseIterable {
         case .funkyBomb: return 35
         case .santa: return 30
         case .shield: return 0
+        case .dirtbomb: return 45
+        case .drill: return 25
+        case .frog: return 28
+        case .fBomb: return 50
+        case .icecream: return 40
+        case .pumpkin: return 35
+        case .sandwedge: return 22
+        case .tracer: return 15
         }
     }
 
     public var launchSound: String {
         switch self {
-        case .missile, .babyMissile: return "shot.mp3"
+        case .missile, .babyMissile, .tracer: return "shot.mp3"
         case .mirv: return "mirv_launch.mp3"
         case .nuke: return "missilefire.mp3"
         case .roller: return "roller_launch.mp3"
@@ -58,6 +82,13 @@ public enum WeaponType: String, CaseIterable {
         case .funkyBomb: return "funkyTime.mp3"
         case .santa: return "Ho_Ho_Ho.mp3"
         case .shield: return "shield.mp3"
+        case .dirtbomb: return "shot.mp3"
+        case .drill: return "shot.mp3"
+        case .frog: return "shot.mp3"
+        case .fBomb: return "missilefire.mp3"
+        case .icecream: return "shot.mp3"
+        case .pumpkin: return "shot.mp3"
+        case .sandwedge: return "shot.mp3"
         }
     }
 
@@ -71,6 +102,7 @@ public enum WeaponType: String, CaseIterable {
         case .napalm: return "napalm_impact.mp3"
         case .santa: return "splat2.mp3"
         case .shield: return "shield_collision.mp3"
+        case .icecream: return "splat2.mp3"
         default: return "explosion.mp3"
         }
     }
@@ -88,7 +120,14 @@ public enum WeaponType: String, CaseIterable {
         case .funkyBomb: return "funkybomb.png"
         case .santa: return "santa_bomb.png"
         case .shield: return "shield.png"
+        case .dirtbomb: return "dirtbomb.png"
+        case .drill: return "drill.png"
+        case .frog: return "frog.png"
+        case .fBomb: return "f_bomb.png"
+        case .icecream: return "icecream.png"
+        case .pumpkin: return "pumpkin.png"
+        case .sandwedge: return "sandwedge.png"
+        case .tracer: return "tracer.png"
         }
     }
 }
-

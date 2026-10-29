@@ -1,0 +1,718 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	7
+
+.constant	k0	"require"
+.constant	k1	"store"
+.constant	k2	"virtualCurrency.loaded."
+.constant	k3	"virtualCurrency.balance."
+.constant	k4	"virtualCurrency.receipts."
+.constant	k5	"pendingOptionRequests"
+.constant	k6	"SUCCESS"
+.constant	k7	"success"
+.constant	k8	"FAILURE"
+.constant	k9	"failure"
+.constant	k10	"CANCEL"
+.constant	k11	"cancel"
+.constant	k12	"getProductStoreId"
+.constant	k13	"resolveStoreIdToProductId"
+.constant	k14	"resolveStoreIdToProduct"
+.constant	k15	"resolveProductIdToStoreId"
+.constant	k16	"init"
+.constant	k17	"storeHasBeenUsed"
+.constant	k18	"purchaseOptions"
+.constant	k19	"registerHandler"
+.constant	k20	"purchase"
+.constant	k21	"restore"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     2
+loadk         r1    k2
+loadk         r2    k3
+loadk         r3    k4
+newtable      r4     0     0
+newtable      r5     0     1
+newtable      r6     0     0
+settable      r5    k5    r6
+settable      r5    k6    k7
+settable      r5    k8    k9
+settable      r5   k10   k11
+closure       r6    f0
+settable      r5   k12    r6
+closure       r6    f1
+settable      r5   k13    r6
+closure       r6    f2
+move          r0    r5
+settable      r5   k14    r6
+closure       r6    f3
+settable      r5   k15    r6
+closure       r6    f4
+move          r0    r4
+move          r0    r0
+move          r0    r5
+settable      r5   k16    r6
+closure       r6    f5
+settable      r5   k17    r6
+closure       r6    f6
+move          r0    r5
+move          r0    r0
+settable      r5   k18    r6
+closure       r6    f7
+move          r0    r4
+settable      r5   k19    r6
+closure       r6    f8
+move          r0    r5
+move          r0    r0
+settable      r5   k20    r6
+closure       r6    f9
+move          r0    r5
+move          r0    r0
+settable      r5   k21    r6
+return        r5     2
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	22
+.lastlinedefined	33
+.numparams	1
+.is_vararg	0
+.maxstacksize	2
+
+.constant	k0	"utils"
+.constant	k1	"isIOS"
+.constant	k2	"idForIOS"
+.constant	k3	"isAndroid"
+.constant	k4	"idForAndroid"
+.constant	k5	"id"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+call          r1     1     2
+test          r1     0
+jmp          l12
+gettable      r1    r0    k2
+test          r1     0
+jmp          l22
+gettable      r1    r0    k2
+return        r1     2
+jmp          l22
+.label	l12
+getglobal     r1    k0
+gettable      r1    r1    k3
+call          r1     1     2
+test          r1     0
+jmp          l22
+gettable      r1    r0    k4
+test          r1     0
+jmp          l22
+gettable      r1    r0    k4
+return        r1     2
+.label	l22
+gettable      r1    r0    k5
+return        r1     2
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	37
+.lastlinedefined	54
+.numparams	2
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"utils"
+.constant	k1	"isIOS"
+.constant	k2	"isAndroid"
+.constant	k3	"pairs"
+.constant	k4	"id"
+.constant	k5	"idForIOS"
+.constant	k6	"idForAndroid"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+call          r2     1     2
+getglobal     r3    k0
+gettable      r3    r3    k2
+call          r3     1     2
+getglobal     r4    k3
+move          r5    r1
+call          r4     2     4
+jmp          l32
+.label	l11
+gettable      r9    r8    k4
+eq             0    r9    r0
+jmp          l17
+gettable      r9    r8    k4
+return        r9     2
+jmp          l32
+.label	l17
+test          r2     0
+jmp          l25
+gettable      r9    r8    k5
+eq             0    r9    r0
+jmp          l32
+gettable      r9    r8    k4
+return        r9     2
+jmp          l32
+.label	l25
+test          r3     0
+jmp          l32
+gettable      r9    r8    k6
+eq             0    r9    r0
+jmp          l32
+gettable      r9    r8    k4
+return        r9     2
+.label	l32
+tforloop      r4     2
+jmp          l11
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	56
+.lastlinedefined	61
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"resolveStoreIdToProductId"
+
+getupval      r2    u0
+gettable      r2    r2    k0
+move          r3    r0
+move          r4    r1
+call          r2     3     2
+gettable      r3    r1    r2
+return        r3     2
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	63
+.lastlinedefined	75
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.constant	k0	"utils"
+.constant	k1	"isIOS"
+.constant	k2	"isAndroid"
+.constant	k3	"idForIOS"
+.constant	k4	"product"
+.constant	k5	"idForAndroid"
+.constant	k6	"id"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+call          r2     1     2
+getglobal     r3    k0
+gettable      r3    r3    k2
+call          r3     1     2
+gettable      r4    r1    r0
+test          r2     0
+jmp          l16
+gettable      r5    r4    k3
+test          r5     0
+jmp          l16
+gettable      r5    r4    k3
+return        r5     2
+jmp          l24
+.label	l16
+test          r3     0
+jmp          l24
+getglobal     r5    k4
+gettable      r5    r5    k5
+test          r5     0
+jmp          l24
+gettable      r5    r4    k5
+return        r5     2
+.label	l24
+gettable      r5    r4    k6
+return        r5     2
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	78
+.lastlinedefined	125
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"availableStores"
+.constant	k1	"apple"
+.constant	k2	"init"
+.constant	k3	"google"
+
+closure       r0    f0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r1    u1
+gettable      r1    r1    k0
+gettable      r1    r1    k1
+test          r1     0
+jmp          l15
+getupval      r1    u1
+gettable      r1    r1    k2
+loadk         r2    k1
+move          r3    r0
+call          r1     3     1
+jmp          l25
+.label	l15
+getupval      r1    u1
+gettable      r1    r1    k0
+gettable      r1    r1    k3
+test          r1     0
+jmp          l25
+getupval      r1    u1
+gettable      r1    r1    k2
+loadk         r2    k3
+move          r3    r0
+call          r1     3     1
+.label	l25
+getupval      r1    u2
+closure       r2    f1
+settable      r1    k2    r2
+return        r0     1
+
+.function	main/f4/f0
+
+.source	null
+.linedefined	79
+.lastlinedefined	115
+.numparams	1
+.is_vararg	0
+.maxstacksize	11
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"print"
+.constant	k1	"event"
+.constant	k2	"transaction"
+.constant	k3	"transaction productIdentifier"
+.constant	k4	"productIdentifier"
+.constant	k5	"transaction state"
+.constant	k6	"state"
+.constant	k7	"transaction type"
+.constant	k8	"errorType"
+.constant	k9	"transaction string"
+.constant	k10	"errorString"
+.constant	k11	1
+.constant	k12	"table"
+.constant	k13	"indexOf"
+.constant	k14	"productIds"
+.constant	k15	"handler"
+.constant	k16	"Missing handler"
+.constant	k17	"finishTransaction"
+.constant	k18	"purchased"
+.constant	k19	"settings"
+.constant	k20	"set"
+.constant	k21	"storeUsed"
+.constant	k22	"completePurchase"
+.constant	k23	"failed"
+.constant	k24	"failedPurchase"
+.constant	k25	"cancelled"
+.constant	k26	"cancelledPurchase"
+.constant	k27	"restored"
+.constant	k28	"restoredPurchase"
+
+getglobal     r1    k0
+loadk         r2    k1
+move          r3    r0
+call          r1     3     1
+gettable      r1    r0    k2
+getglobal     r2    k0
+loadk         r3    k3
+gettable      r4    r1    k4
+call          r2     3     1
+getglobal     r2    k0
+loadk         r3    k5
+gettable      r4    r1    k6
+call          r2     3     1
+getglobal     r2    k0
+loadk         r3    k7
+gettable      r4    r1    k8
+call          r2     3     1
+getglobal     r2    k0
+loadk         r3    k9
+gettable      r4    r1   k10
+call          r2     3     1
+gettable      r2    r1    k4
+loadnil       r3    r3
+loadk         r4   k11
+getupval      r5    u0
+len           r5    r5
+loadk         r6   k11
+forprep       r4   l42
+.label	l29
+getglobal     r8   k12
+gettable      r8    r8   k13
+getupval      r9    u0
+gettable      r9    r9    r7
+gettable      r9    r9   k14
+move         r10    r2
+call          r8     3     2
+test          r8     0
+jmp          l42
+getupval      r8    u0
+gettable      r8    r8    r7
+gettable      r3    r8   k15
+jmp          l43
+.label	l42
+forloop       r4   l29
+.label	l43
+test          r3     1
+jmp          l54
+getglobal     r4    k0
+loadk         r5   k16
+move          r6    r2
+call          r4     3     1
+getupval      r4    u1
+gettable      r4    r4   k17
+move          r5    r1
+call          r4     2     1
+return        r0     1
+.label	l54
+gettable      r4    r1    k6
+eq             0    r4   k18
+jmp          l66
+getglobal     r4   k19
+self          r4    r4   k20
+loadk         r6   k21
+loadbool      r7     1     0
+call          r4     4     1
+self          r4    r3   k22
+move          r6    r1
+call          r4     3     1
+jmp          l94
+.label	l66
+gettable      r4    r1    k6
+eq             0    r4   k23
+jmp          l73
+self          r4    r3   k24
+move          r6    r1
+call          r4     3     1
+jmp          l94
+.label	l73
+gettable      r4    r1    k6
+eq             0    r4   k25
+jmp          l80
+self          r4    r3   k26
+move          r6    r1
+call          r4     3     1
+jmp          l94
+.label	l80
+gettable      r4    r1    k6
+eq             0    r4   k27
+jmp          l94
+gettable      r4    r3   k28
+test          r4     0
+jmp          l94
+getglobal     r4   k19
+self          r4    r4   k20
+loadk         r6   k21
+loadbool      r7     1     0
+call          r4     4     1
+self          r4    r3   k28
+move          r6    r1
+call          r4     3     1
+.label	l94
+return        r0     1
+
+.function	main/f4/f1
+
+.source	null
+.linedefined	124
+.lastlinedefined	124
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	127
+.lastlinedefined	129
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.constant	k0	"settings"
+.constant	k1	"get"
+.constant	k2	"storeUsed"
+
+getglobal     r0    k0
+self          r0    r0    k1
+loadk         r2    k2
+loadbool      r3     0     0
+tailcall      r0     4
+return        r0     0
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	131
+.lastlinedefined	149
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"table"
+.constant	k1	"insert"
+.constant	k2	"pendingOptionRequests"
+.constant	k3	"productIds"
+.constant	k4	"callback"
+
+closure       r2    f0
+getupval      r0    u0
+getupval      r0    u1
+move          r0    r2
+getglobal     r3    k0
+gettable      r3    r3    k1
+getupval      r4    u0
+gettable      r4    r4    k2
+newtable      r5     0     2
+settable      r5    k3    r0
+settable      r5    k4    r1
+call          r3     3     1
+move          r3    r2
+call          r3     1     1
+return        r0     1
+
+.function	main/f6/f0
+
+.source	null
+.linedefined	133
+.lastlinedefined	145
+.numparams	0
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"runningOptionRequest"
+.constant	k1	"pendingOptionRequests"
+.constant	k2	0
+.constant	k3	true
+.constant	k4	"table"
+.constant	k5	"remove"
+.constant	k6	1
+.constant	k7	"timer"
+.constant	k8	"performWithDelay"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+test          r0     1
+jmp          l28
+getupval      r0    u0
+gettable      r0    r0    k1
+len           r0    r0
+lt             0    k2    r0
+jmp          l28
+getupval      r0    u0
+settable      r0    k0    k3
+getglobal     r0    k4
+gettable      r0    r0    k5
+getupval      r1    u0
+gettable      r1    r1    k1
+loadk         r2    k6
+call          r0     3     2
+getglobal     r1    k7
+gettable      r1    r1    k8
+loadk         r2    k6
+closure       r3    f0
+getupval      r0    u1
+move          r0    r0
+getupval      r0    u0
+getupval      r0    u2
+call          r1     3     1
+close         r0
+.label	l28
+return        r0     1
+
+.function	main/f6/f0/f0
+
+.source	null
+.linedefined	137
+.lastlinedefined	143
+.numparams	0
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"loadProducts"
+.constant	k1	"productIds"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+getupval      r1    u1
+gettable      r1    r1    k1
+closure       r2    f0
+getupval      r0    u1
+getupval      r0    u2
+getupval      r0    u3
+call          r0     3     1
+return        r0     1
+
+.function	main/f6/f0/f0/f0
+
+.source	null
+.linedefined	138
+.lastlinedefined	142
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"callback"
+.constant	k1	"runningOptionRequest"
+.constant	k2	false
+
+getupval      r1    u0
+gettable      r1    r1    k0
+move          r2    r0
+call          r1     2     1
+getupval      r1    u1
+settable      r1    k1    k2
+getupval      r1    u2
+call          r1     1     1
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	151
+.lastlinedefined	153
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"table"
+.constant	k1	"insert"
+.constant	k2	"productIds"
+.constant	k3	"handler"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+getupval      r3    u0
+newtable      r4     0     2
+settable      r4    k2    r0
+settable      r4    k3    r1
+call          r2     3     1
+return        r0     1
+
+.function	main/f8
+
+.source	null
+.linedefined	155
+.lastlinedefined	164
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"init"
+.constant	k1	"print"
+.constant	k2	"here"
+.constant	k3	"canMakePurchases"
+.constant	k4	"purchase"
+.constant	k5	"utils"
+.constant	k6	"showEnableIAPs"
+
+getupval      r1    u0
+gettable      r1    r1    k0
+call          r1     1     1
+getglobal     r1    k1
+loadk         r2    k2
+call          r1     2     1
+getupval      r1    u1
+gettable      r1    r1    k3
+test          r1     0
+jmp          l16
+getupval      r1    u1
+gettable      r1    r1    k4
+move          r2    r0
+call          r1     2     1
+jmp          l19
+.label	l16
+getglobal     r1    k5
+gettable      r1    r1    k6
+call          r1     1     1
+.label	l19
+return        r0     1
+
+.function	main/f9
+
+.source	null
+.linedefined	166
+.lastlinedefined	170
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"init"
+.constant	k1	"print"
+.constant	k2	"here2"
+.constant	k3	"restore"
+
+getupval      r0    u0
+gettable      r0    r0    k0
+call          r0     1     1
+getglobal     r0    k1
+loadk         r1    k2
+call          r0     2     1
+getupval      r0    u1
+gettable      r0    r0    k3
+call          r0     1     1
+return        r0     1
+

@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "wosf01.png"
+	;({}).x = 0
+	;({}).y = 1
+	;({}).width = 62
+	;({}).spriteColorRect, ({}).height = {}, 85
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 62
+	;({}).textureRect, ({}).height = {}, 85
+	;({}).width = 62
+	;({}).spriteSourceSize, ({}).height = {}, 87
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "wosf02.png"
+	;({}).x = 0
+	;({}).y = 1
+	;({}).width = 62
+	;({}).spriteColorRect, ({}).height = {}, 85
+	;({}).x = 64
+	;({}).y = 0
+	;({}).width = 62
+	;({}).textureRect, ({}).height = {}, 85
+	;({}).width = 62
+	;({}).spriteSourceSize, ({}).height = {}, 87
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "wosf03.png"
+	;({}).x = 0
+	;({}).y = 1
+	;({}).width = 62
+	;({}).spriteColorRect, ({}).height = {}, 85
+	;({}).x = 128
+	;({}).y = 0
+	;({}).width = 62
+	;({}).textureRect, ({}).height = {}, 85
+	;({}).width = 62
+	;({}).spriteSourceSize, ({}).height = {}, 87
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "wosf04.png"
+	;({}).x = 0
+	;({}).y = 1
+	;({}).width = 62
+	;({}).spriteColorRect, ({}).height = {}, 85
+	;({}).x = 192
+	;({}).y = 0
+	;({}).width = 62
+	;({}).textureRect, ({}).height = {}, 85
+	;({}).width = 62
+	;({}).spriteSourceSize, ({}).height = {}, 87
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

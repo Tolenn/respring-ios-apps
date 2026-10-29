@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "blink01.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 50
+	;({}).spriteColorRect, ({}).height = {}, 50
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 50
+	;({}).textureRect, ({}).height = {}, 50
+	;({}).width = 50
+	;({}).spriteSourceSize, ({}).height = {}, 50
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "blink02.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 50
+	;({}).spriteColorRect, ({}).height = {}, 50
+	;({}).x = 52
+	;({}).y = 0
+	;({}).width = 50
+	;({}).textureRect, ({}).height = {}, 50
+	;({}).width = 50
+	;({}).spriteSourceSize, ({}).height = {}, 50
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "blink03.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 50
+	;({}).spriteColorRect, ({}).height = {}, 50
+	;({}).x = 104
+	;({}).y = 0
+	;({}).width = 50
+	;({}).textureRect, ({}).height = {}, 50
+	;({}).width = 50
+	;({}).spriteSourceSize, ({}).height = {}, 50
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "blink04.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 50
+	;({}).spriteColorRect, ({}).height = {}, 50
+	;({}).x = 156
+	;({}).y = 0
+	;({}).width = 50
+	;({}).textureRect, ({}).height = {}, 50
+	;({}).width = 50
+	;({}).spriteSourceSize, ({}).height = {}, 50
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

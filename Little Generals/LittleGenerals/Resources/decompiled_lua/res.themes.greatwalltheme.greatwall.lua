@@ -1,0 +1,72 @@
+local L0_0, L1_1
+L0_0 = module
+L1_1 = ...
+L0_0(L1_1)
+function L0_0()
+	local L0_2, L1_3
+	L0_2 = {}
+	L1_3 = {}
+	;({}).name = "greatwall_back.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 51
+	;({}).x = 0
+	;({}).y = 318
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 51
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 51
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L2_4 = L2_4
+	;({}).name = "greatwall_bkg.jpg"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 20
+	;({}).x = 0
+	;({}).y = 371
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 20
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 20
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L3_5 = L3_5
+	;({}).name = "greatwall_front.png"
+	;({}).x = 0
+	;({}).y = 2
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 223
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 223
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 225
+	;({}).spriteTrimmed = true
+	;({}).textureRotated = false
+	local L4_6 = L4_6
+	;({}).name = "greatwall_middle.png"
+	;({}).x = 0
+	;({}).y = 0
+	;({}).width = 1024
+	;({}).spriteColorRect, ({}).height = {}, 91
+	;({}).x = 0
+	;({}).y = 225
+	;({}).width = 1024
+	;({}).textureRect, ({}).height = {}, 91
+	;({}).width = 1024
+	;({}).spriteSourceSize, ({}).height = {}, 91
+	local L6_8 = L6_8
+	L6_8.spriteTrimmed = true
+	L6_8.textureRotated = false
+	L1_3[1] = L2_4
+	L1_3[2] = L3_5
+	L1_3[3] = L4_6
+	L1_3[4] = L6_8
+	L0_2.frames = L1_3
+	return L0_2
+end
+getSpriteSheetData = L0_0

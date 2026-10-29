@@ -1,0 +1,642 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	13
+
+.constant	k0	"tracer"
+.constant	k1	"TRACER_GROUP"
+.constant	k2	11002
+.constant	k3	"TRACER_PUFF"
+.constant	k4	11003
+.constant	k5	"weaponTypes"
+.constant	k6	"SMOKE_TRACER"
+.constant	k7	"image"
+.constant	k8	"res/weapons/tracers/smoke_tracer.png"
+.constant	k9	"name"
+.constant	k10	"Smoke Tracer"
+.constant	k11	"listImage"
+.constant	k12	"smoketracer"
+.constant	k13	"smokeTraceImage"
+.constant	k14	"res/weapons/tracers/smoke.png"
+.constant	k15	"isSensor"
+.constant	k16	false
+.constant	k17	"damage"
+.constant	k18	"weaponBalance"
+.constant	k19	"blastRadius"
+.constant	k20	"forceRadius"
+.constant	k21	"blastForce"
+.constant	k22	"cost"
+.constant	k23	"exhaustSequence"
+.constant	k24	"smoke"
+.constant	k25	"scale"
+.constant	k26	0.66
+.constant	k27	"x"
+.constant	k28	-35
+.constant	k29	"y"
+.constant	k30	0
+.constant	k31	"physics"
+.constant	k32	"density"
+.constant	k33	"densityOfABomb"
+.constant	k34	"friction"
+.constant	k35	10
+.constant	k36	"bounce"
+.constant	k37	"shape"
+.constant	k38	-8
+.constant	k39	-3
+.constant	k40	8
+.constant	k41	3
+.constant	k42	"filter"
+.constant	k43	"WEAPON_FILTER"
+.constant	k44	"collision"
+.constant	k45	"triggerWeapon"
+.constant	k46	"go"
+.constant	k47	"manualPhysics"
+.constant	k48	"doExplosionEffect"
+.constant	k49	"sounds"
+.constant	k50	"fire"
+.constant	k51	"res/sounds/shot.mp3"
+.constant	k52	"TRACER"
+.constant	k53	"res/weapons/tracers/tracer.png"
+.constant	k54	"Tracer"
+.constant	k55	"smokeTracerGroup"
+.constant	k56	"smokeTracer"
+
+newtable      r0     0     2
+settable      r0    k1    k2
+settable      r0    k3    k4
+setglobal     r0    k0
+getglobal     r0    k5
+getglobal     r1    k5
+gettable      r1    r1    k6
+newtable      r2     0    17
+settable      r2    k7    k8
+settable      r2    k9   k10
+settable      r2   k11   k12
+settable      r2   k13   k14
+settable      r2   k15   k16
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4    k6
+gettable      r3    r3    r4
+gettable      r3    r3   k17
+settable      r2   k17    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4    k6
+gettable      r3    r3    r4
+gettable      r3    r3   k19
+settable      r2   k19    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4    k6
+gettable      r3    r3    r4
+gettable      r3    r3   k20
+settable      r2   k20    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4    k6
+gettable      r3    r3    r4
+gettable      r3    r3   k21
+settable      r2   k21    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4    k6
+gettable      r3    r3    r4
+gettable      r3    r3   k22
+settable      r2   k22    r3
+newtable      r3     0     4
+settable      r3    k9   k24
+settable      r3   k25   k26
+settable      r3   k27   k28
+settable      r3   k29   k30
+settable      r2   k23    r3
+newtable      r3     0     5
+getglobal     r4   k33
+settable      r3   k32    r4
+settable      r3   k34   k35
+settable      r3   k36   k30
+newtable      r4     8     0
+loadk         r5   k38
+loadk         r6   k39
+loadk         r7   k40
+loadk         r8   k39
+loadk         r9   k40
+loadk        r10   k41
+loadk        r11   k38
+loadk        r12   k41
+setlist       r4     8     1
+settable      r3   k37    r4
+getglobal     r4   k43
+settable      r3   k42    r4
+settable      r2   k31    r3
+closure       r3    f0
+settable      r2   k44    r3
+closure       r3    f1
+settable      r2   k45    r3
+closure       r3    f2
+settable      r2   k46    r3
+closure       r3    f3
+settable      r2   k47    r3
+closure       r3    f4
+settable      r2   k48    r3
+newtable      r3     0     1
+settable      r3   k50   k51
+settable      r2   k49    r3
+settable      r0    r1    r2
+getglobal     r0    k5
+getglobal     r1    k5
+gettable      r1    r1   k52
+newtable      r2     0    16
+settable      r2    k7   k53
+settable      r2    k9   k54
+settable      r2   k11    k0
+settable      r2   k15   k16
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4   k52
+gettable      r3    r3    r4
+gettable      r3    r3   k17
+settable      r2   k17    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4   k52
+gettable      r3    r3    r4
+gettable      r3    r3   k19
+settable      r2   k19    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4   k52
+gettable      r3    r3    r4
+gettable      r3    r3   k20
+settable      r2   k20    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4   k52
+gettable      r3    r3    r4
+gettable      r3    r3   k21
+settable      r2   k21    r3
+getglobal     r3   k18
+getglobal     r4    k5
+gettable      r4    r4   k52
+gettable      r3    r3    r4
+gettable      r3    r3   k22
+settable      r2   k22    r3
+newtable      r3     0     5
+getglobal     r4   k33
+settable      r3   k32    r4
+settable      r3   k34   k35
+settable      r3   k36   k30
+newtable      r4     8     0
+loadk         r5   k38
+loadk         r6   k39
+loadk         r7   k40
+loadk         r8   k39
+loadk         r9   k40
+loadk        r10   k41
+loadk        r11   k38
+loadk        r12   k41
+setlist       r4     8     1
+settable      r3   k37    r4
+getglobal     r4   k43
+settable      r3   k42    r4
+settable      r2   k31    r3
+closure       r3    f5
+settable      r2   k44    r3
+closure       r3    f6
+settable      r2   k45    r3
+closure       r3    f7
+settable      r2   k46    r3
+closure       r3    f8
+settable      r2   k47    r3
+closure       r3    f9
+settable      r2   k48    r3
+newtable      r3     0     1
+settable      r3   k50   k51
+settable      r2   k49    r3
+settable      r0    r1    r2
+getglobal     r0    k0
+closure       r1   f10
+settable      r0   k55    r1
+getglobal     r0    k0
+closure       r1   f11
+settable      r0   k56    r1
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	28
+.lastlinedefined	30
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"bombCollision"
+
+getglobal     r2    k0
+move          r3    r0
+move          r4    r1
+call          r2     3     1
+return        r0     1
+
+.function	main/f1
+
+.source	null
+.linedefined	32
+.lastlinedefined	35
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"smokeTrace"
+.constant	k1	nil
+.constant	k2	"explodeBomb"
+
+settable      r0    k0    k1
+getglobal     r1    k2
+move          r2    r0
+call          r1     2     1
+return        r0     1
+
+.function	main/f2
+
+.source	null
+.linedefined	37
+.lastlinedefined	39
+.numparams	3
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"shootBasicProjectile"
+
+getglobal     r3    k0
+move          r4    r0
+move          r5    r1
+move          r6    r2
+call          r3     4     1
+return        r0     1
+
+.function	main/f3
+
+.source	null
+.linedefined	41
+.lastlinedefined	45
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"orientOnPath"
+.constant	k1	"tracer"
+.constant	k2	"smokeTracer"
+
+getglobal     r1    k0
+move          r2    r0
+call          r1     2     1
+getglobal     r1    k1
+gettable      r1    r1    k2
+move          r2    r0
+loadbool      r3     1     0
+loadbool      r4     1     0
+call          r1     4     1
+return        r0     1
+
+.function	main/f4
+
+.source	null
+.linedefined	47
+.lastlinedefined	48
+.numparams	2
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f5
+
+.source	null
+.linedefined	70
+.lastlinedefined	72
+.numparams	2
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"bombCollision"
+
+getglobal     r2    k0
+move          r3    r0
+move          r4    r1
+call          r2     3     1
+return        r0     1
+
+.function	main/f6
+
+.source	null
+.linedefined	74
+.lastlinedefined	77
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"smokeTrace"
+.constant	k1	nil
+.constant	k2	"explodeBomb"
+
+settable      r0    k0    k1
+getglobal     r1    k2
+move          r2    r0
+call          r1     2     1
+return        r0     1
+
+.function	main/f7
+
+.source	null
+.linedefined	79
+.lastlinedefined	81
+.numparams	3
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"shootBasicProjectile"
+
+getglobal     r3    k0
+move          r4    r0
+move          r5    r1
+move          r6    r2
+call          r3     4     1
+return        r0     1
+
+.function	main/f8
+
+.source	null
+.linedefined	83
+.lastlinedefined	85
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.constant	k0	"orientOnPath"
+
+getglobal     r1    k0
+move          r2    r0
+call          r1     2     1
+return        r0     1
+
+.function	main/f9
+
+.source	null
+.linedefined	87
+.lastlinedefined	88
+.numparams	2
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f10
+
+.source	null
+.linedefined	95
+.lastlinedefined	109
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.constant	k0	"display"
+.constant	k1	"newGroup"
+.constant	k2	"level"
+.constant	k3	"counter"
+.constant	k4	"nextId"
+.constant	k5	"templateId"
+.constant	k6	"tracer"
+.constant	k7	"TRACER_GROUP"
+.constant	k8	"ownerId"
+.constant	k9	"objectId"
+.constant	k10	"require"
+.constant	k11	"currentBattle"
+.constant	k12	"trackObject"
+.constant	k13	"createdTime"
+.constant	k14	"system"
+.constant	k15	"getTimer"
+.constant	k16	"player"
+.constant	k17	"activeSmokeTraces"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+call          r2     1     2
+gettable      r3    r0    k2
+gettable      r3    r3    k3
+self          r3    r3    k4
+move          r5    r2
+call          r3     3     1
+getglobal     r3    k6
+gettable      r3    r3    k7
+settable      r2    k5    r3
+gettable      r3    r0    k9
+settable      r2    k8    r3
+test          r1     0
+jmp          l22
+getglobal     r3   k10
+loadk         r4   k11
+call          r3     2     2
+gettable      r3    r3   k12
+move          r4    r2
+call          r3     2     1
+.label	l22
+getglobal     r3   k14
+gettable      r3    r3   k15
+call          r3     1     2
+settable      r2   k13    r3
+settable      r2   k16    r0
+gettable      r3    r2   k16
+gettable      r3    r3   k17
+settable      r3    r2    r2
+return        r2     2
+return        r0     1
+
+.function	main/f11
+
+.source	null
+.linedefined	112
+.lastlinedefined	149
+.numparams	3
+.is_vararg	0
+.maxstacksize	10
+
+.constant	k0	"smokeTrace"
+.constant	k1	nil
+.constant	k2	"tracer"
+.constant	k3	"smokeTracerGroup"
+.constant	k4	"player"
+.constant	k5	"BEHIND_TANK"
+.constant	k6	"insert"
+.constant	k7	1
+.constant	k8	"system"
+.constant	k9	"getTimer"
+.constant	k10	"createdTime"
+.constant	k11	"numChildren"
+.constant	k12	100
+.constant	k13	"display"
+.constant	k14	"newImage"
+.constant	k15	"weaponTypes"
+.constant	k16	"weaponType"
+.constant	k17	"smokeTraceImage"
+.constant	k18	"rotation"
+.constant	k19	"math"
+.constant	k20	"random"
+.constant	k21	0
+.constant	k22	359
+.constant	k23	"x"
+.constant	k24	"y"
+.constant	k25	"templateId"
+.constant	k26	"TRACER_PUFF"
+.constant	k27	"level"
+.constant	k28	"counter"
+.constant	k29	"nextId"
+.constant	k30	"ownerId"
+.constant	k31	"objectId"
+.constant	k32	"require"
+.constant	k33	"currentBattle"
+.constant	k34	"trackObject"
+.constant	k35	"SMOKE_WIDTH"
+.constant	k36	"contentWidth"
+.constant	k37	2
+.constant	k38	"scale"
+.constant	k39	"rotate"
+
+gettable      r3    r0    k0
+eq             0    r3    k1
+jmp          l16
+getglobal     r4    k2
+gettable      r4    r4    k3
+gettable      r5    r0    k4
+move          r6    r2
+call          r4     3     2
+move          r3    r4
+settable      r0    k0    r3
+getglobal     r4    k5
+self          r4    r4    k6
+loadk         r6    k7
+move          r7    r3
+call          r4     4     1
+.label	l16
+test          r1     0
+jmp          l28
+getglobal     r4    k8
+gettable      r4    r4    k9
+call          r4     1     2
+gettable      r5    r3   k10
+sub           r4    r4    r5
+gettable      r5    r3   k11
+mul           r5    r5   k12
+lt             0    r4    r5
+jmp          l28
+return        r0     1
+.label	l28
+getglobal     r4   k13
+gettable      r4    r4   k14
+move          r5    r3
+getglobal     r6   k15
+gettable      r7    r0   k16
+gettable      r6    r6    r7
+gettable      r6    r6   k17
+call          r4     3     2
+getglobal     r5   k19
+gettable      r5    r5   k20
+loadk         r6   k21
+loadk         r7   k22
+call          r5     3     2
+settable      r4   k18    r5
+gettable      r5    r0   k23
+settable      r4   k23    r5
+gettable      r5    r0   k24
+settable      r4   k24    r5
+getglobal     r5    k2
+gettable      r5    r5   k26
+settable      r4   k25    r5
+gettable      r5    r0    k4
+gettable      r5    r5   k27
+gettable      r5    r5   k28
+self          r5    r5   k29
+move          r7    r4
+call          r5     3     1
+gettable      r5    r3   k31
+settable      r4   k30    r5
+test          r2     0
+jmp          l65
+getglobal     r5   k32
+loadk         r6   k33
+call          r5     2     2
+gettable      r5    r5   k34
+move          r6    r4
+call          r5     2     1
+.label	l65
+getglobal     r5   k35
+gettable      r6    r4   k36
+div           r5    r5    r6
+gettable      r6    r3   k11
+mod           r6    r6   k37
+eq             0    r6   k21
+jmp          l78
+div           r5    r5   k37
+self          r6    r4   k38
+move          r8    r5
+move          r9    r5
+call          r6     4     1
+jmp          l83
+.label	l78
+closure       r6    f0
+setglobal     r6   k39
+getglobal     r6   k39
+move          r7    r4
+call          r6     2     1
+.label	l83
+return        r4     2
+return        r0     1
+
+.function	main/f11/f0
+
+.source	null
+.linedefined	143
+.lastlinedefined	145
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"timer"
+.constant	k1	"transition"
+.constant	k2	"to"
+.constant	k3	"time"
+.constant	k4	5000
+.constant	k5	"delta"
+.constant	k6	true
+.constant	k7	"rotation"
+.constant	k8	360
+.constant	k9	"onComplete"
+.constant	k10	"rotate"
+
+getglobal     r1    k1
+gettable      r1    r1    k2
+move          r2    r0
+newtable      r3     0     4
+settable      r3    k3    k4
+settable      r3    k5    k6
+settable      r3    k7    k8
+getglobal     r4   k10
+settable      r3    k9    r4
+call          r1     3     2
+settable      r0    k0    r1
+return        r0     1
+

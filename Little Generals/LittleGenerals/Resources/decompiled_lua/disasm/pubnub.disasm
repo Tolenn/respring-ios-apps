@@ -1,0 +1,919 @@
+.version	5.1
+
+.format	0
+.endianness	LITTLE
+.int_size	4
+.size_t_size	4
+.instruction_size	4
+.number_format	float	8
+
+.function	main
+
+.source	null
+.linedefined	0
+.lastlinedefined	0
+.numparams	0
+.is_vararg	2
+.maxstacksize	5
+
+.constant	k0	"require"
+.constant	k1	"Json"
+.constant	k2	"crypto"
+.constant	k3	"pubnub"
+.constant	k4	1700
+.constant	k5	30000
+.constant	k6	"publish_key"
+.constant	k7	"pub-37c3873d-08ba-4bbe-adac-a22c6e9a40e8"
+.constant	k8	"subscribe_key"
+.constant	k9	"sub-217f2ad9-6314-11e1-b7b1-535f0c319fa9"
+.constant	k10	"secret_key"
+.constant	k11	"sec-10c47efa-04b1-4ad2-b56b-225c6a4bdad0"
+.constant	k12	"ssl"
+.constant	k13	nil
+.constant	k14	"origin"
+.constant	k15	"pubsub.pubnub.com"
+.constant	k16	"new"
+
+getglobal     r0    k0
+loadk         r1    k1
+call          r0     2     1
+getglobal     r0    k0
+loadk         r1    k2
+call          r0     2     1
+newtable      r0     0     0
+setglobal     r0    k3
+loadk         r0    k4
+loadk         r1    k5
+newtable      r2     0     5
+settable      r2    k6    k7
+settable      r2    k8    k9
+settable      r2   k10   k11
+settable      r2   k12   k13
+settable      r2   k14   k15
+getglobal     r3    k3
+closure       r4    f0
+move          r0    r2
+move          r0    r0
+move          r0    r1
+settable      r3   k16    r4
+return        r0     1
+
+.function	main/f0
+
+.source	null
+.linedefined	14
+.lastlinedefined	233
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"utils"
+.constant	k1	"deepcopy"
+.constant	k2	"ssl"
+.constant	k3	"origin"
+.constant	k4	"https://"
+.constant	k5	"http://"
+.constant	k6	"publish"
+.constant	k7	"subscribe"
+.constant	k8	"unsubscribe"
+.constant	k9	"history"
+.constant	k10	"time"
+.constant	k11	"_request"
+.constant	k12	"_encode"
+.constant	k13	"_map"
+
+testset       r1    r0     1
+jmp           l7
+getglobal     r1    k0
+gettable      r1    r1    k1
+getupval      r2    u0
+call          r1     2     2
+.label	l7
+newtable      r2     0     0
+gettable      r3    r1    k2
+test          r3     0
+jmp          l16
+loadk         r3    k4
+gettable      r4    r1    k3
+concat        r3    r3    r4
+settable      r1    k3    r3
+jmp          l20
+.label	l16
+loadk         r3    k5
+gettable      r4    r1    k3
+concat        r3    r3    r4
+settable      r1    k3    r3
+.label	l20
+closure       r3    f0
+getupval      r0    u1
+settable      r1    k6    r3
+closure       r3    f1
+move          r0    r2
+getupval      r0    u2
+settable      r1    k7    r3
+closure       r3    f2
+move          r0    r2
+settable      r1    k8    r3
+closure       r3    f3
+settable      r1    k9    r3
+closure       r3    f4
+settable      r1   k10    r3
+closure       r3    f5
+settable      r1   k11    r3
+closure       r3    f6
+settable      r1   k12    r3
+closure       r3    f7
+settable      r1   k13    r3
+return        r1     2
+return        r0     1
+
+.function	main/f0/f0
+
+.source	null
+.linedefined	25
+.lastlinedefined	70
+.numparams	2
+.is_vararg	0
+.maxstacksize	19
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"callback"
+.constant	k1	"channel"
+.constant	k2	"message"
+.constant	k3	"Missing Channel and/or Message"
+.constant	k4	"Json"
+.constant	k5	"Encode"
+.constant	k6	"0"
+.constant	k7	"secret_key"
+.constant	k8	"crypto"
+.constant	k9	"digest"
+.constant	k10	"md5"
+.constant	k11	"table"
+.constant	k12	"concat"
+.constant	k13	"publish_key"
+.constant	k14	"subscribe_key"
+.constant	k15	"/"
+.constant	k16	"string"
+.constant	k17	"len"
+.constant	k18	"Message Too Long ("
+.constant	k19	")"
+.constant	k20	"_request"
+.constant	k21	"request"
+.constant	k22	"publish"
+.constant	k23	"_encode"
+
+gettable      r2    r1    k0
+test          r2     1
+jmp           l5
+closure       r2    f0
+.label	l5
+gettable      r3    r1    k1
+test          r3     0
+jmp          l11
+gettable      r3    r1    k2
+test          r3     1
+jmp          l18
+.label	l11
+move          r3    r2
+newtable      r4     2     0
+loadnil       r5    r5
+loadk         r6    k3
+setlist       r4     2     1
+tailcall      r3     2
+return        r3     0
+.label	l18
+gettable      r3    r1    k1
+getglobal     r4    k4
+gettable      r4    r4    k5
+gettable      r5    r1    k2
+call          r4     2     2
+loadk         r5    k6
+gettable      r6    r0    k7
+test          r6     0
+jmp          l44
+getglobal     r6    k8
+gettable      r6    r6    k9
+getglobal     r7    k8
+gettable      r7    r7   k10
+getglobal     r8   k11
+gettable      r8    r8   k12
+newtable      r9     5     0
+gettable     r10    r0   k13
+gettable     r11    r0   k14
+gettable     r12    r0    k7
+move         r13    r3
+move         r14    r4
+setlist       r9     5     1
+loadk        r10   k15
+call          r8     3     0
+call          r6     0     2
+move          r5    r6
+.label	l44
+getglobal     r6   k16
+gettable      r6    r6   k17
+move          r7    r4
+call          r6     2     2
+getupval      r7    u0
+lt             0    r7    r6
+jmp          l61
+move          r6    r2
+newtable      r7     2     0
+loadnil       r8    r8
+loadk         r9   k18
+getupval     r10    u0
+loadk        r11   k19
+concat        r9    r9   r11
+setlist       r7     2     1
+tailcall      r6     2
+return        r6     0
+.label	l61
+self          r6    r0   k20
+newtable      r8     0     2
+closure       r9    f1
+move          r0    r2
+settable      r8    k0    r9
+newtable      r9     6     0
+loadk        r10   k22
+gettable     r11    r0   k13
+gettable     r12    r0   k14
+move         r13    r5
+self         r14    r0   k23
+move         r16    r3
+call         r14     3     2
+loadk        r15    k6
+self         r16    r0   k23
+move         r18    r4
+call         r16     3     0
+setlist       r9     0     1
+settable      r8   k21    r9
+call          r6     3     1
+return        r0     1
+
+.function	main/f0/f0/f0
+
+.source	null
+.linedefined	26
+.lastlinedefined	26
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f0/f0/f1
+
+.source	null
+.linedefined	54
+.lastlinedefined	59
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"Connection Lost"
+
+test          r0     1
+jmp          l10
+getupval      r1    u0
+newtable      r2     2     0
+loadnil       r3    r3
+loadk         r4    k0
+setlist       r2     2     1
+tailcall      r1     2
+return        r1     0
+.label	l10
+getupval      r1    u0
+move          r2    r0
+call          r1     2     1
+return        r0     1
+
+.function	main/f0/f1
+
+.source	null
+.linedefined	72
+.lastlinedefined	146
+.numparams	2
+.is_vararg	0
+.maxstacksize	9
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"channel"
+.constant	k1	"callback"
+.constant	k2	"errorback"
+.constant	k3	"connect"
+.constant	k4	0
+.constant	k5	"print"
+.constant	k6	"Missing Channel"
+.constant	k7	"Missing Callback"
+.constant	k8	"connected"
+.constant	k9	"Already Connected"
+.constant	k10	1
+.constant	k11	"first"
+.constant	k12	nil
+
+gettable      r2    r1    k0
+getglobal     r3    k1
+test          r3     1
+jmp           l6
+gettable      r3    r1    k1
+.label	l6
+gettable      r4    r1    k2
+test          r4     1
+jmp          l10
+closure       r4    f0
+.label	l10
+gettable      r5    r1    k3
+test          r5     1
+jmp          l14
+closure       r5    f1
+.label	l14
+loadk         r6    k4
+test          r2     1
+jmp          l21
+getglobal     r7    k5
+loadk         r8    k6
+tailcall      r7     2
+return        r7     0
+.label	l21
+test          r3     1
+jmp          l27
+getglobal     r7    k5
+loadk         r8    k7
+tailcall      r7     2
+return        r7     0
+.label	l27
+getupval      r7    u0
+gettable      r7    r7    r2
+test          r7     1
+jmp          l34
+getupval      r7    u0
+newtable      r8     0     0
+settable      r7    r2    r8
+.label	l34
+getupval      r7    u0
+gettable      r7    r7    r2
+gettable      r7    r7    k8
+test          r7     0
+jmp          l43
+getglobal     r7    k5
+loadk         r8    k9
+tailcall      r7     2
+return        r7     0
+.label	l43
+getupval      r7    u0
+gettable      r7    r7    r2
+settable      r7    k8   k10
+getupval      r7    u0
+gettable      r7    r7    r2
+settable      r7   k11   k12
+closure       r7    f2
+getupval      r0    u0
+move          r0    r2
+move          r0    r0
+move          r0    r5
+move          r0    r7
+move          r0    r4
+move          r0    r6
+getupval      r0    u1
+move          r0    r3
+move          r8    r7
+call          r8     1     1
+return        r0     1
+
+.function	main/f0/f1/f0
+
+.source	null
+.linedefined	75
+.lastlinedefined	75
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f0/f1/f1
+
+.source	null
+.linedefined	76
+.lastlinedefined	76
+.numparams	0
+.is_vararg	0
+.maxstacksize	2
+
+return        r0     1
+
+.function	main/f0/f1/f2
+
+.source	null
+.linedefined	96
+.lastlinedefined	141
+.numparams	0
+.is_vararg	0
+.maxstacksize	9
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"connected"
+.constant	k1	"_request"
+.constant	k2	"callback"
+.constant	k3	"request"
+.constant	k4	"subscribe"
+.constant	k5	"subscribe_key"
+.constant	k6	"_encode"
+.constant	k7	"0"
+
+getupval      r0    u0
+getupval      r1    u1
+gettable      r0    r0    r1
+gettable      r0    r0    k0
+test          r0     1
+jmp           l8
+return        r0     1
+.label	l8
+getupval      r0    u2
+self          r0    r0    k1
+newtable      r2     0     2
+closure       r3    f0
+getupval      r0    u0
+getupval      r0    u1
+getupval      r0    u3
+getupval      r0    u2
+getupval      r0    u4
+getupval      r0    u5
+getupval      r0    u6
+getupval      r0    u7
+getupval      r0    u8
+settable      r2    k2    r3
+newtable      r3     5     0
+loadk         r4    k4
+getupval      r5    u2
+gettable      r5    r5    k5
+getupval      r6    u2
+self          r6    r6    k6
+getupval      r8    u1
+call          r6     3     2
+loadk         r7    k7
+getupval      r8    u6
+setlist       r3     5     1
+settable      r2    k3    r3
+call          r0     3     1
+return        r0     1
+
+.function	main/f0/f1/f2/f0
+
+.source	null
+.linedefined	102
+.lastlinedefined	132
+.numparams	1
+.is_vararg	0
+.maxstacksize	8
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+.upvalue	null	0	false
+
+.constant	k0	"connected"
+.constant	k1	"first"
+.constant	k2	true
+.constant	k3	"time"
+.constant	k4	"callback"
+.constant	k5	2
+.constant	k6	"timer"
+.constant	k7	"performWithDelay"
+.constant	k8	"ipairs"
+.constant	k9	1
+
+getupval      r1    u0
+getupval      r2    u1
+gettable      r1    r1    r2
+gettable      r1    r1    k0
+test          r1     1
+jmp           l8
+return        r0     1
+.label	l8
+getupval      r1    u0
+getupval      r2    u1
+gettable      r1    r1    r2
+gettable      r1    r1    k1
+test          r1     1
+jmp          l20
+getupval      r1    u0
+getupval      r2    u1
+gettable      r1    r1    r2
+settable      r1    k1    k2
+getupval      r1    u2
+call          r1     1     1
+.label	l20
+test          r0     1
+jmp          l31
+getupval      r1    u3
+self          r1    r1    k3
+newtable      r3     0     1
+closure       r4    f0
+getupval      r0    u4
+getupval      r0    u5
+settable      r3    k4    r4
+tailcall      r1     3
+return        r1     0
+.label	l31
+gettable      r1    r0    k5
+setupval      r1    u6
+getglobal     r1    k6
+gettable      r1    r1    k7
+getupval      r2    u7
+getupval      r3    u4
+call          r1     3     1
+getglobal     r1    k8
+gettable      r2    r0    k9
+call          r1     2     4
+jmp          l45
+.label	l42
+getupval      r6    u8
+move          r7    r5
+call          r6     2     1
+.label	l45
+tforloop      r1     2
+jmp          l42
+return        r0     1
+
+.function	main/f0/f1/f2/f0/f0
+
+.source	null
+.linedefined	116
+.lastlinedefined	122
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+.upvalue	null	0	false
+
+.constant	k0	"timer"
+.constant	k1	"performWithDelay"
+.constant	k2	10
+.constant	k3	"Lost Network Connection"
+
+test          r0     1
+jmp          l12
+getglobal     r1    k0
+gettable      r1    r1    k1
+loadk         r2    k2
+getupval      r3    u0
+call          r1     3     1
+getupval      r1    u1
+loadk         r2    k3
+tailcall      r1     2
+return        r1     0
+.label	l12
+getglobal     r1    k0
+gettable      r1    r1    k1
+loadk         r2    k2
+getupval      r3    u0
+call          r1     3     1
+return        r0     1
+
+.function	main/f0/f2
+
+.source	null
+.linedefined	148
+.lastlinedefined	155
+.numparams	2
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"channel"
+.constant	k1	"connected"
+.constant	k2	nil
+.constant	k3	"first"
+
+gettable      r2    r1    k0
+getupval      r3    u0
+gettable      r3    r3    r2
+test          r3     1
+jmp           l8
+loadnil       r3    r3
+return        r3     2
+.label	l8
+getupval      r3    u0
+gettable      r3    r3    r2
+settable      r3    k1    k2
+getupval      r3    u0
+gettable      r3    r3    r2
+settable      r3    k3    k2
+return        r0     1
+
+.function	main/f0/f3
+
+.source	null
+.linedefined	157
+.lastlinedefined	178
+.numparams	2
+.is_vararg	0
+.maxstacksize	14
+
+.constant	k0	"callback"
+.constant	k1	"channel"
+.constant	k2	"print"
+.constant	k3	"Missing History Callback and/or Channel"
+.constant	k4	"limit"
+.constant	k5	10
+.constant	k6	"_request"
+.constant	k7	"request"
+.constant	k8	"history"
+.constant	k9	"subscribe_key"
+.constant	k10	"_encode"
+.constant	k11	"0"
+
+gettable      r2    r1    k0
+test          r2     0
+jmp           l7
+gettable      r2    r1    k1
+test          r2     1
+jmp          l11
+.label	l7
+getglobal     r2    k2
+loadk         r3    k3
+tailcall      r2     2
+return        r2     0
+.label	l11
+gettable      r2    r1    k4
+gettable      r3    r1    k1
+gettable      r4    r1    k0
+test          r2     1
+jmp          l17
+loadk         r2    k5
+.label	l17
+self          r5    r0    k6
+newtable      r7     0     2
+settable      r7    k0    r4
+newtable      r8     5     0
+loadk         r9    k8
+gettable     r10    r0    k9
+self         r11    r0   k10
+move         r13    r3
+call         r11     3     2
+loadk        r12   k11
+move         r13    r2
+setlist       r8     5     1
+settable      r7    k7    r8
+call          r5     3     1
+return        r0     1
+
+.function	main/f0/f4
+
+.source	null
+.linedefined	180
+.lastlinedefined	194
+.numparams	2
+.is_vararg	0
+.maxstacksize	8
+
+.constant	k0	"callback"
+.constant	k1	"print"
+.constant	k2	"Missing Time Callback"
+.constant	k3	"_request"
+.constant	k4	"request"
+.constant	k5	"time"
+.constant	k6	"0"
+
+gettable      r2    r1    k0
+test          r2     1
+jmp           l8
+getglobal     r2    k1
+loadk         r3    k2
+tailcall      r2     2
+return        r2     0
+.label	l8
+self          r2    r0    k3
+newtable      r4     0     2
+newtable      r5     2     0
+loadk         r6    k5
+loadk         r7    k6
+setlist       r5     2     1
+settable      r4    k4    r5
+closure       r5    f0
+move          r0    r1
+settable      r4    k0    r5
+call          r2     3     1
+return        r0     1
+
+.function	main/f0/f4/f0
+
+.source	null
+.linedefined	187
+.lastlinedefined	192
+.numparams	1
+.is_vararg	0
+.maxstacksize	3
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"callback"
+.constant	k1	1
+
+test          r0     0
+jmp           l8
+getupval      r1    u0
+gettable      r1    r1    k0
+gettable      r2    r0    k1
+tailcall      r1     2
+return        r1     0
+.label	l8
+getupval      r1    u0
+gettable      r1    r1    k0
+loadnil       r2    r2
+call          r1     2     1
+return        r0     1
+
+.function	main/f0/f5
+
+.source	null
+.linedefined	196
+.lastlinedefined	214
+.numparams	2
+.is_vararg	0
+.maxstacksize	7
+
+.constant	k0	"table"
+.constant	k1	"insert"
+.constant	k2	"request"
+.constant	k3	1
+.constant	k4	"origin"
+.constant	k5	"concat"
+.constant	k6	"/"
+.constant	k7	"network"
+.constant	k8	"GET"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+gettable      r3    r1    k2
+loadk         r4    k3
+gettable      r5    r0    k4
+call          r2     4     1
+getglobal     r2    k0
+gettable      r2    r2    k5
+gettable      r3    r1    k2
+loadk         r4    k6
+call          r2     3     2
+getglobal     r3    k7
+gettable      r3    r3    k2
+move          r4    r2
+loadk         r5    k8
+closure       r6    f0
+move          r0    r1
+call          r3     4     1
+return        r0     1
+
+.function	main/f0/f5/f0
+
+.source	null
+.linedefined	201
+.lastlinedefined	213
+.numparams	1
+.is_vararg	0
+.maxstacksize	4
+
+.upvalue	"_ENV"	0	false
+
+.constant	k0	"isError"
+.constant	k1	"callback"
+.constant	k2	"status"
+.constant	k3	"message"
+.constant	k4	"pcall"
+.constant	k5	"Json"
+.constant	k6	"Decode"
+.constant	k7	"response"
+
+gettable      r1    r0    k0
+test          r1     0
+jmp           l9
+getupval      r1    u0
+gettable      r1    r1    k1
+loadnil       r2    r2
+tailcall      r1     2
+return        r1     0
+.label	l9
+getglobal     r1    k4
+getglobal     r2    k5
+gettable      r2    r2    k6
+gettable      r3    r0    k7
+call          r1     3     3
+setglobal     r2    k3
+setglobal     r1    k2
+getglobal     r1    k2
+test          r1     0
+jmp          l25
+getupval      r1    u0
+gettable      r1    r1    k1
+getglobal     r2    k3
+tailcall      r1     2
+return        r1     0
+jmp          l30
+.label	l25
+getupval      r1    u0
+gettable      r1    r1    k1
+loadnil       r2    r2
+tailcall      r1     2
+return        r1     0
+.label	l30
+return        r0     1
+
+.function	main/f0/f6
+
+.source	null
+.linedefined	216
+.lastlinedefined	221
+.numparams	2
+.is_vararg	0
+.maxstacksize	6
+
+.constant	k0	"string"
+.constant	k1	"gsub"
+.constant	k2	"([^%w])"
+
+getglobal     r2    k0
+gettable      r2    r2    k1
+move          r3    r1
+loadk         r4    k2
+closure       r5    f0
+call          r2     4     2
+move          r1    r2
+return        r1     2
+return        r0     1
+
+.function	main/f0/f6/f0
+
+.source	null
+.linedefined	217
+.lastlinedefined	219
+.numparams	1
+.is_vararg	0
+.maxstacksize	5
+
+.constant	k0	"string"
+.constant	k1	"format"
+.constant	k2	"%%%02X"
+.constant	k3	"byte"
+
+getglobal     r1    k0
+gettable      r1    r1    k1
+loadk         r2    k2
+getglobal     r3    k0
+gettable      r3    r3    k3
+move          r4    r0
+call          r3     2     0
+tailcall      r1     0
+return        r1     0
+return        r0     1
+
+.function	main/f0/f7
+
+.source	null
+.linedefined	223
+.lastlinedefined	229
+.numparams	3
+.is_vararg	0
+.maxstacksize	11
+
+.constant	k0	"ipairs"
+
+newtable      r3     0     0
+getglobal     r4    k0
+move          r5    r2
+call          r4     2     4
+jmp          l10
+.label	l6
+move          r9    r1
+move         r10    r8
+call          r9     2     2
+settable      r3    r7    r9
+.label	l10
+tforloop      r4     2
+jmp           l6
+return        r3     2
+return        r0     1
+
