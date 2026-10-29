@@ -7,6 +7,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-ipa:
     runs-on: macos-14
@@ -31,7 +34,7 @@ jobs:
                      CODE_SIGNING_ALLOWED=NO \
                      build
 
-      - name: Package and Ad-hoc Sign IPA
+      - name: Package and Sign IPA
         run: |
           mkdir -p build/Payload
           APP_PATH=$(find build/DerivedData -name "Fingerolympic.app" -type d | head -n 1)
@@ -42,11 +45,34 @@ jobs:
           echo "Found compiled app at: $APP_PATH"
           cp -R "$APP_PATH" build/Payload/
 
-          # Apply ad-hoc code signature: adds LC_CODE_SIGNATURE and _CodeSignature
-          # This allows LiveContainer (ZSign) and sideloaders to patch/re-sign the binary
-          codesign --force --deep --sign - "build/Payload/Fingerolympic.app"
+          # 1. Flatten Resources folder if present into the root of .app
+          # iOS expects icons, databases, and assets to sit at the root of the .app bundle
+          if [ -d "build/Payload/Fingerolympic.app/Resources" ]; then
+            echo "Flattening nested Resources into bundle root..."
+            cp -R "build/Payload/Fingerolympic.app/Resources/"* "build/Payload/Fingerolympic.app/"
+            rm -rf "build/Payload/Fingerolympic.app/Resources"
+          fi
+
+          # 2. Clean out any legacy or conflicting files
+          rm -rf "build/Payload/Fingerolympic.app/FBConnect.bundle"
+          rm -f "build/Payload/Fingerolympic.app/ResourceRules.plist"
+          rm -rf "build/Payload/Fingerolympic.app/_CodeSignature"
+
+          # 3. Apply standard ad-hoc code signature with explicit bundle identifier
+          # -i binds CFBundleIdentifier com.fingerway.fingerolympicfull into CodeDirectory
+          # --generate-entitlement-der embeds DER entitlements required for iOS 15+
+          echo "Signing application bundle with com.fingerway.fingerolympicfull..."
+          codesign --force --sign - \
+                   --identifier "com.fingerway.fingerolympicfull" \
+                   --generate-entitlement-der \
+                   --timestamp=none \
+                   "build/Payload/Fingerolympic.app"
+
+          # 4. Verify signature details and inspect CodeDirectory
+          echo "=== Verifying Code Signature ==="
           codesign -dvvv "build/Payload/Fingerolympic.app"
 
+          # 5. Package into IPA
           cd build
           zip -r Fingerolympic.ipa Payload
           ls -lh Fingerolympic.ipa
@@ -57,3 +83,25 @@ jobs:
           name: Fingerolympic-iOS-IPA
           path: build/Fingerolympic.ipa
           retention-days: 14
+
+      - name: Create or Update GitHub Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.4.1
+          name: "Finger Olympic v1.4.1 (Modern 64-bit iOS)"
+          body: |
+            ### Finger Olympic Modern 64-bit iOS Restoration (v1.4.1)
+
+            **Fixes in this release:**
+            - **Resolved "Missing bundle ID" in SideStore / installd**: Embedded explicit `com.fingerway.fingerolympicfull` identifier and DER entitlements in Mach-O `LC_CODE_SIGNATURE`.
+            - **Resolved "App's executable path not found" in LiveContainer**: Flattened app bundle resources so all textures, sounds, databases, and icons reside at the root of `Fingerolympic.app`.
+            - **Cleaned legacy artifacts**: Removed obsolete `FBConnect.bundle` and `ResourceRules.plist`.
+
+            **Installation:**
+            - **SideStore / AltStore**: Download `Fingerolympic.ipa` and open in SideStore / AltStore to install.
+            - **LiveContainer**: Import `Fingerolympic.ipa` directly into LiveContainer.
+            - **Sideloadly / TrollStore**: Direct install supported.
+          files: build/Fingerolympic.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
