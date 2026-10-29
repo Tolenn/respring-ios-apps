@@ -5,86 +5,110 @@ public class ArmoryScene: SKScene {
     private var tankDisplayNode: SKNode?
     private var nameLabel: SKLabelNode!
     private var statsLabel: SKLabelNode!
-    private var actionButton: SKShapeNode!
+    private var actionButton: SKSpriteNode!
     private var actionLabel: SKLabelNode!
     private var warbuxLabel: SKLabelNode!
 
     public override func didMove(to view: SKView) {
         backgroundColor = SKColor(red: 0.12, green: 0.14, blue: 0.18, alpha: 1.0)
 
-        // Find initial index matching selected tank
         let currentId = GameState.shared.selectedTankId
         if let idx = GameState.shared.availableTanks.firstIndex(where: { $0.id == currentId }) {
             currentIndex = idx
         }
 
         setupHeader()
-        setupTankDisplay()
+        setupTankDisplayFrame()
         setupNavigationControls()
         updateCard()
     }
 
     private func setupHeader() {
+        // Metallic banner back
+        let barTex = TextureHelper.loadTexture(named: "controlbar_back.png", fallbackColor: SKColor(white: 0.15, alpha: 0.95), size: CGSize(width: size.width, height: 56))
+        let bar = SKSpriteNode(texture: barTex, size: CGSize(width: size.width, height: 56))
+        bar.position = CGPoint(x: size.width / 2, y: size.height - 28)
+        bar.zPosition = 10
+        addChild(bar)
+
         let title = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         title.text = "TANK GARAGE & ARMORY"
-        title.fontSize = 26
+        title.fontSize = 20
         title.fontColor = .white
-        title.position = CGPoint(x: size.width / 2, y: size.height - 45)
-        title.zPosition = 10
+        title.position = CGPoint(x: size.width / 2, y: size.height - 35)
+        title.zPosition = 11
         addChild(title)
 
+        // Warbux with icon
+        let warbuxIconTex = TextureHelper.loadTexture(named: "warbux_icon.png", fallbackColor: .yellow, size: CGSize(width: 20, height: 20))
+        let warbuxIcon = SKSpriteNode(texture: warbuxIconTex, size: CGSize(width: 20, height: 20))
+        warbuxIcon.position = CGPoint(x: size.width - 150, y: size.height - 28)
+        warbuxIcon.zPosition = 11
+        addChild(warbuxIcon)
+
         warbuxLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        warbuxLabel.fontSize = 18
+        warbuxLabel.fontSize = 16
         warbuxLabel.fontColor = SKColor(red: 1.0, green: 0.85, blue: 0.2, alpha: 1.0)
-        warbuxLabel.position = CGPoint(x: size.width - 120, y: size.height - 45)
-        warbuxLabel.zPosition = 10
+        warbuxLabel.position = CGPoint(x: size.width - 132, y: size.height - 34)
+        warbuxLabel.horizontalAlignmentMode = .left
+        warbuxLabel.zPosition = 11
         addChild(warbuxLabel)
 
-        let backBtn = SKShapeNode(rectOf: CGSize(width: 90, height: 36), cornerRadius: 8)
+        // Back button with weapon_normal_btn.png
+        let backTex = TextureHelper.loadTexture(named: "weapon_normal_btn.png", fallbackColor: SKColor(white: 0.25, alpha: 1.0), size: CGSize(width: 90, height: 34))
+        let backBtn = SKSpriteNode(texture: backTex, size: CGSize(width: 90, height: 34))
         backBtn.name = "back_btn"
-        backBtn.fillColor = SKColor(white: 0.25, alpha: 1.0)
-        backBtn.strokeColor = .white
-        backBtn.lineWidth = 1.5
-        backBtn.position = CGPoint(x: 65, y: size.height - 40)
-        backBtn.zPosition = 10
+        backBtn.position = CGPoint(x: 65, y: size.height - 28)
+        backBtn.zPosition = 11
         addChild(backBtn)
 
         let backLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         backLabel.name = "back_btn"
         backLabel.text = "◀ BACK"
-        backLabel.fontSize = 14
+        backLabel.fontSize = 13
         backLabel.fontColor = .white
         backLabel.verticalAlignmentMode = .center
         backLabel.position = backBtn.position
-        backLabel.zPosition = 11
+        backLabel.zPosition = 12
         addChild(backLabel)
     }
 
-    private func setupTankDisplay() {
-        let frame = SKShapeNode(rectOf: CGSize(width: 480, height: 320), cornerRadius: 16)
-        frame.fillColor = SKColor(white: 0.18, alpha: 0.9)
-        frame.strokeColor = SKColor(white: 0.4, alpha: 1.0)
+    private func setupTankDisplayFrame() {
+        // Pedestal / frame backing
+        let frame = SKShapeNode(rectOf: CGSize(width: 480, height: 280), cornerRadius: 16)
+        frame.fillColor = SKColor(red: 0.16, green: 0.18, blue: 0.24, alpha: 0.95)
+        frame.strokeColor = SKColor(red: 0.35, green: 0.4, blue: 0.5, alpha: 1.0)
         frame.lineWidth = 2.0
         frame.position = CGPoint(x: size.width / 2, y: size.height * 0.52)
         frame.zPosition = 5
         addChild(frame)
 
+        // Garage floor platform
+        let platform = SKShapeNode(ellipseOf: CGSize(width: 320, height: 60))
+        platform.fillColor = SKColor(red: 0.1, green: 0.12, blue: 0.16, alpha: 1.0)
+        platform.strokeColor = SKColor(red: 0.3, green: 0.6, blue: 0.8, alpha: 0.4)
+        platform.lineWidth = 2.0
+        platform.position = CGPoint(x: size.width / 2, y: size.height * 0.44)
+        platform.zPosition = 6
+        addChild(platform)
+
         nameLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         nameLabel.fontSize = 24
         nameLabel.fontColor = SKColor(red: 1.0, green: 0.9, blue: 0.3, alpha: 1.0)
-        nameLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.70)
+        nameLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.68)
         nameLabel.zPosition = 10
         addChild(nameLabel)
 
         statsLabel = SKLabelNode(fontNamed: "HelveticaNeue-Medium")
-        statsLabel.fontSize = 17
+        statsLabel.fontSize = 15
         statsLabel.fontColor = .white
         statsLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.36)
         statsLabel.zPosition = 10
         addChild(statsLabel)
 
-        // Action button (EQUIP / BUY)
-        actionButton = SKShapeNode(rectOf: CGSize(width: 220, height: 46), cornerRadius: 10)
+        // Action button with fire_normal_btn.png or weapon_normal_btn.png
+        let actionTex = TextureHelper.loadTexture(named: "weapon_normal_btn.png", fallbackColor: SKColor(red: 0.2, green: 0.65, blue: 0.25, alpha: 1.0), size: CGSize(width: 220, height: 46))
+        actionButton = SKSpriteNode(texture: actionTex, size: CGSize(width: 220, height: 46))
         actionButton.name = "action_btn"
         actionButton.position = CGPoint(x: size.width / 2, y: size.height * 0.15)
         actionButton.zPosition = 10
@@ -92,7 +116,7 @@ public class ArmoryScene: SKScene {
 
         actionLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         actionLabel.name = "action_btn"
-        actionLabel.fontSize = 18
+        actionLabel.fontSize = 17
         actionLabel.fontColor = .white
         actionLabel.verticalAlignmentMode = .center
         actionLabel.position = actionButton.position
@@ -106,11 +130,11 @@ public class ArmoryScene: SKScene {
     }
 
     private func createNavButton(name: String, label: String, pos: CGPoint) {
-        let btn = SKShapeNode(circleOfRadius: 28)
+        let btn = SKShapeNode(circleOfRadius: 26)
         btn.name = name
         btn.fillColor = SKColor(white: 0.25, alpha: 1.0)
         btn.strokeColor = .white
-        btn.lineWidth = 2.0
+        btn.lineWidth = 1.5
         btn.position = pos
         btn.zPosition = 10
         addChild(btn)
@@ -118,7 +142,7 @@ public class ArmoryScene: SKScene {
         let text = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         text.name = name
         text.text = label
-        text.fontSize = 24
+        text.fontSize = 22
         text.fontColor = .white
         text.verticalAlignmentMode = .center
         text.position = pos
@@ -127,50 +151,48 @@ public class ArmoryScene: SKScene {
     }
 
     private func updateCard() {
-        warbuxLabel.text = "WARBUX: \(GameState.shared.warbux)"
+        warbuxLabel.text = "\(GameState.shared.warbux)"
         let tank = GameState.shared.availableTanks[currentIndex]
-        nameLabel.text = tank.name
+        nameLabel.text = tank.name.uppercased()
         statsLabel.text = "ARMOR: \(tank.armor) HP   |   FIREPOWER: +\(tank.firepower) DMG"
 
         tankDisplayNode?.removeFromParent()
         let container = SKNode()
-        container.position = CGPoint(x: size.width / 2, y: size.height * 0.53)
+        container.position = CGPoint(x: size.width / 2, y: size.height * 0.50)
         container.zPosition = 8
 
-        // Visual tank silhouette / representation
-        let hull = SKShapeNode(rectOf: CGSize(width: 140, height: 60), cornerRadius: 8)
-        hull.fillColor = SKColor(red: 0.25, green: 0.55, blue: 0.3, alpha: 1.0)
-        hull.strokeColor = .white
-        hull.lineWidth = 2.0
-        container.addChild(hull)
+        // Authentic Tank Sprite scaled for preview
+        let tex = TextureHelper.loadTexture(named: tank.textureName, fallbackColor: SKColor(red: 0.25, green: 0.55, blue: 0.3, alpha: 1.0), size: CGSize(width: 140, height: 75))
+        let tankSprite = SKSpriteNode(texture: tex, size: CGSize(width: 145, height: 75))
+        container.addChild(tankSprite)
 
-        let turret = SKShapeNode(circleOfRadius: 26)
-        turret.fillColor = SKColor(white: 0.3, alpha: 1.0)
-        turret.strokeColor = .white
-        turret.position = CGPoint(x: 10, y: 15)
-        container.addChild(turret)
-
-        let cannon = SKShapeNode(rectOf: CGSize(width: 65, height: 12))
-        cannon.fillColor = SKColor(white: 0.2, alpha: 1.0)
-        cannon.strokeColor = .clear
-        cannon.position = CGPoint(x: 45, y: 15)
-        container.addChild(cannon)
+        // Subtle hover float animation
+        let hover = SKAction.sequence([
+            SKAction.moveBy(x: 0, y: 5, duration: 1.0),
+            SKAction.moveBy(x: 0, y: -5, duration: 1.0)
+        ])
+        tankSprite.run(SKAction.repeatForever(hover))
 
         addChild(container)
         self.tankDisplayNode = container
 
+        // Button state
         let isUnlocked = GameState.shared.unlockedTankIds.contains(tank.id)
         let isSelected = GameState.shared.selectedTankId == tank.id
 
         if isSelected {
-            actionButton.fillColor = SKColor(red: 0.2, green: 0.6, blue: 0.25, alpha: 1.0)
-            actionLabel.text = "✓ EQUIPPED"
+            actionLabel.text = "EQUIPPED"
+            actionButton.color = SKColor(red: 0.2, green: 0.55, blue: 0.2, alpha: 1.0)
+            actionButton.colorBlendFactor = 0.5
         } else if isUnlocked {
-            actionButton.fillColor = SKColor(red: 0.2, green: 0.45, blue: 0.75, alpha: 1.0)
-            actionLabel.text = "EQUIP TANK"
+            actionLabel.text = "SELECT TANK"
+            actionButton.color = SKColor(red: 0.15, green: 0.45, blue: 0.8, alpha: 1.0)
+            actionButton.colorBlendFactor = 0.5
         } else {
-            actionButton.fillColor = SKColor(red: 0.85, green: 0.5, blue: 0.15, alpha: 1.0)
             actionLabel.text = "UNLOCK (\(tank.cost) WARBUX)"
+            let canAfford = GameState.shared.warbux >= tank.cost
+            actionButton.color = canAfford ? SKColor(red: 0.85, green: 0.5, blue: 0.1, alpha: 1.0) : SKColor(white: 0.3, alpha: 1.0)
+            actionButton.colorBlendFactor = 0.5
         }
     }
 
@@ -181,40 +203,45 @@ public class ArmoryScene: SKScene {
 
         for node in touchedNodes {
             if node.name == "back_btn" {
-                SoundManager.shared.playSound("button1.mp3")
+                SoundManager.shared.playSound("weapon_select.mp3")
                 let map = CampaignMapScene(size: size)
                 map.scaleMode = scaleMode
                 view?.presentScene(map, transition: SKTransition.push(with: .right, duration: 0.3))
                 return
-            } else if node.name == "prev_tank" {
+            }
+
+            if node.name == "prev_tank" {
                 SoundManager.shared.playSound("bleep.mp3")
                 currentIndex = (currentIndex - 1 + GameState.shared.availableTanks.count) % GameState.shared.availableTanks.count
                 updateCard()
                 return
-            } else if node.name == "next_tank" {
+            }
+
+            if node.name == "next_tank" {
                 SoundManager.shared.playSound("bleep.mp3")
                 currentIndex = (currentIndex + 1) % GameState.shared.availableTanks.count
                 updateCard()
                 return
-            } else if node.name == "action_btn" {
+            }
+
+            if node.name == "action_btn" {
                 let tank = GameState.shared.availableTanks[currentIndex]
                 let isUnlocked = GameState.shared.unlockedTankIds.contains(tank.id)
 
                 if isUnlocked {
                     GameState.shared.selectedTankId = tank.id
-                    SoundManager.shared.playSound("button_metal.mp3")
+                    SoundManager.shared.playSound("kaching.mp3")
                     updateCard()
-                } else {
+                } else if GameState.shared.warbux >= tank.cost {
                     if GameState.shared.unlockTank(id: tank.id) {
                         SoundManager.shared.playSound("kaching.mp3")
                         updateCard()
-                    } else {
-                        SoundManager.shared.playSound("bleep.mp3")
                     }
+                } else {
+                    SoundManager.shared.playSound("carNoStart.mp3")
                 }
                 return
             }
         }
     }
 }
-

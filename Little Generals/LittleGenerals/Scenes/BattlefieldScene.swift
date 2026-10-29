@@ -47,6 +47,7 @@ public class BattlefieldScene: SKScene {
     // Trajectory Arc (shotPath from battleControls.lua)
     private var trajectoryDots: [SKNode] = []
     private var trajectoryContainer: SKNode!
+    private var playerDriveFrame: Int = 1
 
     // Avatars & Speech
     private var playerAvatarNode: SKNode!
@@ -639,6 +640,11 @@ public class BattlefieldScene: SKScene {
         updateHUD()
         SoundManager.shared.playSound("treads.wav")
 
+        // Animated tank tread cycling
+        playerDriveFrame = (playerDriveFrame % 4) + 1
+        let driveTexName = "blue_tankdrive\(playerDriveFrame).png"
+        playerBodySprite.texture = TextureHelper.loadTexture(named: driveTexName, fallbackColor: .green, size: CGSize(width: 52, height: 26))
+
         playerTankNode.run(SKAction.group([
             SKAction.move(to: CGPoint(x: newX, y: newY + 14), duration: 0.15),
             SKAction.rotate(toAngle: newRot, duration: 0.15)
@@ -677,6 +683,7 @@ public class BattlefieldScene: SKScene {
         let vy = sin(rad) * speed
 
         let spawnPos = CGPoint(x: playerTankNode.position.x + 22, y: playerTankNode.position.y + 12)
+        animateMuzzleFlash(at: spawnPos, zRotation: rad, isPlayer: true)
         spawnProjectile(weapon: currentWeapon, from: spawnPos, velocity: CGVector(dx: vx, dy: vy), isPlayer: true)
     }
 
@@ -726,6 +733,7 @@ public class BattlefieldScene: SKScene {
             let vx = -cos(rad) * (aiPower * 10.5)
             let vy = sin(rad) * (aiPower * 10.5)
             let spawnPos = CGPoint(x: self.aiTankNode.position.x - 22, y: self.aiTankNode.position.y + 12)
+            self.animateMuzzleFlash(at: spawnPos, zRotation: -rad + .pi, isPlayer: false)
             self.spawnProjectile(weapon: aiWeapon, from: spawnPos, velocity: CGVector(dx: vx, dy: vy), isPlayer: false)
         }
     }
@@ -918,14 +926,59 @@ public class BattlefieldScene: SKScene {
         run(SKAction.wait(forDuration: 1.5)) { [weak self] in
             guard let self = self else { return }
             if self.aiHealth <= 0 {
-                self.endBattle(victory: true)
+                self.animateTankDestruction(tankNode: self.aiTankNode) {
+                    self.endBattle(victory: true)
+                }
             } else if self.playerHealth <= 0 {
-                self.endBattle(victory: false)
+                self.animateTankDestruction(tankNode: self.playerTankNode) {
+                    self.endBattle(victory: false)
+                }
             } else {
                 self.isPlayerTurn.toggle()
                 self.startTurn()
             }
         }
+    }
+
+    private func animateMuzzleFlash(at position: CGPoint, zRotation: CGFloat, isPlayer: Bool) {
+        let prefix = isPlayer ? "blue_cannonfire" : "red_cannonfire"
+        var frames: [SKTexture] = []
+        for i in 0...7 {
+            frames.append(TextureHelper.loadTexture(named: "\(prefix)\(i).png", size: CGSize(width: 24, height: 16)))
+        }
+        let flash = SKSpriteNode(texture: frames[0], size: CGSize(width: 26, height: 18))
+        flash.position = position
+        flash.zRotation = zRotation
+        flash.zPosition = 14
+        addChild(flash)
+
+        let anim = SKAction.animate(with: frames, timePerFrame: 0.035)
+        flash.run(SKAction.sequence([anim, SKAction.removeFromParent()]))
+    }
+
+    private func animateTankDestruction(tankNode: SKNode, onComplete: @escaping () -> Void) {
+        SoundManager.shared.playSound("tank_explode1.mp3")
+        var exploFrames: [SKTexture] = []
+        for i in 1...11 {
+            let name = String(format: "tankexplo%02d.png", i)
+            exploFrames.append(TextureHelper.loadTexture(named: name, size: CGSize(width: 64, height: 64)))
+        }
+        let explo = SKSpriteNode(texture: exploFrames[0], size: CGSize(width: 72, height: 72))
+        explo.position = tankNode.position
+        explo.zPosition = 25
+        addChild(explo)
+
+        tankNode.run(SKAction.sequence([
+            SKAction.wait(forDuration: 0.15),
+            SKAction.fadeAlpha(to: 0.0, duration: 0.35)
+        ]))
+
+        let anim = SKAction.animate(with: exploFrames, timePerFrame: 0.055)
+        explo.run(SKAction.sequence([
+            anim,
+            SKAction.removeFromParent(),
+            SKAction.run(onComplete)
+        ]))
     }
 
     private func showDamageText(_ text: String, at pos: CGPoint, color: SKColor = .red) {
