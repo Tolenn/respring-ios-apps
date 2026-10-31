@@ -1291,6 +1291,22 @@ public class BattlefieldScene: SKScene {
 
     private func destroyTank(isPlayer: Bool) {
         let node = isPlayer ? playerTankNode : aiTankNode
+        let tankPos = node?.position ?? .zero
+
+        // Explosive blast at destroyed tank position
+        let explo = SKShapeNode(circleOfRadius: 42)
+        explo.fillColor = SKColor(red: 1.0, green: 0.4, blue: 0.05, alpha: 0.95)
+        explo.strokeColor = .yellow
+        explo.lineWidth = 3.0
+        explo.position = tankPos
+        explo.zPosition = 35
+        addChild(explo)
+        explo.run(SKAction.sequence([
+            SKAction.scale(to: 1.8, duration: 0.25),
+            SKAction.fadeOut(withDuration: 0.35),
+            SKAction.removeFromParent()
+        ]))
+
         node?.removeFromParent()
         SoundManager.shared.playSound("tank_explode1.mp3")
 
