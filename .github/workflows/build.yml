@@ -22,6 +22,28 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode.app
           xcodebuild -version
 
+      # --- Regression & Verification Testing ---
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Test Dependencies
+        run: |
+          pip install pillow numpy
+
+      - name: Run Shooting Regression Tests
+        run: |
+          python tests/test_shooting_regression.py
+
+      - name: Run Full Gameplay Audit
+        run: |
+          python tests/test_full_gameplay_audit.py
+
+      - name: Run Visual Regression Benchmarks
+        run: |
+          python tests/visual_regression_diff.py
+
       # --- 1. Finger Olympic Pipeline ---
       - name: Revert Legacy CgBI PNG Optimizations (Finger Olympic)
         run: |
