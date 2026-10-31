@@ -984,6 +984,7 @@ public class BattlefieldScene: SKScene {
         var vx = initialVx
         var vy = initialVy
         var hasSplit = false
+        var hasImpacted = false
         let gravity: CGFloat = -420.0
 
         let missileTex = TextureHelper.loadTexture(named: weapon.iconName, fallbackColor: .yellow, size: CGSize(width: 14, height: 14))
@@ -994,7 +995,7 @@ public class BattlefieldScene: SKScene {
 
         let dt: CGFloat = 1.0 / 60.0
         let flight = SKAction.repeatForever(SKAction.run { [weak self, weak projectile] in
-            guard let self = self, let proj = projectile else { return }
+            guard let self = self, let proj = projectile, !hasImpacted else { return }
 
             let prevVy = vy
             vx += self.windSpeed * dt
@@ -1023,6 +1024,8 @@ public class BattlefieldScene: SKScene {
             // Direct tank hit check
             let targetNode = fromPlayer ? self.aiTankNode : self.playerTankNode
             if let target = targetNode, proj.position.distance(to: target.position) < 26 {
+                hasImpacted = true
+                proj.removeAllActions()
                 proj.removeFromParent()
                 self.handleImpact(pos: proj.position, weapon: weapon, hitTarget: true, targetIsPlayer: !fromPlayer, fromPlayer: fromPlayer, endsTurn: endsTurnOnFinish)
                 return
@@ -1030,7 +1033,9 @@ public class BattlefieldScene: SKScene {
 
             // Terrain collision check
             if let terrain = self.terrain, proj.position.y <= terrain.valueAt(x: proj.position.x) {
+                hasImpacted = true
                 let impactPos = CGPoint(x: proj.position.x, y: terrain.valueAt(x: proj.position.x))
+                proj.removeAllActions()
                 proj.removeFromParent()
 
                 // Bounce / Leapfrog behavior (weapons.leapfrog.lua / weapons.grenade.lua)
@@ -1063,10 +1068,13 @@ public class BattlefieldScene: SKScene {
                 return
             }
 
+            // Off-screen check
             if proj.position.y < -50 || proj.position.x < -100 || proj.position.x > self.size.width + 100 {
+                hasImpacted = true
+                proj.removeAllActions()
                 proj.removeFromParent()
                 if endsTurnOnFinish {
-                    self.endTurn()
+                    self.scheduleEndTurn(delay: 0.5)
                 }
             }
         })
@@ -1086,10 +1094,11 @@ public class BattlefieldScene: SKScene {
 
         let targetNode = fromPlayer ? aiTankNode : playerTankNode
         var stepsLeft = 18
+        var hasExploded = false
         let rollStep = SKAction.repeat(SKAction.sequence([
             SKAction.wait(forDuration: 0.035),
             SKAction.run { [weak self, weak rollerNode] in
-                guard let self = self, let rNode = rollerNode, let terr = self.terrain else { return }
+                guard let self = self, let rNode = rollerNode, let terr = self.terrain, !hasExploded else { return }
                 stepsLeft -= 1
                 let nextX = max(20, min(self.size.width - 20, rNode.position.x + direction * 6.5))
                 let nextY = terr.valueAt(x: nextX) + 6
@@ -1097,11 +1106,13 @@ public class BattlefieldScene: SKScene {
                 rNode.zRotation -= direction * 0.4
 
                 if let target = targetNode, rNode.position.distance(to: target.position) < 26 {
+                    hasExploded = true
                     let hitPos = rNode.position
                     rNode.removeAllActions()
                     rNode.removeFromParent()
                     self.handleImpact(pos: hitPos, weapon: weapon, hitTarget: true, targetIsPlayer: !fromPlayer, fromPlayer: fromPlayer, endsTurn: endsTurn)
                 } else if stepsLeft <= 0 {
+                    hasExploded = true
                     let endPos = rNode.position
                     rNode.removeAllActions()
                     rNode.removeFromParent()
@@ -1205,8 +1216,17 @@ public class BattlefieldScene: SKScene {
         }
 
         if endsTurn {
-            endTurn()
+            scheduleEndTurn(delay: 0.7)
         }
+    }
+
+    private func scheduleEndTurn(delay: TimeInterval) {
+        run(SKAction.sequence([
+            SKAction.wait(forDuration: delay),
+            SKAction.run { [weak self] in
+                self?.endTurn()
+            }
+        ]))
     }
 
     // Authentic AI Ballistic Trajectory Solver with Fudge (ai.lua:495-570, 706-710)

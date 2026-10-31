@@ -69,6 +69,7 @@ public class SoundManager {
 
         do {
             let player = try AVAudioPlayer(contentsOf: url)
+            player.numberOfLoops = 0
             player.prepareToPlay()
             player.play()
             players[filename] = player
