@@ -271,7 +271,7 @@ public class CampaignMapScene: SKScene {
             mapContainer.addChild(cactus)
         }
 
-        // 6. Factories
+        // 6. Factories & Mystery Badges
         let f1 = TextureHelper.nativeSprite(named: "res/maps/factory.png", scale: 0.65, fallbackColor: .clear)
         f1.name = "level_2"
         f1.position = CGPoint(x: w * 0.23, y: h * 0.88)
@@ -283,6 +283,19 @@ public class CampaignMapScene: SKScene {
         f2.position = CGPoint(x: w * 0.82, y: h * 0.90)
         f2.zPosition = 4
         mapContainer.addChild(f2)
+
+        // Authentic Mystery Question Mark Badge on Desert Territory (question.png, campaignMapScene.lua)
+        let qBadge = TextureHelper.nativeSprite(named: "res/ui/question.png", scale: 0.75, fallbackColor: .clear, fallbackSize: CGSize(width: 27, height: 51))
+        qBadge.name = "level_1"
+        qBadge.position = CGPoint(x: w * 0.83, y: h * 0.52)
+        qBadge.zPosition = 5
+        mapContainer.addChild(qBadge)
+
+        let qBob = SKAction.repeatForever(SKAction.sequence([
+            SKAction.moveBy(x: 0, y: 3.5, duration: 0.7),
+            SKAction.moveBy(x: 0, y: -3.5, duration: 0.7)
+        ]))
+        qBadge.run(qBob)
 
         // 7. Volcanoes in South-East Purple Territory
         let vol1 = TextureHelper.nativeSprite(named: "mapterrain_volcano_frames/bigvolcano.png", scale: 0.60, fallbackColor: .clear)

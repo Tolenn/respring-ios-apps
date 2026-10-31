@@ -465,6 +465,11 @@ public class BattlefieldScene: SKScene {
             }
 
             if let terrain = terrain, current.y <= terrain.valueAt(x: current.x) {
+                // Authentic crosshair marker at predicted impact point (crosshairs.png, battleControls.lua:560)
+                let crosshair = TextureHelper.nativeSprite(named: "res/controls/crosshairs.png", scale: 0.50, fallbackColor: .yellow, fallbackSize: CGSize(width: 34, height: 33))
+                crosshair.position = current
+                crosshair.zPosition = 2
+                container.addChild(crosshair)
                 break
             }
         }
