@@ -56,6 +56,13 @@ public class BattlefieldScene: SKScene {
     private var isDrivingLeft: Bool = false
     private var isDrivingRight: Bool = false
     private var isAimDragging: Bool = false
+    private var lastAimTouch: CGPoint = .zero
+    private var lastFrameTime: TimeInterval = 0
+    private var driveFrameTimer: TimeInterval = 0
+    private var driveFrameIndex: Int = 1
+    private var playerBodyNode: SKSpriteNode?
+    private var tutorialPromptNode: SKNode?
+    private var tutorialArrowNode: SKNode?
 
     public override func didMove(to view: SKView) {
         // Initialize player stats & inventory from persisted GameState
@@ -81,6 +88,7 @@ public class BattlefieldScene: SKScene {
         setupTanks()
         setupTrajectoryArc()
         setupBottomControlsHUD()
+        setupTutorialPrompt()
         updateWeaponHUD()
 
         startTurn()
@@ -107,7 +115,7 @@ public class BattlefieldScene: SKScene {
                 backLayer: "arizona_back.png",
                 midLayer: "arizona_middle.png",
                 frontLayer: "arizona_front.png",
-                dirtTile: "arizonatheme/105x105/square_1.png",
+                dirtTile: "res/themes/arizonatheme/tiled_pebbles.png",
                 strokeColor: SKColor(red: 0.32, green: 0.18, blue: 0.08, alpha: 1.0),
                 capColor: SKColor(red: 112.0/255.0, green: 158.0/255.0, blue: 38.0/255.0, alpha: 1.0),
                 primaryFlair: ["cactus1.png", "cactus2.png", "cactus3.png"],
@@ -119,7 +127,7 @@ public class BattlefieldScene: SKScene {
                 backLayer: "greatwall_back.png",
                 midLayer: "greatwall_middle.png",
                 frontLayer: "greatwall_front.png",
-                dirtTile: "greatwalltheme/105x105/square_1.png",
+                dirtTile: "res/themes/greatwalltheme/tiled_pebbles.png",
                 strokeColor: SKColor(red: 0.28, green: 0.22, blue: 0.12, alpha: 1.0),
                 capColor: SKColor(red: 95.0/255.0, green: 150.0/255.0, blue: 42.0/255.0, alpha: 1.0),
                 primaryFlair: ["hill2.png", "hill3.png"],
@@ -131,7 +139,7 @@ public class BattlefieldScene: SKScene {
                 backLayer: "snowbackground.png",
                 midLayer: "snowmidground.png",
                 frontLayer: "snowforeground.png",
-                dirtTile: "snowtheme/105x105/square_1.png",
+                dirtTile: "res/themes/snowtheme/tiled_pebbles.png",
                 strokeColor: SKColor(red: 0.75, green: 0.85, blue: 0.95, alpha: 1.0),
                 capColor: SKColor(red: 0.92, green: 0.96, blue: 1.0, alpha: 1.0),
                 primaryFlair: ["snowman.png", "snowdrift1.png", "snowdrift2.png"],
@@ -143,7 +151,7 @@ public class BattlefieldScene: SKScene {
                 backLayer: "jungle_frames/background.png",
                 midLayer: "jungle_frames/midground.png",
                 frontLayer: "jungle_frames/foreground.png",
-                dirtTile: "jungle/105x105/square_1.png",
+                dirtTile: "res/themes/jungle/tiled_pebbles.png",
                 strokeColor: SKColor(red: 0.18, green: 0.38, blue: 0.14, alpha: 1.0),
                 capColor: SKColor(red: 64.0/255.0, green: 148.0/255.0, blue: 40.0/255.0, alpha: 1.0),
                 primaryFlair: ["palmtree.png", "smallpalm.png", "flowerbush.png"],
@@ -155,7 +163,7 @@ public class BattlefieldScene: SKScene {
                 backLayer: "volcano_frames/background.png",
                 midLayer: "volcano_frames/midground.png",
                 frontLayer: "volcano_frames/foreground.png",
-                dirtTile: "volcano/105x105/square_1.png",
+                dirtTile: "res/themes/volcano/tiled_pebbles.png",
                 strokeColor: SKColor(red: 0.25, green: 0.12, blue: 0.10, alpha: 1.0),
                 capColor: SKColor(red: 0.45, green: 0.22, blue: 0.12, alpha: 1.0),
                 primaryFlair: ["tree.png", "bush.png"],
@@ -370,6 +378,7 @@ public class BattlefieldScene: SKScene {
         pBodySprite.position = .zero
         pBodySprite.zPosition = 1
         pTank.addChild(pBodySprite)
+        self.playerBodyNode = pBodySprite
 
         let pTurret = TextureHelper.nativeSprite(named: "blue_cannonfire0.png", scale: tankScale, fallbackColor: .darkGray, fallbackSize: CGSize(width: 53, height: 20))
         pTurret.anchorPoint = CGPoint(x: 0.15, y: 0.5)
@@ -487,72 +496,70 @@ public class BattlefieldScene: SKScene {
         barGroup.addChild(joyNode)
         self.joystickNode = joyNode
 
-        // 2. Red Gas Can (gastank_back.png + gastank_fill.png: 47x60 native at x = -313, y = -32)
+        // 2. Red Gas Can (gastank_back.png + gastank_fill.png: 47x60 native at x = -335, y = -32)
         let gasBack = TextureHelper.nativeSprite(named: "gastank_back.png", scale: 1.0, fallbackColor: .red, fallbackSize: CGSize(width: 47, height: 60))
-        gasBack.position = CGPoint(x: -313, y: -32)
+        gasBack.position = CGPoint(x: -335, y: -32)
         gasBack.zPosition = 1
         barGroup.addChild(gasBack)
 
         let gasFill = TextureHelper.nativeSprite(named: "gastank_fill.png", scale: 1.0, fallbackColor: .red, fallbackSize: CGSize(width: 47, height: 60))
         gasFill.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        gasFill.position = CGPoint(x: -313, y: -32 - gasFill.size.height / 2)
+        gasFill.position = CGPoint(x: -335, y: -32 - gasFill.size.height / 2)
         gasFill.yScale = max(0.0, min(1.0, playerFuel / maxFuel))
         gasFill.zPosition = 2
         barGroup.addChild(gasFill)
         self.fuelFillNode = gasFill
 
-        // 3. Battery Icon (battery_available.png: 33x58 native at x = -255, y = -32)
-        let batt = TextureHelper.nativeSprite(named: "battery_available.png", scale: 1.0, fallbackColor: .clear, fallbackSize: CGSize(width: 33, height: 58))
-        batt.position = CGPoint(x: -255, y: -32)
-        batt.zPosition = 1
-        barGroup.addChild(batt)
+        // 3. Missions / Clipboard Button (missions_normal_btn.png: round clipboard button at x = -245)
+        let missionsBtn = TextureHelper.nativeSprite(named: "missions_normal_btn.png", scale: 0.72, fallbackColor: .clear, fallbackSize: CGSize(width: 58, height: 62))
+        missionsBtn.name = "missions_btn"
+        missionsBtn.position = CGPoint(x: -245, y: -30)
+        missionsBtn.zPosition = 2
+        barGroup.addChild(missionsBtn)
 
-        // 4. Parachute Icon (parachute_available.png: 56x58 native at x = -194, y = -32)
-        let chute = TextureHelper.nativeSprite(named: "parachute_available.png", scale: 1.0, fallbackColor: .clear, fallbackSize: CGSize(width: 56, height: 58))
-        chute.position = CGPoint(x: -194, y: -32)
-        chute.zPosition = 1
-        barGroup.addChild(chute)
-
-        // 5. Briefcase of Cash (warbucks_normal_btn.png: 125x57 native) + Warbucks Bar (warbucks_bar.png: 123x47 native)
-        let warbuxBtn = TextureHelper.nativeSprite(named: "warbucks_normal_btn.png", scale: 1.0, fallbackColor: .clear, fallbackSize: CGSize(width: 125, height: 57))
-        warbuxBtn.position = CGPoint(x: -88, y: -30)
-        warbuxBtn.zPosition = 1
-        barGroup.addChild(warbuxBtn)
-
-        let warbuxBar = TextureHelper.nativeSprite(named: "warbucks_bar.png", scale: 1.0, fallbackColor: .white, fallbackSize: CGSize(width: 123, height: 47))
-        warbuxBar.position = CGPoint(x: 2, y: -32)
-        warbuxBar.zPosition = 2
-        barGroup.addChild(warbuxBar)
+        // 4. Open Briefcase of Cash + Clean Pot Amount Box (matching target screenshot layout)
+        let briefcase = TextureHelper.nativeSprite(named: "res/ui/briefcase.png", scale: 0.65, fallbackColor: .clear, fallbackSize: CGSize(width: 60, height: 50))
+        briefcase.position = CGPoint(x: -135, y: -30)
+        briefcase.zPosition = 2
+        barGroup.addChild(briefcase)
 
         let brownDark = SKColor(red: 98.0/255.0, green: 65.0/255.0, blue: 24.0/255.0, alpha: 1.0)
+        let potBox = SKShapeNode(rectOf: CGSize(width: 116, height: 44), cornerRadius: 4)
+        potBox.fillColor = .white
+        potBox.strokeColor = brownDark
+        potBox.lineWidth = 2.5
+        potBox.position = CGPoint(x: -22, y: -32)
+        potBox.zPosition = 2
+        barGroup.addChild(potBox)
+
         let dollarSign = SKLabelNode(fontNamed: "SingleSleeve")
         dollarSign.text = "$"
         dollarSign.fontSize = 32
         dollarSign.fontColor = brownDark
         dollarSign.verticalAlignmentMode = .center
-        dollarSign.position = CGPoint(x: -44, y: -33)
+        dollarSign.position = CGPoint(x: -36, y: -1)
         dollarSign.zPosition = 3
-        barGroup.addChild(dollarSign)
+        potBox.addChild(dollarSign)
 
         let warbuxVal = SKLabelNode(fontNamed: "SingleSleeve")
         warbuxVal.text = "\(battlePot)"
-        warbuxVal.fontSize = 32
+        warbuxVal.fontSize = 30
         warbuxVal.fontColor = brownDark
         warbuxVal.horizontalAlignmentMode = .right
         warbuxVal.verticalAlignmentMode = .center
-        warbuxVal.position = CGPoint(x: 54, y: -33)
+        warbuxVal.position = CGPoint(x: 44, y: -1)
         warbuxVal.zPosition = 3
-        barGroup.addChild(warbuxVal)
+        potBox.addChild(warbuxVal)
         self.warbuxDisplayLabel = warbuxVal
 
-        // 6. Surrender Flag Button (flag_normal_btn.png: 71x74 native at x = 124, y = -30)
+        // 5. Surrender Flag Button (flag_normal_btn.png: 71x74 native at x = 124, y = -30)
         let flagBtn = TextureHelper.nativeSprite(named: "flag_normal_btn.png", scale: 1.0, fallbackColor: .clear, fallbackSize: CGSize(width: 71, height: 74))
         flagBtn.name = "surrender_btn"
         flagBtn.position = CGPoint(x: 124, y: -30)
         flagBtn.zPosition = 1
         barGroup.addChild(flagBtn)
 
-        // 7. Weapon Selector Button (weapon_normal_btn.png: 162x75 native at x = 255, y = -30)
+        // 6. Weapon Selector Button (weapon_normal_btn.png: 162x75 native at x = 255, y = -30)
         let wBtn = TextureHelper.nativeSprite(named: "weapon_normal_btn.png", scale: 1.0, fallbackColor: .clear, fallbackSize: CGSize(width: 162, height: 75))
         wBtn.name = "weapon_select_btn"
         wBtn.position = CGPoint(x: 255, y: -30)
@@ -578,13 +585,70 @@ public class BattlefieldScene: SKScene {
         wBtn.addChild(ammoCount)
         self.ammoCountLabel = ammoCount
 
-        // 8. Right: Big Red Circular FIRE Button (fire_normal_btn.png: 95x95 native at x = 425, y = -13)
+        // 7. Right: Big Red Circular FIRE Button (fire_normal_btn.png: 95x95 native at x = 425, y = -13)
         let fireBtn = TextureHelper.nativeSprite(named: "fire_normal_btn.png", scale: 1.0, fallbackColor: .red, fallbackSize: CGSize(width: 95, height: 95))
         fireBtn.name = "fire_btn"
         fireBtn.position = CGPoint(x: 425, y: -13)
         fireBtn.zPosition = 2
         barGroup.addChild(fireBtn)
         self.fireButtonNode = fireBtn
+    }
+
+    // MARK: - Top Tutorial Prompt & Red Arrow
+    private func setupTutorialPrompt() {
+        let barScale = size.width / 1024.0
+
+        // Banner: cream banner centered at top
+        let banner = SKNode()
+        banner.position = CGPoint(x: size.width / 2, y: size.height - 42)
+        banner.zPosition = 50
+
+        let bg = SKShapeNode(rectOf: CGSize(width: 480, height: 56), cornerRadius: 3)
+        bg.fillColor = SKColor(red: 247.0/255.0, green: 240.0/255.0, blue: 220.0/255.0, alpha: 1.0)
+        bg.strokeColor = SKColor(red: 98.0/255.0, green: 65.0/255.0, blue: 24.0/255.0, alpha: 1.0)
+        bg.lineWidth = 3.0
+        banner.addChild(bg)
+
+        let label = SKLabelNode(fontNamed: "SingleSleeve")
+        label.text = "CLICK   🚀   TO SELECT WEAPON."
+        label.fontSize = 24
+        label.fontColor = SKColor(red: 98.0/255.0, green: 65.0/255.0, blue: 24.0/255.0, alpha: 1.0)
+        label.verticalAlignmentMode = .center
+        banner.addChild(label)
+
+        addChild(banner)
+        self.tutorialPromptNode = banner
+
+        // Bouncing Red Arrow pointing down at weapon button
+        let arrow = TextureHelper.nativeSprite(named: "select_arrow.png", scale: 1.1, fallbackColor: .red, fallbackSize: CGSize(width: 56, height: 60))
+        arrow.color = SKColor(red: 0.9, green: 0.1, blue: 0.1, alpha: 1.0)
+        arrow.colorBlendFactor = 0.85
+        arrow.zRotation = .pi // pointing down
+        let arrowPos = CGPoint(x: size.width / 2 + 255 * barScale, y: 155 * barScale)
+        arrow.position = arrowPos
+        arrow.zPosition = 50
+        addChild(arrow)
+        self.tutorialArrowNode = arrow
+
+        let bob = SKAction.repeatForever(SKAction.sequence([
+            SKAction.moveBy(x: 0, y: -12, duration: 0.4),
+            SKAction.moveBy(x: 0, y: 12, duration: 0.4)
+        ]))
+        arrow.run(bob)
+    }
+
+    private func dismissTutorialPrompt() {
+        tutorialPromptNode?.run(SKAction.sequence([
+            SKAction.fadeOut(withDuration: 0.25),
+            SKAction.removeFromParent()
+        ]))
+        tutorialPromptNode = nil
+
+        tutorialArrowNode?.run(SKAction.sequence([
+            SKAction.fadeOut(withDuration: 0.25),
+            SKAction.removeFromParent()
+        ]))
+        tutorialArrowNode = nil
     }
 
     private func updateWeaponHUD() {
@@ -625,6 +689,18 @@ public class BattlefieldScene: SKScene {
         }
     }
 
+    // MARK: - Frame Update: Continuous Driving & Tread Cycle
+    public override func update(_ currentTime: TimeInterval) {
+        let dt = lastFrameTime > 0 ? min(0.1, currentTime - lastFrameTime) : 0.016
+        lastFrameTime = currentTime
+
+        if isDrivingLeft && isPlayerTurn && !isProjectileActive {
+            driveTank(step: -65.0 * CGFloat(dt), isReverse: true, dt: dt)
+        } else if isDrivingRight && isPlayerTurn && !isProjectileActive {
+            driveTank(step: 65.0 * CGFloat(dt), isReverse: false, dt: dt)
+        }
+    }
+
     // MARK: - 8. Touch Input: Real-Time Sliding Finger Aiming & Driving
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -634,12 +710,14 @@ public class BattlefieldScene: SKScene {
         for node in hitNodes {
             if node.name == "fire_btn" {
                 if isPlayerTurn && !isProjectileActive {
+                    dismissTutorialPrompt()
                     fireWeapon(fromPlayer: true)
                 }
                 return
             }
 
             if node.name == "weapon_select_btn" {
+                dismissTutorialPrompt()
                 cycleWeapon()
                 return
             }
@@ -649,23 +727,31 @@ public class BattlefieldScene: SKScene {
                 return
             }
 
+            if node.name == "missions_btn" {
+                SoundManager.shared.playSound("weapon_select.mp3")
+                return
+            }
+
             if node.name == "joystick_drive" {
                 // If touching left half of joystick -> drive left; right half -> drive right
                 let localX = joystickNode != nil ? touch.location(in: joystickNode!).x : (location.x - 65)
                 if localX < 0 {
                     isDrivingLeft = true
+                    isDrivingRight = false
                 } else {
                     isDrivingRight = true
+                    isDrivingLeft = false
                 }
-                driveTank(step: localX < 0 ? -14 : 14)
+                driveTank(step: localX < 0 ? -1.5 : 1.5, isReverse: localX < 0, dt: 0.016)
                 return
             }
         }
 
-        // Outside bottom HUD: Finger sliding controls elevation angle and power!
-        if location.y > 95 * (size.width / 1024.0) && isPlayerTurn && !isProjectileActive {
+        // Outside bottom HUD: Finger sliding controls elevation angle and power smoothly without resetting!
+        if location.y > 90 * (size.width / 1024.0) && isPlayerTurn && !isProjectileActive {
             isAimDragging = true
-            updateAimFromTouch(location)
+            lastAimTouch = location
+            // Authentic behavior: DO NOT snap or reset angle/power on touch down!
         }
     }
 
@@ -673,8 +759,32 @@ public class BattlefieldScene: SKScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
 
+        if isDrivingLeft || isDrivingRight {
+            if let joy = joystickNode {
+                let localX = touch.location(in: joy).x
+                if localX < 0 {
+                    isDrivingLeft = true
+                    isDrivingRight = false
+                } else {
+                    isDrivingRight = true
+                    isDrivingLeft = false
+                }
+            }
+            return
+        }
+
         if isAimDragging && isPlayerTurn && !isProjectileActive {
-            updateAimFromTouch(location)
+            let dx = location.x - lastAimTouch.x
+            let dy = location.y - lastAimTouch.y
+
+            // Authentic delta aiming matching battleControls.lua:381-413
+            // ANGLE_SENSITIVITY ~ 6.0, POWER_SENSITIVITY ~ 6.0
+            playerAngle = max(5.0, min(88.0, playerAngle + dx / 6.0))
+            playerPower = max(20.0, min(100.0, playerPower + dy / 6.0))
+            playerTurret?.zRotation = playerAngle * .pi / 180.0
+            lastAimTouch = location
+
+            updateTrajectoryArc()
         }
     }
 
@@ -682,38 +792,18 @@ public class BattlefieldScene: SKScene {
         isAimDragging = false
         isDrivingLeft = false
         isDrivingRight = false
+        playerBodyNode?.texture = TextureHelper.loadTexture(named: "blue_tankdrive1.png", fallbackColor: .clear)
     }
 
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         isAimDragging = false
         isDrivingLeft = false
         isDrivingRight = false
-    }
-
-    private func updateAimFromTouch(_ touchPos: CGPoint) {
-        guard let pTank = playerTankNode else { return }
-        let turretPos = CGPoint(x: pTank.position.x + 2, y: pTank.position.y + 22)
-
-        let dx = touchPos.x - turretPos.x
-        let dy = touchPos.y - turretPos.y
-
-        // Calculate angle in degrees
-        var deg = atan2(dy, dx) * 180.0 / .pi
-        if deg < 5 { deg = 5 }
-        if deg > 88 { deg = 88 }
-        self.playerAngle = deg
-        playerTurret?.zRotation = deg * .pi / 180.0
-
-        // Calculate power from pull/distance
-        let dist = sqrt(dx * dx + dy * dy)
-        let calcPower = max(20, min(100, dist / 3.8))
-        self.playerPower = calcPower
-
-        updateTrajectoryArc()
+        playerBodyNode?.texture = TextureHelper.loadTexture(named: "blue_tankdrive1.png", fallbackColor: .clear)
     }
 
     // MARK: - 9. Tank Driving & Fuel
-    private func driveTank(step: CGFloat) {
+    private func driveTank(step: CGFloat, isReverse: Bool, dt: TimeInterval) {
         guard let pTank = playerTankNode, let terrain = terrain, playerFuel > 0 else { return }
 
         let newX = max(40, min(size.width * 0.45, pTank.position.x + step))
@@ -723,11 +813,18 @@ public class BattlefieldScene: SKScene {
         let slope = terrain.slopeAt(x: newX)
         pTank.zRotation = slope
 
-        playerFuel = max(0, playerFuel - 4.5)
+        playerFuel = max(0, playerFuel - CGFloat(dt) * 6.0)
         fuelFillNode?.yScale = playerFuel / maxFuel
         GameState.shared.playerGas = Double(playerFuel / maxFuel)
 
-        SoundManager.shared.playSound("treads.wav")
+        driveFrameTimer += dt
+        if driveFrameTimer >= 0.08 {
+            driveFrameTimer = 0
+            driveFrameIndex = (driveFrameIndex % 4) + 1
+            let frameName = isReverse ? "blue_tankrdrive\(driveFrameIndex).png" : "blue_tankdrive\(driveFrameIndex).png"
+            playerBodyNode?.texture = TextureHelper.loadTexture(named: frameName, fallbackColor: .clear)
+        }
+
         updateTrajectoryArc()
     }
 

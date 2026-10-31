@@ -155,19 +155,18 @@ public class TextureHelper {
     }
 
     /// Builds the authentic multi-part General Avatar portrait (`battleAvatar.lua:780-1073` & `res.avatars.heads.head1.lua`).
-    /// At `scale = 1.0`, the outer frame (`newui_frames/frame.png` 177x177 scaled by 1.25) is `221.25 x 221.25`.
-    /// In battle (`battleControls.lu` Proto 25), `scale = 0.425` produces a `94 x 94` framed portrait.
+    /// In battle and campaign HUD, `scale = 0.425` produces a crisp ~94x94 framed portrait matching the original game.
     public static func buildGeneralAvatar(isPlayer: Bool, scale: CGFloat = 0.425) -> SKNode {
         let root = SKNode()
 
-        // Inner backing inside frame (210x210 at 1.0x)
-        let bgSize = CGSize(width: 196 * scale, height: 196 * scale)
-        let bg = SKSpriteNode(color: SKColor(red: 238.0/255.0, green: 234.0/255.0, blue: 222.0/255.0, alpha: 1.0), size: bgSize)
-        bg.zPosition = 0
-        root.addChild(bg)
+        // 1. Backing frame card (`newui_frames/frame.png` 177x177 scaled by 1.25) at zPosition = 0
+        // NOTE: In Corona battleAvatar.lua:791-819, frame.png serves as the back canvas (zPosition 0).
+        // Facial parts are placed on top (zPosition 1..9), and a stroke border rectangle is drawn at zPosition 10.
+        let frame = nativeSprite(named: "newui_frames/frame.png", scale: 1.25 * scale, fallbackColor: SKColor(red: 245.0/255.0, green: 168.0/255.0, blue: 89.0/255.0, alpha: 1.0), fallbackSize: CGSize(width: 177, height: 177))
+        frame.zPosition = 0
+        root.addChild(frame)
 
-        // Helper to convert Corona head-local (hx, hy) (relative to head center (115, 115) in Y-down space,
-        // scaled by 0.75 per battleAvatar.lua:1066, with head shifted down slightly in frame) into SpriteKit coordinates.
+        // Corona head-local space to SpriteKit space conversion
         let partScale = 0.75 * scale
         func headPos(_ hx: CGFloat, _ hy: CGFloat) -> CGPoint {
             return CGPoint(
@@ -176,97 +175,134 @@ public class TextureHelper {
             )
         }
 
-        // 1. Body (`body1.png` / `body2_dark.png`, 225x106 native) at bottom of frame
-        let bodyName = isPlayer ? "bodies/light/body1_frames/body1.png" : "bodies/dark/body2_dark_frames/body2_dark.png"
-        let body = nativeSprite(named: bodyName, scale: partScale)
-        body.position = CGPoint(x: 0, y: -56.0 * scale)
-        body.zPosition = 1
-        root.addChild(body)
-
-        // 2. Head (`head1.png` / `head1_dark.png`, 189x215 native)
-        let headName = isPlayer ? "heads/light/head1_frames/head1.png" : "heads/dark/head1_dark_frames/head1_dark.png"
-        let head = nativeSprite(named: headName, scale: partScale)
-        head.position = headPos(115, 115)
-        head.zPosition = 2
-        root.addChild(head)
-
-        // 3. Eyes (`normal_eye.png`, 114x60 native) at (98, 70)
-        let eyesName = isPlayer ? "eyes/light/eyes1_frames/normal_eye.png" : "eyes/dark/eyes1_dark_frames/normal_eye.png"
-        let eyes = nativeSprite(named: eyesName, scale: partScale)
-        eyes.position = headPos(98, 74)
-        eyes.zPosition = 3
-        root.addChild(eyes)
-
-        // 4. Left & Right Eyebrows (`eyebrow1_a.png` 80x39 at (74, 40), `eyebrow1_b.png` 52x40 at (144, 37))
-        let browL = nativeSprite(named: "eyebrows/eyebrows1_frames/eyebrow1_a.png", scale: partScale)
-        browL.position = headPos(74, 44)
-        browL.zPosition = 4
-        root.addChild(browL)
-
-        let browR = nativeSprite(named: "eyebrows/eyebrows1_frames/eyebrow1_b.png", scale: partScale)
-        browR.position = headPos(144, 41)
-        browR.zPosition = 4
-        root.addChild(browR)
-
-        // 5. Nose (`nose1.png` / `nose1_dark.png`, 72x70 native) at (126, 90)
-        let noseName = isPlayer ? "noses/light/noses_frames/nose1.png" : "noses/dark/noses_dark_frames/nose1_dark.png"
-        let nose = nativeSprite(named: noseName, scale: partScale)
-        nose.position = headPos(126, 94)
-        nose.zPosition = 5
-        root.addChild(nose)
-
-        // 6. Mouth (`normal_mouth1.png`, 50x14 native) at (120, 160)
-        let mouth = nativeSprite(named: "mouth1_frames/normal_mouth1.png", scale: partScale)
-        mouth.position = headPos(120, 160)
-        mouth.zPosition = 5
-        root.addChild(mouth)
-
         if isPlayer {
-            // Player General: Monocle (`spectacle.png` 46x178, TopRight at (175, 50) -> center (152, 139)),
-            // Mustache (`mustache1.png` 202x63 at (122, 135)), Blue Beret (`hat1.png` 191x131 at (104, 18))
-            let monocle = nativeSprite(named: "glasses/glasses_frames/spectacle.png", scale: partScale)
-            monocle.position = headPos(148, 128)
-            monocle.zPosition = 6
-            root.addChild(monocle)
+            // Player General (matches reference screenshots: dark skin, officer hat hat2 with gold insignia,
+            // mustache, lit cigar, monocle/spectacle, dark uniform body2_dark)
+            let body = nativeSprite(named: "res/avatars/bodies/dark/body2_dark.png", scale: partScale)
+            body.position = CGPoint(x: 0, y: -56.0 * scale)
+            body.zPosition = 1
+            root.addChild(body)
 
-            let mustache = nativeSprite(named: "mustaches/mustaches_frames/mustache1.png", scale: partScale)
+            let head = nativeSprite(named: "res/avatars/heads/dark/head1_dark.png", scale: partScale)
+            head.position = headPos(115, 115)
+            head.zPosition = 2
+            root.addChild(head)
+
+            let eyes = nativeSprite(named: "eyes1_dark_frames/normal_eye.png", scale: partScale)
+            eyes.position = headPos(98, 74)
+            eyes.zPosition = 3
+            root.addChild(eyes)
+
+            let browL = nativeSprite(named: "res/avatars/eyebrows/eyebrow1_a.png", scale: partScale)
+            browL.position = headPos(74, 44)
+            browL.zPosition = 4
+            root.addChild(browL)
+
+            let browR = nativeSprite(named: "res/avatars/eyebrows/eyebrow1_b.png", scale: partScale)
+            browR.position = headPos(144, 41)
+            browR.zPosition = 4
+            root.addChild(browR)
+
+            let nose = nativeSprite(named: "res/avatars/noses/dark/nose1_dark.png", scale: partScale)
+            nose.position = headPos(126, 94)
+            nose.zPosition = 5
+            root.addChild(nose)
+
+            let mouth = nativeSprite(named: "normal_mouth1.png", scale: partScale)
+            mouth.position = headPos(120, 160)
+            mouth.zPosition = 5
+            root.addChild(mouth)
+
+            let spectacle = nativeSprite(named: "res/avatars/glasses/spectacle.png", scale: partScale)
+            spectacle.position = headPos(148, 128)
+            spectacle.zPosition = 6
+            root.addChild(spectacle)
+
+            let mustache = nativeSprite(named: "res/avatars/mustaches/mustache1.png", scale: partScale)
             mustache.position = headPos(122, 132)
             mustache.zPosition = 7
             root.addChild(mustache)
 
-            let hat = nativeSprite(named: "hats/hats1_frames/hat1.png", scale: partScale)
-            hat.position = headPos(106, 18)
-            hat.zPosition = 8
-            root.addChild(hat)
-        } else {
-            // Enemy General: Sunglasses (`sunglasses.png` 164x77, TopRight at (175, 50) -> center (93, 88)),
-            // Cigar (`cigar1.png` 104x73 at (158, 168)), Officer Cap (`hat2.png` 189x139 at (110, 14))
-            let shades = nativeSprite(named: "glasses/glasses_frames/sunglasses.png", scale: partScale)
-            shades.position = headPos(102, 82)
-            shades.zPosition = 6
-            root.addChild(shades)
-
-            let cigar = nativeSprite(named: "pipes/pipes_frames/cigar1.png", scale: partScale)
-            cigar.xScale = -1.0
-            cigar.position = headPos(155, 168)
-            cigar.zPosition = 7
+            let cigar = nativeSprite(named: "res/avatars/pipes/cigar1.png", scale: partScale)
+            cigar.xScale = -partScale
+            cigar.position = headPos(72, 158)
+            cigar.zPosition = 8
             root.addChild(cigar)
 
-            let hat = nativeSprite(named: "hats/hats1_frames/hat2.png", scale: partScale)
-            hat.position = headPos(112, 14)
-            hat.zPosition = 8
+            let hat = nativeSprite(named: "res/avatars/hats/hat2.png", scale: partScale)
+            hat.position = headPos(110, 14)
+            hat.zPosition = 9
             root.addChild(hat)
-        }
 
-        // 7. Outer Portrait Frame (`newui_frames/frame.png` 177x177 native, scaled by 1.25 per battleAvatar.lua:791)
-        let frame = nativeSprite(named: "newui_frames/frame.png", scale: 1.25 * scale)
-        frame.zPosition = 9
-        if !isPlayer {
-            // Tint enemy frame olive-green to match screenshot's green enemy border
-            frame.color = SKColor(red: 0.35, green: 0.75, blue: 0.35, alpha: 1.0)
-            frame.colorBlendFactor = 0.35
+            // Red stroke outline border around player portrait (matching screenshot red frame)
+            let borderW = 177 * 1.25 * scale
+            let border = SKShapeNode(rectOf: CGSize(width: borderW - 2, height: borderW - 2))
+            border.strokeColor = SKColor(red: 220.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
+            border.lineWidth = 4.0
+            border.fillColor = .clear
+            border.zPosition = 10
+            root.addChild(border)
+        } else {
+            // Enemy General (matches battlefield screenshot: dark skin, eyepatch, officer hat hat2, frown)
+            let body = nativeSprite(named: "res/avatars/bodies/dark/body2_dark.png", scale: partScale)
+            body.position = CGPoint(x: 0, y: -56.0 * scale)
+            body.zPosition = 1
+            root.addChild(body)
+
+            let head = nativeSprite(named: "res/avatars/heads/dark/head1_dark.png", scale: partScale)
+            head.position = headPos(115, 115)
+            head.zPosition = 2
+            root.addChild(head)
+
+            let eyes = nativeSprite(named: "eyes1_dark_frames/normal_eye.png", scale: partScale)
+            eyes.position = headPos(98, 74)
+            eyes.zPosition = 3
+            root.addChild(eyes)
+
+            let browL = nativeSprite(named: "res/avatars/eyebrows/eyebrow1_a.png", scale: partScale)
+            browL.position = headPos(74, 44)
+            browL.zPosition = 4
+            root.addChild(browL)
+
+            let browR = nativeSprite(named: "res/avatars/eyebrows/eyebrow1_b.png", scale: partScale)
+            browR.position = headPos(144, 41)
+            browR.zPosition = 4
+            root.addChild(browR)
+
+            let nose = nativeSprite(named: "res/avatars/noses/dark/nose1_dark.png", scale: partScale)
+            nose.position = headPos(126, 94)
+            nose.zPosition = 5
+            root.addChild(nose)
+
+            let mouth = nativeSprite(named: "normal_mouth1.png", scale: partScale)
+            mouth.position = headPos(120, 160)
+            mouth.zPosition = 5
+            root.addChild(mouth)
+
+            let eyepatch = nativeSprite(named: "res/avatars/glasses/eyepatch.png", scale: partScale)
+            eyepatch.position = headPos(144, 78)
+            eyepatch.zPosition = 6
+            root.addChild(eyepatch)
+
+            let mustache = nativeSprite(named: "res/avatars/mustaches/mustache1.png", scale: partScale)
+            mustache.position = headPos(122, 132)
+            mustache.zPosition = 7
+            root.addChild(mustache)
+
+            let hat = nativeSprite(named: "res/avatars/hats/hat2.png", scale: partScale)
+            hat.position = headPos(110, 14)
+            hat.zPosition = 9
+            root.addChild(hat)
+
+            // Green stroke outline border around enemy portrait (matching screenshot green frame)
+            let borderW = 177 * 1.25 * scale
+            let border = SKShapeNode(rectOf: CGSize(width: borderW - 2, height: borderW - 2))
+            border.strokeColor = SKColor(red: 40.0/255.0, green: 160.0/255.0, blue: 40.0/255.0, alpha: 1.0)
+            border.lineWidth = 4.0
+            border.fillColor = .clear
+            border.zPosition = 10
+            root.addChild(border)
         }
-        root.addChild(frame)
 
         return root
     }
