@@ -15,93 +15,106 @@ public class BattleOverScene: SKScene {
         setupButtons(won: won)
     }
 
-    private func setupResults(won: Bool) {
-        let bannerTex = TextureHelper.loadTexture(named: won ? "win.png" : "lose.png", fallbackColor: won ? .yellow : .red, size: CGSize(width: 180, height: 60))
-        let banner = SKSpriteNode(texture: bannerTex)
-        banner.position = CGPoint(x: size.width / 2, y: size.height * 0.80)
-        banner.zPosition = 10
-        addChild(banner)
+    private let brownDark = SKColor(red: 98.0 / 255.0, green: 65.0 / 255.0, blue: 24.0 / 255.0, alpha: 1.0)
 
-        let title = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        title.text = won ? "VICTORY ACHIEVED!" : "TACTICAL DEFEAT"
-        title.fontSize = 32
-        title.fontColor = won ? SKColor(red: 1.0, green: 0.85, blue: 0.2, alpha: 1.0) : SKColor(red: 0.9, green: 0.25, blue: 0.25, alpha: 1.0)
-        title.position = CGPoint(x: size.width / 2, y: size.height * 0.68)
+    private func setupResults(won: Bool) {
+        // Authentic popup box container at native 623x402 aspect ratio (battleOverScene.lua:45)
+        let popup = TextureHelper.nativeSprite(named: "winlose_popup_box.png", scale: 0.92, fallbackColor: SKColor(white: 0.16, alpha: 0.95), fallbackSize: CGSize(width: 573, height: 370))
+        popup.position = CGPoint(x: size.width / 2, y: size.height * 0.56)
+        popup.zPosition = 5
+        addChild(popup)
+
+        // Authentic General Avatar on left of popup (battleOverScene.lua:54-60)
+        let avatarGroup = TextureHelper.buildGeneralAvatar(isPlayer: true, scale: 0.52)
+        avatarGroup.position = CGPoint(x: size.width / 2 - 172, y: size.height * 0.62)
+        avatarGroup.zPosition = 10
+        addChild(avatarGroup)
+
+        // Title in SingleSleeve font ("You win!" / "You lose!", battleOverScene.lua:195-232)
+        let title = SKLabelNode(fontNamed: "SingleSleeve")
+        title.text = won ? "You win!" : "You lose!"
+        title.fontSize = 46
+        title.fontColor = won ? SKColor(red: 0.18, green: 0.58, blue: 0.18, alpha: 1.0) : SKColor(red: 0.82, green: 0.22, blue: 0.18, alpha: 1.0)
+        title.position = CGPoint(x: size.width / 2 + 52, y: size.height * 0.71)
         title.zPosition = 10
         addChild(title)
 
-        let subtitle = SKLabelNode(fontNamed: "HelveticaNeue-Medium")
-        subtitle.text = won ? TrashTalkManager.shared.randomWin() : TrashTalkManager.shared.randomLose()
-        subtitle.fontSize = 18
-        subtitle.fontColor = .white
-        subtitle.position = CGPoint(x: size.width / 2, y: size.height * 0.63)
+        let subtitle = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
+        subtitle.text = won ? "You earned \(GameState.shared.lastBattlePot) warbux!" : TrashTalkManager.shared.randomLose()
+        subtitle.fontSize = 17
+        subtitle.fontColor = brownDark
+        subtitle.position = CGPoint(x: size.width / 2 + 52, y: size.height * 0.63)
         subtitle.zPosition = 10
         addChild(subtitle)
 
-        let warbuxLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        warbuxLabel.text = won ? "AWARD: +150 WARBUX (TOTAL: \(GameState.shared.warbux))" : "TOTAL WARBUX: \(GameState.shared.warbux)"
-        warbuxLabel.fontSize = 20
-        warbuxLabel.fontColor = SKColor(red: 0.4, green: 0.9, blue: 0.4, alpha: 1.0)
-        warbuxLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.52)
+        // Total Warbux with authentic icon at native 73x60 aspect ratio (battleOverScene.lua:233-247)
+        let wbIcon = TextureHelper.nativeSprite(named: "warbux_icon.png", scale: 0.55, fallbackColor: .yellow, fallbackSize: CGSize(width: 40, height: 33))
+        wbIcon.position = CGPoint(x: size.width / 2 - 22, y: size.height * 0.54)
+        wbIcon.zPosition = 10
+        addChild(wbIcon)
+
+        let warbuxLabel = SKLabelNode(fontNamed: "SingleSleeve")
+        warbuxLabel.text = "\(GameState.shared.warbux)"
+        warbuxLabel.fontSize = 32
+        warbuxLabel.fontColor = brownDark
+        warbuxLabel.horizontalAlignmentMode = .left
+        warbuxLabel.verticalAlignmentMode = .center
+        warbuxLabel.position = CGPoint(x: size.width / 2 + 6, y: size.height * 0.54)
         warbuxLabel.zPosition = 10
         addChild(warbuxLabel)
+
+        // Wins & Kills Record (battleOverScene.lua:251-271)
+        let statsLabel = SKLabelNode(fontNamed: "SingleSleeve")
+        statsLabel.text = "WINS: \(GameState.shared.totalWins)     KILLS: \(GameState.shared.totalKills)"
+        statsLabel.fontSize = 24
+        statsLabel.fontColor = brownDark
+        statsLabel.position = CGPoint(x: size.width / 2 + 52, y: size.height * 0.44)
+        statsLabel.zPosition = 10
+        addChild(statsLabel)
     }
 
     private func setupButtons(won: Bool) {
+        // Authentic Accept / Map button at native 84x90 aspect ratio (accept_normal_btn.png, battleOverScene.lua:277)
+        let acceptBtn = TextureHelper.nativeSprite(named: "accept_normal_btn.png", scale: 0.90, fallbackColor: SKColor(red: 0.2, green: 0.65, blue: 0.25, alpha: 1.0), fallbackSize: CGSize(width: 76, height: 81))
+        acceptBtn.name = "map_btn"
+        acceptBtn.position = CGPoint(x: size.width / 2 - 165, y: size.height * 0.20)
+        acceptBtn.zPosition = 10
+        addChild(acceptBtn)
+
         // Primary action (Next Mission or Retry)
-        let primaryBtn = SKShapeNode(rectOf: CGSize(width: 220, height: 50), cornerRadius: 10)
+        let primaryBtn = SKShapeNode(rectOf: CGSize(width: 175, height: 48), cornerRadius: 10)
         primaryBtn.name = "primary_btn"
         primaryBtn.fillColor = won ? SKColor(red: 0.2, green: 0.65, blue: 0.25, alpha: 1.0) : SKColor(red: 0.8, green: 0.35, blue: 0.15, alpha: 1.0)
         primaryBtn.strokeColor = .white
         primaryBtn.lineWidth = 2.0
-        primaryBtn.position = CGPoint(x: size.width / 2, y: size.height * 0.36)
+        primaryBtn.position = CGPoint(x: size.width / 2 + 5, y: size.height * 0.20)
         primaryBtn.zPosition = 10
         addChild(primaryBtn)
 
         let primaryLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         primaryLabel.name = "primary_btn"
         primaryLabel.text = won ? "NEXT MISSION" : "RETRY BATTLE"
-        primaryLabel.fontSize = 18
+        primaryLabel.fontSize = 16
         primaryLabel.fontColor = .white
         primaryLabel.verticalAlignmentMode = .center
         primaryLabel.position = primaryBtn.position
         primaryLabel.zPosition = 11
         addChild(primaryLabel)
 
-        // Map button
-        let mapBtn = SKShapeNode(rectOf: CGSize(width: 180, height: 44), cornerRadius: 8)
-        mapBtn.name = "map_btn"
-        mapBtn.fillColor = SKColor(white: 0.25, alpha: 1.0)
-        mapBtn.strokeColor = .white
-        mapBtn.lineWidth = 1.5
-        mapBtn.position = CGPoint(x: size.width / 2 - 110, y: size.height * 0.22)
-        mapBtn.zPosition = 10
-        addChild(mapBtn)
-
-        let mapLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
-        mapLabel.name = "map_btn"
-        mapLabel.text = "MAP THEATER"
-        mapLabel.fontSize = 15
-        mapLabel.fontColor = .white
-        mapLabel.verticalAlignmentMode = .center
-        mapLabel.position = mapBtn.position
-        mapLabel.zPosition = 11
-        addChild(mapLabel)
-
         // Armory button
-        let armoryBtn = SKShapeNode(rectOf: CGSize(width: 180, height: 44), cornerRadius: 8)
+        let armoryBtn = SKShapeNode(rectOf: CGSize(width: 145, height: 48), cornerRadius: 10)
         armoryBtn.name = "armory_btn"
         armoryBtn.fillColor = SKColor(red: 0.8, green: 0.45, blue: 0.1, alpha: 1.0)
         armoryBtn.strokeColor = .white
         armoryBtn.lineWidth = 1.5
-        armoryBtn.position = CGPoint(x: size.width / 2 + 110, y: size.height * 0.22)
+        armoryBtn.position = CGPoint(x: size.width / 2 + 180, y: size.height * 0.20)
         armoryBtn.zPosition = 10
         addChild(armoryBtn)
 
         let armoryLabel = SKLabelNode(fontNamed: "HelveticaNeue-Bold")
         armoryLabel.name = "armory_btn"
         armoryLabel.text = "ARMORY"
-        armoryLabel.fontSize = 15
+        armoryLabel.fontSize = 16
         armoryLabel.fontColor = .white
         armoryLabel.verticalAlignmentMode = .center
         armoryLabel.position = armoryBtn.position

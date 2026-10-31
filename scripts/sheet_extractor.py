@@ -80,6 +80,26 @@ def parse_lua_sheet(lu_data: bytes):
                 break
             sub_p, offset = parse_proto(offset)
             protos.append(sub_p)
+        # Skip Lua 5.1 debug info (sizelineinfo, sizelocvars, sizeupvalues) so sibling protos align
+        if offset + 4 <= len(lu_data):
+            lineinfo_size = struct.unpack('<I', lu_data[offset:offset+4])[0]
+            offset += 4 + lineinfo_size * 4
+        if offset + 4 <= len(lu_data):
+            locvars_size = struct.unpack('<I', lu_data[offset:offset+4])[0]
+            offset += 4
+            for _ in range(locvars_size):
+                if offset + 4 > len(lu_data):
+                    break
+                s_len = struct.unpack('<I', lu_data[offset:offset+4])[0]
+                offset += 4 + s_len + 8
+        if offset + 4 <= len(lu_data):
+            upval_size = struct.unpack('<I', lu_data[offset:offset+4])[0]
+            offset += 4
+            for _ in range(upval_size):
+                if offset + 4 > len(lu_data):
+                    break
+                s_len = struct.unpack('<I', lu_data[offset:offset+4])[0]
+                offset += 4 + s_len
         return {'code': code, 'constants': constants, 'protos': protos}, offset
 
     root, _ = parse_proto(12)
@@ -139,12 +159,22 @@ def process_all_sheets(car_dir: Path, res_dir: Path):
     """Finds all Lua sheets, matches master PNGs, and crops individual subtextures."""
     extracted_total = 0
 
-    # Build image map from res_dir
+    # Build image map from res_dir (both relative path and filename)
     image_map = {}
+    rel_image_map = {}
+    original_files = set()
     for p in res_dir.rglob('*.png'):
+        if '_frames' in p.parts:
+            continue
+        original_files.add(p.resolve())
         image_map[p.name.lower()] = p
+        try:
+            rel_key = p.relative_to(res_dir).as_posix().lower()
+            rel_image_map[rel_key] = p
+        except ValueError:
+            pass
 
-    for lu_file in car_dir.glob('*.lu'):
+    for lu_file in sorted(car_dir.glob('*.lu')):
         if not lu_file.name.startswith('res.') and 'sheet' not in lu_file.name.lower():
             continue
         with open(lu_file, 'rb') as f:
@@ -157,13 +187,16 @@ def process_all_sheets(car_dir: Path, res_dir: Path):
         if not frames:
             continue
 
-        # Try to match lu_file name to master image
-        # e.g., 'res.weapons.weapon_icons.lu' -> 'weapon_icons.png'
-        stem = lu_file.stem.split('.')[-1].lower() + '.png'
-        master_img_path = image_map.get(stem)
+        # 1. Try exact relative path match: e.g. 'res.weapons.parachute.lu' -> 'res/weapons/parachute.png'
+        rel_candidate = lu_file.stem.replace('.', '/').lower() + '.png'
+        master_img_path = rel_image_map.get(rel_candidate)
+
+        # 2. Fallback to stem filename match: e.g. 'res.weapons.weapon_icons.lu' -> 'weapon_icons.png'
+        if not master_img_path:
+            stem = lu_file.stem.split('.')[-1].lower() + '.png'
+            master_img_path = image_map.get(stem)
 
         if not master_img_path:
-            # Try alternate matching
             for candidate in image_map.keys():
                 if candidate.replace('.png', '') in lu_file.stem.lower():
                     master_img_path = image_map[candidate]
@@ -194,9 +227,12 @@ def process_all_sheets(car_dir: Path, res_dir: Path):
                     if frame.get('textureRotated'):
                         cropped = cropped.transpose(Image.ROTATE_270)
 
-                    # Save both in subfolder and in master parent for direct SpriteKit lookup
+                    # Always save into *_frames subfolder
                     cropped.save(out_folder / name)
-                    cropped.save(master_img_path.parent / name)
+                    # Only save into master parent if it does NOT overwrite an original standalone/master PNG
+                    parent_dest = master_img_path.parent / name
+                    if parent_dest.resolve() not in original_files:
+                        cropped.save(parent_dest)
                     extracted_total += 1
                 print(f"Processed {lu_file.name} -> {len(frames)} sprites cropped from {master_img_path.name}")
         except Exception as e:

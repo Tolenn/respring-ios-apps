@@ -29,6 +29,24 @@ public class SoundManager {
 
     private init() {
         configureAudioSession()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAudioInterruption(_:)),
+            name: AVAudioSession.interruptionNotification,
+            object: nil
+        )
+    }
+
+    @objc private func handleAudioInterruption(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
+        if type == .began {
+            pauseMusic()
+        } else if type == .ended {
+            try? AVAudioSession.sharedInstance().setActive(true)
+            resumeMusic()
+        }
     }
 
     private func configureAudioSession() {
@@ -82,5 +100,18 @@ public class SoundManager {
 
     public func stopMusic() {
         musicPlayer?.stop()
+    }
+
+    public func pauseMusic() {
+        if musicPlayer?.isPlaying == true {
+            musicPlayer?.pause()
+        }
+    }
+
+    public func resumeMusic() {
+        guard musicEnabled else { return }
+        if let mp = musicPlayer, !mp.isPlaying {
+            mp.play()
+        }
     }
 }

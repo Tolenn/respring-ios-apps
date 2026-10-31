@@ -26,6 +26,8 @@
 	<array>
 		<string>SingleSleeve.ttf</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arm64</string>

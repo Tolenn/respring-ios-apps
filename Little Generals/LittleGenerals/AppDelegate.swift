@@ -18,5 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return .landscape
     }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        SoundManager.shared.pauseMusic()
+        GameState.shared.save()
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        SoundManager.shared.pauseMusic()
+        GameState.shared.save()
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        SoundManager.shared.resumeMusic()
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        GameState.shared.save()
+    }
 }
 

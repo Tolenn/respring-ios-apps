@@ -18,9 +18,9 @@ import argparse
 from pathlib import Path
 
 
-# File extensions and paths to ignore (Android-only runtime or signing files)
-IGNORE_EXTENSIONS = {'.dex', '.sf', '.rsa', '.mf'}
-IGNORE_PREFIXES = {'META-INF/', 'com/google/i18n/'}
+# File extensions and paths to ignore (Android-only runtime, native ARMv7 .so, or compiled XML resources)
+IGNORE_EXTENSIONS = {'.dex', '.sf', '.rsa', '.mf', '.so'}
+IGNORE_PREFIXES = {'META-INF/', 'com/google/i18n/', 'lib/', 'res/'}
 
 
 def extract_game_assets(apk_path: Path, output_dir: Path, include_car: bool = True):

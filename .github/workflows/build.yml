@@ -119,8 +119,10 @@ jobs:
           fi
 
           echo "Ensuring complete decompiled Lua archive is bundled..."
+          rm -rf "build/Payload_LG/LittleGenerals.app/decompiled_lua"
           cp -R "Little Generals/decompiled_lua" "build/Payload_LG/LittleGenerals.app/decompiled_lua"
 
+          rm -rf "build/Payload_LG/LittleGenerals.app/lib"
           rm -rf "build/Payload_LG/LittleGenerals.app/_CodeSignature"
 
           echo "Signing application bundle with com.smarterapps.littlegenerals..."

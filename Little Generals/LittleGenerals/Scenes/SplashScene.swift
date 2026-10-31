@@ -35,31 +35,35 @@ public class SplashScene: SKScene {
 
     private func setupLoadingSequence() {
         let centerX = size.width / 2
-        let baseY: CGFloat = size.height * 0.16
+        // In splashScene.lua:194 & 211: y = display.contentHeight/2 + 200 = 500 from top -> y = 100 from bottom in SpriteKit
+        let loadY: CGFloat = 100
 
-        // 1. Loading Text Graphic (loading_text.png)
-        let textTex = TextureHelper.loadTexture(named: "loading_text.png", fallbackColor: .clear, size: CGSize(width: 140, height: 38))
-        let loadText = SKSpriteNode(texture: textTex, size: CGSize(width: 140, height: 38))
-        loadText.position = CGPoint(x: centerX, y: baseY + 24)
+        // 1. Loading Text Graphic (loading_text.png: 198x63 native, 196x61 in splashScene.lua:192)
+        let loadText = TextureHelper.nativeSprite(named: "loading_text.png", scale: 1.0, fallbackColor: .clear, fallbackSize: CGSize(width: 196, height: 61))
+        loadText.position = CGPoint(x: centerX, y: loadY)
         loadText.zPosition = 10
         addChild(loadText)
         self.loadingTextNode = loadText
 
-        // 2. Progress Bar Outline
-        let barWidth: CGFloat = 260
+        // 2. Progress Bar Outline (matches splashScene.lua:130-156: width=300, height=10, directly below loading_text.png)
+        let barWidth: CGFloat = 300
         let barHeight: CGFloat = 10
-        let barOutline = SKShapeNode(rectOf: CGSize(width: barWidth, height: barHeight), cornerRadius: 4)
-        barOutline.strokeColor = SKColor(white: 0.1, alpha: 0.8)
-        barOutline.lineWidth = 2.0
-        barOutline.fillColor = SKColor(white: 1.0, alpha: 0.4)
-        barOutline.position = CGPoint(x: centerX, y: baseY - 4)
+        let barY = loadY - loadText.size.height / 2 - barHeight / 2 - 5
+        let brownDark = SKColor(red: 98.0 / 255.0, green: 65.0 / 255.0, blue: 24.0 / 255.0, alpha: 1.0)
+        let offWhite = SKColor(red: 238.0 / 255.0, green: 234.0 / 255.0, blue: 222.0 / 255.0, alpha: 1.0)
+
+        let barOutline = SKShapeNode(rectOf: CGSize(width: barWidth, height: barHeight), cornerRadius: 3)
+        barOutline.strokeColor = brownDark
+        barOutline.lineWidth = 3.0
+        barOutline.fillColor = offWhite
+        barOutline.position = CGPoint(x: centerX, y: barY)
         barOutline.zPosition = 10
         addChild(barOutline)
         self.progressNode = barOutline
 
         // 3. Progress Fill
         let fill = SKShapeNode(rectOf: CGSize(width: barWidth - 4, height: barHeight - 4), cornerRadius: 2)
-        fill.fillColor = SKColor(red: 0.2, green: 0.85, blue: 0.3, alpha: 1.0)
+        fill.fillColor = brownDark
         fill.strokeColor = .clear
         fill.position = barOutline.position
         fill.xScale = 0.05
@@ -67,24 +71,34 @@ public class SplashScene: SKScene {
         addChild(fill)
         self.progressFillNode = fill
 
-        // 4. Flying Missile Graphic (loading_missile.png)
-        let missileTex = TextureHelper.loadTexture(named: "loading_missile.png", fallbackColor: .white, size: CGSize(width: 44, height: 16))
-        let missile = SKSpriteNode(texture: missileTex, size: CGSize(width: 44, height: 16))
-        missile.position = CGPoint(x: centerX - barWidth / 2, y: baseY + 8)
+        // 4. Flying Missile Graphic (loading_missile.png: 86x58 native, scaled proportionally)
+        let missile = TextureHelper.nativeSprite(named: "loading_missile.png", scale: 0.55, fallbackColor: .clear, fallbackSize: CGSize(width: 47, height: 32))
+        missile.position = CGPoint(x: centerX - barWidth / 2, y: barY + 2)
         missile.zPosition = 12
         addChild(missile)
         self.missileNode = missile
 
-        // 5. Play Button (Initially Hidden, shown when loading completes)
-        let playTex = TextureHelper.loadTexture(named: "play_normal_btn.png", fallbackColor: SKColor(red: 0.2, green: 0.7, blue: 0.25, alpha: 1.0), size: CGSize(width: 175, height: 56))
-        let playBtn = SKSpriteNode(texture: playTex, size: CGSize(width: 175, height: 56))
+        // 5. Play Button (matches splashScene.lua:72-74, 209-211: 192x93 native at (centerX, 100))
+        let playBtn = TextureHelper.nativeSprite(named: "play_normal_btn.png", scale: 1.0, fallbackColor: SKColor(red: 0.2, green: 0.7, blue: 0.25, alpha: 1.0), fallbackSize: CGSize(width: 192, height: 93))
         playBtn.name = "play_btn"
-        playBtn.position = CGPoint(x: centerX, y: baseY + 10)
+        playBtn.position = CGPoint(x: centerX, y: loadY)
         playBtn.zPosition = 15
         playBtn.alpha = 0.0
         playBtn.setScale(0.8)
         addChild(playBtn)
         self.playButtonNode = playBtn
+
+        // 6. Authentic Version Label ("v2.5.0" in SingleSleeve font size 25, splashScene.lua:240-245)
+        let versionLabel = SKLabelNode(fontNamed: "SingleSleeve")
+        versionLabel.text = "v2.5.0"
+        versionLabel.fontSize = 25
+        versionLabel.fontColor = brownDark
+        versionLabel.alpha = 0.75
+        versionLabel.horizontalAlignmentMode = .right
+        versionLabel.verticalAlignmentMode = .bottom
+        versionLabel.position = CGPoint(x: size.width - 15, y: 12)
+        versionLabel.zPosition = 15
+        addChild(versionLabel)
     }
 
     private func simulateLoadProgress() {
@@ -101,7 +115,7 @@ public class SplashScene: SKScene {
                 let progress = min(1.0, CGFloat(currentStep) / CGFloat(steps))
                 self.progressFillNode?.xScale = max(0.05, progress)
 
-                let barWidth: CGFloat = 260
+                let barWidth: CGFloat = 300
                 let startX = self.size.width / 2 - barWidth / 2
                 self.missileNode?.position.x = startX + barWidth * progress
 
